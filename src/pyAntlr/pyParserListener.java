@@ -1,4 +1,4 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/compiler project/Compiler_Project/src/antlr/pyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/Lenovo/Desktop/Projects/NEW/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -17,15 +17,111 @@ public interface pyParserListener extends ParseTreeListener {
 	 */
 	void exitProgram(pyParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link pyParser#statement}.
+	 * Enter a parse tree produced by {@link pyParser#identifier}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(pyParser.StatementContext ctx);
+	void enterIdentifier(pyParser.IdentifierContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link pyParser#statement}.
+	 * Exit a parse tree produced by {@link pyParser#identifier}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(pyParser.StatementContext ctx);
+	void exitIdentifier(pyParser.IdentifierContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ImportStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterImportStatement(pyParser.ImportStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ImportStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitImportStatement(pyParser.ImportStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AssignmentStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignmentStatement(pyParser.AssignmentStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AssignmentStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignmentStatement(pyParser.AssignmentStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ReturnStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(pyParser.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ReturnStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(pyParser.ReturnStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ExprStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterExprStatement(pyParser.ExprStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ExprStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitExprStatement(pyParser.ExprStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RouteStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterRouteStatement(pyParser.RouteStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RouteStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitRouteStatement(pyParser.RouteStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FuncDefStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncDefStatement(pyParser.FuncDefStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FuncDefStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncDefStatement(pyParser.FuncDefStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IfStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfStatement(pyParser.IfStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IfStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfStatement(pyParser.IfStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ForStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterForStatement(pyParser.ForStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ForStatement}
+	 * labeled alternative in {@link pyParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitForStatement(pyParser.ForStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link pyParser#import_stmt}.
 	 * @param ctx the parse tree
@@ -37,25 +133,15 @@ public interface pyParserListener extends ParseTreeListener {
 	 */
 	void exitImport_stmt(pyParser.Import_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link pyParser#simple_import}.
+	 * Enter a parse tree produced by {@link pyParser#dotted_name}.
 	 * @param ctx the parse tree
 	 */
-	void enterSimple_import(pyParser.Simple_importContext ctx);
+	void enterDotted_name(pyParser.Dotted_nameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link pyParser#simple_import}.
+	 * Exit a parse tree produced by {@link pyParser#dotted_name}.
 	 * @param ctx the parse tree
 	 */
-	void exitSimple_import(pyParser.Simple_importContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link pyParser#from_import}.
-	 * @param ctx the parse tree
-	 */
-	void enterFrom_import(pyParser.From_importContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link pyParser#from_import}.
-	 * @param ctx the parse tree
-	 */
-	void exitFrom_import(pyParser.From_importContext ctx);
+	void exitDotted_name(pyParser.Dotted_nameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link pyParser#import_list}.
 	 * @param ctx the parse tree
@@ -77,15 +163,15 @@ public interface pyParserListener extends ParseTreeListener {
 	 */
 	void exitImport_item(pyParser.Import_itemContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link pyParser#dotted_name}.
+	 * Enter a parse tree produced by {@link pyParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterDotted_name(pyParser.Dotted_nameContext ctx);
+	void enterAssignment(pyParser.AssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link pyParser#dotted_name}.
+	 * Exit a parse tree produced by {@link pyParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitDotted_name(pyParser.Dotted_nameContext ctx);
+	void exitAssignment(pyParser.AssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link pyParser#func_def}.
 	 * @param ctx the parse tree
@@ -107,65 +193,29 @@ public interface pyParserListener extends ParseTreeListener {
 	 */
 	void exitParam_list(pyParser.Param_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link pyParser#suite}.
+	 * Enter a parse tree produced by the {@code IndentedSuite}
+	 * labeled alternative in {@link pyParser#suite}.
 	 * @param ctx the parse tree
 	 */
-	void enterSuite(pyParser.SuiteContext ctx);
+	void enterIndentedSuite(pyParser.IndentedSuiteContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link pyParser#suite}.
+	 * Exit a parse tree produced by the {@code IndentedSuite}
+	 * labeled alternative in {@link pyParser#suite}.
 	 * @param ctx the parse tree
 	 */
-	void exitSuite(pyParser.SuiteContext ctx);
+	void exitIndentedSuite(pyParser.IndentedSuiteContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link pyParser#assignment}.
+	 * Enter a parse tree produced by the {@code SimpleSuite}
+	 * labeled alternative in {@link pyParser#suite}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment(pyParser.AssignmentContext ctx);
+	void enterSimpleSuite(pyParser.SimpleSuiteContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link pyParser#assignment}.
+	 * Exit a parse tree produced by the {@code SimpleSuite}
+	 * labeled alternative in {@link pyParser#suite}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment(pyParser.AssignmentContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link pyParser#expr_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpr_stmt(pyParser.Expr_stmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link pyParser#expr_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpr_stmt(pyParser.Expr_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link pyParser#return_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterReturn_stmt(pyParser.Return_stmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link pyParser#return_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitReturn_stmt(pyParser.Return_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link pyParser#if_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterIf_stmt(pyParser.If_stmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link pyParser#if_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitIf_stmt(pyParser.If_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link pyParser#for_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterFor_stmt(pyParser.For_stmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link pyParser#for_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitFor_stmt(pyParser.For_stmtContext ctx);
+	void exitSimpleSuite(pyParser.SimpleSuiteContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link pyParser#route_def}.
 	 * @param ctx the parse tree
@@ -187,6 +237,344 @@ public interface pyParserListener extends ParseTreeListener {
 	 */
 	void exitRoute_path(pyParser.Route_pathContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link pyParser#route_params}.
+	 * @param ctx the parse tree
+	 */
+	void enterRoute_params(pyParser.Route_paramsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#route_params}.
+	 * @param ctx the parse tree
+	 */
+	void exitRoute_params(pyParser.Route_paramsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#if_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf_stmt(pyParser.If_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#if_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf_stmt(pyParser.If_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#for_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor_stmt(pyParser.For_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#for_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor_stmt(pyParser.For_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#return_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_stmt(pyParser.Return_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#return_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_stmt(pyParser.Return_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#return_args}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_args(pyParser.Return_argsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#return_args}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_args(pyParser.Return_argsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#expr_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_stmt(pyParser.Expr_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#expr_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_stmt(pyParser.Expr_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CondExpr}
+	 * labeled alternative in {@link pyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondExpr(pyParser.CondExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CondExpr}
+	 * labeled alternative in {@link pyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondExpr(pyParser.CondExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code OrPassExpr}
+	 * labeled alternative in {@link pyParser#orExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrPassExpr(pyParser.OrPassExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code OrPassExpr}
+	 * labeled alternative in {@link pyParser#orExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrPassExpr(pyParser.OrPassExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#equalityExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqualityExpr(pyParser.EqualityExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#equalityExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqualityExpr(pyParser.EqualityExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#relationalExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRelationalExpr(pyParser.RelationalExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#relationalExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRelationalExpr(pyParser.RelationalExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#additiveExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdditiveExpr(pyParser.AdditiveExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#additiveExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdditiveExpr(pyParser.AdditiveExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#multiplicativeExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplicativeExpr(pyParser.MultiplicativeExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#multiplicativeExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplicativeExpr(pyParser.MultiplicativeExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code UnaryMinusExpr}
+	 * labeled alternative in {@link pyParser#unaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnaryMinusExpr(pyParser.UnaryMinusExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code UnaryMinusExpr}
+	 * labeled alternative in {@link pyParser#unaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnaryMinusExpr(pyParser.UnaryMinusExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code UnaryPostfixExpr}
+	 * labeled alternative in {@link pyParser#unaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnaryPostfixExpr(pyParser.UnaryPostfixExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code UnaryPostfixExpr}
+	 * labeled alternative in {@link pyParser#unaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnaryPostfixExpr(pyParser.UnaryPostfixExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pyParser#postfixExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPostfixExpr(pyParser.PostfixExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pyParser#postfixExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPostfixExpr(pyParser.PostfixExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CallPostfix}
+	 * labeled alternative in {@link pyParser#postfixOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallPostfix(pyParser.CallPostfixContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CallPostfix}
+	 * labeled alternative in {@link pyParser#postfixOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallPostfix(pyParser.CallPostfixContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SubscriptPostfix}
+	 * labeled alternative in {@link pyParser#postfixOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubscriptPostfix(pyParser.SubscriptPostfixContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SubscriptPostfix}
+	 * labeled alternative in {@link pyParser#postfixOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubscriptPostfix(pyParser.SubscriptPostfixContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AttrPostfix}
+	 * labeled alternative in {@link pyParser#postfixOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttrPostfix(pyParser.AttrPostfixContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AttrPostfix}
+	 * labeled alternative in {@link pyParser#postfixOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttrPostfix(pyParser.AttrPostfixContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IntLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntLiteralExpr(pyParser.IntLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IntLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntLiteralExpr(pyParser.IntLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FloatLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatLiteralExpr(pyParser.FloatLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FloatLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatLiteralExpr(pyParser.FloatLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code StringLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLiteralExpr(pyParser.StringLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code StringLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLiteralExpr(pyParser.StringLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HtmlFileLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterHtmlFileLiteralExpr(pyParser.HtmlFileLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HtmlFileLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitHtmlFileLiteralExpr(pyParser.HtmlFileLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TrueLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrueLiteralExpr(pyParser.TrueLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TrueLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrueLiteralExpr(pyParser.TrueLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FalseLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterFalseLiteralExpr(pyParser.FalseLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FalseLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitFalseLiteralExpr(pyParser.FalseLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NoneLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNoneLiteralExpr(pyParser.NoneLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NoneLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNoneLiteralExpr(pyParser.NoneLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IdentifierExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdentifierExpr(pyParser.IdentifierExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IdentifierExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdentifierExpr(pyParser.IdentifierExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ListLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterListLiteralExpr(pyParser.ListLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ListLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitListLiteralExpr(pyParser.ListLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DictLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterDictLiteralExpr(pyParser.DictLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DictLiteralExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitDictLiteralExpr(pyParser.DictLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GeneratorPrimaryExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGeneratorPrimaryExpr(pyParser.GeneratorPrimaryExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GeneratorPrimaryExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGeneratorPrimaryExpr(pyParser.GeneratorPrimaryExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ParenExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterParenExpr(pyParser.ParenExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ParenExpr}
+	 * labeled alternative in {@link pyParser#primaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitParenExpr(pyParser.ParenExprContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link pyParser#generator_expr}.
 	 * @param ctx the parse tree
 	 */
@@ -197,267 +585,45 @@ public interface pyParserListener extends ParseTreeListener {
 	 */
 	void exitGenerator_expr(pyParser.Generator_exprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code MulExpr}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Enter a parse tree produced by {@link pyParser#list_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterMulExpr(pyParser.MulExprContext ctx);
+	void enterList_literal(pyParser.List_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code MulExpr}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Exit a parse tree produced by {@link pyParser#list_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitMulExpr(pyParser.MulExprContext ctx);
+	void exitList_literal(pyParser.List_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ColonExpr}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Enter a parse tree produced by {@link pyParser#dict_literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterColonExpr(pyParser.ColonExprContext ctx);
+	void enterDict_literal(pyParser.Dict_literalContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ColonExpr}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Exit a parse tree produced by {@link pyParser#dict_literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitColonExpr(pyParser.ColonExprContext ctx);
+	void exitDict_literal(pyParser.Dict_literalContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code SquareExpr}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Enter a parse tree produced by {@link pyParser#dict_entry}.
 	 * @param ctx the parse tree
 	 */
-	void enterSquareExpr(pyParser.SquareExprContext ctx);
+	void enterDict_entry(pyParser.Dict_entryContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code SquareExpr}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Exit a parse tree produced by {@link pyParser#dict_entry}.
 	 * @param ctx the parse tree
 	 */
-	void exitSquareExpr(pyParser.SquareExprContext ctx);
+	void exitDict_entry(pyParser.Dict_entryContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code forStmt}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Enter a parse tree produced by {@link pyParser#arg}.
 	 * @param ctx the parse tree
 	 */
-	void enterForStmt(pyParser.ForStmtContext ctx);
+	void enterArg(pyParser.ArgContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code forStmt}
-	 * labeled alternative in {@link pyParser#expr}.
+	 * Exit a parse tree produced by {@link pyParser#arg}.
 	 * @param ctx the parse tree
 	 */
-	void exitForStmt(pyParser.ForStmtContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code DivExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterDivExpr(pyParser.DivExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code DivExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitDivExpr(pyParser.DivExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code GeneratorExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterGeneratorExpr(pyParser.GeneratorExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code GeneratorExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitGeneratorExpr(pyParser.GeneratorExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code SubExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterSubExpr(pyParser.SubExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code SubExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitSubExpr(pyParser.SubExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code atomExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterAtomExpr(pyParser.AtomExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code atomExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitAtomExpr(pyParser.AtomExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code AddExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterAddExpr(pyParser.AddExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code AddExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitAddExpr(pyParser.AddExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ParenExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterParenExpr(pyParser.ParenExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ParenExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitParenExpr(pyParser.ParenExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code CurlyExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterCurlyExpr(pyParser.CurlyExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code CurlyExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitCurlyExpr(pyParser.CurlyExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code NegateExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterNegateExpr(pyParser.NegateExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NegateExpr}
-	 * labeled alternative in {@link pyParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitNegateExpr(pyParser.NegateExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code int}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterInt(pyParser.IntContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code int}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitInt(pyParser.IntContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code float}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterFloat(pyParser.FloatContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code float}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitFloat(pyParser.FloatContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code string}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterString(pyParser.StringContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code string}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitString(pyParser.StringContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code true}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterTrue(pyParser.TrueContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code true}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitTrue(pyParser.TrueContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code false}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterFalse(pyParser.FalseContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code false}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitFalse(pyParser.FalseContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code none}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterNone(pyParser.NoneContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code none}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitNone(pyParser.NoneContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code id}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterId(pyParser.IdContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code id}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitId(pyParser.IdContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code callExpr}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterCallExpr(pyParser.CallExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code callExpr}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitCallExpr(pyParser.CallExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code subscriptExpr}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterSubscriptExpr(pyParser.SubscriptExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code subscriptExpr}
-	 * labeled alternative in {@link pyParser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitSubscriptExpr(pyParser.SubscriptExprContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link pyParser#call_expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterCall_expr(pyParser.Call_exprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link pyParser#call_expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitCall_expr(pyParser.Call_exprContext ctx);
+	void exitArg(pyParser.ArgContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link pyParser#arg_list}.
 	 * @param ctx the parse tree
@@ -468,38 +634,4 @@ public interface pyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArg_list(pyParser.Arg_listContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link pyParser#subscript_expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterSubscript_expr(pyParser.Subscript_exprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link pyParser#subscript_expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitSubscript_expr(pyParser.Subscript_exprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code import_render}
-	 * labeled alternative in {@link pyParser#render_call}.
-	 * @param ctx the parse tree
-	 */
-	void enterImport_render(pyParser.Import_renderContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code import_render}
-	 * labeled alternative in {@link pyParser#render_call}.
-	 * @param ctx the parse tree
-	 */
-	void exitImport_render(pyParser.Import_renderContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code call_render}
-	 * labeled alternative in {@link pyParser#render_call}.
-	 * @param ctx the parse tree
-	 */
-	void enterCall_render(pyParser.Call_renderContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code call_render}
-	 * labeled alternative in {@link pyParser#render_call}.
-	 * @param ctx the parse tree
-	 */
-	void exitCall_render(pyParser.Call_renderContext ctx);
 }
