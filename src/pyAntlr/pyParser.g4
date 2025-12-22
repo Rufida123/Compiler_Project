@@ -2,127 +2,205 @@ parser grammar pyParser;
 
 options { tokenVocab = pyLexer; }
 
+
+// ================= البرنامج الرئيسي =================
 program
-    : statement* EOF
+    : (statement | NEWLINE)* EOF
     ;
 
-    statement
-        : import_stmt
-        | func_def
-        | assignment
-        | expr_stmt
-        | return_stmt
-        | route_def
-        | render_call
-        | if_stmt
-        | for_stmt
-        ;
-// from flask import Flask, render_template, request, redirect, url_for
-    import_stmt
-        : simple_import
-        | from_import
-        ;
-
-    simple_import
-        : IMPORT dotted_name (AS ID)?
-        ;
-
-    from_import
-        : FROM dotted_name IMPORT import_list
-        ;
-
-    import_list
-        : import_item (COMMA import_item)*
-        ;
-
-    import_item
-        : ID (AS ID)?
-        ;
-
-    dotted_name
-        : ID (DOT ID)*
-        ;
-
-    func_def
-        : DEF ID L_PAREN param_list? R_PAREN COLON suite;
-
-    param_list
-        : ID (COMMA ID)* ;
-
-    suite
-        : statement+;
-
-    assignment
-        : APP ASSIGN expr
-        | ID ASSIGN expr;
-
-    expr_stmt
-        : expr
-        ;
-
-    return_stmt
-        : RETURN expr?
-        ;
-
-    if_stmt
-        : IF expr COLON suite (ELSE COLON suite)?
-        ;
-
-    for_stmt
-        : FOR ID IN expr COLON suite
-        ;
-
-    route_def
-        : ROUTE L_PAREN route_path (COMMA param_list)? R_PAREN func_def
-        ;
-
-    route_path
-        : ROUTE_PATH
-        ;
-
-    generator_expr
-        : L_PAREN ID FOR ID IN expr (IF expr)? R_PAREN
-        ;
-
-    expr
-        : expr PLUS expr            # AddExpr
-        | expr MINUS expr           # SubExpr
-        | expr STAR expr            # MulExpr
-        | expr DIV expr             # DivExpr
-        | atom COLON atom           # ColonExpr
-        | MINUS expr                # NegateExpr
-        | L_PAREN (expr COMMA?)+ R_PAREN      # ParenExpr
-        | L_SQ_B (expr COMMA?)+ R_SQ_B        # SquareExpr
-        | L_CUR_B (expr COMMA?)+ R_CUR_B      # CurlyExpr
-        | for_stmt                            # forStmt
-        | generator_expr            # GeneratorExpr
-        | atom                      # atomExpr
+identifier
+    : ID
+    | APP
+    | RENDER_TEMPLATE
+    | REQUEST
+    | REDIRECT
+    | URL_FOR
+    ;
+// نوع الجملة
+statement
+    : NEWLINE? import_stmt       #ImportStatement
+    | NEWLINE? assignment        #AssignmentStatement
+    | NEWLINE? return_stmt       #ReturnStatement
+    | NEWLINE? expr_stmt         #ExprStatement
+    | NEWLINE? route_def                #RouteStatement
+    | NEWLINE? func_def                 #FuncDefStatement
+    | NEWLINE? if_stmt                  #IfStatement
+    | NEWLINE? for_stmt                 #ForStatement
     ;
 
-    atom
-        : INT               #int
-        | FLOAT             #float
-        | STRING            #string
-        | TRUE              #true
-        | FALSE             #false
-        | NONE              #none
-        | ID                #id
-        | call_expr         #callExpr
-        | subscript_expr    #subscriptExpr
-        ;
 
-    call_expr
-        : ID L_PAREN arg_list? R_PAREN
-        ;
+// ================= import =================
 
-    arg_list
-        : expr (COMMA expr)*
-        ;
+import_stmt
+    : FROM dotted_name IMPORT import_list
+    ;
 
-    subscript_expr
-        : ID L_SQ_B expr R_SQ_B
-        ;
+dotted_name
+    : ID (DOT ID)*
+    ;
 
-    render_call : RENDER_TEMPLATE                                   #import_render
-    | RENDER_TEMPLATE L_PAREN HTML_FILE (COMMA assignment)* R_PAREN #call_render
+import_list
+    : import_item (COMMA import_item)*
+    ;
+
+import_item
+    :  identifier (AS ID)?
+    ;
+
+// ================= تعاريف و جمل =================
+
+// app = Flask(__name__)
+// products = [...]
+assignment
+    : (APP | ID) ASSIGN expr
+    ;
+
+// def index(...):
+func_def
+    : DEF ID L_PAREN param_list? R_PAREN COLON suite
+    ;
+
+param_list
+    : ID (COMMA ID)*
+    ;
+
+// Block داخل الدالة أو الـ if
+suite
+    : NEWLINE+ INDENT (statement | NEWLINE)+ DEDENT   #IndentedSuite
+    | statement                                      #SimpleSuite
+    ;
+
+
+// ================= route + decorator =================
+
+// @app.route('/add', methods=[...])
+// def add_product(): ...
+route_def
+    : ROUTE L_PAREN route_path (COMMA route_params)? R_PAREN NEWLINE func_def
+    ;
+
+route_path
+    : ROUTE_PATH
+    | STRING
+    ;
+
+route_params
+    : METHODS ASSIGN list_literal
+    ;
+
+// ================= if / for / return / expr =================
+
+if_stmt
+    : IF expr COLON suite (ELSE COLON suite)?
+    ;
+
+for_stmt
+    : FOR ID IN expr COLON suite
+    ;
+
+return_stmt
+    : RETURN return_args?
+    ;
+
+return_args
+    : expr (COMMA expr)*     // يدعم: return "msg", 404
+    ;
+
+expr_stmt
+    : expr
+    ;
+
+// ================= التعابير Expressions =================
+
+expr
+    : orExpr (IF orExpr ELSE orExpr)?      #CondExpr
+    ;
+
+orExpr
+    : equalityExpr                         #OrPassExpr
+    ;
+
+// ==, !=, is
+equalityExpr
+    : relationalExpr ((EQ | NEQ | IS) relationalExpr)*
+    ;
+
+// <, >
+relationalExpr
+    : additiveExpr ((LT | GT) additiveExpr)*
+    ;
+
+// +, -
+additiveExpr
+    : multiplicativeExpr ((PLUS | MINUS) multiplicativeExpr)*
+    ;
+
+// *, /
+multiplicativeExpr
+    : unaryExpr ((STAR | DIV) unaryExpr)*
+    ;
+
+// -x
+unaryExpr
+    : MINUS unaryExpr                                   #UnaryMinusExpr
+    | postfixExpr                                      #UnaryPostfixExpr
+    ;
+
+// x(), x[y], x.y (سلسلة)
+postfixExpr
+    : primaryExpr (postfixOp)*
+    ;
+
+postfixOp
+    : L_PAREN arg_list? R_PAREN                         #CallPostfix
+    | L_SQ_B expr R_SQ_B                                #SubscriptPostfix
+    | DOT ID                                            #AttrPostfix
+    ;
+
+// القيم الأساسية + list/dict + generator
+primaryExpr
+    : INT                                               #IntLiteralExpr
+    | FLOAT                                             #FloatLiteralExpr
+    | STRING                                            #StringLiteralExpr
+    | HTML_FILE                                         #HtmlFileLiteralExpr
+    | TRUE                                              #TrueLiteralExpr
+    | FALSE                                             #FalseLiteralExpr
+    | NONE                                              #NoneLiteralExpr
+    | identifier                                        #IdentifierExpr
+    | list_literal                                      #ListLiteralExpr
+    | dict_literal                                      #DictLiteralExpr
+    | generator_expr                                    #GeneratorPrimaryExpr
+    | L_PAREN expr R_PAREN                              #ParenExpr
+    ;
+
+// (p for p in products if p['id'] == product_id)
+generator_expr
+    : NEWLINE? L_PAREN NEWLINE? ID FOR ID IN expr (IF expr)? NEWLINE? R_PAREN
+    ;
+
+// ================= list / dict literals =================
+
+list_literal
+    : NEWLINE? L_SQ_B NEWLINE?(expr (COMMA NEWLINE? expr)*)? NEWLINE? R_SQ_B
+    ;
+
+dict_literal
+    : NEWLINE? L_CUR_B NEWLINE?(dict_entry (COMMA NEWLINE? dict_entry)*)? NEWLINE? R_CUR_B
+    ;
+
+dict_entry
+    : expr COLON expr
+    ;
+
+// ================= arguments =================
+
+// يدعم positional و keyword args:
+// render_template('index.html', products=products)
+arg
+    : expr
+    | ID ASSIGN expr
+    ;
+
+arg_list
+    : arg (COMMA NEWLINE? arg)*
     ;
