@@ -1,6 +1,5 @@
-// Generated from D:/DOC/Telegram Desktop/Compiler (2)/Compiler/src/antlr/JinjaParser.g4 by ANTLR 4.13.2
-package antlr;
-
+// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+package jinjaAntlr;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -29,13 +28,13 @@ public class JinjaParserBaseListener implements JinjaParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterHtmlElement(JinjaParser.HtmlElementContext ctx) { }
+	@Override public void enterProgramElement(JinjaParser.ProgramElementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitHtmlElement(JinjaParser.HtmlElementContext ctx) { }
+	@Override public void exitProgramElement(JinjaParser.ProgramElementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -60,6 +59,54 @@ public class JinjaParserBaseListener implements JinjaParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSelfClosingTag(JinjaParser.SelfClosingTagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNormalAttribute(JinjaParser.NormalAttributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNormalAttribute(JinjaParser.NormalAttributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterJinjaAttribute(JinjaParser.JinjaAttributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitJinjaAttribute(JinjaParser.JinjaAttributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPlainValue(JinjaParser.PlainValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPlainValue(JinjaParser.PlainValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterJinjaValueExpr(JinjaParser.JinjaValueExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitJinjaValueExpr(JinjaParser.JinjaValueExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -420,6 +467,30 @@ public class JinjaParserBaseListener implements JinjaParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCssSelector(JinjaParser.CssSelectorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterClassPart(JinjaParser.ClassPartContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClassPart(JinjaParser.ClassPartContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTagPart(JinjaParser.TagPartContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTagPart(JinjaParser.TagPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

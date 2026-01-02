@@ -1,12 +1,13 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/NEW/Compiler_Project/src/pyAntlr/pyLexer.g4 by ANTLR 4.13.2
-import org.antlr.v4.runtime.Lexer;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.TokenStream;
+// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/pyAntlr/pyLexer.g4 by ANTLR 4.13.2
+package pyAntlr;
+
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.atn.*;
+import org.antlr.v4.runtime.atn.ATN;
+import org.antlr.v4.runtime.atn.ATNDeserializer;
+import org.antlr.v4.runtime.atn.LexerATNSimulator;
+import org.antlr.v4.runtime.atn.PredictionContextCache;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.misc.*;
+import org.antlr.v4.runtime.misc.Pair;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class pyLexer extends Lexer {
@@ -101,13 +102,13 @@ public class pyLexer extends Lexer {
 
 
 	    java.util.Deque<Integer> indents = new java.util.ArrayDeque<>();
-	    java.util.LinkedList<org.antlr.v4.runtime.Token> pending = new java.util.LinkedList<>();
+	    java.util.LinkedList<Token> pending = new java.util.LinkedList<>();
 	    private boolean initialized = false;
 
 	    private int opened = 0;
 
 	    @Override
-	    public org.antlr.v4.runtime.Token nextToken() {
+	    public Token nextToken() {
 
 	        if (!initialized) {
 	            indents.push(0);
@@ -118,7 +119,7 @@ public class pyLexer extends Lexer {
 	            return pending.pollFirst();
 	        }
 
-	        org.antlr.v4.runtime.Token t = super.nextToken();
+	        Token t = super.nextToken();
 	        int tt = t.getType();
 
 
@@ -126,7 +127,7 @@ public class pyLexer extends Lexer {
 	        else if (tt == R_PAREN || tt == R_SQ_B || tt == R_CUR_B) opened = Math.max(0, opened - 1);
 
 
-	        if (tt == org.antlr.v4.runtime.Token.EOF) {
+	        if (tt == Token.EOF) {
 	            while (indents.size() > 1) {
 	                indents.pop();
 	                pending.add(makeToken(DEDENT));
@@ -147,7 +148,7 @@ public class pyLexer extends Lexer {
 
 	            // إذا السطر التالي فاضي/تعليق/EOF لا تغيّر indentation
 	            int la = _input.LA(1);
-	            if (la == '\n' || la == '\r' || la == '#' || la == org.antlr.v4.runtime.IntStream.EOF) {
+	            if (la == '\n' || la == '\r' || la == '#' || la == IntStream.EOF) {
 	                return pending.pollFirst();
 	            }
 
@@ -178,17 +179,17 @@ public class pyLexer extends Lexer {
 	        return t;
 	    }
 
-	   private org.antlr.v4.runtime.Token makeToken(int type) {
-	       org.antlr.v4.runtime.misc.Pair<
-	               org.antlr.v4.runtime.TokenSource,
-	               org.antlr.v4.runtime.CharStream
-	       > source = new org.antlr.v4.runtime.misc.Pair<>(this, _input);
+	   private Token makeToken(int type) {
+	       Pair<
+	               TokenSource,
+	               CharStream
+	       > source = new Pair<>(this, _input);
 
-	       org.antlr.v4.runtime.CommonToken token =
-	               new org.antlr.v4.runtime.CommonToken(
+	       CommonToken token =
+	               new CommonToken(
 	                       source,
 	                       type,
-	                       org.antlr.v4.runtime.Token.DEFAULT_CHANNEL,
+	                       Token.DEFAULT_CHANNEL,
 	                       -1,
 	                       -1
 	               );
