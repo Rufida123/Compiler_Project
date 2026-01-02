@@ -2,8 +2,8 @@ package PyVisitor;
 
 import PyAstClasses.*;
 import PySymbolTable.SymbolTable;
-import antlr.pyParser;
-import antlr.pyParserBaseVisitor;
+import pyAntlr.pyParser;
+import pyAntlr.pyParserBaseVisitor;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.ArrayList;

@@ -1,5 +1,5 @@
-// Generated from D:/DOC/Telegram Desktop/Compiler (2)/Compiler/src/antlr/JinjaParser.g4 by ANTLR 4.13.2
-package antlr;
+// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+package jinjaAntlr;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -18,15 +18,15 @@ public interface JinjaParserListener extends ParseTreeListener {
 	 */
 	void exitDocument(JinjaParser.DocumentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JinjaParser#htmlElement}.
+	 * Enter a parse tree produced by {@link JinjaParser#programElement}.
 	 * @param ctx the parse tree
 	 */
-	void enterHtmlElement(JinjaParser.HtmlElementContext ctx);
+	void enterProgramElement(JinjaParser.ProgramElementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JinjaParser#htmlElement}.
+	 * Exit a parse tree produced by {@link JinjaParser#programElement}.
 	 * @param ctx the parse tree
 	 */
-	void exitHtmlElement(JinjaParser.HtmlElementContext ctx);
+	void exitProgramElement(JinjaParser.ProgramElementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PairedTag}
 	 * labeled alternative in {@link JinjaParser#htmlTag}.
@@ -51,6 +51,54 @@ public interface JinjaParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSelfClosingTag(JinjaParser.SelfClosingTagContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NormalAttribute}
+	 * labeled alternative in {@link JinjaParser#htmlAttribute}.
+	 * @param ctx the parse tree
+	 */
+	void enterNormalAttribute(JinjaParser.NormalAttributeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NormalAttribute}
+	 * labeled alternative in {@link JinjaParser#htmlAttribute}.
+	 * @param ctx the parse tree
+	 */
+	void exitNormalAttribute(JinjaParser.NormalAttributeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code JinjaAttribute}
+	 * labeled alternative in {@link JinjaParser#htmlAttribute}.
+	 * @param ctx the parse tree
+	 */
+	void enterJinjaAttribute(JinjaParser.JinjaAttributeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code JinjaAttribute}
+	 * labeled alternative in {@link JinjaParser#htmlAttribute}.
+	 * @param ctx the parse tree
+	 */
+	void exitJinjaAttribute(JinjaParser.JinjaAttributeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PlainValue}
+	 * labeled alternative in {@link JinjaParser#attributeValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterPlainValue(JinjaParser.PlainValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PlainValue}
+	 * labeled alternative in {@link JinjaParser#attributeValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitPlainValue(JinjaParser.PlainValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code JinjaValueExpr}
+	 * labeled alternative in {@link JinjaParser#attributeValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterJinjaValueExpr(JinjaParser.JinjaValueExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code JinjaValueExpr}
+	 * labeled alternative in {@link JinjaParser#attributeValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitJinjaValueExpr(JinjaParser.JinjaValueExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ControlBlock}
 	 * labeled alternative in {@link JinjaParser#jinjaBlock}.
@@ -391,6 +439,30 @@ public interface JinjaParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCssSelector(JinjaParser.CssSelectorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ClassPart}
+	 * labeled alternative in {@link JinjaParser#selectorPart}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassPart(JinjaParser.ClassPartContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ClassPart}
+	 * labeled alternative in {@link JinjaParser#selectorPart}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassPart(JinjaParser.ClassPartContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TagPart}
+	 * labeled alternative in {@link JinjaParser#selectorPart}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagPart(JinjaParser.TagPartContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TagPart}
+	 * labeled alternative in {@link JinjaParser#selectorPart}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagPart(JinjaParser.TagPartContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JinjaParser#cssProperty}.
 	 * @param ctx the parse tree

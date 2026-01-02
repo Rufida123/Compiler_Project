@@ -26,8 +26,8 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/jinjaAntlr/JinjaParser.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="" />
-          <option name="libDir" value="C:\Users\rufida\Desktop\New folder\Compiler_Project\src\jinjaAntlr" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\jinjaAntlr" />
+          <option name="libDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\jinjaAntlr" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
@@ -36,8 +36,28 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/pyAntlr/pyParser.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="" />
-          <option name="libDir" value="C:\Users\rufida\Desktop\New folder\Compiler_Project\src\pyAntlr" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\pyAntlr" />
+          <option name="libDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\pyAntlr" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/src/pyAntlr/pyLexer.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\pyAntlr" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/src/jinjaAntlr/JinjaLexer.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\jinjaAntlr" />
+          <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
@@ -46,7 +66,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

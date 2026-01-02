@@ -1,5 +1,5 @@
-// Generated from D:/DOC/Telegram Desktop/Compiler (2)/Compiler/src/antlr/JinjaParser.g4 by ANTLR 4.13.2
-package antlr;
+// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+package jinjaAntlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -17,11 +17,11 @@ public interface JinjaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDocument(JinjaParser.DocumentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JinjaParser#htmlElement}.
+	 * Visit a parse tree produced by {@link JinjaParser#programElement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitHtmlElement(JinjaParser.HtmlElementContext ctx);
+	T visitProgramElement(JinjaParser.ProgramElementContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code PairedTag}
 	 * labeled alternative in {@link JinjaParser#htmlTag}.
@@ -36,6 +36,34 @@ public interface JinjaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSelfClosingTag(JinjaParser.SelfClosingTagContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NormalAttribute}
+	 * labeled alternative in {@link JinjaParser#htmlAttribute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNormalAttribute(JinjaParser.NormalAttributeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code JinjaAttribute}
+	 * labeled alternative in {@link JinjaParser#htmlAttribute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaAttribute(JinjaParser.JinjaAttributeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PlainValue}
+	 * labeled alternative in {@link JinjaParser#attributeValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPlainValue(JinjaParser.PlainValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code JinjaValueExpr}
+	 * labeled alternative in {@link JinjaParser#attributeValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaValueExpr(JinjaParser.JinjaValueExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ControlBlock}
 	 * labeled alternative in {@link JinjaParser#jinjaBlock}.
@@ -236,6 +264,20 @@ public interface JinjaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCssSelector(JinjaParser.CssSelectorContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ClassPart}
+	 * labeled alternative in {@link JinjaParser#selectorPart}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassPart(JinjaParser.ClassPartContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TagPart}
+	 * labeled alternative in {@link JinjaParser#selectorPart}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagPart(JinjaParser.TagPartContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JinjaParser#cssProperty}.
 	 * @param ctx the parse tree

@@ -6,7 +6,6 @@ import jinjaAntlr.JinjaParserBaseVisitor;
 import jinjaAstClasses.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BaseVisitor extends JinjaParserBaseVisitor<Object> {
     private SymbolTable symbolTable = new SymbolTable();
