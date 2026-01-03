@@ -59,6 +59,15 @@ def add_product():
 
     return render_template('add_product.html')
 
+@app.route('/delete/<int:product_id>', methods=['POST'])
+def delete_product(product_id):
+    # Mutate the global products list in place (no global keyword needed)
+    for i in range(len(products) - 1, -1, -1):
+        if products[i]['id'] == product_id:
+            del products[i]
+            # Optional: break here since IDs are unique and only one match is expected
+            # break
+    return redirect(url_for('index'))
 
 # Run the app
 if __name__ == '__main__':

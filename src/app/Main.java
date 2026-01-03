@@ -67,7 +67,7 @@ public class Main {
         // 7) Print AST
         System.out.println("\n=========== AST ===========");
         AstPrettyPrinter printer = new AstPrettyPrinter();
-        System.out.println(printer.print(ast));
+        System.out.println(printer.printStrict(ast));
 
         // 8) Symbol Table
         System.out.println("\n=========== SYMBOL TABLE ===========");

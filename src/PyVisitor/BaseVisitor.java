@@ -1,4 +1,4 @@
-package PyVisitor;
+ package PyVisitor;
 
 import PyAstClasses.*;
 import PySymbolTable.SymbolTable;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseVisitor extends pyParserBaseVisitor<Object> {
+    private final AstPrettyPrinter pp = new AstPrettyPrinter();
 
     private final SymbolTable symbolTable = new SymbolTable();
 
@@ -19,6 +20,11 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
 
     // ================= Helpers =================
 
+    /*private String symVal(Object v) {
+        if (v == null) return "null";
+        if (v instanceof Expression e) return pp.formatExpr(e);
+        return String.valueOf(v);
+    }*/
     private void setLine(Object node, ParserRuleContext ctx) {
         if (node instanceof PyAstClasses.Program) {
             ((PyAstClasses.Program) node).setLineNumber(ctx.getStart().getLine());
@@ -41,6 +47,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
 
     @Override
     public PyAstClasses.Program visitProgram(pyParser.ProgramContext ctx) {
+        symbolTable.initGlobal();
         PyAstClasses.Program program = new PyAstClasses.Program() {};
         setLine(program, ctx);
 
@@ -66,7 +73,6 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
                 String name = it.getName();
                 String alias = it.getAlias();
                 String key = (alias != null) ? alias : name;
-                symbolTable.addSymbol(key, module + "." + name, "ImportItem");
             }
         }
 
@@ -79,7 +85,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         setLine(stmt, ctx);
 
         // SymbolTable: var assignment
-        symbolTable.addSymbol(stmt.getName(), stmt.getValue(), "Assignment");
+        symbolTable.addSymbol(stmt.getName(), stmt.getValue(), "Assignment", ctx.getStart().getLine());
 
         return stmt;
     }
@@ -88,7 +94,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
     public Statement visitReturnStatement(pyParser.ReturnStatementContext ctx) {
         ReturnStmt stmt = (ReturnStmt) visit(ctx.return_stmt());
         setLine(stmt, ctx);
-        symbolTable.addSymbol("return@ " + stmt.getLineNumber(), "return", "ReturnStmt");
+        //  symbolTable.addSymbol("return " + stmt.getLineNumber(), "return", "ReturnStmt", ctx.getStart().getLine());
         return stmt;
     }
 
@@ -96,7 +102,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
     public Statement visitExprStatement(pyParser.ExprStatementContext ctx) {
         ExprStmt stmt = (ExprStmt) visit(ctx.expr_stmt());
         setLine(stmt, ctx);
-        symbolTable.addSymbol("expr@ " + stmt.getLineNumber(), stmt.getExpr(), "ExprStmt");
+        //  symbolTable.addSymbol("expr " + stmt.getLineNumber(), stmt.getExpr(), "ExprStmt",ctx.getStart().getLine());
         return stmt;
     }
 
@@ -106,11 +112,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         setLine(stmt, ctx);
 
         if (stmt.getRoutePath() != null && stmt.getFuncDef() != null) {
-            symbolTable.addSymbol(
-                    stmt.getRoutePath().getPath(),
-                    stmt.getFuncDef().getName(),
-                    "Route"
-            );
+
         }
 
         return stmt;
@@ -124,7 +126,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         symbolTable.addSymbol(stmt.getName(), "Function", "FuncDef");
 
         for (String p : stmt.getParams()) {
-            symbolTable.addSymbol(stmt.getName() + ":" + p, "param", "Parameter");
+            symbolTable.addSymbol(stmt.getName() + ":" + p, "param", "Parameter",ctx.getStart().getLine());
         }
 
         return stmt;
@@ -134,7 +136,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
     public Statement visitIfStatement(pyParser.IfStatementContext ctx) {
         IfStatement stmt = (IfStatement) visit(ctx.if_stmt());
         setLine(stmt, ctx);
-        symbolTable.addSymbol("if@ " + stmt.getLineNumber(), "if", "IfStmt");
+        // symbolTable.addSymbol("if " + stmt.getLineNumber(), "if", "IfStmt");
         return stmt;
     }
 
@@ -147,7 +149,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
             symbolTable.addSymbol(stmt.getVarName(), "loopVar", "ForVar");
         }
 
-        symbolTable.addSymbol("for@ " + stmt.getLineNumber(), "for", "ForStmt");
+        symbolTable.addSymbol("for@ " + stmt.getLineNumber(), "for", "ForStmt",ctx.getStart().getLine());
         return stmt;
     }
 
@@ -230,7 +232,13 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         FuncDefStatement node = new FuncDefStatement();
         setLine(node, ctx);
 
-        node.setName(ctx.ID().getText());
+        String fname = ctx.ID().getText();
+        int line = ctx.getStart().getLine();
+
+        node.setName(fname);
+
+        // Fuction Scoop
+        symbolTable.enterScope("Func@" + line + ":" + fname);
 
         ArrayList<String> params = new ArrayList<>();
         if (ctx.param_list() != null) {
@@ -238,11 +246,18 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         }
         node.setParams(params);
 
+        // params in func scope
+        for (String p : params) {
+            symbolTable.addSymbol(p, "param", "Parameter", line);
+        }
+
         Suite body = (Suite) visit(ctx.suite());
         node.setBody(body);
 
+        symbolTable.exitScope();
         return node;
     }
+
 
     public ArrayList<String> visitParam_list(pyParser.Param_listContext ctx) {
         ArrayList<String> params = new ArrayList<>();
@@ -257,11 +272,15 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         IndentedSuite node = new IndentedSuite();
         setLine(node, ctx);
 
+        int line = ctx.getStart().getLine();
+        symbolTable.enterScope("Suite@" + line);
+
         for (pyParser.StatementContext stCtx : ctx.statement()) {
             Statement st = (Statement) visit(stCtx);
             if (st != null) node.addStatement(st);
         }
 
+        symbolTable.exitScope();
         return node;
     }
 
@@ -270,11 +289,16 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         SimpleSuite node = new SimpleSuite();
         setLine(node, ctx);
 
+        int line = ctx.getStart().getLine();
+        symbolTable.enterScope("Suite@" + line);
+
         Statement st = (Statement) visit(ctx.statement());
         node.setStatement(st);
 
+        symbolTable.exitScope();
         return node;
     }
+
 
     // ================= route =================
 
@@ -344,9 +368,12 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
     @Override
     public ForStatement visitFor_stmt(pyParser.For_stmtContext ctx) {
         ForStatement node = new ForStatement();
-        setLine(node, ctx);
+        int line = ctx.getStart().getLine();
 
-        node.setVarName(ctx.ID().getText());
+        String var = ctx.ID().getText();
+        symbolTable.addSymbol(var, "loopVar", "ForVar", line);
+
+        node.setVarName(var);
         node.setExpression((Expression) visit(ctx.expr()));
         node.setForBlock((Suite) visit(ctx.suite()));
 
@@ -424,7 +451,6 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
             String op = ctx.getChild(2 * i - 1).getText();
             Expression right = (Expression) visit(ctx.relationalExpr(i));
 
-            // لازم يكون عندك BinaryExpr (أو اسمك الخاص للـ binary)
             BinaryExpr bin = new BinaryExpr();
             setLine(bin, ctx);
             bin.setLeft(left);
@@ -526,7 +552,6 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
             PostfixOp op = (PostfixOp) visit(opCtx);
             node.addOp(op);
         }
-
         return node;
     }
 
@@ -673,8 +698,7 @@ public class BaseVisitor extends pyParserBaseVisitor<Object> {
         node.setInner((Expression) visit(ctx.expr()));
         return node;
     }
-
-    // ================= generator_expr =================
+// ================= generator_expr =================
 
     @Override
     public GeneratorExpr visitGenerator_expr(pyParser.Generator_exprContext ctx) {
