@@ -32,7 +32,7 @@ statement
 // ================= import =================
 
 import_stmt
-    : FROM dotted_name IMPORT import_list
+    : (FROM dotted_name)* IMPORT import_list
     ;
 
 dotted_name
@@ -76,7 +76,7 @@ suite
 // @app.route('/add', methods=[...])
 // def add_product(): ...
 route_def
-    : ROUTE L_PAREN route_path (COMMA route_params)? R_PAREN NEWLINE func_def
+    : ROUTE L_PAREN route_path (COMMA NEWLINE? route_params)? R_PAREN NEWLINE func_def
     ;
 
 route_path
