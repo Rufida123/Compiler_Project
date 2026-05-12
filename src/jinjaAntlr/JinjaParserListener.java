@@ -1,4 +1,4 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
 package jinjaAntlr;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -8,25 +8,25 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface JinjaParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link JinjaParser#document}.
+	 * Enter a parse tree produced by {@link JinjaParser#jinjaProgram}.
 	 * @param ctx the parse tree
 	 */
-	void enterDocument(JinjaParser.DocumentContext ctx);
+	void enterJinjaProgram(JinjaParser.JinjaProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JinjaParser#document}.
+	 * Exit a parse tree produced by {@link JinjaParser#jinjaProgram}.
 	 * @param ctx the parse tree
 	 */
-	void exitDocument(JinjaParser.DocumentContext ctx);
+	void exitJinjaProgram(JinjaParser.JinjaProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JinjaParser#programElement}.
+	 * Enter a parse tree produced by {@link JinjaParser#documentElement}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgramElement(JinjaParser.ProgramElementContext ctx);
+	void enterDocumentElement(JinjaParser.DocumentElementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JinjaParser#programElement}.
+	 * Exit a parse tree produced by {@link JinjaParser#documentElement}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgramElement(JinjaParser.ProgramElementContext ctx);
+	void exitDocumentElement(JinjaParser.DocumentElementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PairedTag}
 	 * labeled alternative in {@link JinjaParser#htmlTag}.

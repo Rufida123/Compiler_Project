@@ -135,8 +135,8 @@ JINJA_WS
 JINJA_COMMENT
 
 rule names:
-document
-programElement
+jinjaProgram
+documentElement
 htmlTag
 htmlAttribute
 attributeValue

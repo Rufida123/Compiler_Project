@@ -1,12 +1,13 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaLexer.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/jinjaAntlr/JinjaLexer.g4 by ANTLR 4.13.2
 package jinjaAntlr;
-
+import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.atn.ATN;
-import org.antlr.v4.runtime.atn.ATNDeserializer;
-import org.antlr.v4.runtime.atn.LexerATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class JinjaLexer extends Lexer {

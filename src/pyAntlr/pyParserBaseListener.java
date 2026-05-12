@@ -1,4 +1,4 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
 package pyAntlr;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -17,13 +17,13 @@ public class pyParserBaseListener implements pyParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(pyParser.ProgramContext ctx) { }
+	@Override public void enterPyProgram(pyParser.PyProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(pyParser.ProgramContext ctx) { }
+	@Override public void exitPyProgram(pyParser.PyProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

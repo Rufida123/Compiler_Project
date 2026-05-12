@@ -4,7 +4,7 @@ options { tokenVocab = pyLexer; }
 
 
 // ================= البرنامج الرئيسي =================
-program
+pyProgram
     : (statement | NEWLINE)* EOF
     ;
 

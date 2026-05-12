@@ -1,5 +1,6 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
 package jinjaAntlr;
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -16,25 +17,25 @@ public class JinjaParserBaseListener implements JinjaParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDocument(JinjaParser.DocumentContext ctx) { }
+	@Override public void enterJinjaProgram(JinjaParser.JinjaProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDocument(JinjaParser.DocumentContext ctx) { }
+	@Override public void exitJinjaProgram(JinjaParser.JinjaProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgramElement(JinjaParser.ProgramElementContext ctx) { }
+	@Override public void enterDocumentElement(JinjaParser.DocumentElementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgramElement(JinjaParser.ProgramElementContext ctx) { }
+	@Override public void exitDocumentElement(JinjaParser.DocumentElementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

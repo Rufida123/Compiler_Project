@@ -1,4 +1,4 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
 package pyAntlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -11,11 +11,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface pyParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link pyParser#program}.
+	 * Visit a parse tree produced by {@link pyParser#pyProgram}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgram(pyParser.ProgramContext ctx);
+	T visitPyProgram(pyParser.PyProgramContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link pyParser#identifier}.
 	 * @param ctx the parse tree

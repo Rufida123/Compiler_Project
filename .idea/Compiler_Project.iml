@@ -6,15 +6,15 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
-    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://C:/antlr4/lib/antlr-4.13.1-complete.jar!/" />
+          <root url="jar://C:/antlr4/lib/antlr-4.13.2-complete.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

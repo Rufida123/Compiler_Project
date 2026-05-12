@@ -1,10 +1,13 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
 package jinjaAntlr;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
- import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.misc.*;
+import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class JinjaParser extends Parser {
@@ -28,7 +31,7 @@ public class JinjaParser extends Parser {
 		JINJA_OPAR=57, JINJA_CPAR=58, JINJA_OBRACK=59, JINJA_CBRACK=60, JINJA_IDENTIFIER=61, 
 		JINJA_NUMBER=62, JINJA_STRING=63, JINJA_WS=64, JINJA_COMMENT=65;
 	public static final int
-		RULE_document = 0, RULE_programElement = 1, RULE_htmlTag = 2, RULE_htmlAttribute = 3, 
+		RULE_jinjaProgram = 0, RULE_documentElement = 1, RULE_htmlTag = 2, RULE_htmlAttribute = 3, 
 		RULE_attributeValue = 4, RULE_jinjaBlock = 5, RULE_jinjaStatementHeader = 6, 
 		RULE_jinjaExpression = 7, RULE_jinjaPrimary = 8, RULE_jinjaIdentifierChain = 9, 
 		RULE_jinjaFilter = 10, RULE_jinjaCallArgs = 11, RULE_jinjaArg = 12, RULE_jinjaKwArg = 13, 
@@ -37,7 +40,7 @@ public class JinjaParser extends Parser {
 		RULE_valueList = 21, RULE_cssValue = 22, RULE_cssFunction = 23;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"document", "programElement", "htmlTag", "htmlAttribute", "attributeValue", 
+			"jinjaProgram", "documentElement", "htmlTag", "htmlAttribute", "attributeValue", 
 			"jinjaBlock", "jinjaStatementHeader", "jinjaExpression", "jinjaPrimary", 
 			"jinjaIdentifierChain", "jinjaFilter", "jinjaCallArgs", "jinjaArg", "jinjaKwArg", 
 			"htmlText", "styleTag", "cssRule", "cssSelectorList", "cssSelector", 
@@ -127,36 +130,36 @@ public class JinjaParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class DocumentContext extends ParserRuleContext {
+	public static class JinjaProgramContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(JinjaParser.EOF, 0); }
-		public List<ProgramElementContext> programElement() {
-			return getRuleContexts(ProgramElementContext.class);
+		public List<DocumentElementContext> documentElement() {
+			return getRuleContexts(DocumentElementContext.class);
 		}
-		public ProgramElementContext programElement(int i) {
-			return getRuleContext(ProgramElementContext.class,i);
+		public DocumentElementContext documentElement(int i) {
+			return getRuleContext(DocumentElementContext.class,i);
 		}
-		public DocumentContext(ParserRuleContext parent, int invokingState) {
+		public JinjaProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_document; }
+		@Override public int getRuleIndex() { return RULE_jinjaProgram; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).enterDocument(this);
+			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).enterJinjaProgram(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).exitDocument(this);
+			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).exitJinjaProgram(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JinjaParserVisitor ) return ((JinjaParserVisitor<? extends T>)visitor).visitDocument(this);
+			if ( visitor instanceof JinjaParserVisitor ) return ((JinjaParserVisitor<? extends T>)visitor).visitJinjaProgram(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final DocumentContext document() throws RecognitionException {
-		DocumentContext _localctx = new DocumentContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_document);
+	public final JinjaProgramContext jinjaProgram() throws RecognitionException {
+		JinjaProgramContext _localctx = new JinjaProgramContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_jinjaProgram);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -168,7 +171,7 @@ public class JinjaParser extends Parser {
 				{
 				{
 				setState(48);
-				programElement();
+				documentElement();
 				}
 				}
 				setState(53);
@@ -191,7 +194,7 @@ public class JinjaParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class ProgramElementContext extends ParserRuleContext {
+	public static class DocumentElementContext extends ParserRuleContext {
 		public StyleTagContext styleTag() {
 			return getRuleContext(StyleTagContext.class,0);
 		}
@@ -204,28 +207,28 @@ public class JinjaParser extends Parser {
 		public HtmlTextContext htmlText() {
 			return getRuleContext(HtmlTextContext.class,0);
 		}
-		public ProgramElementContext(ParserRuleContext parent, int invokingState) {
+		public DocumentElementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_programElement; }
+		@Override public int getRuleIndex() { return RULE_documentElement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).enterProgramElement(this);
+			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).enterDocumentElement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).exitProgramElement(this);
+			if ( listener instanceof JinjaParserListener ) ((JinjaParserListener)listener).exitDocumentElement(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JinjaParserVisitor ) return ((JinjaParserVisitor<? extends T>)visitor).visitProgramElement(this);
+			if ( visitor instanceof JinjaParserVisitor ) return ((JinjaParserVisitor<? extends T>)visitor).visitDocumentElement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ProgramElementContext programElement() throws RecognitionException {
-		ProgramElementContext _localctx = new ProgramElementContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_programElement);
+	public final DocumentElementContext documentElement() throws RecognitionException {
+		DocumentElementContext _localctx = new DocumentElementContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_documentElement);
 		try {
 			setState(60);
 			_errHandler.sync(this);
@@ -306,11 +309,11 @@ public class JinjaParser extends Parser {
 		public HtmlAttributeContext htmlAttribute(int i) {
 			return getRuleContext(HtmlAttributeContext.class,i);
 		}
-		public List<ProgramElementContext> programElement() {
-			return getRuleContexts(ProgramElementContext.class);
+		public List<DocumentElementContext> documentElement() {
+			return getRuleContexts(DocumentElementContext.class);
 		}
-		public ProgramElementContext programElement(int i) {
-			return getRuleContext(ProgramElementContext.class,i);
+		public DocumentElementContext documentElement(int i) {
+			return getRuleContext(DocumentElementContext.class,i);
 		}
 		public PairedTagContext(HtmlTagContext ctx) { copyFrom(ctx); }
 		@Override
@@ -393,7 +396,7 @@ public class JinjaParser extends Parser {
 					{
 					{
 					setState(71);
-					programElement();
+					documentElement();
 					}
 					}
 					setState(76);

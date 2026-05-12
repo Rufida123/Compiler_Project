@@ -1,4 +1,4 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
 package pyAntlr;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -8,15 +8,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface pyParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link pyParser#program}.
+	 * Enter a parse tree produced by {@link pyParser#pyProgram}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgram(pyParser.ProgramContext ctx);
+	void enterPyProgram(pyParser.PyProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link pyParser#program}.
+	 * Exit a parse tree produced by {@link pyParser#pyProgram}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgram(pyParser.ProgramContext ctx);
+	void exitPyProgram(pyParser.PyProgramContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link pyParser#identifier}.
 	 * @param ctx the parse tree

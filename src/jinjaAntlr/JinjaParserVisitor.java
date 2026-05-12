@@ -1,4 +1,4 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
 package jinjaAntlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -11,17 +11,17 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface JinjaParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link JinjaParser#document}.
+	 * Visit a parse tree produced by {@link JinjaParser#jinjaProgram}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDocument(JinjaParser.DocumentContext ctx);
+	T visitJinjaProgram(JinjaParser.JinjaProgramContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JinjaParser#programElement}.
+	 * Visit a parse tree produced by {@link JinjaParser#documentElement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgramElement(JinjaParser.ProgramElementContext ctx);
+	T visitDocumentElement(JinjaParser.DocumentElementContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code PairedTag}
 	 * labeled alternative in {@link JinjaParser#htmlTag}.

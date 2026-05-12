@@ -2,9 +2,9 @@ parser grammar JinjaParser;
 @header { package antlr; }
 options { tokenVocab = JinjaLexer; }
 
-document : programElement* EOF ;
+jinjaProgram : documentElement* EOF ;
 
-programElement
+documentElement
     : styleTag
     | jinjaBlock
     | htmlTag
@@ -14,7 +14,7 @@ programElement
 // --- HTML Tag Structure ---
 
 htmlTag
-    : TAG_OPEN TAG_ID htmlAttribute* TAG_CLOSE programElement* TAG_CLOSE_START TAG_ID TAG_CLOSE  #PairedTag
+    : TAG_OPEN TAG_ID htmlAttribute* TAG_CLOSE documentElement* TAG_CLOSE_START TAG_ID TAG_CLOSE  #PairedTag
     | TAG_OPEN TAG_ID htmlAttribute* TAG_SLASH_CLOSE #SelfClosingTag
     ;
 

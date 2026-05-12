@@ -1,6 +1,5 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/Compiler/Last/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/jinjaAntlr/JinjaParser.g4 by ANTLR 4.13.2
 package jinjaAntlr;
-
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -19,14 +18,14 @@ public class JinjaParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDocument(JinjaParser.DocumentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJinjaProgram(JinjaParser.JinjaProgramContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgramElement(JinjaParser.ProgramElementContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDocumentElement(JinjaParser.DocumentElementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
