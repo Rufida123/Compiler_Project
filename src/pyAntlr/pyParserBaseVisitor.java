@@ -1,4 +1,4 @@
-// Generated from C:/Users/ru/Desktop/compiler/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/Lenovo/Desktop/Projects/compiler/Compiler_Project/src/pyAntlr/pyParser.g4 by ANTLR 4.13.2
 package pyAntlr;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

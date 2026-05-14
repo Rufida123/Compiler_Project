@@ -25,6 +25,9 @@ products = [
         "details": "RGB backlit mechanical keyboard with satisfying clicky keys."
     }
 ]
+@app.route("/")
+def index3():
+    return number
 
 @app.route('/')
 def index():

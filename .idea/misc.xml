@@ -26,8 +26,8 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/jinjaAntlr/JinjaParser.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\ru\Desktop\compiler\Compiler_Project\src" />
-          <option name="libDir" value="C:\Users\ru\Desktop\compiler\Compiler_Project\src" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
+          <option name="libDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
@@ -36,8 +36,8 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/pyAntlr/pyParser.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\ru\Desktop\compiler\Compiler_Project\src" />
-          <option name="libDir" value="C:\Users\ru\Desktop\compiler\Compiler_Project\src" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
+          <option name="libDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
@@ -46,7 +46,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/pyAntlr/pyLexer.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\pyAntlr" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -56,7 +56,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/jinjaAntlr/JinjaLexer.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\Compiler\Last\Compiler_Project\src\jinjaAntlr" />
+          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />

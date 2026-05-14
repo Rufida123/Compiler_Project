@@ -312,7 +312,7 @@ public class Visitor {
         public FunctionCall visitFunctionCall(JinjaParser.FunctionCallContext ctx) {
             FunctionCall func = new FunctionCall();
             if (ctx.JINJA_IDENTIFIER() != null) func.setIdentifier(ctx.JINJA_IDENTIFIER().getText());
-            if (ctx.jinjaCallArgs()     != null) func.setCallArgs((JinjaCallArgs) visit(ctx.jinjaCallArgs()));
+            if (ctx.jinjaCallArgs()     != null) func.setCallArgs(buildJinjaCallArgs(ctx.jinjaCallArgs()));
             return func;
         }
 
@@ -345,13 +345,53 @@ public class Visitor {
             JinjaFilter filter = new JinjaFilter();
             if      (ctx.JINJA_IDENTIFIER() != null) filter.setName(ctx.JINJA_IDENTIFIER().getText());
             else if (ctx.JINJA_FORMAT()     != null) filter.setName(ctx.JINJA_FORMAT().getText());
-            if (ctx.jinjaCallArgs() != null) filter.setArgs((JinjaCallArgs) visit(ctx.jinjaCallArgs()));
+            if (ctx.jinjaCallArgs() != null) filter.setArgs(buildJinjaCallArgs(ctx.jinjaCallArgs()));
             else                             filter.setArgs(new EmptyArgs());
             return filter;
         }
 
+        private JinjaCallArgs buildJinjaCallArgs(JinjaParser.JinjaCallArgsContext ctx) {
+            if (ctx == null) return new EmptyArgs();
+            Object args = visit(ctx);
+            if (args instanceof JinjaCallArgs callArgs) return callArgs;
+
+            // Defensive fallback for default visitor behavior: wrap a single child arg.
+            if (args instanceof JinjaArg arg) {
+                CallMixedArgs mixedArgs = new CallMixedArgs();
+                mixedArgs.getPosArgs().add(arg);
+                return mixedArgs;
+            }
+            if (args instanceof JinjaKwArg kwArg) {
+                CallKwArgs kwArgs = new CallKwArgs();
+                kwArgs.getKwArgs().add(kwArg);
+                return kwArgs;
+            }
+            return new EmptyArgs();
+        }
+
         @Override
         public JinjaCallArgs visitEmptyArgs(JinjaParser.EmptyArgsContext ctx) { return new EmptyArgs(); }
+
+        @Override
+        public JinjaCallArgs visitCallMixedArgs(JinjaParser.CallMixedArgsContext ctx) {
+            CallMixedArgs args = new CallMixedArgs();
+            for (JinjaParser.JinjaArgContext argCtx : ctx.jinjaArg()) {
+                if (argCtx != null) args.getPosArgs().add((JinjaArg) visitJinjaArg(argCtx));
+            }
+            for (JinjaParser.JinjaKwArgContext kwArgCtx : ctx.jinjaKwArg()) {
+                if (kwArgCtx != null) args.getKwArgs().add((JinjaKwArg) visitJinjaKwArg(kwArgCtx));
+            }
+            return args;
+        }
+
+        @Override
+        public JinjaCallArgs visitCallKwArgs(JinjaParser.CallKwArgsContext ctx) {
+            CallKwArgs args = new CallKwArgs();
+            for (JinjaParser.JinjaKwArgContext kwArgCtx : ctx.jinjaKwArg()) {
+                if (kwArgCtx != null) args.getKwArgs().add((JinjaKwArg) visitJinjaKwArg(kwArgCtx));
+            }
+            return args;
+        }
 
         @Override
         public JinjaArg visitJinjaArg(JinjaParser.JinjaArgContext ctx) {

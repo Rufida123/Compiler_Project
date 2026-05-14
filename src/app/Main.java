@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import pyAntlr.pyLexer;
 import pyAntlr.pyParser;
+import semantic.SemanticAnalyzer;
 import visitor.Visitor;
 
 import java.nio.file.Files;
@@ -23,23 +24,43 @@ public class Main {
 
         // --- File Paths ---
         String pythonFilePath = "./app.py";
-        String htmlFilePath = "./templates/base.html";
+        String templatesDirPath = "./templates";
 
         // --- Process Python File ---
         System.out.println("========================================");
         System.out.println("Processing Python File: " + pythonFilePath);
         System.out.println("========================================");
-        processPythonFile(pythonFilePath);
+        PyProgram pythonAst = processPythonFile(pythonFilePath);
 
-        // --- Process Jinja/HTML File ---
-        System.out.println("\n========================================");
-        System.out.println("Processing Jinja/HTML File: " + htmlFilePath);
-        System.out.println("========================================");
-        processHtmlFile(htmlFilePath);
+        // --- Semantic Analysis ---
+        SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer();
+        semanticAnalyzer.analyzePython(pythonAst, pythonFilePath);
+
+        // --- Process All Jinja/HTML Files ---
+        try (var paths = Files.list(Path.of(templatesDirPath))) {
+            for (Path htmlPath : paths
+                    .filter(path -> path.toString().endsWith(".html"))
+                    .sorted()
+                    .toList()) {
+
+                String htmlFilePath = htmlPath.toString();
+
+                System.out.println("\n========================================");
+                System.out.println("Processing Jinja/HTML File: " + htmlFilePath);
+                System.out.println("========================================");
+
+                JinjaProgram htmlAst = processHtmlFile(htmlFilePath);
+                semanticAnalyzer.analyzeJinja(htmlAst, htmlFilePath);
+            }
+        }
+
+        // --- Print Semantic Errors ---
+        System.out.println("\n=========== SEMANTIC ERRORS ===========");
+        semanticAnalyzer.printErrors();
     }
 
     // ====================== PYTHON ======================
-    private static void processPythonFile(String filePath) throws Exception {
+    private static PyProgram processPythonFile(String filePath) throws Exception {
         String code = Files.readString(Path.of(filePath));
 
         // Lexer & Parser
@@ -66,10 +87,12 @@ public class Main {
         System.out.println("\n=========== PYTHON SYMBOL TABLE ===========");
         visitor.getSymbolTable().printTable();
         System.out.println(visitor.getSymbolTable().getStatistics());
+
+        return ast;
     }
 
     // ====================== JINJA / HTML ======================
-    private static void processHtmlFile(String filePath) throws Exception {
+    private static JinjaProgram processHtmlFile(String filePath) throws Exception {
         CharStream input = CharStreams.fromFileName(filePath);
 
         JinjaLexer lexer = new JinjaLexer(input);
@@ -85,5 +108,7 @@ public class Main {
         // Print AST (Simple toString)
         System.out.println("\n=========== JINJA/HTML AST ===========");
         System.out.println(ast.toString());
+
+        return ast;
     }
 }
