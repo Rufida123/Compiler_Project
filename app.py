@@ -25,6 +25,20 @@ products = [
         "details": "RGB backlit mechanical keyboard with satisfying clicky keys."
     }
 ]
+
+# ── TYPE ERROR 1: str + int  ────────────────────────────────────────────────
+# Cannot use '+' between 'str' and 'int'
+total = "Price: " + 150
+
+# ── TYPE ERROR 3: subscript on a string variable ───────────────────────────
+# product_name is a str; product_name['name'] makes no sense
+product_name = "iPhone"
+bad_access = product_name['name']
+
+# ── TYPE ERROR 7: len() on a non-iterable ─────────────────────────────────
+# len() expects iterable, not int
+item_count = len(42)
+
 @app.route("/")
 def index3():
     return number
@@ -49,7 +63,7 @@ def add_product():
         details = request.form['details']
 
         new_product = {
-            "id": products[-1]['id'] + 1 if products else 1, # Simple way to get a new ID
+            "id": products[-1]['id'] + 1 if products else 1,
             "name": name,
             "price": price,
             "image": image,
@@ -58,19 +72,17 @@ def add_product():
 
         products.append(new_product)
 
-        return redirect(url_for('index'))
+        # ── TYPE ERROR 6: url_for with wrong param type ────────────────────
+        # Route /product/<int:product_id> expects int, but "abc" is a str
+        return redirect(url_for('product_detail', product_id="abc"))
 
     return render_template('add_product.html')
 
 @app.route('/delete/<int:product_id>', methods=['POST'])
 def delete_product(product_id):
-    # Mutate the global products list in place (no global keyword needed)
-    for i in range(len(products) - 1, -1, -1):
-        if products[i]['id'] == product_id:
-            del products[i]
-            # Optional: break here since IDs are unique and only one match is expected
-            # break
-    return redirect(url_for('index'))
+    # ── TYPE ERROR 4: render_template with int instead of list ────────────
+    # 'items' should be a list to be iterable in the template
+    return render_template('index.html', products=999)
 
 # Run the app
 if __name__ == '__main__':

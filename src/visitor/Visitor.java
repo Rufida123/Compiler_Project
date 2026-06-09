@@ -687,7 +687,11 @@ public class Visitor {
         // ── Helpers ───────────────────────────────────────────────────────────
 
         private void setLine(Object node, ParserRuleContext ctx) {
-            if (node instanceof PyProgram p) p.setLineNumber(ctx.getStart().getLine());
+            int line = ctx.getStart().getLine();
+            if (node instanceof PyProgram p)     p.setLineNumber(line);
+            else if (node instanceof IntExpr ie)    ie.setLineNumber(line);
+            else if (node instanceof FloatExpr fe)  fe.setLineNumber(line);
+            else if (node instanceof StringExpr se) se.setLineNumber(line);
         }
 
         private String stripQuotes(String s) {
