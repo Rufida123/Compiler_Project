@@ -1,5 +1,5 @@
-// Generated from C:/Users/Lenovo/Desktop/Projects/compiler/Compiler_Project/src/jinjaAntlr/JinjaLexer.g4 by ANTLR 4.13.2
-package jinjaAntlr;
+// Generated from D:/DOC/Compiler_Project-main (1)/Compiler_Project-main/grammars/JinjaLexer.g4 by ANTLR 4.13.2
+ package jinjaAntlr; 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

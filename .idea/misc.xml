@@ -4,9 +4,9 @@
     <option name="perGrammarGenerationSettings">
       <list>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/antlr/pyLexer.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/grammars/JinjaLexer.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler project\Compiler_Project\src" />
+          <option name="outputDir" value="D:\DOC\Compiler_Project-main (1)\Compiler_Project-main\src\jinjaAntlr" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -14,9 +14,9 @@
           <option name="generateVisitor" value="true" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/antlr/pyParser.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/grammars/JinjaParser.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler project\Compiler_Project\src" />
+          <option name="outputDir" value="D:\DOC\Compiler_Project-main (1)\Compiler_Project-main\src\jinjaAntlr" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -24,29 +24,9 @@
           <option name="generateVisitor" value="true" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/jinjaAntlr/JinjaParser.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/grammars/pyLexer.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
-          <option name="libDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
-          <option name="encoding" value="" />
-          <option name="pkg" value="" />
-          <option name="language" value="" />
-          <option name="generateVisitor" value="true" />
-        </PerGrammarGenerationSettings>
-        <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/pyAntlr/pyParser.g4" />
-          <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
-          <option name="libDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
-          <option name="encoding" value="" />
-          <option name="pkg" value="" />
-          <option name="language" value="" />
-          <option name="generateVisitor" value="true" />
-        </PerGrammarGenerationSettings>
-        <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/pyAntlr/pyLexer.g4" />
-          <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
+          <option name="outputDir" value="D:\DOC\Compiler_Project-main (1)\Compiler_Project-main\src\pyAntlr" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -54,9 +34,9 @@
           <option name="generateVisitor" value="true" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/jinjaAntlr/JinjaLexer.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/grammars/pyParser.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\src\" />
+          <option name="outputDir" value="D:\DOC\Compiler_Project-main (1)\Compiler_Project-main\src\pyAntlr" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -66,7 +46,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
+  <component name="KubernetesApiProvider">{}</component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="22 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out/production/Compiler_Project-main" />
   </component>
 </project>

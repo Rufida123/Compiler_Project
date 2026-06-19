@@ -13,17 +13,21 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.tree.ParseTree;
+
 import pyAntlr.pyLexer;
 import pyAntlr.pyParser;
 import semantic.SemanticAnalyzer;
 import semantic.TypeChecker;
+import semantic.EnhancedSemanticAnalyzer;
+import codegen.CodeGenerator;
 import visitor.Visitor;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 public class Main {
 
     /** Suppresses ANTLR's default console error output (e.g. mismatched token warnings). */
@@ -41,23 +45,30 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        String pythonFilePath   = "./app.py";
+        String pythonFilePath   = "./test.py";
         String templatesDirPath = "./templates";
+        String outputDir        = "./generated_app";  // ← NEW: for code generation
 
-        // ── Parse & build Python AST ──────────────────────────────────────────
+        // ── PHASE 1: PARSE & build Python AST ────────────────────────────
         System.out.println("========================================");
         System.out.println("Processing Python File: " + pythonFilePath);
         System.out.println("========================================");
         PyProgram pythonAst = processPythonFile(pythonFilePath);
 
-        // ── Run both analyzers on Python ──────────────────────────────────────
+        // ── PHASE 2A: Run both analyzers on Python ───────────────────────
         SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer();
         semanticAnalyzer.analyzePython(pythonAst, pythonFilePath);
 
         TypeChecker typeChecker = new TypeChecker();
         typeChecker.analyzePython(pythonAst, pythonFilePath);
 
-        // ── Process every Jinja/HTML template ────────────────────────────────
+        // ── PHASE 2B: Run Enhanced Semantic Analyzer ─────────────────────
+        // ✨ NEW: Additional error checking
+        EnhancedSemanticAnalyzer enhanced = new EnhancedSemanticAnalyzer();
+        enhanced.analyzePython(pythonAst, pythonFilePath);
+
+        // ── Process every Jinja/HTML template ────────────────────────────
+        Map<String, JinjaProgram> jinjaTemplates = new HashMap<>();  // ← NEW: store templates
         try (var paths = Files.list(Path.of(templatesDirPath))) {
             for (Path htmlPath : paths
                     .filter(p -> p.toString().endsWith(".html"))
@@ -70,26 +81,50 @@ public class Main {
                 System.out.println("========================================");
 
                 JinjaProgram htmlAst = processHtmlFile(htmlFilePath);
+                jinjaTemplates.put(htmlFilePath, htmlAst);  // ← NEW: save for code generation
+
                 semanticAnalyzer.analyzeJinja(htmlAst, htmlFilePath);
                 typeChecker.analyzeJinja(htmlAst, htmlFilePath);
             }
         }
 
-        // ── Print all errors ──────────────────────────────────────────────────
-        printAllErrors(semanticAnalyzer, typeChecker);
+        // ── PHASE 3: Collect all errors and decide ──────────────────────
+        List<SemanticAnalyzer.SemanticError> allErrors = new ArrayList<>();
+        allErrors.addAll(semanticAnalyzer.getErrors());
+        allErrors.addAll(typeChecker.getErrors());
+        // Note: EnhancedSemanticAnalyzer errors can be added here if needed
+
+        // ── Print all errors ───────────────────────────────────────────
+        printAllErrors(allErrors);
+
+        // ── PHASE 4: Code Generation (if no errors) ──────────────────────
+        if (!allErrors.isEmpty()) {
+            System.out.println("\n SEMANTIC ERRORS FOUND - CODE GENERATION SKIPPED");
+            System.out.println("Fix the errors above and try again.\n");
+            return;  // Don't generate code if errors exist
+        }
+
+        System.out.println("\n No errors found!");
+        System.out.println("\n========================================");
+        System.out.println("PHASE 3: CODE GENERATION");
+        System.out.println("========================================");
+
+        CodeGenerator generator = new CodeGenerator(outputDir);
+        generator.generate(pythonAst, jinjaTemplates);
+
+        System.out.println("\n========================================");
+        System.out.println("COMPILATION COMPLETE!");
+        System.out.println("========================================");
+        System.out.println("To run your Flask app:");
+        System.out.println("  $ cd " + outputDir);
+        System.out.println("  $ pip install -r requirements.txt");
+        System.out.println("  $ python app.py\n");
     }
 
     // ─────────────────────────────────────────────────────────────────────────
-    // Error printing
-    // Merges errors from SemanticAnalyzer (undefined variables) and TypeChecker
-    // (type errors).  Both use SemanticError.format() so output looks identical.
+    // Error printing - updated version
     // ─────────────────────────────────────────────────────────────────────────
-    private static void printAllErrors(SemanticAnalyzer semanticAnalyzer,
-                                       TypeChecker       typeChecker) {
-
-        List<SemanticAnalyzer.SemanticError> all = new ArrayList<>();
-        all.addAll(semanticAnalyzer.getErrors());
-        all.addAll(typeChecker.getErrors());
+    private static void printAllErrors(List<SemanticAnalyzer.SemanticError> all) {
 
         System.out.println("\n=========== SEMANTIC ERRORS ===========");
 
@@ -118,12 +153,12 @@ public class Main {
         String code = Files.readString(Path.of(filePath));
 
         CharStream        input  = CharStreams.fromString(code);
-        pyLexer           lexer  = new pyLexer(input);
+        pyLexer lexer  = new pyLexer(input);
         lexer.removeErrorListeners();
         lexer.addErrorListener(SILENT_LISTENER);
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        pyParser          parser = new pyParser(tokens);
+        pyParser parser = new pyParser(tokens);
         parser.removeErrorListeners();
         parser.addErrorListener(SILENT_LISTENER);
 
