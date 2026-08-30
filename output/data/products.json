@@ -1,12 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Laptop Pro",
-    "price": 1299.99,
-    "image": "https://picsum.photos/seed/laptop1/400/300.jpg",
-    "details": "A powerful laptop for professionals with 16GB RAM and a 512GB SSD."
-  },
-  {
     "id": 2,
     "name": "Wireless Mouse",
     "price": 25.5,

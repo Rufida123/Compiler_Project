@@ -62,6 +62,41 @@ ns['add_product']()
             require(Files.isRegularFile(output.resolve("data/products.json")),
                     "persistent data was not copied beside output/app.py");
 
+            // ── delete: remove the product again and regenerate ──────────────
+            String deleteHelper = """
+import sys, types, json
+class App:
+ def __init__(self,*a,**k): pass
+ def route(self,*a,**k):
+  return lambda f:f
+ def run(self,*a,**k): pass
+flask=types.ModuleType('flask')
+flask.Flask=App
+flask.render_template=lambda *a,**k:''
+flask.redirect=lambda x:x
+flask.url_for=lambda *a,**k:'index'
+flask.request=types.SimpleNamespace(method='POST',form={})
+sys.modules['flask']=flask
+ns={'__name__':'compiler_test','__file__':sys.argv[1]}
+exec(compile(open(sys.argv[1],encoding='utf-8').read(),sys.argv[1],'exec'),ns)
+target=[p['id'] for p in ns['products'] if p['name']=='Persistent Test Product'][0]
+ns['delete_product'](target)
+""";
+            Process remove = new ProcessBuilder("py", "-3.12", "-c", deleteHelper,
+                    fixture.resolve("app.py").toString()).inheritIO().start();
+            if (remove.waitFor() != 0) throw new AssertionError("DELETE persistence simulation failed");
+
+            require(!Files.readString(fixture.resolve("data/products.json")).contains("Persistent Test Product"),
+                    "delete did not remove the product from products.json");
+
+            Main.main(new String[]{fixture.resolve("app.py").toString(),
+                    project.resolve("templates").toString(), output.toString(), reports.toString()});
+
+            require(!Files.readString(output.resolve("index.html")).contains("Persistent Test Product"),
+                    "regenerated index.html still shows the deleted product");
+            require(Files.readString(reports.resolve("semantic_report.txt")).contains("No semantic/type errors"),
+                    "semantic report contains errors after delete");
+
             Path legacyDirectory = Files.createDirectories(fixture.resolve("legacy-input"));
             Path legacy = legacyDirectory.resolve("legacy.py");
             Files.writeString(legacy, "products = [{\"id\": 9, \"name\": \"Legacy Product\"}]\n");

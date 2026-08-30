@@ -63,7 +63,15 @@ def add_product():
 
 @app.route("/delete/<int:product_id>", methods=["POST"])
 def delete_product(product_id):
-    return render_template("index.html", products=products)
+    remaining = []
+    for product in products:
+        if product["id"] != product_id:
+            remaining.append(product)
+    products.clear()
+    for product in remaining:
+        products.append(product)
+    save_products_to_json(products)
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
