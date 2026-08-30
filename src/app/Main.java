@@ -110,9 +110,10 @@ public class Main {
 
         // ── Print all errors ───────────────────────────────────────────
         printAllErrors(allErrors);
-        CompilerArtifactWriter.write(compilerOutputDir, pythonAst, jinjaTemplates, allErrors,
-                List.of("Input Python: " + pythonFilePath, "Templates: " + templatesDirPath,
-                        "Static output: " + outputDir, "Templates parsed: " + jinjaTemplates.size()));
+        List<String> generationLog = new ArrayList<>(List.of(
+                "Input Python: " + pythonFilePath, "Templates: " + templatesDirPath,
+                "Static output: " + outputDir, "Templates parsed: " + jinjaTemplates.size()));
+        CompilerArtifactWriter.write(compilerOutputDir, pythonAst, jinjaTemplates, allErrors, generationLog);
 
         // ── PHASE 4: Code Generation (if no errors) ──────────────────────
         if (!blockingErrors.isEmpty()) {
@@ -126,7 +127,10 @@ public class Main {
         System.out.println("PHASE 3: STATIC HTML GENERATION");
         System.out.println("========================================");
 
-        StaticSiteGenerator.generate(Path.of(pythonFilePath), Path.of(templatesDirPath), Path.of(outputDir), pythonAst, jinjaTemplates);
+        generationLog.addAll(StaticSiteGenerator.generate(Path.of(pythonFilePath), Path.of(templatesDirPath),
+                Path.of(outputDir), pythonAst, jinjaTemplates));
+        // Rewrite the artefacts so generation_log.txt records how each context was produced.
+        CompilerArtifactWriter.write(compilerOutputDir, pythonAst, jinjaTemplates, allErrors, generationLog);
 
         System.out.println("\n========================================");
         System.out.println("COMPILATION COMPLETE!");

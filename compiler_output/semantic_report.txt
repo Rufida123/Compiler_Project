@@ -1,3 +1,4 @@
 Semantic report
 ===============
-No semantic/type errors.
+Semantic Error in C:/Users/AlaaH/AppData/Local/Temp/jinja-validation-unknown_parameter8298209163976047207/templates/page.html at line 1: url_for('detail') is missing route parameter 'product_id'
+Semantic Error in C:/Users/AlaaH/AppData/Local/Temp/jinja-validation-unknown_parameter8298209163976047207/templates/page.html at line 1: url_for('detail') has unknown route parameter 'other'

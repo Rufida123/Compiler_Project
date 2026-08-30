@@ -45,7 +45,7 @@ print(json.dumps({'globals':g,'contexts':c}))
         Process p = new ProcessBuilder(command).redirectErrorStream(true).start();
         String output = new String(p.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
         if (p.waitFor()!=0) throw new IOException("Python context execution failed: " + output);
-        Object root = new Json(output.trim()).read();
+        Object root = JsonValue.read(output.trim());
         if (!(root instanceof Map<?,?> m)) throw new IOException("Invalid Python context output");
         Map<String,Object> globals = map(m.get("globals"));
         Map<String,Map<String,Object>> templateContexts = contexts(m.get("contexts"));
@@ -62,7 +62,7 @@ print(json.dumps({'globals':g,'contexts':c}))
         Path sourceDirectory = source.toAbsolutePath().getParent();
         Path productsFile = sourceDirectory.resolve("data").resolve("products.json");
         if (Files.isRegularFile(productsFile)) {
-            Object storedProducts = new Json(Files.readString(productsFile, StandardCharsets.UTF_8)).read();
+            Object storedProducts = JsonValue.read(Files.readString(productsFile, StandardCharsets.UTF_8));
             if (!(storedProducts instanceof List<?>)) {
                 throw new IOException(productsFile + " must contain a JSON array of products");
             }
@@ -76,6 +76,4 @@ print(json.dumps({'globals':g,'contexts':c}))
     }
     @SuppressWarnings("unchecked") private static Map<String,Object> map(Object v) { Map<String,Object> out=new LinkedHashMap<>(); if(v instanceof Map<?,?> m) for(var e:m.entrySet())out.put(String.valueOf(e.getKey()),e.getValue()); return out; }
     private static Map<String,Map<String,Object>> contexts(Object v) { Map<String,Map<String,Object>> out=new LinkedHashMap<>(); if(v instanceof Map<?,?> m)for(var e:m.entrySet())out.put(String.valueOf(e.getKey()),map(e.getValue())); return out; }
-    /** Small JSON reader; avoids adding a dependency just to read Python output. */
-    private static final class Json { final String s; int i; Json(String s){this.s=s;} Object read(){ws(); return val();} Object val(){ws(); char c=s.charAt(i); if(c=='{')return obj();if(c=='[')return arr();if(c=='\"')return str();if(s.startsWith("true",i)){i+=4;return true;}if(s.startsWith("false",i)){i+=5;return false;}if(s.startsWith("null",i)){i+=4;return null;}int a=i;while(i<s.length()&&"-+.0123456789eE".indexOf(s.charAt(i))>=0)i++;return Double.valueOf(s.substring(a,i));} Map<String,Object> obj(){Map<String,Object>m=new LinkedHashMap<>();i++;ws();while(s.charAt(i)!='}'){String k=str();ws();i++;m.put(k,val());ws();if(s.charAt(i)==','){i++;ws();}}i++;return m;} List<Object> arr(){List<Object>a=new ArrayList<>();i++;ws();while(s.charAt(i)!=']'){a.add(val());ws();if(s.charAt(i)==','){i++;ws();}}i++;return a;} String str(){StringBuilder b=new StringBuilder();i++;while(s.charAt(i)!='\"'){char c=s.charAt(i++);if(c=='\\'){char e=s.charAt(i++);b.append(e=='n'?'\n':e=='r'?'\r':e=='t'?'\t':e);}else b.append(c);}i++;return b.toString();}void ws(){while(i<s.length()&&Character.isWhitespace(s.charAt(i)))i++;}}
 }
