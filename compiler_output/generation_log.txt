@@ -1,4 +1,4 @@
-Generated: 2026-08-30T18:16:12.709535700Z
+Generated: 2026-08-30T18:34:43.002433100Z
 Input Python: C:\Users\AlaaH\Desktop\Compiler\Compiler_Project\app.py
 Templates: C:\Users\AlaaH\Desktop\Compiler\Compiler_Project\templates
 Static output: C:\Users\AlaaH\Desktop\Compiler\Compiler_Project\output
@@ -6,9 +6,9 @@ Templates parsed: 5
 Context strategy: AST-first (Python AST → context data)
   AST folded os.path.dirname(...) at line 7 → C:\Users\AlaaH\Desktop\Compiler\Compiler_Project
   AST folded os.path.join(...) at line 7 → C:\Users\AlaaH\Desktop\Compiler\Compiler_Project\data\products.json
-  AST AssignStmt 'DATA_FILE' at line 6 → str("C:\Users\AlaaH\Desktop\Compiler\Compiler…")
-  AST FuncDef 'load_products_from_json' (line 9) matched json.load(open(<path>)); path folded from AST → C:\Users\AlaaH\Desktop\Compiler\Compiler_Project\data\products.json; loaded list(4 items)
-  AST AssignStmt 'products' at line 25 → list(4 items)
+  AST AssignStmt 'DATA_FILE' at line 7 → str("C:\Users\AlaaH\Desktop\Compiler\Compiler…")
+  AST FuncDef 'load_products_from_json' (line 10) matched json.load(open(<path>)); path folded from AST → C:\Users\AlaaH\Desktop\Compiler\Compiler_Project\data\products.json; loaded list(5 items)
+  AST AssignStmt 'products' at line 25 → list(5 items)
   AST render_template('index.html') in index() at line 30 → context keys [products]
   ! product_detail.html: keyword 'product' could not be folded from the AST (line 38)
   AST render_template('product_detail.html') in product_detail() at line 38 → context keys []
@@ -17,4 +17,5 @@ Context source [add_product.html]: ast
 Context source [test.html]: ast
 Context source [index.html]: ast
 AST fallback → executor
+Python interpreter: C:\Users\AlaaH\Desktop\Compiler\Compiler_Project\.venv\Scripts\python.exe
 Context source [product_detail.html]: executor

@@ -5,7 +5,7 @@ import java.util.List;
 
 //{{ user.profile.picture.url }}
 //{{ user.settings["theme"] }}
-public class JinjaIdentifierChain {
+public class JinjaIdentifierChain extends JinjaNode {
     String identifier; // The first/base name, e.g. "user"
     List<Access> accesses = new ArrayList<>(); // All subsequent .prop or [expr]
     public String getIdentifier() {

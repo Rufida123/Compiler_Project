@@ -26,6 +26,13 @@ public class SymbolTable {
     private final List<String>               scopeNames = new ArrayList<>();
     private int currentScopeLevel = -1;
 
+    /** Every scope ever opened, in open order, kept alive after it is closed so
+     *  the printed table can still show nested scopes and their parameters. */
+    private final List<Snapshot> history = new ArrayList<>();
+
+    /** One recorded scope: its nesting level, its name and its symbols. */
+    public record Snapshot(int level, String name, Map<String, Symbol> symbols) {}
+
     // ── Construction / reset ────────────────────────────────────────────────────
 
     public SymbolTable() {
@@ -40,6 +47,7 @@ public class SymbolTable {
     public void initGlobal() {
         scopes.clear();
         scopeNames.clear();
+        history.clear();
         currentScopeLevel = -1;
         openScope("global");
     }
@@ -54,8 +62,10 @@ public class SymbolTable {
     /** Opens a new named scope and increments the scope level. */
     public void openScope(String scopeName) {
         currentScopeLevel++;
-        scopes.push(new HashMap<>());
+        Map<String, Symbol> frame = new LinkedHashMap<>();
+        scopes.push(frame);
         scopeNames.add(scopeName);
+        history.add(new Snapshot(currentScopeLevel, scopeName, frame));
     }
 
     /** Opens an anonymous scope (auto-named "scope_N"). */
@@ -248,9 +258,41 @@ public class SymbolTable {
 
     // ── Output ──────────────────────────────────────────────────────────────────
 
-    /** Prints the formatted table to {@code System.out}. */
+    /** Every scope ever opened, in open order (closed scopes included). */
+    public List<Snapshot> getAllScopes() {
+        return Collections.unmodifiableList(history);
+    }
+
+    /** Prints the full table to {@code System.out}. */
     public void printTable() {
-        System.out.println(getFormattedTable());
+        System.out.println(print());
+    }
+
+    /**
+     * Full table: every scope opened while walking the file, with each entry's
+     * name, kind and declaration line.  Unlike {@link #getFormattedTable()} this
+     * survives scope closing, so function parameters and Jinja loop variables
+     * are still visible after the walk has finished.
+     */
+    public String print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== SYMBOL TABLE ===\n");
+        for (Snapshot scope : history) {
+            sb.append("\nScope Level ").append(scope.level())
+              .append(" [").append(scope.name()).append("]:\n");
+            sb.append("-".repeat(60)).append("\n");
+            if (scope.symbols().isEmpty()) {
+                sb.append("  (empty)\n");
+            } else {
+                int idx = 1;
+                for (Symbol symbol : scope.symbols().values()) {
+                    sb.append(String.format("  %2d. %-26s kind=%-14s line=%d%n",
+                            idx++, symbol.getName(), symbol.getType(), symbol.getLineNumber()));
+                }
+            }
+        }
+        sb.append("=".repeat(60)).append("\n");
+        return sb.toString();
     }
 
     /** Returns a human-readable, multi-line table as a {@link String}. */
@@ -281,11 +323,11 @@ public class SymbolTable {
         int total = 0;
         StringBuilder sb = new StringBuilder();
         sb.append("=== Symbol Table Statistics ===\n");
-        for (int i = 0; i < scopes.size(); i++) {
-            int count = scopes.get(i).size();
+        for (Snapshot scope : history) {
+            int count = scope.symbols().size();
             total += count;
             sb.append(String.format("Scope %d (%s): %d symbol(s)%n",
-                    i, scopeNames.get(i), count));
+                    scope.level(), scope.name(), count));
         }
         sb.append("Total symbols: ").append(total).append("\n");
         sb.append("===============================\n");

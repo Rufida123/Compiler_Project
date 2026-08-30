@@ -21,18 +21,27 @@ import semantic.TypeChecker;
 import semantic.EnhancedSemanticAnalyzer;
 import codegen.CompilerArtifactWriter;
 import codegen.StaticSiteGenerator;
+import sharedSymbolTable.SymbolTable;
+import sharedSymbolTable.SymbolTable;
 import visitor.Visitor;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 public class Main {
 
     private static final List<String> PARSE_ERRORS = new ArrayList<>();
     private static String parsingFile = "<input>";
+
+    /** --print-ast: dump both trees and the symbol table, and write the .txt artefacts. */
+    private static boolean printAst = false;
+    private static SymbolTable pythonSymbols = null;
+    private static final Map<String, SymbolTable> JINJA_SYMBOLS = new LinkedHashMap<>();
     private static final BaseErrorListener COLLECTING_LISTENER = new BaseErrorListener() {
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer,
@@ -47,12 +56,22 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         PARSE_ERRORS.clear();
+        JINJA_SYMBOLS.clear();
+        pythonSymbols = null;
+
+        // Options may appear anywhere; everything else is a positional path.
+        List<String> positional = new ArrayList<>();
+        printAst = false;
+        for (String argument : args) {
+            if ("--print-ast".equals(argument)) printAst = true;
+            else positional.add(argument);
+        }
 
         Path projectRoot = Path.of("").toAbsolutePath().normalize();
-        String pythonFilePath   = args.length > 0 ? args[0] : projectRoot.resolve("app.py").toString();
-        String templatesDirPath = args.length > 1 ? args[1] : projectRoot.resolve("templates").toString();
-        String outputDir        = args.length > 2 ? args[2] : projectRoot.resolve("output").toString();
-        Path compilerOutputDir  = args.length > 3 ? Path.of(args[3]) : projectRoot.resolve("compiler_output");
+        String pythonFilePath   = positional.size() > 0 ? positional.get(0) : projectRoot.resolve("app.py").toString();
+        String templatesDirPath = positional.size() > 1 ? positional.get(1) : projectRoot.resolve("templates").toString();
+        String outputDir        = positional.size() > 2 ? positional.get(2) : projectRoot.resolve("output").toString();
+        Path compilerOutputDir  = positional.size() > 3 ? Path.of(positional.get(3)) : projectRoot.resolve("compiler_output");
 
         // ── PHASE 1: PARSE & build Python AST ────────────────────────────
         System.out.println("========================================");
@@ -114,6 +133,9 @@ public class Main {
                 "Input Python: " + pythonFilePath, "Templates: " + templatesDirPath,
                 "Static output: " + outputDir, "Templates parsed: " + jinjaTemplates.size()));
         CompilerArtifactWriter.write(compilerOutputDir, pythonAst, jinjaTemplates, allErrors, generationLog);
+        CompilerArtifactWriter.writeReadableDumps(compilerOutputDir, pythonAst, jinjaTemplates,
+                pythonSymbols, JINJA_SYMBOLS);
+        if (printAst) dumpTreesAndSymbols(pythonAst, jinjaTemplates, compilerOutputDir);
 
         // ── PHASE 4: Code Generation (if no errors) ──────────────────────
         if (!blockingErrors.isEmpty()) {
@@ -137,6 +159,35 @@ public class Main {
         System.out.println("========================================");
         System.out.println("Static HTML written to: " + outputDir);
         System.out.println("Compiler artefacts written to: " + compilerOutputDir + "\n");
+    }
+
+    /**
+     * R7: one call prints the whole Python tree, every Jinja tree, and the
+     * symbol table for each file, then writes the same content to
+     * compiler_output/ast_python.txt, ast_jinja.txt and symbol_table.txt.
+     */
+    private static void dumpTreesAndSymbols(PyProgram pythonAst,
+                                            Map<String, JinjaProgram> jinjaTemplates,
+                                            Path compilerOutputDir) {
+        System.out.println("\n=========== AST + SYMBOL TABLE DUMP (--print-ast) ===========");
+
+        System.out.println("\n----------- PYTHON AST -----------");
+        System.out.println(pythonAst == null ? "<no AST>" : pythonAst.printTree());
+        System.out.println("----------- PYTHON SYMBOL TABLE -----------");
+        System.out.println(pythonSymbols == null ? "<none>" : pythonSymbols.print());
+        if (pythonSymbols != null) System.out.println(pythonSymbols.getStatistics());
+
+        for (Map.Entry<String, JinjaProgram> entry : jinjaTemplates.entrySet()) {
+            System.out.println("----------- JINJA AST: " + entry.getKey() + " -----------");
+            System.out.println(entry.getValue() == null ? "<no AST>" : entry.getValue().printTree());
+            SymbolTable symbols = JINJA_SYMBOLS.get(entry.getKey());
+            System.out.println("----------- SYMBOL TABLE: " + entry.getKey() + " -----------");
+            System.out.println(symbols == null ? "<none>" : symbols.print());
+        }
+
+        System.out.println("Readable dumps written to " + compilerOutputDir.resolve("ast_python.txt")
+                + ", " + compilerOutputDir.resolve("ast_jinja.txt")
+                + ", " + compilerOutputDir.resolve("symbol_table.txt"));
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -193,13 +244,10 @@ public class Main {
 
         Visitor.PyBaseVisitor visitor = new Visitor.PyBaseVisitor();
         PyProgram ast = (PyProgram) visitor.visit(tree);
+        pythonSymbols = visitor.getSymbolTable();
 
         System.out.println("\n=========== PYTHON AST ===========");
         System.out.println(ast.toString());
-
-        System.out.println("\n=========== PYTHON SYMBOL TABLE ===========");
-        visitor.getSymbolTable().printTable();
-        System.out.println(visitor.getSymbolTable().getStatistics());
 
         return ast;
     }
@@ -223,6 +271,7 @@ public class Main {
 
         Visitor.JinjaBaseVisitor visitor = new Visitor.JinjaBaseVisitor();
         JinjaProgram ast = (JinjaProgram) visitor.visit(tree);
+        JINJA_SYMBOLS.put(Path.of(filePath).getFileName().toString(), visitor.getSymbolTable());
 
         System.out.println("\n=========== JINJA/HTML AST ===========");
         System.out.println(ast.toString());

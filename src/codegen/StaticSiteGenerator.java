@@ -50,6 +50,7 @@ public final class StaticSiteGenerator {
                 if (runtime == null) {
                     log.add("AST fallback → executor");
                     runtime = PythonContextExecutor.execute(pythonFile);
+                    log.add("Python interpreter: " + PythonContextExecutor.lastInterpreter());
                 }
                 context = new LinkedHashMap<>(runtime.globals());
                 context.putAll(runtime.templateContexts().getOrDefault(name, Map.of()));

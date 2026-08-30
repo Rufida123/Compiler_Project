@@ -2,7 +2,7 @@ package jinjaClasses;
 
 import java.util.ArrayList;
 import java.util.List;
-public class CssRule {
+public class CssRule extends JinjaNode {
     CssSelectorList selectorList;
     List<CssProperty> properties = new ArrayList<>();
     public CssSelectorList getSelectorList() {

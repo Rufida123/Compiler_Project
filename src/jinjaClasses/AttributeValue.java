@@ -1,4 +1,4 @@
 package jinjaClasses;
 
-public abstract class AttributeValue {
+public abstract class AttributeValue extends JinjaNode {
 }

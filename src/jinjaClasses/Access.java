@@ -1,4 +1,4 @@
 package jinjaClasses;
 
-public abstract class Access {
+public abstract class Access extends JinjaNode {
 }

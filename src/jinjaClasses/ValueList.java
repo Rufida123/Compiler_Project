@@ -2,7 +2,7 @@ package jinjaClasses;
 
 import java.util.ArrayList;
 import java.util.List;
-public class ValueList {
+public class ValueList extends JinjaNode {
     List<CssValue> values = new ArrayList<>();
     public List<CssValue> getValues() {
         return values;

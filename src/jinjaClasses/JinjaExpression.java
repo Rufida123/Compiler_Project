@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //{{ product.price | float | round(2) }}
-public class JinjaExpression {
+public class JinjaExpression extends JinjaNode {
     JinjaPrimary primary;
     List<JinjaFilter> filters = new ArrayList<>();
     public JinjaPrimary getPrimary() {

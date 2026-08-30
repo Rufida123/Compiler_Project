@@ -1,6 +1,6 @@
 package jinjaClasses;
 
-public class JinjaFilter {
+public class JinjaFilter extends JinjaNode {
     String name;
     JinjaCallArgs args;
     public String getName() {

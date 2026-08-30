@@ -1,0 +1,202 @@
+=========== SYMBOL TABLE: app.py ===========
+=== SYMBOL TABLE ===
+
+Scope Level 0 [global]:
+------------------------------------------------------------
+   1. app                        kind=variable       line=5
+   2. DATA_FILE                  kind=variable       line=7
+   3. load_products_from_json    kind=function       line=10
+   4. save_products_to_json      kind=function       line=19
+   5. products                   kind=variable       line=25
+
+Scope Level 1 [func_load_products_from_json]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 2 [suite_10]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 3 [suite_11]:
+------------------------------------------------------------
+   1. data_file                  kind=variable       line=12
+   2. loaded_products            kind=variable       line=13
+
+Scope Level 1 [func_save_products_to_json]:
+------------------------------------------------------------
+   1. products                   kind=parameter      line=19
+
+Scope Level 2 [suite_19]:
+------------------------------------------------------------
+   1. data_file                  kind=variable       line=20
+
+Scope Level 1 [func_index]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 2 [suite_29]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 1 [func_product_detail]:
+------------------------------------------------------------
+   1. product_id                 kind=parameter      line=34
+
+Scope Level 2 [suite_34]:
+------------------------------------------------------------
+   1. product                    kind=variable       line=35
+
+Scope Level 3 [suite_36]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 1 [func_add_product]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 2 [suite_42]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 3 [suite_43]:
+------------------------------------------------------------
+   1. name                       kind=variable       line=44
+   2. price                      kind=variable       line=45
+   3. image                      kind=variable       line=46
+   4. details                    kind=variable       line=47
+   5. new_product                kind=variable       line=49
+
+Scope Level 1 [func_delete_product]:
+------------------------------------------------------------
+   1. product_id                 kind=parameter      line=65
+
+Scope Level 2 [suite_65]:
+------------------------------------------------------------
+   1. remaining                  kind=variable       line=66
+   2. product                    kind=loop_variable  line=67
+
+Scope Level 3 [suite_67]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 4 [suite_68]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 3 [suite_71]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 1 [suite_77]:
+------------------------------------------------------------
+  (empty)
+============================================================
+
+=========== SYMBOL TABLE: add_product.html ===========
+=== SYMBOL TABLE ===
+
+Scope Level 0 [global]:
+------------------------------------------------------------
+   1. content                    kind=block          line=2
+   2. container                  kind=selector       line=3
+   3. form-container             kind=selector       line=3
+   4. add-form                   kind=selector       line=5
+   5. form-group                 kind=selector       line=6
+   6. btn                        kind=selector       line=28
+
+Scope Level 1 [block_content]:
+------------------------------------------------------------
+  (empty)
+============================================================
+
+=========== SYMBOL TABLE: base.html ===========
+=== SYMBOL TABLE ===
+
+Scope Level 0 [global]:
+------------------------------------------------------------
+   1. body                       kind=selector       line=19
+   2. container                  kind=selector       line=27
+   3. header                     kind=selector       line=34
+   4. nav                        kind=selector       line=43
+   5. logo                       kind=selector       line=52
+   6. nav-links                  kind=selector       line=59
+   7. a                          kind=selector       line=59
+   8. product-grid               kind=selector       line=72
+   9. product-card               kind=selector       line=79
+  10. img                        kind=selector       line=92
+  11. card-content               kind=selector       line=98
+  12. h2                         kind=selector       line=102
+  13. price                      kind=selector       line=108
+  14. btn                        kind=selector       line=116
+  15. detail-page                kind=selector       line=132
+  16. back-link                  kind=selector       line=136
+  17. product-detail-card        kind=selector       line=144
+  18. detail-info                kind=selector       line=157
+  19. h1                         kind=selector       line=161
+  20. details                    kind=selector       line=166
+  21. form-container             kind=selector       line=172
+  22. add-form                   kind=selector       line=181
+  23. form-group                 kind=selector       line=181
+  24. label                      kind=selector       line=185
+  25. input                      kind=selector       line=192
+  26. textarea                   kind=selector       line=193
+  27. button                     kind=selector       line=203
+  28. footer                     kind=selector       line=221
+  29. btn-danger                 kind=selector       line=228
+  30. content                    kind=block          line=250
+
+Scope Level 1 [block_content]:
+------------------------------------------------------------
+  (empty)
+============================================================
+
+=========== SYMBOL TABLE: index.html ===========
+=== SYMBOL TABLE ===
+
+Scope Level 0 [global]:
+------------------------------------------------------------
+   1. content                    kind=block          line=2
+   2. container                  kind=selector       line=3
+   3. product-grid               kind=selector       line=5
+   4. product-card               kind=selector       line=7
+   5. card-content               kind=selector       line=9
+   6. price                      kind=selector       line=11
+   7. btn                        kind=selector       line=14
+
+Scope Level 1 [block_content]:
+------------------------------------------------------------
+  (empty)
+
+Scope Level 2 [for_loop]:
+------------------------------------------------------------
+   1. product                    kind=loop_variable  line=6
+============================================================
+
+=========== SYMBOL TABLE: product_detail.html ===========
+=== SYMBOL TABLE ===
+
+Scope Level 0 [global]:
+------------------------------------------------------------
+   1. content                    kind=block          line=3
+   2. container                  kind=selector       line=4
+   3. detail-page                kind=selector       line=4
+   4. back-link                  kind=selector       line=5
+   5. product-detail-card        kind=selector       line=6
+   6. detail-info                kind=selector       line=8
+   7. price                      kind=selector       line=10
+   8. details                    kind=selector       line=11
+   9. btn                        kind=selector       line=17
+  10. btn-danger                 kind=selector       line=17
+
+Scope Level 1 [block_content]:
+------------------------------------------------------------
+  (empty)
+============================================================
+
+=========== SYMBOL TABLE: test.html ===========
+=== SYMBOL TABLE ===
+
+Scope Level 0 [global]:
+------------------------------------------------------------
+  (empty)
+============================================================

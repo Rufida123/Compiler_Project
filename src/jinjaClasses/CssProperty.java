@@ -1,6 +1,6 @@
 package jinjaClasses;
 
-public class CssProperty {
+public class CssProperty extends JinjaNode {
     String word;
     ValueList valueList;
     public String getWord() {

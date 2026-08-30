@@ -1,6 +1,6 @@
 package jinjaClasses;
 
-public class JinjaKwArg {
+public class JinjaKwArg extends JinjaNode {
     String identifier;
     JinjaExpression expression;
     public String getIdentifier() {

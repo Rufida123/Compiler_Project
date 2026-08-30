@@ -1,0 +1,1933 @@
+=========== PYTHON AST ===========
+PyProgram (line 1, col 0)
+  statements [13]:
+    ImportStmt (line 1, col 0)
+      dottedName = null
+      importList:
+        ImportList (line 1, col 7)
+          items [1]:
+            ImportItem (line 1, col 7)
+              name = "json"
+              alias = null
+    ImportStmt (line 2, col 0)
+      dottedName = null
+      importList:
+        ImportList (line 2, col 7)
+          items [1]:
+            ImportItem (line 2, col 7)
+              name = "os"
+              alias = null
+    ImportStmt (line 3, col 0)
+      dottedName:
+        DottedName (line 3, col 5)
+          parts [1]:
+            "flask"
+      importList:
+        ImportList (line 3, col 18)
+          items [5]:
+            ImportItem (line 3, col 18)
+              name = "Flask"
+              alias = null
+            ImportItem (line 3, col 25)
+              name = "render_template"
+              alias = null
+            ImportItem (line 3, col 42)
+              name = "request"
+              alias = null
+            ImportItem (line 3, col 51)
+              name = "redirect"
+              alias = null
+            ImportItem (line 3, col 61)
+              name = "url_for"
+              alias = null
+    AssignStmt (line 5, col 0)
+      name = "app"
+      value:
+        CondExpr (line 5, col 6)
+          thenExpr:
+            OrPassExpr (line 5, col 6)
+              inner:
+                UnaryPostfixExpr (line 5, col 6)
+                  expr:
+                    PostfixExpr (line 5, col 6)
+                      primary:
+                        IdentifierExpr (line 5, col 6)
+                          name = "Flask"
+                      ops [1]:
+                        CallPostfix (line 5, col 11)
+                          argList:
+                            ArgList (line 5, col 12)
+                              statements [0]
+                              args [1]:
+                                Arg (line 5, col 12)
+                                  statements [0]
+                                  name = null
+                                  value:
+                                    CondExpr (line 5, col 12)
+                                      thenExpr:
+                                        OrPassExpr (line 5, col 12)
+                                          inner:
+                                            UnaryPostfixExpr (line 5, col 12)
+                                              expr:
+                                                PostfixExpr (line 5, col 12)
+                                                  primary:
+                                                    IdentifierExpr (line 5, col 12)
+                                                      name = "__name__"
+                                                  ops [0]
+                                      condition = null
+                                      elseExpr = null
+          condition = null
+          elseExpr = null
+    AssignStmt (line 7, col 0)
+      name = "DATA_FILE"
+      value:
+        CondExpr (line 7, col 12)
+          thenExpr:
+            OrPassExpr (line 7, col 12)
+              inner:
+                UnaryPostfixExpr (line 7, col 12)
+                  expr:
+                    PostfixExpr (line 7, col 12)
+                      primary:
+                        IdentifierExpr (line 7, col 12)
+                          name = "os"
+                      ops [3]:
+                        AttrPostfix (line 7, col 14)
+                          name = "path"
+                        AttrPostfix (line 7, col 19)
+                          name = "join"
+                        CallPostfix (line 7, col 24)
+                          argList:
+                            ArgList (line 7, col 25)
+                              statements [0]
+                              args [3]:
+                                Arg (line 7, col 25)
+                                  statements [0]
+                                  name = null
+                                  value:
+                                    CondExpr (line 7, col 25)
+                                      thenExpr:
+                                        OrPassExpr (line 7, col 25)
+                                          inner:
+                                            UnaryPostfixExpr (line 7, col 25)
+                                              expr:
+                                                PostfixExpr (line 7, col 25)
+                                                  primary:
+                                                    IdentifierExpr (line 7, col 25)
+                                                      name = "os"
+                                                  ops [3]:
+                                                    AttrPostfix (line 7, col 27)
+                                                      name = "path"
+                                                    AttrPostfix (line 7, col 32)
+                                                      name = "dirname"
+                                                    CallPostfix (line 7, col 40)
+                                                      argList:
+                                                        ArgList (line 7, col 41)
+                                                          statements [0]
+                                                          args [1]:
+                                                            Arg (line 7, col 41)
+                                                              statements [0]
+                                                              name = null
+                                                              value:
+                                                                CondExpr (line 7, col 41)
+                                                                  thenExpr:
+                                                                    OrPassExpr (line 7, col 41)
+                                                                      inner:
+                                                                        UnaryPostfixExpr (line 7, col 41)
+                                                                          expr:
+                                                                            PostfixExpr (line 7, col 41)
+                                                                              primary:
+                                                                                IdentifierExpr (line 7, col 41)
+                                                                                  name = "__file__"
+                                                                              ops [0]
+                                                                  condition = null
+                                                                  elseExpr = null
+                                      condition = null
+                                      elseExpr = null
+                                Arg (line 7, col 52)
+                                  statements [0]
+                                  name = null
+                                  value:
+                                    CondExpr (line 7, col 52)
+                                      thenExpr:
+                                        OrPassExpr (line 7, col 52)
+                                          inner:
+                                            UnaryPostfixExpr (line 7, col 52)
+                                              expr:
+                                                PostfixExpr (line 7, col 52)
+                                                  primary:
+                                                    StringExpr (line 7, col 52)
+                                                      value = "data"
+                                                  ops [0]
+                                      condition = null
+                                      elseExpr = null
+                                Arg (line 7, col 60)
+                                  statements [0]
+                                  name = null
+                                  value:
+                                    CondExpr (line 7, col 60)
+                                      thenExpr:
+                                        OrPassExpr (line 7, col 60)
+                                          inner:
+                                            UnaryPostfixExpr (line 7, col 60)
+                                              expr:
+                                                PostfixExpr (line 7, col 60)
+                                                  primary:
+                                                    StringExpr (line 7, col 60)
+                                                      value = "products.json"
+                                                  ops [0]
+                                      condition = null
+                                      elseExpr = null
+          condition = null
+          elseExpr = null
+    FuncDefStatement (line 10, col 0)
+      name = "load_products_from_json"
+      params [0]
+      body:
+        IndentedSuite (line 10, col 30)
+          statements [2]:
+            IfStatement (line 11, col 4)
+              condition:
+                CondExpr (line 11, col 7)
+                  thenExpr:
+                    OrPassExpr (line 11, col 7)
+                      inner:
+                        UnaryPostfixExpr (line 11, col 7)
+                          expr:
+                            PostfixExpr (line 11, col 7)
+                              primary:
+                                IdentifierExpr (line 11, col 7)
+                                  name = "os"
+                              ops [3]:
+                                AttrPostfix (line 11, col 9)
+                                  name = "path"
+                                AttrPostfix (line 11, col 14)
+                                  name = "exists"
+                                CallPostfix (line 11, col 21)
+                                  argList:
+                                    ArgList (line 11, col 22)
+                                      statements [0]
+                                      args [1]:
+                                        Arg (line 11, col 22)
+                                          statements [0]
+                                          name = null
+                                          value:
+                                            CondExpr (line 11, col 22)
+                                              thenExpr:
+                                                OrPassExpr (line 11, col 22)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 11, col 22)
+                                                      expr:
+                                                        PostfixExpr (line 11, col 22)
+                                                          primary:
+                                                            IdentifierExpr (line 11, col 22)
+                                                              name = "DATA_FILE"
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                  condition = null
+                  elseExpr = null
+              thenSuite:
+                IndentedSuite (line 11, col 33)
+                  statements [4]:
+                    AssignStmt (line 12, col 8)
+                      name = "data_file"
+                      value:
+                        CondExpr (line 12, col 20)
+                          thenExpr:
+                            OrPassExpr (line 12, col 20)
+                              inner:
+                                UnaryPostfixExpr (line 12, col 20)
+                                  expr:
+                                    PostfixExpr (line 12, col 20)
+                                      primary:
+                                        IdentifierExpr (line 12, col 20)
+                                          name = "open"
+                                      ops [1]:
+                                        CallPostfix (line 12, col 24)
+                                          argList:
+                                            ArgList (line 12, col 25)
+                                              statements [0]
+                                              args [3]:
+                                                Arg (line 12, col 25)
+                                                  statements [0]
+                                                  name = null
+                                                  value:
+                                                    CondExpr (line 12, col 25)
+                                                      thenExpr:
+                                                        OrPassExpr (line 12, col 25)
+                                                          inner:
+                                                            UnaryPostfixExpr (line 12, col 25)
+                                                              expr:
+                                                                PostfixExpr (line 12, col 25)
+                                                                  primary:
+                                                                    IdentifierExpr (line 12, col 25)
+                                                                      name = "DATA_FILE"
+                                                                  ops [0]
+                                                      condition = null
+                                                      elseExpr = null
+                                                Arg (line 12, col 36)
+                                                  statements [0]
+                                                  name = null
+                                                  value:
+                                                    CondExpr (line 12, col 36)
+                                                      thenExpr:
+                                                        OrPassExpr (line 12, col 36)
+                                                          inner:
+                                                            UnaryPostfixExpr (line 12, col 36)
+                                                              expr:
+                                                                PostfixExpr (line 12, col 36)
+                                                                  primary:
+                                                                    StringExpr (line 12, col 36)
+                                                                      value = "r"
+                                                                  ops [0]
+                                                      condition = null
+                                                      elseExpr = null
+                                                Arg (line 12, col 41)
+                                                  statements [0]
+                                                  name = "encoding"
+                                                  value:
+                                                    CondExpr (line 12, col 50)
+                                                      thenExpr:
+                                                        OrPassExpr (line 12, col 50)
+                                                          inner:
+                                                            UnaryPostfixExpr (line 12, col 50)
+                                                              expr:
+                                                                PostfixExpr (line 12, col 50)
+                                                                  primary:
+                                                                    StringExpr (line 12, col 50)
+                                                                      value = "utf-8"
+                                                                  ops [0]
+                                                      condition = null
+                                                      elseExpr = null
+                          condition = null
+                          elseExpr = null
+                    AssignStmt (line 13, col 8)
+                      name = "loaded_products"
+                      value:
+                        CondExpr (line 13, col 26)
+                          thenExpr:
+                            OrPassExpr (line 13, col 26)
+                              inner:
+                                UnaryPostfixExpr (line 13, col 26)
+                                  expr:
+                                    PostfixExpr (line 13, col 26)
+                                      primary:
+                                        IdentifierExpr (line 13, col 26)
+                                          name = "json"
+                                      ops [2]:
+                                        AttrPostfix (line 13, col 30)
+                                          name = "load"
+                                        CallPostfix (line 13, col 35)
+                                          argList:
+                                            ArgList (line 13, col 36)
+                                              statements [0]
+                                              args [1]:
+                                                Arg (line 13, col 36)
+                                                  statements [0]
+                                                  name = null
+                                                  value:
+                                                    CondExpr (line 13, col 36)
+                                                      thenExpr:
+                                                        OrPassExpr (line 13, col 36)
+                                                          inner:
+                                                            UnaryPostfixExpr (line 13, col 36)
+                                                              expr:
+                                                                PostfixExpr (line 13, col 36)
+                                                                  primary:
+                                                                    IdentifierExpr (line 13, col 36)
+                                                                      name = "data_file"
+                                                                  ops [0]
+                                                      condition = null
+                                                      elseExpr = null
+                          condition = null
+                          elseExpr = null
+                    ExprStmt (line 14, col 8)
+                      expr:
+                        CondExpr (line 14, col 8)
+                          thenExpr:
+                            OrPassExpr (line 14, col 8)
+                              inner:
+                                UnaryPostfixExpr (line 14, col 8)
+                                  expr:
+                                    PostfixExpr (line 14, col 8)
+                                      primary:
+                                        IdentifierExpr (line 14, col 8)
+                                          name = "data_file"
+                                      ops [2]:
+                                        AttrPostfix (line 14, col 17)
+                                          name = "close"
+                                        CallPostfix (line 14, col 23)
+                                          argList = null
+                          condition = null
+                          elseExpr = null
+                    ReturnStmt (line 15, col 8)
+                      returnArgs [1]:
+                        CondExpr (line 15, col 15)
+                          thenExpr:
+                            OrPassExpr (line 15, col 15)
+                              inner:
+                                UnaryPostfixExpr (line 15, col 15)
+                                  expr:
+                                    PostfixExpr (line 15, col 15)
+                                      primary:
+                                        IdentifierExpr (line 15, col 15)
+                                          name = "loaded_products"
+                                      ops [0]
+                          condition = null
+                          elseExpr = null
+              elseSuite = null
+            ReturnStmt (line 16, col 4)
+              returnArgs [1]:
+                CondExpr (line 16, col 11)
+                  thenExpr:
+                    OrPassExpr (line 16, col 11)
+                      inner:
+                        UnaryPostfixExpr (line 16, col 11)
+                          expr:
+                            PostfixExpr (line 16, col 11)
+                              primary:
+                                ListLiteralExpr (line 16, col 11)
+                                  listLiteral:
+                                    ListLiteral (line 16, col 11)
+                                      statements [0]
+                                      elements [0]
+                              ops [0]
+                  condition = null
+                  elseExpr = null
+    FuncDefStatement (line 19, col 0)
+      name = "save_products_to_json"
+      params [1]:
+        "products"
+      body:
+        IndentedSuite (line 19, col 36)
+          statements [3]:
+            AssignStmt (line 20, col 4)
+              name = "data_file"
+              value:
+                CondExpr (line 20, col 16)
+                  thenExpr:
+                    OrPassExpr (line 20, col 16)
+                      inner:
+                        UnaryPostfixExpr (line 20, col 16)
+                          expr:
+                            PostfixExpr (line 20, col 16)
+                              primary:
+                                IdentifierExpr (line 20, col 16)
+                                  name = "open"
+                              ops [1]:
+                                CallPostfix (line 20, col 20)
+                                  argList:
+                                    ArgList (line 20, col 21)
+                                      statements [0]
+                                      args [3]:
+                                        Arg (line 20, col 21)
+                                          statements [0]
+                                          name = null
+                                          value:
+                                            CondExpr (line 20, col 21)
+                                              thenExpr:
+                                                OrPassExpr (line 20, col 21)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 20, col 21)
+                                                      expr:
+                                                        PostfixExpr (line 20, col 21)
+                                                          primary:
+                                                            IdentifierExpr (line 20, col 21)
+                                                              name = "DATA_FILE"
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                                        Arg (line 20, col 32)
+                                          statements [0]
+                                          name = null
+                                          value:
+                                            CondExpr (line 20, col 32)
+                                              thenExpr:
+                                                OrPassExpr (line 20, col 32)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 20, col 32)
+                                                      expr:
+                                                        PostfixExpr (line 20, col 32)
+                                                          primary:
+                                                            StringExpr (line 20, col 32)
+                                                              value = "w"
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                                        Arg (line 20, col 37)
+                                          statements [0]
+                                          name = "encoding"
+                                          value:
+                                            CondExpr (line 20, col 46)
+                                              thenExpr:
+                                                OrPassExpr (line 20, col 46)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 20, col 46)
+                                                      expr:
+                                                        PostfixExpr (line 20, col 46)
+                                                          primary:
+                                                            StringExpr (line 20, col 46)
+                                                              value = "utf-8"
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                  condition = null
+                  elseExpr = null
+            ExprStmt (line 21, col 4)
+              expr:
+                CondExpr (line 21, col 4)
+                  thenExpr:
+                    OrPassExpr (line 21, col 4)
+                      inner:
+                        UnaryPostfixExpr (line 21, col 4)
+                          expr:
+                            PostfixExpr (line 21, col 4)
+                              primary:
+                                IdentifierExpr (line 21, col 4)
+                                  name = "json"
+                              ops [2]:
+                                AttrPostfix (line 21, col 8)
+                                  name = "dump"
+                                CallPostfix (line 21, col 13)
+                                  argList:
+                                    ArgList (line 21, col 14)
+                                      statements [0]
+                                      args [4]:
+                                        Arg (line 21, col 14)
+                                          statements [0]
+                                          name = null
+                                          value:
+                                            CondExpr (line 21, col 14)
+                                              thenExpr:
+                                                OrPassExpr (line 21, col 14)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 21, col 14)
+                                                      expr:
+                                                        PostfixExpr (line 21, col 14)
+                                                          primary:
+                                                            IdentifierExpr (line 21, col 14)
+                                                              name = "products"
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                                        Arg (line 21, col 24)
+                                          statements [0]
+                                          name = null
+                                          value:
+                                            CondExpr (line 21, col 24)
+                                              thenExpr:
+                                                OrPassExpr (line 21, col 24)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 21, col 24)
+                                                      expr:
+                                                        PostfixExpr (line 21, col 24)
+                                                          primary:
+                                                            IdentifierExpr (line 21, col 24)
+                                                              name = "data_file"
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                                        Arg (line 21, col 35)
+                                          statements [0]
+                                          name = "indent"
+                                          value:
+                                            CondExpr (line 21, col 42)
+                                              thenExpr:
+                                                OrPassExpr (line 21, col 42)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 21, col 42)
+                                                      expr:
+                                                        PostfixExpr (line 21, col 42)
+                                                          primary:
+                                                            IntExpr (line 21, col 42)
+                                                              value = 2
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                                        Arg (line 21, col 45)
+                                          statements [0]
+                                          name = "ensure_ascii"
+                                          value:
+                                            CondExpr (line 21, col 58)
+                                              thenExpr:
+                                                OrPassExpr (line 21, col 58)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 21, col 58)
+                                                      expr:
+                                                        PostfixExpr (line 21, col 58)
+                                                          primary:
+                                                            FalseExpr (line 21, col 58)
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                  condition = null
+                  elseExpr = null
+            ExprStmt (line 22, col 4)
+              expr:
+                CondExpr (line 22, col 4)
+                  thenExpr:
+                    OrPassExpr (line 22, col 4)
+                      inner:
+                        UnaryPostfixExpr (line 22, col 4)
+                          expr:
+                            PostfixExpr (line 22, col 4)
+                              primary:
+                                IdentifierExpr (line 22, col 4)
+                                  name = "data_file"
+                              ops [2]:
+                                AttrPostfix (line 22, col 13)
+                                  name = "close"
+                                CallPostfix (line 22, col 19)
+                                  argList = null
+                  condition = null
+                  elseExpr = null
+    AssignStmt (line 25, col 0)
+      name = "products"
+      value:
+        CondExpr (line 25, col 11)
+          thenExpr:
+            OrPassExpr (line 25, col 11)
+              inner:
+                UnaryPostfixExpr (line 25, col 11)
+                  expr:
+                    PostfixExpr (line 25, col 11)
+                      primary:
+                        IdentifierExpr (line 25, col 11)
+                          name = "load_products_from_json"
+                      ops [1]:
+                        CallPostfix (line 25, col 34)
+                          argList = null
+          condition = null
+          elseExpr = null
+    RouteStatement (line 28, col 0)
+      routePath:
+        RoutePath (line 28, col 11)
+          statements [0]
+          path = "/"
+      routeParams = null
+      funcDef:
+        FuncDefStatement (line 29, col 0)
+          name = "index"
+          params [0]
+          body:
+            IndentedSuite (line 29, col 12)
+              statements [1]:
+                ReturnStmt (line 30, col 4)
+                  returnArgs [1]:
+                    CondExpr (line 30, col 11)
+                      thenExpr:
+                        OrPassExpr (line 30, col 11)
+                          inner:
+                            UnaryPostfixExpr (line 30, col 11)
+                              expr:
+                                PostfixExpr (line 30, col 11)
+                                  primary:
+                                    IdentifierExpr (line 30, col 11)
+                                      name = "render_template"
+                                  ops [1]:
+                                    CallPostfix (line 30, col 26)
+                                      argList:
+                                        ArgList (line 30, col 27)
+                                          statements [0]
+                                          args [2]:
+                                            Arg (line 30, col 27)
+                                              statements [0]
+                                              name = null
+                                              value:
+                                                CondExpr (line 30, col 27)
+                                                  thenExpr:
+                                                    OrPassExpr (line 30, col 27)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 30, col 27)
+                                                          expr:
+                                                            PostfixExpr (line 30, col 27)
+                                                              primary:
+                                                                HtmlFileExpr (line 30, col 27)
+                                                                  value = "index.html"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                                            Arg (line 30, col 41)
+                                              statements [0]
+                                              name = "products"
+                                              value:
+                                                CondExpr (line 30, col 50)
+                                                  thenExpr:
+                                                    OrPassExpr (line 30, col 50)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 30, col 50)
+                                                          expr:
+                                                            PostfixExpr (line 30, col 50)
+                                                              primary:
+                                                                IdentifierExpr (line 30, col 50)
+                                                                  name = "products"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                      condition = null
+                      elseExpr = null
+    RouteStatement (line 33, col 0)
+      routePath:
+        RoutePath (line 33, col 11)
+          statements [0]
+          path = "/product/<int:product_id>"
+      routeParams = null
+      funcDef:
+        FuncDefStatement (line 34, col 0)
+          name = "product_detail"
+          params [1]:
+            "product_id"
+          body:
+            IndentedSuite (line 34, col 31)
+              statements [3]:
+                AssignStmt (line 35, col 4)
+                  name = "product"
+                  value:
+                    CondExpr (line 35, col 14)
+                      thenExpr:
+                        OrPassExpr (line 35, col 14)
+                          inner:
+                            UnaryPostfixExpr (line 35, col 14)
+                              expr:
+                                PostfixExpr (line 35, col 14)
+                                  primary:
+                                    IdentifierExpr (line 35, col 14)
+                                      name = "next"
+                                  ops [1]:
+                                    CallPostfix (line 35, col 18)
+                                      argList:
+                                        ArgList (line 35, col 19)
+                                          statements [0]
+                                          args [2]:
+                                            Arg (line 35, col 19)
+                                              statements [0]
+                                              name = null
+                                              value:
+                                                CondExpr (line 35, col 19)
+                                                  thenExpr:
+                                                    OrPassExpr (line 35, col 19)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 35, col 19)
+                                                          expr:
+                                                            PostfixExpr (line 35, col 19)
+                                                              primary:
+                                                                GeneratorPrimaryExpr (line 35, col 19)
+                                                                  generatorExpr:
+                                                                    GeneratorExpr (line 35, col 19)
+                                                                      statements [0]
+                                                                      yieldName = "p"
+                                                                      loopVarName = "p"
+                                                                      iterable:
+                                                                        CondExpr (line 35, col 31)
+                                                                          thenExpr:
+                                                                            OrPassExpr (line 35, col 31)
+                                                                              inner:
+                                                                                UnaryPostfixExpr (line 35, col 31)
+                                                                                  expr:
+                                                                                    PostfixExpr (line 35, col 31)
+                                                                                      primary:
+                                                                                        IdentifierExpr (line 35, col 31)
+                                                                                          name = "products"
+                                                                                      ops [0]
+                                                                          condition = null
+                                                                          elseExpr = null
+                                                                      filter:
+                                                                        CondExpr (line 35, col 43)
+                                                                          thenExpr:
+                                                                            OrPassExpr (line 35, col 43)
+                                                                              inner:
+                                                                                BinaryExpr (line 35, col 43)
+                                                                                  op = "=="
+                                                                                  left:
+                                                                                    UnaryPostfixExpr (line 35, col 43)
+                                                                                      expr:
+                                                                                        PostfixExpr (line 35, col 43)
+                                                                                          primary:
+                                                                                            IdentifierExpr (line 35, col 43)
+                                                                                              name = "p"
+                                                                                          ops [1]:
+                                                                                            SubscriptPostfix (line 35, col 44)
+                                                                                              index:
+                                                                                                CondExpr (line 35, col 45)
+                                                                                                  thenExpr:
+                                                                                                    OrPassExpr (line 35, col 45)
+                                                                                                      inner:
+                                                                                                        UnaryPostfixExpr (line 35, col 45)
+                                                                                                          expr:
+                                                                                                            PostfixExpr (line 35, col 45)
+                                                                                                              primary:
+                                                                                                                StringExpr (line 35, col 45)
+                                                                                                                  value = "id"
+                                                                                                              ops [0]
+                                                                                                  condition = null
+                                                                                                  elseExpr = null
+                                                                                  right:
+                                                                                    UnaryPostfixExpr (line 35, col 54)
+                                                                                      expr:
+                                                                                        PostfixExpr (line 35, col 54)
+                                                                                          primary:
+                                                                                            IdentifierExpr (line 35, col 54)
+                                                                                              name = "product_id"
+                                                                                          ops [0]
+                                                                          condition = null
+                                                                          elseExpr = null
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                                            Arg (line 35, col 67)
+                                              statements [0]
+                                              name = null
+                                              value:
+                                                CondExpr (line 35, col 67)
+                                                  thenExpr:
+                                                    OrPassExpr (line 35, col 67)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 35, col 67)
+                                                          expr:
+                                                            PostfixExpr (line 35, col 67)
+                                                              primary:
+                                                                NoneExpr (line 35, col 67)
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                      condition = null
+                      elseExpr = null
+                IfStatement (line 36, col 4)
+                  condition:
+                    CondExpr (line 36, col 7)
+                      thenExpr:
+                        OrPassExpr (line 36, col 7)
+                          inner:
+                            BinaryExpr (line 36, col 7)
+                              op = "is"
+                              left:
+                                UnaryPostfixExpr (line 36, col 7)
+                                  expr:
+                                    PostfixExpr (line 36, col 7)
+                                      primary:
+                                        IdentifierExpr (line 36, col 7)
+                                          name = "product"
+                                      ops [0]
+                              right:
+                                UnaryPostfixExpr (line 36, col 18)
+                                  expr:
+                                    PostfixExpr (line 36, col 18)
+                                      primary:
+                                        NoneExpr (line 36, col 18)
+                                      ops [0]
+                      condition = null
+                      elseExpr = null
+                  thenSuite:
+                    IndentedSuite (line 36, col 23)
+                      statements [1]:
+                        ReturnStmt (line 37, col 8)
+                          returnArgs [2]:
+                            CondExpr (line 37, col 15)
+                              thenExpr:
+                                OrPassExpr (line 37, col 15)
+                                  inner:
+                                    UnaryPostfixExpr (line 37, col 15)
+                                      expr:
+                                        PostfixExpr (line 37, col 15)
+                                          primary:
+                                            StringExpr (line 37, col 15)
+                                              value = "Product not found"
+                                          ops [0]
+                              condition = null
+                              elseExpr = null
+                            CondExpr (line 37, col 36)
+                              thenExpr:
+                                OrPassExpr (line 37, col 36)
+                                  inner:
+                                    UnaryPostfixExpr (line 37, col 36)
+                                      expr:
+                                        PostfixExpr (line 37, col 36)
+                                          primary:
+                                            IntExpr (line 37, col 36)
+                                              value = 404
+                                          ops [0]
+                              condition = null
+                              elseExpr = null
+                  elseSuite = null
+                ReturnStmt (line 38, col 4)
+                  returnArgs [1]:
+                    CondExpr (line 38, col 11)
+                      thenExpr:
+                        OrPassExpr (line 38, col 11)
+                          inner:
+                            UnaryPostfixExpr (line 38, col 11)
+                              expr:
+                                PostfixExpr (line 38, col 11)
+                                  primary:
+                                    IdentifierExpr (line 38, col 11)
+                                      name = "render_template"
+                                  ops [1]:
+                                    CallPostfix (line 38, col 26)
+                                      argList:
+                                        ArgList (line 38, col 27)
+                                          statements [0]
+                                          args [2]:
+                                            Arg (line 38, col 27)
+                                              statements [0]
+                                              name = null
+                                              value:
+                                                CondExpr (line 38, col 27)
+                                                  thenExpr:
+                                                    OrPassExpr (line 38, col 27)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 38, col 27)
+                                                          expr:
+                                                            PostfixExpr (line 38, col 27)
+                                                              primary:
+                                                                HtmlFileExpr (line 38, col 27)
+                                                                  value = "product_detail.html"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                                            Arg (line 38, col 50)
+                                              statements [0]
+                                              name = "product"
+                                              value:
+                                                CondExpr (line 38, col 58)
+                                                  thenExpr:
+                                                    OrPassExpr (line 38, col 58)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 38, col 58)
+                                                          expr:
+                                                            PostfixExpr (line 38, col 58)
+                                                              primary:
+                                                                IdentifierExpr (line 38, col 58)
+                                                                  name = "product"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                      condition = null
+                      elseExpr = null
+    RouteStatement (line 41, col 0)
+      routePath:
+        RoutePath (line 41, col 11)
+          statements [0]
+          path = "/add"
+      routeParams:
+        RouteParams (line 41, col 19)
+          statements [0]
+          methodsList:
+            ListLiteral (line 41, col 27)
+              statements [0]
+              elements [2]:
+                CondExpr (line 41, col 28)
+                  thenExpr:
+                    OrPassExpr (line 41, col 28)
+                      inner:
+                        UnaryPostfixExpr (line 41, col 28)
+                          expr:
+                            PostfixExpr (line 41, col 28)
+                              primary:
+                                StringExpr (line 41, col 28)
+                                  value = "GET"
+                              ops [0]
+                  condition = null
+                  elseExpr = null
+                CondExpr (line 41, col 35)
+                  thenExpr:
+                    OrPassExpr (line 41, col 35)
+                      inner:
+                        UnaryPostfixExpr (line 41, col 35)
+                          expr:
+                            PostfixExpr (line 41, col 35)
+                              primary:
+                                StringExpr (line 41, col 35)
+                                  value = "POST"
+                              ops [0]
+                  condition = null
+                  elseExpr = null
+      funcDef:
+        FuncDefStatement (line 42, col 0)
+          name = "add_product"
+          params [0]
+          body:
+            IndentedSuite (line 42, col 18)
+              statements [2]:
+                IfStatement (line 43, col 4)
+                  condition:
+                    CondExpr (line 43, col 7)
+                      thenExpr:
+                        OrPassExpr (line 43, col 7)
+                          inner:
+                            BinaryExpr (line 43, col 7)
+                              op = "=="
+                              left:
+                                UnaryPostfixExpr (line 43, col 7)
+                                  expr:
+                                    PostfixExpr (line 43, col 7)
+                                      primary:
+                                        IdentifierExpr (line 43, col 7)
+                                          name = "request"
+                                      ops [1]:
+                                        AttrPostfix (line 43, col 14)
+                                          name = "method"
+                              right:
+                                UnaryPostfixExpr (line 43, col 25)
+                                  expr:
+                                    PostfixExpr (line 43, col 25)
+                                      primary:
+                                        StringExpr (line 43, col 25)
+                                          value = "POST"
+                                      ops [0]
+                      condition = null
+                      elseExpr = null
+                  thenSuite:
+                    IndentedSuite (line 43, col 32)
+                      statements [8]:
+                        AssignStmt (line 44, col 8)
+                          name = "name"
+                          value:
+                            CondExpr (line 44, col 15)
+                              thenExpr:
+                                OrPassExpr (line 44, col 15)
+                                  inner:
+                                    UnaryPostfixExpr (line 44, col 15)
+                                      expr:
+                                        PostfixExpr (line 44, col 15)
+                                          primary:
+                                            IdentifierExpr (line 44, col 15)
+                                              name = "request"
+                                          ops [2]:
+                                            AttrPostfix (line 44, col 22)
+                                              name = "form"
+                                            SubscriptPostfix (line 44, col 27)
+                                              index:
+                                                CondExpr (line 44, col 28)
+                                                  thenExpr:
+                                                    OrPassExpr (line 44, col 28)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 44, col 28)
+                                                          expr:
+                                                            PostfixExpr (line 44, col 28)
+                                                              primary:
+                                                                StringExpr (line 44, col 28)
+                                                                  value = "name"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                              condition = null
+                              elseExpr = null
+                        AssignStmt (line 45, col 8)
+                          name = "price"
+                          value:
+                            CondExpr (line 45, col 16)
+                              thenExpr:
+                                OrPassExpr (line 45, col 16)
+                                  inner:
+                                    UnaryPostfixExpr (line 45, col 16)
+                                      expr:
+                                        PostfixExpr (line 45, col 16)
+                                          primary:
+                                            IdentifierExpr (line 45, col 16)
+                                              name = "float"
+                                          ops [1]:
+                                            CallPostfix (line 45, col 21)
+                                              argList:
+                                                ArgList (line 45, col 22)
+                                                  statements [0]
+                                                  args [1]:
+                                                    Arg (line 45, col 22)
+                                                      statements [0]
+                                                      name = null
+                                                      value:
+                                                        CondExpr (line 45, col 22)
+                                                          thenExpr:
+                                                            OrPassExpr (line 45, col 22)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 45, col 22)
+                                                                  expr:
+                                                                    PostfixExpr (line 45, col 22)
+                                                                      primary:
+                                                                        IdentifierExpr (line 45, col 22)
+                                                                          name = "request"
+                                                                      ops [2]:
+                                                                        AttrPostfix (line 45, col 29)
+                                                                          name = "form"
+                                                                        SubscriptPostfix (line 45, col 34)
+                                                                          index:
+                                                                            CondExpr (line 45, col 35)
+                                                                              thenExpr:
+                                                                                OrPassExpr (line 45, col 35)
+                                                                                  inner:
+                                                                                    UnaryPostfixExpr (line 45, col 35)
+                                                                                      expr:
+                                                                                        PostfixExpr (line 45, col 35)
+                                                                                          primary:
+                                                                                            StringExpr (line 45, col 35)
+                                                                                              value = "price"
+                                                                                          ops [0]
+                                                                              condition = null
+                                                                              elseExpr = null
+                                                          condition = null
+                                                          elseExpr = null
+                              condition = null
+                              elseExpr = null
+                        AssignStmt (line 46, col 8)
+                          name = "image"
+                          value:
+                            CondExpr (line 46, col 16)
+                              thenExpr:
+                                OrPassExpr (line 46, col 16)
+                                  inner:
+                                    UnaryPostfixExpr (line 46, col 16)
+                                      expr:
+                                        PostfixExpr (line 46, col 16)
+                                          primary:
+                                            IdentifierExpr (line 46, col 16)
+                                              name = "request"
+                                          ops [2]:
+                                            AttrPostfix (line 46, col 23)
+                                              name = "form"
+                                            SubscriptPostfix (line 46, col 28)
+                                              index:
+                                                CondExpr (line 46, col 29)
+                                                  thenExpr:
+                                                    OrPassExpr (line 46, col 29)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 46, col 29)
+                                                          expr:
+                                                            PostfixExpr (line 46, col 29)
+                                                              primary:
+                                                                StringExpr (line 46, col 29)
+                                                                  value = "image"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                              condition = null
+                              elseExpr = null
+                        AssignStmt (line 47, col 8)
+                          name = "details"
+                          value:
+                            CondExpr (line 47, col 18)
+                              thenExpr:
+                                OrPassExpr (line 47, col 18)
+                                  inner:
+                                    UnaryPostfixExpr (line 47, col 18)
+                                      expr:
+                                        PostfixExpr (line 47, col 18)
+                                          primary:
+                                            IdentifierExpr (line 47, col 18)
+                                              name = "request"
+                                          ops [2]:
+                                            AttrPostfix (line 47, col 25)
+                                              name = "form"
+                                            SubscriptPostfix (line 47, col 30)
+                                              index:
+                                                CondExpr (line 47, col 31)
+                                                  thenExpr:
+                                                    OrPassExpr (line 47, col 31)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 47, col 31)
+                                                          expr:
+                                                            PostfixExpr (line 47, col 31)
+                                                              primary:
+                                                                StringExpr (line 47, col 31)
+                                                                  value = "details"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                              condition = null
+                              elseExpr = null
+                        AssignStmt (line 49, col 8)
+                          name = "new_product"
+                          value:
+                            CondExpr (line 49, col 22)
+                              thenExpr:
+                                OrPassExpr (line 49, col 22)
+                                  inner:
+                                    UnaryPostfixExpr (line 49, col 22)
+                                      expr:
+                                        PostfixExpr (line 49, col 22)
+                                          primary:
+                                            DictLiteralExpr (line 49, col 22)
+                                              dictLiteral:
+                                                DictLiteral (line 49, col 22)
+                                                  statements [0]
+                                                  entries [5]:
+                                                    DictEntry (line 50, col 12)
+                                                      statements [0]
+                                                      key:
+                                                        CondExpr (line 50, col 12)
+                                                          thenExpr:
+                                                            OrPassExpr (line 50, col 12)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 50, col 12)
+                                                                  expr:
+                                                                    PostfixExpr (line 50, col 12)
+                                                                      primary:
+                                                                        StringExpr (line 50, col 12)
+                                                                          value = "id"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                      value:
+                                                        CondExpr (line 50, col 18)
+                                                          thenExpr:
+                                                            OrPassExpr (line 50, col 18)
+                                                              inner:
+                                                                BinaryExpr (line 50, col 18)
+                                                                  op = "+"
+                                                                  left:
+                                                                    UnaryPostfixExpr (line 50, col 18)
+                                                                      expr:
+                                                                        PostfixExpr (line 50, col 18)
+                                                                          primary:
+                                                                            IdentifierExpr (line 50, col 18)
+                                                                              name = "products"
+                                                                          ops [2]:
+                                                                            SubscriptPostfix (line 50, col 26)
+                                                                              index:
+                                                                                CondExpr (line 50, col 27)
+                                                                                  thenExpr:
+                                                                                    OrPassExpr (line 50, col 27)
+                                                                                      inner:
+                                                                                        UnaryPostfixExpr (line 50, col 27)
+                                                                                          expr:
+                                                                                            PostfixExpr (line 50, col 27)
+                                                                                              primary:
+                                                                                                IntExpr (line 50, col 27)
+                                                                                                  value = -1
+                                                                                              ops [0]
+                                                                                  condition = null
+                                                                                  elseExpr = null
+                                                                            SubscriptPostfix (line 50, col 30)
+                                                                              index:
+                                                                                CondExpr (line 50, col 31)
+                                                                                  thenExpr:
+                                                                                    OrPassExpr (line 50, col 31)
+                                                                                      inner:
+                                                                                        UnaryPostfixExpr (line 50, col 31)
+                                                                                          expr:
+                                                                                            PostfixExpr (line 50, col 31)
+                                                                                              primary:
+                                                                                                StringExpr (line 50, col 31)
+                                                                                                  value = "id"
+                                                                                              ops [0]
+                                                                                  condition = null
+                                                                                  elseExpr = null
+                                                                  right:
+                                                                    UnaryPostfixExpr (line 50, col 39)
+                                                                      expr:
+                                                                        PostfixExpr (line 50, col 39)
+                                                                          primary:
+                                                                            IntExpr (line 50, col 39)
+                                                                              value = 1
+                                                                          ops [0]
+                                                          condition:
+                                                            OrPassExpr (line 50, col 44)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 50, col 44)
+                                                                  expr:
+                                                                    PostfixExpr (line 50, col 44)
+                                                                      primary:
+                                                                        IdentifierExpr (line 50, col 44)
+                                                                          name = "products"
+                                                                      ops [0]
+                                                          elseExpr:
+                                                            OrPassExpr (line 50, col 58)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 50, col 58)
+                                                                  expr:
+                                                                    PostfixExpr (line 50, col 58)
+                                                                      primary:
+                                                                        IntExpr (line 50, col 58)
+                                                                          value = 1
+                                                                      ops [0]
+                                                    DictEntry (line 51, col 12)
+                                                      statements [0]
+                                                      key:
+                                                        CondExpr (line 51, col 12)
+                                                          thenExpr:
+                                                            OrPassExpr (line 51, col 12)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 51, col 12)
+                                                                  expr:
+                                                                    PostfixExpr (line 51, col 12)
+                                                                      primary:
+                                                                        StringExpr (line 51, col 12)
+                                                                          value = "name"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                      value:
+                                                        CondExpr (line 51, col 20)
+                                                          thenExpr:
+                                                            OrPassExpr (line 51, col 20)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 51, col 20)
+                                                                  expr:
+                                                                    PostfixExpr (line 51, col 20)
+                                                                      primary:
+                                                                        IdentifierExpr (line 51, col 20)
+                                                                          name = "name"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                    DictEntry (line 52, col 12)
+                                                      statements [0]
+                                                      key:
+                                                        CondExpr (line 52, col 12)
+                                                          thenExpr:
+                                                            OrPassExpr (line 52, col 12)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 52, col 12)
+                                                                  expr:
+                                                                    PostfixExpr (line 52, col 12)
+                                                                      primary:
+                                                                        StringExpr (line 52, col 12)
+                                                                          value = "price"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                      value:
+                                                        CondExpr (line 52, col 21)
+                                                          thenExpr:
+                                                            OrPassExpr (line 52, col 21)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 52, col 21)
+                                                                  expr:
+                                                                    PostfixExpr (line 52, col 21)
+                                                                      primary:
+                                                                        IdentifierExpr (line 52, col 21)
+                                                                          name = "price"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                    DictEntry (line 53, col 12)
+                                                      statements [0]
+                                                      key:
+                                                        CondExpr (line 53, col 12)
+                                                          thenExpr:
+                                                            OrPassExpr (line 53, col 12)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 53, col 12)
+                                                                  expr:
+                                                                    PostfixExpr (line 53, col 12)
+                                                                      primary:
+                                                                        StringExpr (line 53, col 12)
+                                                                          value = "image"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                      value:
+                                                        CondExpr (line 53, col 21)
+                                                          thenExpr:
+                                                            OrPassExpr (line 53, col 21)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 53, col 21)
+                                                                  expr:
+                                                                    PostfixExpr (line 53, col 21)
+                                                                      primary:
+                                                                        IdentifierExpr (line 53, col 21)
+                                                                          name = "image"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                    DictEntry (line 54, col 12)
+                                                      statements [0]
+                                                      key:
+                                                        CondExpr (line 54, col 12)
+                                                          thenExpr:
+                                                            OrPassExpr (line 54, col 12)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 54, col 12)
+                                                                  expr:
+                                                                    PostfixExpr (line 54, col 12)
+                                                                      primary:
+                                                                        StringExpr (line 54, col 12)
+                                                                          value = "details"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                                      value:
+                                                        CondExpr (line 54, col 23)
+                                                          thenExpr:
+                                                            OrPassExpr (line 54, col 23)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 54, col 23)
+                                                                  expr:
+                                                                    PostfixExpr (line 54, col 23)
+                                                                      primary:
+                                                                        IdentifierExpr (line 54, col 23)
+                                                                          name = "details"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                                          ops [0]
+                              condition = null
+                              elseExpr = null
+                        ExprStmt (line 57, col 8)
+                          expr:
+                            CondExpr (line 57, col 8)
+                              thenExpr:
+                                OrPassExpr (line 57, col 8)
+                                  inner:
+                                    UnaryPostfixExpr (line 57, col 8)
+                                      expr:
+                                        PostfixExpr (line 57, col 8)
+                                          primary:
+                                            IdentifierExpr (line 57, col 8)
+                                              name = "products"
+                                          ops [2]:
+                                            AttrPostfix (line 57, col 16)
+                                              name = "append"
+                                            CallPostfix (line 57, col 23)
+                                              argList:
+                                                ArgList (line 57, col 24)
+                                                  statements [0]
+                                                  args [1]:
+                                                    Arg (line 57, col 24)
+                                                      statements [0]
+                                                      name = null
+                                                      value:
+                                                        CondExpr (line 57, col 24)
+                                                          thenExpr:
+                                                            OrPassExpr (line 57, col 24)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 57, col 24)
+                                                                  expr:
+                                                                    PostfixExpr (line 57, col 24)
+                                                                      primary:
+                                                                        IdentifierExpr (line 57, col 24)
+                                                                          name = "new_product"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                              condition = null
+                              elseExpr = null
+                        ExprStmt (line 58, col 8)
+                          expr:
+                            CondExpr (line 58, col 8)
+                              thenExpr:
+                                OrPassExpr (line 58, col 8)
+                                  inner:
+                                    UnaryPostfixExpr (line 58, col 8)
+                                      expr:
+                                        PostfixExpr (line 58, col 8)
+                                          primary:
+                                            IdentifierExpr (line 58, col 8)
+                                              name = "save_products_to_json"
+                                          ops [1]:
+                                            CallPostfix (line 58, col 29)
+                                              argList:
+                                                ArgList (line 58, col 30)
+                                                  statements [0]
+                                                  args [1]:
+                                                    Arg (line 58, col 30)
+                                                      statements [0]
+                                                      name = null
+                                                      value:
+                                                        CondExpr (line 58, col 30)
+                                                          thenExpr:
+                                                            OrPassExpr (line 58, col 30)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 58, col 30)
+                                                                  expr:
+                                                                    PostfixExpr (line 58, col 30)
+                                                                      primary:
+                                                                        IdentifierExpr (line 58, col 30)
+                                                                          name = "products"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                              condition = null
+                              elseExpr = null
+                        ReturnStmt (line 59, col 8)
+                          returnArgs [1]:
+                            CondExpr (line 59, col 15)
+                              thenExpr:
+                                OrPassExpr (line 59, col 15)
+                                  inner:
+                                    UnaryPostfixExpr (line 59, col 15)
+                                      expr:
+                                        PostfixExpr (line 59, col 15)
+                                          primary:
+                                            IdentifierExpr (line 59, col 15)
+                                              name = "redirect"
+                                          ops [1]:
+                                            CallPostfix (line 59, col 23)
+                                              argList:
+                                                ArgList (line 59, col 24)
+                                                  statements [0]
+                                                  args [1]:
+                                                    Arg (line 59, col 24)
+                                                      statements [0]
+                                                      name = null
+                                                      value:
+                                                        CondExpr (line 59, col 24)
+                                                          thenExpr:
+                                                            OrPassExpr (line 59, col 24)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 59, col 24)
+                                                                  expr:
+                                                                    PostfixExpr (line 59, col 24)
+                                                                      primary:
+                                                                        IdentifierExpr (line 59, col 24)
+                                                                          name = "url_for"
+                                                                      ops [1]:
+                                                                        CallPostfix (line 59, col 31)
+                                                                          argList:
+                                                                            ArgList (line 59, col 32)
+                                                                              statements [0]
+                                                                              args [1]:
+                                                                                Arg (line 59, col 32)
+                                                                                  statements [0]
+                                                                                  name = null
+                                                                                  value:
+                                                                                    CondExpr (line 59, col 32)
+                                                                                      thenExpr:
+                                                                                        OrPassExpr (line 59, col 32)
+                                                                                          inner:
+                                                                                            UnaryPostfixExpr (line 59, col 32)
+                                                                                              expr:
+                                                                                                PostfixExpr (line 59, col 32)
+                                                                                                  primary:
+                                                                                                    StringExpr (line 59, col 32)
+                                                                                                      value = "index"
+                                                                                                  ops [0]
+                                                                                      condition = null
+                                                                                      elseExpr = null
+                                                          condition = null
+                                                          elseExpr = null
+                              condition = null
+                              elseExpr = null
+                  elseSuite = null
+                ReturnStmt (line 61, col 4)
+                  returnArgs [1]:
+                    CondExpr (line 61, col 11)
+                      thenExpr:
+                        OrPassExpr (line 61, col 11)
+                          inner:
+                            UnaryPostfixExpr (line 61, col 11)
+                              expr:
+                                PostfixExpr (line 61, col 11)
+                                  primary:
+                                    IdentifierExpr (line 61, col 11)
+                                      name = "render_template"
+                                  ops [1]:
+                                    CallPostfix (line 61, col 26)
+                                      argList:
+                                        ArgList (line 61, col 27)
+                                          statements [0]
+                                          args [1]:
+                                            Arg (line 61, col 27)
+                                              statements [0]
+                                              name = null
+                                              value:
+                                                CondExpr (line 61, col 27)
+                                                  thenExpr:
+                                                    OrPassExpr (line 61, col 27)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 61, col 27)
+                                                          expr:
+                                                            PostfixExpr (line 61, col 27)
+                                                              primary:
+                                                                HtmlFileExpr (line 61, col 27)
+                                                                  value = "add_product.html"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                      condition = null
+                      elseExpr = null
+    RouteStatement (line 64, col 0)
+      routePath:
+        RoutePath (line 64, col 11)
+          statements [0]
+          path = "/delete/<int:product_id>"
+      routeParams:
+        RouteParams (line 64, col 39)
+          statements [0]
+          methodsList:
+            ListLiteral (line 64, col 47)
+              statements [0]
+              elements [1]:
+                CondExpr (line 64, col 48)
+                  thenExpr:
+                    OrPassExpr (line 64, col 48)
+                      inner:
+                        UnaryPostfixExpr (line 64, col 48)
+                          expr:
+                            PostfixExpr (line 64, col 48)
+                              primary:
+                                StringExpr (line 64, col 48)
+                                  value = "POST"
+                              ops [0]
+                  condition = null
+                  elseExpr = null
+      funcDef:
+        FuncDefStatement (line 65, col 0)
+          name = "delete_product"
+          params [1]:
+            "product_id"
+          body:
+            IndentedSuite (line 65, col 31)
+              statements [6]:
+                AssignStmt (line 66, col 4)
+                  name = "remaining"
+                  value:
+                    CondExpr (line 66, col 16)
+                      thenExpr:
+                        OrPassExpr (line 66, col 16)
+                          inner:
+                            UnaryPostfixExpr (line 66, col 16)
+                              expr:
+                                PostfixExpr (line 66, col 16)
+                                  primary:
+                                    ListLiteralExpr (line 66, col 16)
+                                      listLiteral:
+                                        ListLiteral (line 66, col 16)
+                                          statements [0]
+                                          elements [0]
+                                  ops [0]
+                      condition = null
+                      elseExpr = null
+                ForStatement (line 67, col 4)
+                  varName = "product"
+                  expression:
+                    CondExpr (line 67, col 19)
+                      thenExpr:
+                        OrPassExpr (line 67, col 19)
+                          inner:
+                            UnaryPostfixExpr (line 67, col 19)
+                              expr:
+                                PostfixExpr (line 67, col 19)
+                                  primary:
+                                    IdentifierExpr (line 67, col 19)
+                                      name = "products"
+                                  ops [0]
+                      condition = null
+                      elseExpr = null
+                  forBlock:
+                    IndentedSuite (line 67, col 28)
+                      statements [1]:
+                        IfStatement (line 68, col 8)
+                          condition:
+                            CondExpr (line 68, col 11)
+                              thenExpr:
+                                OrPassExpr (line 68, col 11)
+                                  inner:
+                                    BinaryExpr (line 68, col 11)
+                                      op = "!="
+                                      left:
+                                        UnaryPostfixExpr (line 68, col 11)
+                                          expr:
+                                            PostfixExpr (line 68, col 11)
+                                              primary:
+                                                IdentifierExpr (line 68, col 11)
+                                                  name = "product"
+                                              ops [1]:
+                                                SubscriptPostfix (line 68, col 18)
+                                                  index:
+                                                    CondExpr (line 68, col 19)
+                                                      thenExpr:
+                                                        OrPassExpr (line 68, col 19)
+                                                          inner:
+                                                            UnaryPostfixExpr (line 68, col 19)
+                                                              expr:
+                                                                PostfixExpr (line 68, col 19)
+                                                                  primary:
+                                                                    StringExpr (line 68, col 19)
+                                                                      value = "id"
+                                                                  ops [0]
+                                                      condition = null
+                                                      elseExpr = null
+                                      right:
+                                        UnaryPostfixExpr (line 68, col 28)
+                                          expr:
+                                            PostfixExpr (line 68, col 28)
+                                              primary:
+                                                IdentifierExpr (line 68, col 28)
+                                                  name = "product_id"
+                                              ops [0]
+                              condition = null
+                              elseExpr = null
+                          thenSuite:
+                            IndentedSuite (line 68, col 39)
+                              statements [1]:
+                                ExprStmt (line 69, col 12)
+                                  expr:
+                                    CondExpr (line 69, col 12)
+                                      thenExpr:
+                                        OrPassExpr (line 69, col 12)
+                                          inner:
+                                            UnaryPostfixExpr (line 69, col 12)
+                                              expr:
+                                                PostfixExpr (line 69, col 12)
+                                                  primary:
+                                                    IdentifierExpr (line 69, col 12)
+                                                      name = "remaining"
+                                                  ops [2]:
+                                                    AttrPostfix (line 69, col 21)
+                                                      name = "append"
+                                                    CallPostfix (line 69, col 28)
+                                                      argList:
+                                                        ArgList (line 69, col 29)
+                                                          statements [0]
+                                                          args [1]:
+                                                            Arg (line 69, col 29)
+                                                              statements [0]
+                                                              name = null
+                                                              value:
+                                                                CondExpr (line 69, col 29)
+                                                                  thenExpr:
+                                                                    OrPassExpr (line 69, col 29)
+                                                                      inner:
+                                                                        UnaryPostfixExpr (line 69, col 29)
+                                                                          expr:
+                                                                            PostfixExpr (line 69, col 29)
+                                                                              primary:
+                                                                                IdentifierExpr (line 69, col 29)
+                                                                                  name = "product"
+                                                                              ops [0]
+                                                                  condition = null
+                                                                  elseExpr = null
+                                      condition = null
+                                      elseExpr = null
+                          elseSuite = null
+                ExprStmt (line 70, col 4)
+                  expr:
+                    CondExpr (line 70, col 4)
+                      thenExpr:
+                        OrPassExpr (line 70, col 4)
+                          inner:
+                            UnaryPostfixExpr (line 70, col 4)
+                              expr:
+                                PostfixExpr (line 70, col 4)
+                                  primary:
+                                    IdentifierExpr (line 70, col 4)
+                                      name = "products"
+                                  ops [2]:
+                                    AttrPostfix (line 70, col 12)
+                                      name = "clear"
+                                    CallPostfix (line 70, col 18)
+                                      argList = null
+                      condition = null
+                      elseExpr = null
+                ForStatement (line 71, col 4)
+                  varName = "product"
+                  expression:
+                    CondExpr (line 71, col 19)
+                      thenExpr:
+                        OrPassExpr (line 71, col 19)
+                          inner:
+                            UnaryPostfixExpr (line 71, col 19)
+                              expr:
+                                PostfixExpr (line 71, col 19)
+                                  primary:
+                                    IdentifierExpr (line 71, col 19)
+                                      name = "remaining"
+                                  ops [0]
+                      condition = null
+                      elseExpr = null
+                  forBlock:
+                    IndentedSuite (line 71, col 29)
+                      statements [1]:
+                        ExprStmt (line 72, col 8)
+                          expr:
+                            CondExpr (line 72, col 8)
+                              thenExpr:
+                                OrPassExpr (line 72, col 8)
+                                  inner:
+                                    UnaryPostfixExpr (line 72, col 8)
+                                      expr:
+                                        PostfixExpr (line 72, col 8)
+                                          primary:
+                                            IdentifierExpr (line 72, col 8)
+                                              name = "products"
+                                          ops [2]:
+                                            AttrPostfix (line 72, col 16)
+                                              name = "append"
+                                            CallPostfix (line 72, col 23)
+                                              argList:
+                                                ArgList (line 72, col 24)
+                                                  statements [0]
+                                                  args [1]:
+                                                    Arg (line 72, col 24)
+                                                      statements [0]
+                                                      name = null
+                                                      value:
+                                                        CondExpr (line 72, col 24)
+                                                          thenExpr:
+                                                            OrPassExpr (line 72, col 24)
+                                                              inner:
+                                                                UnaryPostfixExpr (line 72, col 24)
+                                                                  expr:
+                                                                    PostfixExpr (line 72, col 24)
+                                                                      primary:
+                                                                        IdentifierExpr (line 72, col 24)
+                                                                          name = "product"
+                                                                      ops [0]
+                                                          condition = null
+                                                          elseExpr = null
+                              condition = null
+                              elseExpr = null
+                ExprStmt (line 73, col 4)
+                  expr:
+                    CondExpr (line 73, col 4)
+                      thenExpr:
+                        OrPassExpr (line 73, col 4)
+                          inner:
+                            UnaryPostfixExpr (line 73, col 4)
+                              expr:
+                                PostfixExpr (line 73, col 4)
+                                  primary:
+                                    IdentifierExpr (line 73, col 4)
+                                      name = "save_products_to_json"
+                                  ops [1]:
+                                    CallPostfix (line 73, col 25)
+                                      argList:
+                                        ArgList (line 73, col 26)
+                                          statements [0]
+                                          args [1]:
+                                            Arg (line 73, col 26)
+                                              statements [0]
+                                              name = null
+                                              value:
+                                                CondExpr (line 73, col 26)
+                                                  thenExpr:
+                                                    OrPassExpr (line 73, col 26)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 73, col 26)
+                                                          expr:
+                                                            PostfixExpr (line 73, col 26)
+                                                              primary:
+                                                                IdentifierExpr (line 73, col 26)
+                                                                  name = "products"
+                                                              ops [0]
+                                                  condition = null
+                                                  elseExpr = null
+                      condition = null
+                      elseExpr = null
+                ReturnStmt (line 74, col 4)
+                  returnArgs [1]:
+                    CondExpr (line 74, col 11)
+                      thenExpr:
+                        OrPassExpr (line 74, col 11)
+                          inner:
+                            UnaryPostfixExpr (line 74, col 11)
+                              expr:
+                                PostfixExpr (line 74, col 11)
+                                  primary:
+                                    IdentifierExpr (line 74, col 11)
+                                      name = "redirect"
+                                  ops [1]:
+                                    CallPostfix (line 74, col 19)
+                                      argList:
+                                        ArgList (line 74, col 20)
+                                          statements [0]
+                                          args [1]:
+                                            Arg (line 74, col 20)
+                                              statements [0]
+                                              name = null
+                                              value:
+                                                CondExpr (line 74, col 20)
+                                                  thenExpr:
+                                                    OrPassExpr (line 74, col 20)
+                                                      inner:
+                                                        UnaryPostfixExpr (line 74, col 20)
+                                                          expr:
+                                                            PostfixExpr (line 74, col 20)
+                                                              primary:
+                                                                IdentifierExpr (line 74, col 20)
+                                                                  name = "url_for"
+                                                              ops [1]:
+                                                                CallPostfix (line 74, col 27)
+                                                                  argList:
+                                                                    ArgList (line 74, col 28)
+                                                                      statements [0]
+                                                                      args [1]:
+                                                                        Arg (line 74, col 28)
+                                                                          statements [0]
+                                                                          name = null
+                                                                          value:
+                                                                            CondExpr (line 74, col 28)
+                                                                              thenExpr:
+                                                                                OrPassExpr (line 74, col 28)
+                                                                                  inner:
+                                                                                    UnaryPostfixExpr (line 74, col 28)
+                                                                                      expr:
+                                                                                        PostfixExpr (line 74, col 28)
+                                                                                          primary:
+                                                                                            StringExpr (line 74, col 28)
+                                                                                              value = "index"
+                                                                                          ops [0]
+                                                                              condition = null
+                                                                              elseExpr = null
+                                                  condition = null
+                                                  elseExpr = null
+                      condition = null
+                      elseExpr = null
+    IfStatement (line 77, col 0)
+      condition:
+        CondExpr (line 77, col 3)
+          thenExpr:
+            OrPassExpr (line 77, col 3)
+              inner:
+                BinaryExpr (line 77, col 3)
+                  op = "=="
+                  left:
+                    UnaryPostfixExpr (line 77, col 3)
+                      expr:
+                        PostfixExpr (line 77, col 3)
+                          primary:
+                            IdentifierExpr (line 77, col 3)
+                              name = "__name__"
+                          ops [0]
+                  right:
+                    UnaryPostfixExpr (line 77, col 15)
+                      expr:
+                        PostfixExpr (line 77, col 15)
+                          primary:
+                            StringExpr (line 77, col 15)
+                              value = "__main__"
+                          ops [0]
+          condition = null
+          elseExpr = null
+      thenSuite:
+        IndentedSuite (line 77, col 26)
+          statements [1]:
+            ExprStmt (line 78, col 4)
+              expr:
+                CondExpr (line 78, col 4)
+                  thenExpr:
+                    OrPassExpr (line 78, col 4)
+                      inner:
+                        UnaryPostfixExpr (line 78, col 4)
+                          expr:
+                            PostfixExpr (line 78, col 4)
+                              primary:
+                                IdentifierExpr (line 78, col 4)
+                                  name = "app"
+                              ops [2]:
+                                AttrPostfix (line 78, col 7)
+                                  name = "run"
+                                CallPostfix (line 78, col 11)
+                                  argList:
+                                    ArgList (line 78, col 12)
+                                      statements [0]
+                                      args [1]:
+                                        Arg (line 78, col 12)
+                                          statements [0]
+                                          name = "debug"
+                                          value:
+                                            CondExpr (line 78, col 18)
+                                              thenExpr:
+                                                OrPassExpr (line 78, col 18)
+                                                  inner:
+                                                    UnaryPostfixExpr (line 78, col 18)
+                                                      expr:
+                                                        PostfixExpr (line 78, col 18)
+                                                          primary:
+                                                            TrueExpr (line 78, col 18)
+                                                          ops [0]
+                                              condition = null
+                                              elseExpr = null
+                  condition = null
+                  elseExpr = null
+      elseSuite = null

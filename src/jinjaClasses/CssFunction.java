@@ -1,6 +1,6 @@
 package jinjaClasses;
 
-public class CssFunction {
+public class CssFunction extends JinjaNode {
     String word;
     ValueList valueList;
     public String getWord() {

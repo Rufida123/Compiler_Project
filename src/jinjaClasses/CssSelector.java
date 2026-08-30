@@ -3,7 +3,7 @@ package jinjaClasses;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CssSelector {
+public class CssSelector extends JinjaNode {
     List<SelectorPart> parts = new ArrayList<>();
     CssPseudo pseudo;
     public List<SelectorPart> getParts() {

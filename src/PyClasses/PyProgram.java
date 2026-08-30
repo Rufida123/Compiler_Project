@@ -6,10 +6,14 @@ import ast.MainProgram;
 
 public abstract class PyProgram extends MainProgram {
     protected int lineNumber = -1;
+    protected int column     = -1;
     private List<Statement> statements = new ArrayList<>();
 
     public int getLineNumber() { return lineNumber; }
     public void setLineNumber(int lineNumber) { this.lineNumber = lineNumber; }
+
+    public int getColumn() { return column; }
+    public void setColumn(int column) { this.column = column; }
 
     public List<Statement> getStatements() { return statements; }
     public void setStatements(List<Statement> statements) { this.statements = statements; }

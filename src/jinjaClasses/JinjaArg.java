@@ -1,6 +1,6 @@
 package jinjaClasses;
 
-public class JinjaArg {
+public class JinjaArg extends JinjaNode {
     JinjaExpression expression;
     public JinjaExpression getExpression() {
         return expression;

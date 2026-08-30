@@ -1,4 +1,4 @@
 package jinjaClasses;
 
-public abstract class SelectorPart {
+public abstract class SelectorPart extends JinjaNode {
 }

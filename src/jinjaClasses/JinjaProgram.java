@@ -3,11 +3,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.List;
-import ast.MainProgram;
 
-public class JinjaProgram extends MainProgram {
+public class JinjaProgram extends JinjaNode {
     List<DocumentElement> htmlElements = new ArrayList<>();
-    protected int line = -1;
 
     public List<DocumentElement> getHtmlElements() {
         return htmlElements;
@@ -15,14 +13,6 @@ public class JinjaProgram extends MainProgram {
 
     public void setHtmlElements(List<DocumentElement> htmlElements) {
         this.htmlElements = htmlElements;
-    }
-
-    public int getLine() {
-        return line;
-    }
-
-    public void setLine(int line) {
-        this.line = line;
     }
 
     @Override

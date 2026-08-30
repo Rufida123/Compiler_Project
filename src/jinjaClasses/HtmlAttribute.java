@@ -1,4 +1,4 @@
 package jinjaClasses;
 
-public abstract class HtmlAttribute {
+public abstract class HtmlAttribute extends JinjaNode {
 }

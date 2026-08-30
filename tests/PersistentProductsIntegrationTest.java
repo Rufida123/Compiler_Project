@@ -1,6 +1,8 @@
 import app.Main;
 import codegen.PythonContextExecutor;
 
+import java.util.ArrayList;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.Comparator;
@@ -39,8 +41,8 @@ ns={'__name__':'compiler_test','__file__':sys.argv[1]}
 exec(compile(open(sys.argv[1],encoding='utf-8').read(),sys.argv[1],'exec'),ns)
 ns['add_product']()
 """;
-            Process add = new ProcessBuilder("py", "-3.12", "-c", helper,
-                    fixture.resolve("app.py").toString()).inheritIO().start();
+            Process add = new ProcessBuilder(python("-c", helper,
+                    fixture.resolve("app.py").toString())).inheritIO().start();
             if (add.waitFor() != 0) throw new AssertionError("POST persistence simulation failed");
 
             String saved = Files.readString(fixture.resolve("data/products.json"));
@@ -62,6 +64,12 @@ ns['add_product']()
             require(Files.isRegularFile(output.resolve("data/products.json")),
                     "persistent data was not copied beside output/app.py");
 
+            // Generation probes every route to capture its render context, and the
+            // delete route legitimately writes.  Compiling must never mutate the
+            // project's data, so the source file has to survive untouched.
+            require(Files.readString(fixture.resolve("data/products.json")).contains("Persistent Test Product"),
+                    "running the compiler mutated the source data/products.json");
+
             // ── delete: remove the product again and regenerate ──────────────
             String deleteHelper = """
 import sys, types, json
@@ -82,8 +90,8 @@ exec(compile(open(sys.argv[1],encoding='utf-8').read(),sys.argv[1],'exec'),ns)
 target=[p['id'] for p in ns['products'] if p['name']=='Persistent Test Product'][0]
 ns['delete_product'](target)
 """;
-            Process remove = new ProcessBuilder("py", "-3.12", "-c", deleteHelper,
-                    fixture.resolve("app.py").toString()).inheritIO().start();
+            Process remove = new ProcessBuilder(python("-c", deleteHelper,
+                    fixture.resolve("app.py").toString())).inheritIO().start();
             if (remove.waitFor() != 0) throw new AssertionError("DELETE persistence simulation failed");
 
             require(!Files.readString(fixture.resolve("data/products.json")).contains("Persistent Test Product"),
@@ -104,8 +112,8 @@ ns['delete_product'](target)
             require(String.valueOf(legacyProducts).contains("Legacy Product"),
                     "list-literal fallback stopped working when products.json is absent");
 
-            Process syntax = new ProcessBuilder("py", "-3.12", "-m", "py_compile",
-                    output.resolve("app.py").toString()).inheritIO().start();
+            Process syntax = new ProcessBuilder(python("-m", "py_compile",
+                    output.resolve("app.py").toString())).inheritIO().start();
             if (syntax.waitFor() != 0) throw new AssertionError("generated app.py syntax check failed");
             System.out.println("PersistentProductsIntegrationTest passed");
         } finally {
@@ -117,5 +125,12 @@ ns['delete_product'](target)
 
     private static void require(boolean condition, String message) {
         if (!condition) throw new AssertionError(message);
+    }
+
+    /** Same interpreter resolution the compiler uses (.venv, COMPILER_PYTHON, py -3.12, python3). */
+    private static java.util.List<String> python(String... arguments) throws Exception {
+        java.util.List<String> command = new ArrayList<>(PythonContextExecutor.pythonCommand());
+        command.addAll(java.util.List.of(arguments));
+        return command;
     }
 }

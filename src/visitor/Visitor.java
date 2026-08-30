@@ -38,6 +38,51 @@ public class Visitor {
 
         public SymbolTable getSymbolTable() { return symbolTable; }
 
+        /**
+         * Single stamping point: every node returned by a rule visit gets the
+         * line and column of that rule's first token.  This is what makes the
+         * "every node carries its position" requirement hold for the whole
+         * Jinja/HTML/CSS tree rather than for a handful of node kinds.
+         */
+        @Override
+        public Object visit(ParseTree tree) {
+            Object node = super.visit(tree);
+            if (tree instanceof ParserRuleContext ctx) position(node, ctx);
+            return node;
+        }
+
+        private static <T> T position(T node, ParserRuleContext ctx) {
+            if (node instanceof JinjaNode jinjaNode) {
+                // Fill each field independently: a node may already carry a line
+                // from an inner rule while its column is still unset.
+                if (jinjaNode.getLine() <= 0)   jinjaNode.setLine(ctx.getStart().getLine());
+                if (jinjaNode.getColumn() < 0)  jinjaNode.setColumn(ctx.getStart().getCharPositionInLine());
+            }
+            return node;
+        }
+
+        /** Stamps a subtree built without a parse context (embedded attribute Jinja). */
+        private static void positionSubtree(Object root, ParserRuleContext ctx) {
+            if (root == null) return;
+            if (root instanceof java.util.List<?> items) {
+                for (Object item : items) positionSubtree(item, ctx);
+                return;
+            }
+            if (!(root instanceof JinjaNode node)) return;
+            position(node, ctx);
+            for (Class<?> type = node.getClass(); type != null && type != Object.class; type = type.getSuperclass()) {
+                for (java.lang.reflect.Field field : type.getDeclaredFields()) {
+                    if (java.lang.reflect.Modifier.isStatic(field.getModifiers())) continue;
+                    try {
+                        field.setAccessible(true);
+                        positionSubtree(field.get(node), ctx);
+                    } catch (ReflectiveOperationException | RuntimeException ignored) {
+                        // a field we cannot read simply keeps its default position
+                    }
+                }
+            }
+        }
+
         // ── Program ──────────────────────────────────────────────────────────
 
         @Override
@@ -50,8 +95,6 @@ public class Visitor {
                     if (element != null) program.getHtmlElements().add(element);
                 }
             }
-            symbolTable.printTable();
-            System.out.println(symbolTable.getStatistics());
             return program;
         }
 
@@ -59,10 +102,10 @@ public class Visitor {
 
         @Override
         public DocumentElement visitDocumentElement(JinjaParser.DocumentElementContext ctx) {
-            if      (ctx.styleTag()   != null) return (DocumentElement) visitStyleTag(ctx.styleTag());
+            if      (ctx.styleTag()   != null) return (DocumentElement) visit(ctx.styleTag());
             else if (ctx.jinjaBlock() != null) return (DocumentElement) visit(ctx.jinjaBlock());
             else if (ctx.htmlTag()    != null) return (DocumentElement) visit(ctx.htmlTag());
-            else if (ctx.htmlText()   != null) return (HtmlText)        visitHtmlText(ctx.htmlText());
+            else if (ctx.htmlText()   != null) return (HtmlText)        visit(ctx.htmlText());
             return null;
         }
 
@@ -162,6 +205,7 @@ public class Visitor {
                     printBlock.setJinjaExpression(parseJinjaContent(jinjaContent));
                     JinjaValueExpr jinjaValue = new JinjaValueExpr();
                     jinjaValue.setJinjaBlock(printBlock);
+                    positionSubtree(jinjaValue, ctx);
                     return jinjaValue;
                 }
             }
@@ -170,7 +214,7 @@ public class Visitor {
                 plain.setText(text.substring(1, text.length() - 1));
             else
                 plain.setText(text);
-            return plain;
+            return position(plain, ctx);
         }
 
         @Override
@@ -202,7 +246,7 @@ public class Visitor {
         public PrintBlock visitPrintBlock(JinjaParser.PrintBlockContext ctx) {
             PrintBlock print = new PrintBlock();
             print.setLine(ctx.getStart().getLine());
-            print.setJinjaExpression((JinjaExpression) visitJinjaExpression(ctx.jinjaExpression()));
+            print.setJinjaExpression((JinjaExpression) visit(ctx.jinjaExpression()));
             return print;
         }
 
@@ -237,7 +281,7 @@ public class Visitor {
         @Override
         public If visitIf(JinjaParser.IfContext ctx) {
             If ifStmt = new If();
-            ifStmt.setExpression((JinjaExpression) visitJinjaExpression(ctx.jinjaExpression()));
+            ifStmt.setExpression((JinjaExpression) visit(ctx.jinjaExpression()));
             return ifStmt;
         }
 
@@ -257,7 +301,7 @@ public class Visitor {
                 symbolTable.add(new Symbol(varName, "loop_variable",
                         symbolTable.getCurrentScopeLevel(), ctx.getStart().getLine()));
             }
-            forStmt.setExpression((JinjaExpression) visitJinjaExpression(ctx.jinjaExpression()));
+            forStmt.setExpression((JinjaExpression) visit(ctx.jinjaExpression()));
             return forStmt;
         }
 
@@ -276,7 +320,7 @@ public class Visitor {
                 expr.setPrimary((JinjaPrimary) visit(ctx.jinjaComparison()));
             for (JinjaParser.JinjaFilterContext filterCtx : ctx.jinjaFilter())
                 if (filterCtx != null)
-                    expr.getFilters().add((JinjaFilter) visitJinjaFilter(filterCtx));
+                    expr.getFilters().add((JinjaFilter) visit(filterCtx));
             return expr;
         }
 
@@ -313,7 +357,7 @@ public class Visitor {
         @Override
         public AccessExpr visitAccessExpr(JinjaParser.AccessExprContext ctx) {
             AccessExpr access = new AccessExpr();
-            access.setChain((JinjaIdentifierChain) visitJinjaIdentifierChain(ctx.jinjaIdentifierChain()));
+            access.setChain((JinjaIdentifierChain) visit(ctx.jinjaIdentifierChain()));
             return access;
         }
 
@@ -349,7 +393,7 @@ public class Visitor {
         @Override
         public JinjaParenthesizedExpr visitParenthesizedExpr(JinjaParser.ParenthesizedExprContext ctx) {
             JinjaParenthesizedExpr expr = new JinjaParenthesizedExpr();
-            expr.setExpression((JinjaExpression) visitJinjaExpression(ctx.jinjaExpression()));
+            expr.setExpression((JinjaExpression) visit(ctx.jinjaExpression()));
             return expr;
         }
 
@@ -364,14 +408,14 @@ public class Visitor {
                 if (i + 1 < ctx.JINJA_IDENTIFIER().size()) {
                     DotAccess dot = new DotAccess();
                     dot.setIdentifier(ctx.JINJA_IDENTIFIER(i + 1).getText());
-                    chain.getAccesses().add(dot);
+                    chain.getAccesses().add(position(dot, ctx));
                 }
             }
             for (JinjaParser.JinjaExpressionContext exprCtx : ctx.jinjaExpression()) {
                 if (exprCtx != null) {
                     IndexAccess index = new IndexAccess();
-                    index.setExpression((JinjaExpression) visitJinjaExpression(exprCtx));
-                    chain.getAccesses().add(index);
+                    index.setExpression((JinjaExpression) visit(exprCtx));
+                    chain.getAccesses().add(position(index, ctx));
                 }
             }
             return chain;
@@ -383,7 +427,7 @@ public class Visitor {
             if      (ctx.JINJA_IDENTIFIER() != null) filter.setName(ctx.JINJA_IDENTIFIER().getText());
             else if (ctx.JINJA_FORMAT()     != null) filter.setName(ctx.JINJA_FORMAT().getText());
             if (ctx.jinjaCallArgs() != null) filter.setArgs(buildJinjaCallArgs(ctx.jinjaCallArgs()));
-            else                             filter.setArgs(new EmptyArgs());
+            else                             filter.setArgs(position(new EmptyArgs(), ctx));
             return filter;
         }
 
@@ -413,10 +457,10 @@ public class Visitor {
         public JinjaCallArgs visitCallMixedArgs(JinjaParser.CallMixedArgsContext ctx) {
             CallMixedArgs args = new CallMixedArgs();
             for (JinjaParser.JinjaArgContext argCtx : ctx.jinjaArg()) {
-                if (argCtx != null) args.getPosArgs().add((JinjaArg) visitJinjaArg(argCtx));
+                if (argCtx != null) args.getPosArgs().add((JinjaArg) visit(argCtx));
             }
             for (JinjaParser.JinjaKwArgContext kwArgCtx : ctx.jinjaKwArg()) {
-                if (kwArgCtx != null) args.getKwArgs().add((JinjaKwArg) visitJinjaKwArg(kwArgCtx));
+                if (kwArgCtx != null) args.getKwArgs().add((JinjaKwArg) visit(kwArgCtx));
             }
             return args;
         }
@@ -425,7 +469,7 @@ public class Visitor {
         public JinjaCallArgs visitCallKwArgs(JinjaParser.CallKwArgsContext ctx) {
             CallKwArgs args = new CallKwArgs();
             for (JinjaParser.JinjaKwArgContext kwArgCtx : ctx.jinjaKwArg()) {
-                if (kwArgCtx != null) args.getKwArgs().add((JinjaKwArg) visitJinjaKwArg(kwArgCtx));
+                if (kwArgCtx != null) args.getKwArgs().add((JinjaKwArg) visit(kwArgCtx));
             }
             return args;
         }
@@ -434,7 +478,7 @@ public class Visitor {
         public JinjaArg visitJinjaArg(JinjaParser.JinjaArgContext ctx) {
             JinjaArg arg = new JinjaArg();
             if (ctx.jinjaExpression() != null)
-                arg.setExpression((JinjaExpression) visitJinjaExpression(ctx.jinjaExpression()));
+                arg.setExpression((JinjaExpression) visit(ctx.jinjaExpression()));
             return arg;
         }
 
@@ -443,7 +487,7 @@ public class Visitor {
             JinjaKwArg kw = new JinjaKwArg();
             if (ctx.JINJA_IDENTIFIER() != null) kw.setIdentifier(ctx.JINJA_IDENTIFIER().getText());
             if (ctx.jinjaExpression()  != null)
-                kw.setExpression((JinjaExpression) visitJinjaExpression(ctx.jinjaExpression()));
+                kw.setExpression((JinjaExpression) visit(ctx.jinjaExpression()));
             return kw;
         }
 
@@ -453,10 +497,10 @@ public class Visitor {
         public CssRule visitCssRule(JinjaParser.CssRuleContext ctx) {
             CssRule rule = new CssRule();
             if (ctx.cssSelectorList() != null)
-                rule.setSelectorList((CssSelectorList) visitCssSelectorList(ctx.cssSelectorList()));
+                rule.setSelectorList((CssSelectorList) visit(ctx.cssSelectorList()));
             for (JinjaParser.CssPropertyContext propCtx : ctx.cssProperty())
                 if (propCtx != null)
-                    rule.getProperties().add((CssProperty) visitCssProperty(propCtx));
+                    rule.getProperties().add((CssProperty) visit(propCtx));
             return rule;
         }
 
@@ -465,7 +509,7 @@ public class Visitor {
             CssSelectorList list = new CssSelectorList();
             for (JinjaParser.CssSelectorContext selCtx : ctx.cssSelector())
                 if (selCtx != null)
-                    list.getSelectors().add((CssSelector) visitCssSelector(selCtx));
+                    list.getSelectors().add((CssSelector) visit(selCtx));
             return list;
         }
 
@@ -477,7 +521,7 @@ public class Visitor {
             if (ctx.CSS_COLON() != null && ctx.CSS_WORD() != null) {
                 CssPseudo pseudo = new CssPseudo();
                 pseudo.setWord(ctx.CSS_WORD().getText());
-                sel.setPseudo(pseudo);
+                sel.setPseudo(position(pseudo, ctx));
             }
             for (SelectorPart part : sel.getParts()) {
                 String selectorName = "";
@@ -509,7 +553,7 @@ public class Visitor {
         public CssProperty visitCssProperty(JinjaParser.CssPropertyContext ctx) {
             CssProperty prop = new CssProperty();
             if (ctx.CSS_WORD() != null)  prop.setWord(ctx.CSS_WORD().getText());
-            if (ctx.valueList() != null) prop.setValueList((ValueList) visitValueList(ctx.valueList()));
+            if (ctx.valueList() != null) prop.setValueList((ValueList) visit(ctx.valueList()));
             return prop;
         }
 
@@ -552,7 +596,7 @@ public class Visitor {
         @Override
         public FunctionValue visitFunctionValue(JinjaParser.FunctionValueContext ctx) {
             FunctionValue fv = new FunctionValue();
-            if (ctx.cssFunction() != null) fv.setFunction((CssFunction) visitCssFunction(ctx.cssFunction()));
+            if (ctx.cssFunction() != null) fv.setFunction((CssFunction) visit(ctx.cssFunction()));
             return fv;
         }
 
@@ -560,7 +604,7 @@ public class Visitor {
         public CssFunction visitCssFunction(JinjaParser.CssFunctionContext ctx) {
             CssFunction func = new CssFunction();
             if (ctx.CSS_WORD()  != null) func.setWord(ctx.CSS_WORD().getText());
-            if (ctx.valueList() != null) func.setValueList((ValueList) visitValueList(ctx.valueList()));
+            if (ctx.valueList() != null) func.setValueList((ValueList) visit(ctx.valueList()));
             return func;
         }
 
@@ -724,11 +768,10 @@ public class Visitor {
         // ── Helpers ───────────────────────────────────────────────────────────
 
         private void setLine(Object node, ParserRuleContext ctx) {
-            int line = ctx.getStart().getLine();
-            if (node instanceof PyProgram p)     p.setLineNumber(line);
-            else if (node instanceof IntExpr ie)    ie.setLineNumber(line);
-            else if (node instanceof FloatExpr fe)  fe.setLineNumber(line);
-            else if (node instanceof StringExpr se) se.setLineNumber(line);
+            if (node instanceof PyProgram p) {
+                p.setLineNumber(ctx.getStart().getLine());
+                p.setColumn(ctx.getStart().getCharPositionInLine());
+            }
         }
 
         private String stripQuotes(String s) {
@@ -751,8 +794,6 @@ public class Visitor {
                     if (stmt != null) program.addStatement(stmt);
                 }
             }
-            symbolTable.printTable();
-            System.out.println(symbolTable.getStatistics());
             return program;
         }
 
@@ -761,58 +802,50 @@ public class Visitor {
         @Override
         public Statement visitImportStatement(pyParser.ImportStatementContext ctx) {
             ImportStmt stmt = (ImportStmt) visit(ctx.import_stmt());
-            setLine(stmt, ctx);
             return stmt;
         }
 
         @Override
         public Statement visitAssignmentStatement(pyParser.AssignmentStatementContext ctx) {
             AssignStmt stmt = (AssignStmt) visit(ctx.assignment());
-            setLine(stmt, ctx);
-            symbolTable.addSymbol(stmt.getName(), "Assignment", "variable", ctx.getStart().getLine());
+            symbolTable.addSymbol(stmt.getName(), "Assignment", "variable", stmt.getLineNumber());
             return stmt;
         }
 
         @Override
         public Statement visitReturnStatement(pyParser.ReturnStatementContext ctx) {
             ReturnStmt stmt = (ReturnStmt) visit(ctx.return_stmt());
-            setLine(stmt, ctx);
             return stmt;
         }
 
         @Override
         public Statement visitExprStatement(pyParser.ExprStatementContext ctx) {
             ExprStmt stmt = (ExprStmt) visit(ctx.expr_stmt());
-            setLine(stmt, ctx);
             return stmt;
         }
 
         @Override
         public Statement visitRouteStatement(pyParser.RouteStatementContext ctx) {
             RouteStatement stmt = (RouteStatement) visit(ctx.route_def());
-            setLine(stmt, ctx);
             return stmt;
         }
 
         @Override
         public Statement visitFuncDefStatement(pyParser.FuncDefStatementContext ctx) {
             FuncDefStatement stmt = (FuncDefStatement) visit(ctx.func_def());
-            setLine(stmt, ctx);
-            symbolTable.addSymbol(stmt.getName(), "FuncDef", "function", ctx.getStart().getLine());
+            symbolTable.addSymbol(stmt.getName(), "FuncDef", "function", stmt.getLineNumber());
             return stmt;
         }
 
         @Override
         public Statement visitIfStatement(pyParser.IfStatementContext ctx) {
             IfStatement stmt = (IfStatement) visit(ctx.if_stmt());
-            setLine(stmt, ctx);
             return stmt;
         }
 
         @Override
         public Statement visitForStatement(pyParser.ForStatementContext ctx) {
             ForStatement stmt = (ForStatement) visit(ctx.for_stmt());
-            setLine(stmt, ctx);
             return stmt;
         }
 

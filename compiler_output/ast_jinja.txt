@@ -1,0 +1,2545 @@
+=========== JINJA/HTML AST: add_product.html ===========
+JinjaProgram (line 1, col 35)
+  htmlElements [9]:
+    HtmlText (line 1, col 35)
+      text = "\n"
+    ControlBlock (line 2, col 0)
+      jinjaStatementHeader:
+        Extends (line 2, col 3)
+          string = "'base.html'"
+    HtmlText (line 2, col 25)
+      text = " "
+    ControlBlock (line 2, col 26)
+      jinjaStatementHeader:
+        BlockStart (line 2, col 29)
+          identifier = "content"
+    HtmlText (line 2, col 45)
+      text = "\n"
+    PairedTag (line 3, col 0)
+      tagName = "div"
+      attributes [1]:
+        NormalAttribute (line 3, col 5)
+          key = "class"
+          value:
+            PlainValue (line 3, col 11)
+              text = "container form-container"
+      children [5]:
+        HtmlText (line 3, col 38)
+          text = "\n  "
+        PairedTag (line 4, col 2)
+          tagName = "h1"
+          attributes [0]
+          children [1]:
+            HtmlText (line 4, col 6)
+              text = "Add a New Product"
+        HtmlText (line 4, col 28)
+          text = "\n  "
+        PairedTag (line 5, col 2)
+          tagName = "form"
+          attributes [3]:
+            NormalAttribute (line 5, col 8)
+              key = "action"
+              value:
+                JinjaValueExpr (line 5, col 15)
+                  jinjaBlock:
+                    PrintBlock (line 5, col 15)
+                      jinjaExpression:
+                        JinjaExpression (line 5, col 15)
+                          primary:
+                            FunctionCall (line 5, col 15)
+                              identifier = "url_for"
+                              callArgs:
+                                CallMixedArgs (line 5, col 15)
+                                  posArgs [1]:
+                                    JinjaArg (line 5, col 15)
+                                      expression:
+                                        JinjaExpression (line 5, col 15)
+                                          primary:
+                                            StringLiteral (line 5, col 15)
+                                              string = "add_product"
+                                          filters [0]
+                                  kwArgs [0]
+                          filters [0]
+            NormalAttribute (line 5, col 46)
+              key = "method"
+              value:
+                PlainValue (line 5, col 53)
+                  text = "post"
+            NormalAttribute (line 5, col 60)
+              key = "class"
+              value:
+                PlainValue (line 5, col 66)
+                  text = "add-form"
+          children [11]:
+            HtmlText (line 5, col 77)
+              text = "\n    "
+            PairedTag (line 6, col 4)
+              tagName = "div"
+              attributes [1]:
+                NormalAttribute (line 6, col 9)
+                  key = "class"
+                  value:
+                    PlainValue (line 6, col 15)
+                      text = "form-group"
+              children [5]:
+                HtmlText (line 6, col 28)
+                  text = "\n      "
+                PairedTag (line 7, col 6)
+                  tagName = "label"
+                  attributes [1]:
+                    NormalAttribute (line 7, col 13)
+                      key = "for"
+                      value:
+                        PlainValue (line 7, col 17)
+                          text = "name"
+                  children [1]:
+                    HtmlText (line 7, col 24)
+                      text = "Product Name"
+                HtmlText (line 7, col 44)
+                  text = "\n      "
+                SelfClosingTag (line 8, col 6)
+                  tagName = "input"
+                  attributes [4]:
+                    NormalAttribute (line 8, col 13)
+                      key = "type"
+                      value:
+                        PlainValue (line 8, col 18)
+                          text = "text"
+                    NormalAttribute (line 8, col 25)
+                      key = "id"
+                      value:
+                        PlainValue (line 8, col 28)
+                          text = "name"
+                    NormalAttribute (line 8, col 35)
+                      key = "name"
+                      value:
+                        PlainValue (line 8, col 40)
+                          text = "name"
+                    NormalAttribute (line 8, col 47)
+                      key = "required"
+                      value = null
+                HtmlText (line 8, col 58)
+                  text = "\n    "
+            HtmlText (line 9, col 10)
+              text = "\n    "
+            PairedTag (line 10, col 4)
+              tagName = "div"
+              attributes [1]:
+                NormalAttribute (line 10, col 9)
+                  key = "class"
+                  value:
+                    PlainValue (line 10, col 15)
+                      text = "form-group"
+              children [5]:
+                HtmlText (line 10, col 28)
+                  text = "\n      "
+                PairedTag (line 11, col 6)
+                  tagName = "label"
+                  attributes [1]:
+                    NormalAttribute (line 11, col 13)
+                      key = "for"
+                      value:
+                        PlainValue (line 11, col 17)
+                          text = "price"
+                  children [1]:
+                    HtmlText (line 11, col 25)
+                      text = "Price"
+                HtmlText (line 11, col 38)
+                  text = "\n      "
+                SelfClosingTag (line 12, col 6)
+                  tagName = "input"
+                  attributes [5]:
+                    NormalAttribute (line 12, col 13)
+                      key = "type"
+                      value:
+                        PlainValue (line 12, col 18)
+                          text = "number"
+                    NormalAttribute (line 12, col 27)
+                      key = "id"
+                      value:
+                        PlainValue (line 12, col 30)
+                          text = "price"
+                    NormalAttribute (line 12, col 38)
+                      key = "name"
+                      value:
+                        PlainValue (line 12, col 43)
+                          text = "price"
+                    NormalAttribute (line 12, col 51)
+                      key = "step"
+                      value:
+                        PlainValue (line 12, col 56)
+                          text = "0.01"
+                    NormalAttribute (line 12, col 63)
+                      key = "required"
+                      value = null
+                HtmlText (line 12, col 74)
+                  text = "\n    "
+            HtmlText (line 13, col 10)
+              text = "\n    "
+            PairedTag (line 14, col 4)
+              tagName = "div"
+              attributes [1]:
+                NormalAttribute (line 14, col 9)
+                  key = "class"
+                  value:
+                    PlainValue (line 14, col 15)
+                      text = "form-group"
+              children [5]:
+                HtmlText (line 14, col 28)
+                  text = "\n      "
+                PairedTag (line 15, col 6)
+                  tagName = "label"
+                  attributes [1]:
+                    NormalAttribute (line 15, col 13)
+                      key = "for"
+                      value:
+                        PlainValue (line 15, col 17)
+                          text = "image"
+                  children [1]:
+                    HtmlText (line 15, col 25)
+                      text = "Image URL"
+                HtmlText (line 15, col 42)
+                  text = "\n      "
+                SelfClosingTag (line 16, col 6)
+                  tagName = "input"
+                  attributes [5]:
+                    NormalAttribute (line 17, col 8)
+                      key = "type"
+                      value:
+                        PlainValue (line 17, col 13)
+                          text = "url"
+                    NormalAttribute (line 18, col 8)
+                      key = "id"
+                      value:
+                        PlainValue (line 18, col 11)
+                          text = "image"
+                    NormalAttribute (line 19, col 8)
+                      key = "name"
+                      value:
+                        PlainValue (line 19, col 13)
+                          text = "image"
+                    NormalAttribute (line 20, col 8)
+                      key = "placeholder"
+                      value:
+                        PlainValue (line 20, col 20)
+                          text = "https://example.com/image.jpg"
+                    NormalAttribute (line 21, col 8)
+                      key = "required"
+                      value = null
+                HtmlText (line 22, col 8)
+                  text = "\n    "
+            HtmlText (line 23, col 10)
+              text = "\n    "
+            PairedTag (line 24, col 4)
+              tagName = "div"
+              attributes [1]:
+                NormalAttribute (line 24, col 9)
+                  key = "class"
+                  value:
+                    PlainValue (line 24, col 15)
+                      text = "form-group"
+              children [5]:
+                HtmlText (line 24, col 28)
+                  text = "\n      "
+                PairedTag (line 25, col 6)
+                  tagName = "label"
+                  attributes [1]:
+                    NormalAttribute (line 25, col 13)
+                      key = "for"
+                      value:
+                        PlainValue (line 25, col 17)
+                          text = "details"
+                  children [1]:
+                    HtmlText (line 25, col 27)
+                      text = "Details"
+                HtmlText (line 25, col 42)
+                  text = "\n      "
+                PairedTag (line 26, col 6)
+                  tagName = "textarea"
+                  attributes [4]:
+                    NormalAttribute (line 26, col 16)
+                      key = "id"
+                      value:
+                        PlainValue (line 26, col 19)
+                          text = "details"
+                    NormalAttribute (line 26, col 29)
+                      key = "name"
+                      value:
+                        PlainValue (line 26, col 34)
+                          text = "details"
+                    NormalAttribute (line 26, col 44)
+                      key = "rows"
+                      value:
+                        PlainValue (line 26, col 49)
+                          text = "4"
+                    NormalAttribute (line 26, col 53)
+                      key = "required"
+                      value = null
+                  children [0]
+                HtmlText (line 26, col 73)
+                  text = "\n    "
+            HtmlText (line 27, col 10)
+              text = "\n    "
+            PairedTag (line 28, col 4)
+              tagName = "button"
+              attributes [2]:
+                NormalAttribute (line 28, col 12)
+                  key = "type"
+                  value:
+                    PlainValue (line 28, col 17)
+                      text = "submit"
+                NormalAttribute (line 28, col 26)
+                  key = "class"
+                  value:
+                    PlainValue (line 28, col 32)
+                      text = "btn"
+              children [1]:
+                HtmlText (line 28, col 38)
+                  text = "Add Product"
+            HtmlText (line 28, col 58)
+              text = "\n  "
+        HtmlText (line 29, col 9)
+          text = "\n"
+    HtmlText (line 30, col 6)
+      text = "\n"
+    ControlBlock (line 31, col 0)
+      jinjaStatementHeader:
+        BlockEnd (line 31, col 3)
+    HtmlText (line 31, col 14)
+      text = "\n"
+
+=========== JINJA/HTML AST: test.html ===========
+JinjaProgram (line 1, col 15)
+  htmlElements [3]:
+    HtmlText (line 1, col 15)
+      text = "\n"
+    PairedTag (line 2, col 0)
+      tagName = "html"
+      attributes [0]
+      children [5]:
+        HtmlText (line 2, col 6)
+          text = "\n"
+        PairedTag (line 3, col 0)
+          tagName = "head"
+          attributes [0]
+          children [3]:
+            HtmlText (line 3, col 6)
+              text = "\n    "
+            PairedTag (line 4, col 4)
+              tagName = "title"
+              attributes [0]
+              children [1]:
+                HtmlText (line 4, col 11)
+                  text = "Test"
+            HtmlText (line 4, col 23)
+              text = "\n"
+        HtmlText (line 5, col 7)
+          text = "\n"
+        PairedTag (line 6, col 0)
+          tagName = "body"
+          attributes [0]
+          children [3]:
+            HtmlText (line 6, col 6)
+              text = "\n        "
+            PairedTag (line 7, col 8)
+              tagName = "h1"
+              attributes [0]
+              children [1]:
+                HtmlText (line 7, col 12)
+                  text = "Hello"
+            HtmlText (line 7, col 22)
+              text = "\n"
+        HtmlText (line 8, col 7)
+          text = "\n"
+    HtmlText (line 9, col 7)
+      text = "\n"
+
+=========== JINJA/HTML AST: index.html ===========
+JinjaProgram (line 1, col 29)
+  htmlElements [9]:
+    HtmlText (line 1, col 29)
+      text = "\n"
+    ControlBlock (line 2, col 0)
+      jinjaStatementHeader:
+        Extends (line 2, col 3)
+          string = "'base.html'"
+    HtmlText (line 2, col 25)
+      text = " "
+    ControlBlock (line 2, col 26)
+      jinjaStatementHeader:
+        BlockStart (line 2, col 29)
+          identifier = "content"
+    HtmlText (line 2, col 45)
+      text = "\n"
+    PairedTag (line 3, col 0)
+      tagName = "div"
+      attributes [1]:
+        NormalAttribute (line 3, col 5)
+          key = "class"
+          value:
+            PlainValue (line 3, col 11)
+              text = "container"
+      children [5]:
+        HtmlText (line 3, col 23)
+          text = "\n  "
+        PairedTag (line 4, col 2)
+          tagName = "h1"
+          attributes [0]
+          children [1]:
+            HtmlText (line 4, col 6)
+              text = "Our Products"
+        HtmlText (line 4, col 23)
+          text = "\n  "
+        PairedTag (line 5, col 2)
+          tagName = "div"
+          attributes [1]:
+            NormalAttribute (line 5, col 7)
+              key = "class"
+              value:
+                PlainValue (line 5, col 13)
+                  text = "product-grid"
+          children [7]:
+            HtmlText (line 5, col 28)
+              text = "\n    "
+            ControlBlock (line 6, col 4)
+              jinjaStatementHeader:
+                For (line 6, col 7)
+                  identifier = "product"
+                  expression:
+                    JinjaExpression (line 6, col 22)
+                      primary:
+                        AccessExpr (line 6, col 22)
+                          chain:
+                            JinjaIdentifierChain (line 6, col 22)
+                              identifier = "products"
+                              accesses [0]
+                      filters [0]
+            HtmlText (line 6, col 33)
+              text = "\n    "
+            PairedTag (line 7, col 4)
+              tagName = "div"
+              attributes [1]:
+                NormalAttribute (line 7, col 9)
+                  key = "class"
+                  value:
+                    PlainValue (line 7, col 15)
+                      text = "product-card"
+              children [5]:
+                HtmlText (line 7, col 30)
+                  text = "\n      "
+                SelfClosingTag (line 8, col 6)
+                  tagName = "img"
+                  attributes [2]:
+                    NormalAttribute (line 8, col 11)
+                      key = "src"
+                      value:
+                        JinjaValueExpr (line 8, col 15)
+                          jinjaBlock:
+                            PrintBlock (line 8, col 15)
+                              jinjaExpression:
+                                JinjaExpression (line 8, col 15)
+                                  primary:
+                                    AccessExpr (line 8, col 15)
+                                      chain:
+                                        JinjaIdentifierChain (line 8, col 15)
+                                          identifier = "product"
+                                          accesses [1]:
+                                            DotAccess (line 8, col 15)
+                                              identifier = "image"
+                                  filters [0]
+                    NormalAttribute (line 8, col 37)
+                      key = "alt"
+                      value:
+                        JinjaValueExpr (line 8, col 41)
+                          jinjaBlock:
+                            PrintBlock (line 8, col 41)
+                              jinjaExpression:
+                                JinjaExpression (line 8, col 41)
+                                  primary:
+                                    AccessExpr (line 8, col 41)
+                                      chain:
+                                        JinjaIdentifierChain (line 8, col 41)
+                                          identifier = "product"
+                                          accesses [1]:
+                                            DotAccess (line 8, col 41)
+                                              identifier = "name"
+                                  filters [0]
+                HtmlText (line 8, col 64)
+                  text = "\n      "
+                PairedTag (line 9, col 6)
+                  tagName = "div"
+                  attributes [1]:
+                    NormalAttribute (line 9, col 11)
+                      key = "class"
+                      value:
+                        PlainValue (line 9, col 17)
+                          text = "card-content"
+                  children [7]:
+                    HtmlText (line 9, col 32)
+                      text = "\n        "
+                    PairedTag (line 10, col 8)
+                      tagName = "h2"
+                      attributes [0]
+                      children [1]:
+                        PrintBlock (line 10, col 12)
+                          jinjaExpression:
+                            JinjaExpression (line 10, col 15)
+                              primary:
+                                AccessExpr (line 10, col 15)
+                                  chain:
+                                    JinjaIdentifierChain (line 10, col 15)
+                                      identifier = "product"
+                                      accesses [1]:
+                                        DotAccess (line 10, col 15)
+                                          identifier = "name"
+                              filters [0]
+                    HtmlText (line 10, col 35)
+                      text = "\n        "
+                    PairedTag (line 11, col 8)
+                      tagName = "p"
+                      attributes [1]:
+                        NormalAttribute (line 11, col 11)
+                          key = "class"
+                          value:
+                            PlainValue (line 11, col 17)
+                              text = "price"
+                      children [2]:
+                        HtmlText (line 11, col 25)
+                          text = "$"
+                        PrintBlock (line 11, col 26)
+                          jinjaExpression:
+                            JinjaExpression (line 11, col 29)
+                              primary:
+                                StringLiteral (line 11, col 29)
+                                  string = "\"%.2f\""
+                              filters [1]:
+                                JinjaFilter (line 11, col 36)
+                                  name = "format"
+                                  args:
+                                    CallMixedArgs (line 11, col 43)
+                                      posArgs [1]:
+                                        JinjaArg (line 11, col 43)
+                                          expression:
+                                            JinjaExpression (line 11, col 43)
+                                              primary:
+                                                AccessExpr (line 11, col 43)
+                                                  chain:
+                                                    JinjaIdentifierChain (line 11, col 43)
+                                                      identifier = "product"
+                                                      accesses [1]:
+                                                        DotAccess (line 11, col 43)
+                                                          identifier = "price"
+                                              filters [0]
+                                      kwArgs [0]
+                    HtmlText (line 11, col 64)
+                      text = "\n        "
+                    PairedTag (line 12, col 8)
+                      tagName = "a"
+                      attributes [2]:
+                        NormalAttribute (line 13, col 10)
+                          key = "href"
+                          value:
+                            JinjaValueExpr (line 13, col 15)
+                              jinjaBlock:
+                                PrintBlock (line 13, col 15)
+                                  jinjaExpression:
+                                    JinjaExpression (line 13, col 15)
+                                      primary:
+                                        FunctionCall (line 13, col 15)
+                                          identifier = "url_for"
+                                          callArgs:
+                                            CallMixedArgs (line 13, col 15)
+                                              posArgs [1]:
+                                                JinjaArg (line 13, col 15)
+                                                  expression:
+                                                    JinjaExpression (line 13, col 15)
+                                                      primary:
+                                                        StringLiteral (line 13, col 15)
+                                                          string = "product_detail"
+                                                      filters [0]
+                                              kwArgs [1]:
+                                                JinjaKwArg (line 13, col 15)
+                                                  identifier = "product_id"
+                                                  expression:
+                                                    JinjaExpression (line 13, col 15)
+                                                      primary:
+                                                        AccessExpr (line 13, col 15)
+                                                          chain:
+                                                            JinjaIdentifierChain (line 13, col 15)
+                                                              identifier = "product"
+                                                              accesses [1]:
+                                                                DotAccess (line 13, col 15)
+                                                                  identifier = "id"
+                                                      filters [0]
+                                      filters [0]
+                        NormalAttribute (line 14, col 10)
+                          key = "class"
+                          value:
+                            PlainValue (line 14, col 16)
+                              text = "btn"
+                      children [1]:
+                        HtmlText (line 15, col 11)
+                          text = "View Details"
+                    HtmlText (line 16, col 9)
+                      text = "\n      "
+                HtmlText (line 17, col 12)
+                  text = "\n    "
+            HtmlText (line 18, col 10)
+              text = "\n    "
+            ControlBlock (line 19, col 4)
+              jinjaStatementHeader:
+                EndFor (line 19, col 7)
+            HtmlText (line 19, col 16)
+              text = "\n  "
+        HtmlText (line 20, col 8)
+          text = "\n"
+    HtmlText (line 21, col 6)
+      text = "\n"
+    ControlBlock (line 22, col 0)
+      jinjaStatementHeader:
+        BlockEnd (line 22, col 3)
+    HtmlText (line 22, col 14)
+      text = "\n"
+
+=========== JINJA/HTML AST: product_detail.html ===========
+JinjaProgram (line 1, col 38)
+  htmlElements [9]:
+    HtmlText (line 1, col 38)
+      text = "\n"
+    ControlBlock (line 2, col 0)
+      jinjaStatementHeader:
+        Extends (line 2, col 3)
+          string = "'base.html'"
+    HtmlText (line 2, col 25)
+      text = "\n"
+    ControlBlock (line 3, col 0)
+      jinjaStatementHeader:
+        BlockStart (line 3, col 3)
+          identifier = "content"
+    HtmlText (line 3, col 19)
+      text = "\n"
+    PairedTag (line 4, col 0)
+      tagName = "div"
+      attributes [1]:
+        NormalAttribute (line 4, col 5)
+          key = "class"
+          value:
+            PlainValue (line 4, col 11)
+              text = "container detail-page"
+      children [5]:
+        HtmlText (line 4, col 35)
+          text = "\n    "
+        PairedTag (line 5, col 4)
+          tagName = "a"
+          attributes [2]:
+            NormalAttribute (line 5, col 7)
+              key = "href"
+              value:
+                JinjaValueExpr (line 5, col 12)
+                  jinjaBlock:
+                    PrintBlock (line 5, col 12)
+                      jinjaExpression:
+                        JinjaExpression (line 5, col 12)
+                          primary:
+                            FunctionCall (line 5, col 12)
+                              identifier = "url_for"
+                              callArgs:
+                                CallMixedArgs (line 5, col 12)
+                                  posArgs [1]:
+                                    JinjaArg (line 5, col 12)
+                                      expression:
+                                        JinjaExpression (line 5, col 12)
+                                          primary:
+                                            StringLiteral (line 5, col 12)
+                                              string = "index"
+                                          filters [0]
+                                  kwArgs [0]
+                          filters [0]
+            NormalAttribute (line 5, col 37)
+              key = "class"
+              value:
+                PlainValue (line 5, col 43)
+                  text = "back-link"
+          children [1]:
+            HtmlText (line 5, col 55)
+              text = "&larr; Back to Products"
+        HtmlText (line 5, col 82)
+          text = "\n    "
+        PairedTag (line 6, col 4)
+          tagName = "div"
+          attributes [1]:
+            NormalAttribute (line 6, col 9)
+              key = "class"
+              value:
+                PlainValue (line 6, col 15)
+                  text = "product-detail-card"
+          children [5]:
+            HtmlText (line 6, col 37)
+              text = "\n        "
+            SelfClosingTag (line 7, col 8)
+              tagName = "img"
+              attributes [2]:
+                NormalAttribute (line 7, col 13)
+                  key = "src"
+                  value:
+                    JinjaValueExpr (line 7, col 17)
+                      jinjaBlock:
+                        PrintBlock (line 7, col 17)
+                          jinjaExpression:
+                            JinjaExpression (line 7, col 17)
+                              primary:
+                                AccessExpr (line 7, col 17)
+                                  chain:
+                                    JinjaIdentifierChain (line 7, col 17)
+                                      identifier = "product"
+                                      accesses [1]:
+                                        DotAccess (line 7, col 17)
+                                          identifier = "image"
+                              filters [0]
+                NormalAttribute (line 7, col 39)
+                  key = "alt"
+                  value:
+                    JinjaValueExpr (line 7, col 43)
+                      jinjaBlock:
+                        PrintBlock (line 7, col 43)
+                          jinjaExpression:
+                            JinjaExpression (line 7, col 43)
+                              primary:
+                                AccessExpr (line 7, col 43)
+                                  chain:
+                                    JinjaIdentifierChain (line 7, col 43)
+                                      identifier = "product"
+                                      accesses [1]:
+                                        DotAccess (line 7, col 43)
+                                          identifier = "name"
+                              filters [0]
+            HtmlText (line 7, col 66)
+              text = "\n        "
+            PairedTag (line 8, col 8)
+              tagName = "div"
+              attributes [1]:
+                NormalAttribute (line 8, col 13)
+                  key = "class"
+                  value:
+                    PlainValue (line 8, col 19)
+                      text = "detail-info"
+              children [12]:
+                HtmlText (line 8, col 33)
+                  text = "\n            "
+                PairedTag (line 9, col 12)
+                  tagName = "h1"
+                  attributes [0]
+                  children [1]:
+                    PrintBlock (line 9, col 16)
+                      jinjaExpression:
+                        JinjaExpression (line 9, col 19)
+                          primary:
+                            AccessExpr (line 9, col 19)
+                              chain:
+                                JinjaIdentifierChain (line 9, col 19)
+                                  identifier = "product"
+                                  accesses [1]:
+                                    DotAccess (line 9, col 19)
+                                      identifier = "name"
+                          filters [0]
+                HtmlText (line 9, col 39)
+                  text = "\n            "
+                PairedTag (line 10, col 12)
+                  tagName = "p"
+                  attributes [1]:
+                    NormalAttribute (line 10, col 15)
+                      key = "class"
+                      value:
+                        PlainValue (line 10, col 21)
+                          text = "price"
+                  children [2]:
+                    HtmlText (line 10, col 29)
+                      text = "$"
+                    PrintBlock (line 10, col 30)
+                      jinjaExpression:
+                        JinjaExpression (line 10, col 33)
+                          primary:
+                            StringLiteral (line 10, col 33)
+                              string = "\"%.2f\""
+                          filters [1]:
+                            JinjaFilter (line 10, col 40)
+                              name = "format"
+                              args:
+                                CallMixedArgs (line 10, col 47)
+                                  posArgs [1]:
+                                    JinjaArg (line 10, col 47)
+                                      expression:
+                                        JinjaExpression (line 10, col 47)
+                                          primary:
+                                            AccessExpr (line 10, col 47)
+                                              chain:
+                                                JinjaIdentifierChain (line 10, col 47)
+                                                  identifier = "product"
+                                                  accesses [1]:
+                                                    DotAccess (line 10, col 47)
+                                                      identifier = "price"
+                                          filters [0]
+                                  kwArgs [0]
+                HtmlText (line 10, col 68)
+                  text = "\n            "
+                PairedTag (line 11, col 12)
+                  tagName = "p"
+                  attributes [1]:
+                    NormalAttribute (line 11, col 15)
+                      key = "class"
+                      value:
+                        PlainValue (line 11, col 21)
+                          text = "details"
+                  children [1]:
+                    PrintBlock (line 11, col 31)
+                      jinjaExpression:
+                        JinjaExpression (line 11, col 34)
+                          primary:
+                            AccessExpr (line 11, col 34)
+                              chain:
+                                JinjaIdentifierChain (line 11, col 34)
+                                  identifier = "product"
+                                  accesses [1]:
+                                    DotAccess (line 11, col 34)
+                                      identifier = "details"
+                          filters [0]
+                HtmlText (line 11, col 56)
+                  text = "\n            "
+                PairedTag (line 12, col 12)
+                  tagName = "p"
+                  attributes [0]
+                  children [3]:
+                    HtmlText (line 12, col 15)
+                      text = "Price: "
+                    PrintBlock (line 12, col 22)
+                      jinjaExpression:
+                        JinjaExpression (line 12, col 25)
+                          primary:
+                            AccessExpr (line 12, col 25)
+                              chain:
+                                JinjaIdentifierChain (line 12, col 25)
+                                  identifier = "product"
+                                  accesses [1]:
+                                    DotAccess (line 12, col 25)
+                                      identifier = "price"
+                          filters [0]
+                    HtmlText (line 12, col 41)
+                      text = " USD"
+                HtmlText (line 12, col 49)
+                  text = "\n            "
+                HtmlText (line 13, col 32)
+                  text = "\n            "
+                PairedTag (line 14, col 12)
+                  tagName = "form"
+                  attributes [3]:
+                    NormalAttribute (line 14, col 18)
+                      key = "action"
+                      value:
+                        JinjaValueExpr (line 14, col 25)
+                          jinjaBlock:
+                            PrintBlock (line 14, col 25)
+                              jinjaExpression:
+                                JinjaExpression (line 14, col 25)
+                                  primary:
+                                    FunctionCall (line 14, col 25)
+                                      identifier = "url_for"
+                                      callArgs:
+                                        CallMixedArgs (line 14, col 25)
+                                          posArgs [1]:
+                                            JinjaArg (line 14, col 25)
+                                              expression:
+                                                JinjaExpression (line 14, col 25)
+                                                  primary:
+                                                    StringLiteral (line 14, col 25)
+                                                      string = "delete_product"
+                                                  filters [0]
+                                          kwArgs [1]:
+                                            JinjaKwArg (line 14, col 25)
+                                              identifier = "product_id"
+                                              expression:
+                                                JinjaExpression (line 14, col 25)
+                                                  primary:
+                                                    AccessExpr (line 14, col 25)
+                                                      chain:
+                                                        JinjaIdentifierChain (line 14, col 25)
+                                                          identifier = "product"
+                                                          accesses [1]:
+                                                            DotAccess (line 14, col 25)
+                                                              identifier = "id"
+                                                  filters [0]
+                                  filters [0]
+                    NormalAttribute (line 14, col 82)
+                      key = "method"
+                      value:
+                        PlainValue (line 14, col 89)
+                          text = "post"
+                    NormalAttribute (line 14, col 96)
+                      key = "style"
+                      value:
+                        PlainValue (line 14, col 102)
+                          text = "margin-top: 30px;"
+                  children [3]:
+                    HtmlText (line 14, col 122)
+                      text = "\n                "
+                    PairedTag (line 15, col 16)
+                      tagName = "button"
+                      attributes [3]:
+                        NormalAttribute (line 16, col 24)
+                          key = "type"
+                          value:
+                            PlainValue (line 16, col 29)
+                              text = "submit"
+                        NormalAttribute (line 17, col 24)
+                          key = "class"
+                          value:
+                            PlainValue (line 17, col 30)
+                              text = "btn btn-danger"
+                        NormalAttribute (line 18, col 24)
+                          key = "onclick"
+                          value:
+                            PlainValue (line 18, col 32)
+                              text = "return confirm('Are you sure you want to delete this product? This action cannot be undone.')"
+                      children [1]:
+                        HtmlText (line 19, col 17)
+                          text = "\n                    Delete Product\n                "
+                    HtmlText (line 21, col 25)
+                      text = "\n            "
+                HtmlText (line 22, col 19)
+                  text = "\n        "
+            HtmlText (line 23, col 14)
+              text = "\n    "
+        HtmlText (line 24, col 10)
+          text = "\n"
+    HtmlText (line 25, col 6)
+      text = "\n"
+    ControlBlock (line 26, col 0)
+      jinjaStatementHeader:
+        BlockEnd (line 26, col 3)
+    HtmlText (line 26, col 14)
+      text = "\n"
+
+=========== JINJA/HTML AST: base.html ===========
+JinjaProgram (line 1, col 28)
+  htmlElements [4]:
+    HtmlText (line 1, col 28)
+      text = "\n"
+    HtmlText (line 2, col 15)
+      text = "\n"
+    PairedTag (line 3, col 0)
+      tagName = "html"
+      attributes [1]:
+        NormalAttribute (line 3, col 6)
+          key = "lang"
+          value:
+            PlainValue (line 3, col 11)
+              text = "en"
+      children [5]:
+        HtmlText (line 3, col 16)
+          text = "\n"
+        PairedTag (line 4, col 0)
+          tagName = "head"
+          attributes [0]
+          children [17]:
+            HtmlText (line 4, col 6)
+              text = "\n    "
+            SelfClosingTag (line 5, col 4)
+              tagName = "meta"
+              attributes [1]:
+                NormalAttribute (line 5, col 10)
+                  key = "charset"
+                  value:
+                    PlainValue (line 5, col 18)
+                      text = "UTF-8"
+            HtmlText (line 5, col 28)
+              text = "\n    "
+            SelfClosingTag (line 6, col 4)
+              tagName = "meta"
+              attributes [2]:
+                NormalAttribute (line 6, col 10)
+                  key = "name"
+                  value:
+                    PlainValue (line 6, col 15)
+                      text = "viewport"
+                NormalAttribute (line 6, col 26)
+                  key = "content"
+                  value:
+                    PlainValue (line 6, col 34)
+                      text = "width=device-width, initial-scale=1.0"
+            HtmlText (line 6, col 76)
+              text = "\n    "
+            PairedTag (line 7, col 4)
+              tagName = "title"
+              attributes [0]
+              children [1]:
+                HtmlText (line 7, col 11)
+                  text = "Flask Product Site"
+            HtmlText (line 7, col 37)
+              text = "\n    "
+            HtmlText (line 8, col 41)
+              text = "\n    "
+            SelfClosingTag (line 9, col 4)
+              tagName = "link"
+              attributes [2]:
+                NormalAttribute (line 9, col 10)
+                  key = "rel"
+                  value:
+                    PlainValue (line 9, col 14)
+                      text = "preconnect"
+                NormalAttribute (line 9, col 27)
+                  key = "href"
+                  value:
+                    PlainValue (line 9, col 32)
+                      text = "https://fonts.googleapis.com"
+            HtmlText (line 9, col 65)
+              text = "\n    "
+            SelfClosingTag (line 10, col 4)
+              tagName = "link"
+              attributes [3]:
+                NormalAttribute (line 10, col 10)
+                  key = "rel"
+                  value:
+                    PlainValue (line 10, col 14)
+                      text = "preconnect"
+                NormalAttribute (line 10, col 27)
+                  key = "href"
+                  value:
+                    PlainValue (line 10, col 32)
+                      text = "https://fonts.gstatic.com"
+                NormalAttribute (line 10, col 60)
+                  key = "crossorigin"
+                  value = null
+            HtmlText (line 10, col 74)
+              text = "\n    "
+            SelfClosingTag (line 11, col 4)
+              tagName = "link"
+              attributes [2]:
+                NormalAttribute (line 12, col 12)
+                  key = "href"
+                  value:
+                    PlainValue (line 12, col 17)
+                      text = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+                NormalAttribute (line 13, col 12)
+                  key = "rel"
+                  value:
+                    PlainValue (line 13, col 16)
+                      text = "stylesheet"
+            HtmlText (line 14, col 6)
+              text = "\n    "
+            HtmlText (line 15, col 30)
+              text = "\n\n    "
+            StyleTag (line 17, col 4)
+              tagName = "<style>"
+              cssRules [32]:
+                CssRule (line 19, col 8)
+                  selectorList:
+                    CssSelectorList (line 19, col 8)
+                      selectors [1]:
+                        CssSelector (line 19, col 8)
+                          parts [1]:
+                            TagPart (line 19, col 8)
+                              word = "body"
+                          pseudo = null
+                  properties [5]:
+                    CssProperty (line 20, col 10)
+                      word = "font-family"
+                      valueList:
+                        ValueList (line 20, col 23)
+                          values [2]:
+                            StringValue (line 20, col 23)
+                              string = "\"Poppins\""
+                            WordValue (line 20, col 34)
+                              word = "sans-serif"
+                    CssProperty (line 21, col 10)
+                      word = "margin"
+                      valueList:
+                        ValueList (line 21, col 18)
+                          values [1]:
+                            NumberValue (line 21, col 18)
+                              number = "0"
+                    CssProperty (line 22, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 22, col 28)
+                          values [1]:
+                            ColorValue (line 22, col 28)
+                              color = "#f4f7f6"
+                    CssProperty (line 23, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 23, col 17)
+                          values [1]:
+                            ColorValue (line 23, col 17)
+                              color = "#333"
+                    CssProperty (line 24, col 10)
+                      word = "line-height"
+                      valueList:
+                        ValueList (line 24, col 23)
+                          values [1]:
+                            NumberValue (line 24, col 23)
+                              number = "1.6"
+                CssRule (line 27, col 8)
+                  selectorList:
+                    CssSelectorList (line 27, col 8)
+                      selectors [1]:
+                        CssSelector (line 27, col 8)
+                          parts [1]:
+                            ClassPart (line 27, col 8)
+                              word = "container"
+                          pseudo = null
+                  properties [3]:
+                    CssProperty (line 28, col 10)
+                      word = "max-width"
+                      valueList:
+                        ValueList (line 28, col 21)
+                          values [1]:
+                            NumberValue (line 28, col 21)
+                              number = "1200px"
+                    CssProperty (line 29, col 10)
+                      word = "margin"
+                      valueList:
+                        ValueList (line 29, col 18)
+                          values [2]:
+                            NumberValue (line 29, col 18)
+                              number = "0"
+                            WordValue (line 29, col 20)
+                              word = "auto"
+                    CssProperty (line 30, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 30, col 19)
+                          values [1]:
+                            NumberValue (line 30, col 19)
+                              number = "20px"
+                CssRule (line 34, col 8)
+                  selectorList:
+                    CssSelectorList (line 34, col 8)
+                      selectors [1]:
+                        CssSelector (line 34, col 8)
+                          parts [1]:
+                            TagPart (line 34, col 8)
+                              word = "header"
+                          pseudo = null
+                  properties [6]:
+                    CssProperty (line 35, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 35, col 28)
+                          values [1]:
+                            ColorValue (line 35, col 28)
+                              color = "#ffffff"
+                    CssProperty (line 36, col 10)
+                      word = "box-shadow"
+                      valueList:
+                        ValueList (line 36, col 22)
+                          values [4]:
+                            NumberValue (line 36, col 22)
+                              number = "0"
+                            NumberValue (line 36, col 24)
+                              number = "2px"
+                            NumberValue (line 36, col 28)
+                              number = "4px"
+                            FunctionValue (line 36, col 32)
+                              function:
+                                CssFunction (line 36, col 32)
+                                  word = "rgba"
+                                  valueList:
+                                    ValueList (line 36, col 37)
+                                      values [4]:
+                                        NumberValue (line 36, col 37)
+                                          number = "0"
+                                        NumberValue (line 36, col 40)
+                                          number = "0"
+                                        NumberValue (line 36, col 43)
+                                          number = "0"
+                                        NumberValue (line 36, col 46)
+                                          number = "0.1"
+                    CssProperty (line 37, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 37, col 19)
+                          values [2]:
+                            NumberValue (line 37, col 19)
+                              number = "1rem"
+                            NumberValue (line 37, col 24)
+                              number = "0"
+                    CssProperty (line 38, col 10)
+                      word = "position"
+                      valueList:
+                        ValueList (line 38, col 20)
+                          values [1]:
+                            WordValue (line 38, col 20)
+                              word = "sticky"
+                    CssProperty (line 39, col 10)
+                      word = "top"
+                      valueList:
+                        ValueList (line 39, col 15)
+                          values [1]:
+                            NumberValue (line 39, col 15)
+                              number = "0"
+                    CssProperty (line 40, col 10)
+                      word = "z-index"
+                      valueList:
+                        ValueList (line 40, col 19)
+                          values [1]:
+                            NumberValue (line 40, col 19)
+                              number = "1000"
+                CssRule (line 43, col 8)
+                  selectorList:
+                    CssSelectorList (line 43, col 8)
+                      selectors [1]:
+                        CssSelector (line 43, col 8)
+                          parts [1]:
+                            TagPart (line 43, col 8)
+                              word = "nav"
+                          pseudo = null
+                  properties [6]:
+                    CssProperty (line 44, col 10)
+                      word = "display"
+                      valueList:
+                        ValueList (line 44, col 19)
+                          values [1]:
+                            WordValue (line 44, col 19)
+                              word = "flex"
+                    CssProperty (line 45, col 10)
+                      word = "justify-content"
+                      valueList:
+                        ValueList (line 45, col 27)
+                          values [1]:
+                            WordValue (line 45, col 27)
+                              word = "space-between"
+                    CssProperty (line 46, col 10)
+                      word = "align-items"
+                      valueList:
+                        ValueList (line 46, col 23)
+                          values [1]:
+                            WordValue (line 46, col 23)
+                              word = "center"
+                    CssProperty (line 47, col 10)
+                      word = "max-width"
+                      valueList:
+                        ValueList (line 47, col 21)
+                          values [1]:
+                            NumberValue (line 47, col 21)
+                              number = "1200px"
+                    CssProperty (line 48, col 10)
+                      word = "margin"
+                      valueList:
+                        ValueList (line 48, col 18)
+                          values [2]:
+                            NumberValue (line 48, col 18)
+                              number = "0"
+                            WordValue (line 48, col 20)
+                              word = "auto"
+                    CssProperty (line 49, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 49, col 19)
+                          values [2]:
+                            NumberValue (line 49, col 19)
+                              number = "0"
+                            NumberValue (line 49, col 21)
+                              number = "20px"
+                CssRule (line 52, col 8)
+                  selectorList:
+                    CssSelectorList (line 52, col 8)
+                      selectors [1]:
+                        CssSelector (line 52, col 8)
+                          parts [1]:
+                            ClassPart (line 52, col 8)
+                              word = "logo"
+                          pseudo = null
+                  properties [4]:
+                    CssProperty (line 53, col 10)
+                      word = "font-size"
+                      valueList:
+                        ValueList (line 53, col 21)
+                          values [1]:
+                            NumberValue (line 53, col 21)
+                              number = "1.5rem"
+                    CssProperty (line 54, col 10)
+                      word = "font-weight"
+                      valueList:
+                        ValueList (line 54, col 23)
+                          values [1]:
+                            NumberValue (line 54, col 23)
+                              number = "700"
+                    CssProperty (line 55, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 55, col 17)
+                          values [1]:
+                            ColorValue (line 55, col 17)
+                              color = "#2c3e50"
+                    CssProperty (line 56, col 10)
+                      word = "text-decoration"
+                      valueList:
+                        ValueList (line 56, col 27)
+                          values [1]:
+                            WordValue (line 56, col 27)
+                              word = "none"
+                CssRule (line 59, col 8)
+                  selectorList:
+                    CssSelectorList (line 59, col 8)
+                      selectors [1]:
+                        CssSelector (line 59, col 8)
+                          parts [2]:
+                            ClassPart (line 59, col 8)
+                              word = "nav-links"
+                            TagPart (line 59, col 19)
+                              word = "a"
+                          pseudo = null
+                  properties [5]:
+                    CssProperty (line 60, col 10)
+                      word = "margin-left"
+                      valueList:
+                        ValueList (line 60, col 23)
+                          values [1]:
+                            NumberValue (line 60, col 23)
+                              number = "20px"
+                    CssProperty (line 61, col 10)
+                      word = "text-decoration"
+                      valueList:
+                        ValueList (line 61, col 27)
+                          values [1]:
+                            WordValue (line 61, col 27)
+                              word = "none"
+                    CssProperty (line 62, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 62, col 17)
+                          values [1]:
+                            ColorValue (line 62, col 17)
+                              color = "#34495e"
+                    CssProperty (line 63, col 10)
+                      word = "font-weight"
+                      valueList:
+                        ValueList (line 63, col 23)
+                          values [1]:
+                            NumberValue (line 63, col 23)
+                              number = "600"
+                    CssProperty (line 64, col 10)
+                      word = "transition"
+                      valueList:
+                        ValueList (line 64, col 22)
+                          values [3]:
+                            WordValue (line 64, col 22)
+                              word = "color"
+                            NumberValue (line 64, col 28)
+                              number = "0.3s"
+                            WordValue (line 64, col 33)
+                              word = "ease"
+                CssRule (line 67, col 8)
+                  selectorList:
+                    CssSelectorList (line 67, col 8)
+                      selectors [1]:
+                        CssSelector (line 67, col 8)
+                          parts [2]:
+                            ClassPart (line 67, col 8)
+                              word = "nav-links"
+                            TagPart (line 67, col 19)
+                              word = "a"
+                          pseudo:
+                            CssPseudo (line 67, col 8)
+                              word = "hover"
+                  properties [1]:
+                    CssProperty (line 68, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 68, col 17)
+                          values [1]:
+                            ColorValue (line 68, col 17)
+                              color = "#3498db"
+                CssRule (line 72, col 8)
+                  selectorList:
+                    CssSelectorList (line 72, col 8)
+                      selectors [1]:
+                        CssSelector (line 72, col 8)
+                          parts [1]:
+                            ClassPart (line 72, col 8)
+                              word = "product-grid"
+                          pseudo = null
+                  properties [4]:
+                    CssProperty (line 73, col 10)
+                      word = "display"
+                      valueList:
+                        ValueList (line 73, col 19)
+                          values [1]:
+                            WordValue (line 73, col 19)
+                              word = "grid"
+                    CssProperty (line 74, col 10)
+                      word = "grid-template-columns"
+                      valueList:
+                        ValueList (line 74, col 33)
+                          values [1]:
+                            FunctionValue (line 74, col 33)
+                              function:
+                                CssFunction (line 74, col 33)
+                                  word = "repeat"
+                                  valueList:
+                                    ValueList (line 74, col 40)
+                                      values [2]:
+                                        WordValue (line 74, col 40)
+                                          word = "auto-fill"
+                                        FunctionValue (line 74, col 51)
+                                          function:
+                                            CssFunction (line 74, col 51)
+                                              word = "minmax"
+                                              valueList:
+                                                ValueList (line 74, col 58)
+                                                  values [2]:
+                                                    NumberValue (line 74, col 58)
+                                                      number = "280px"
+                                                    NumberValue (line 74, col 65)
+                                                      number = "1fr"
+                    CssProperty (line 75, col 10)
+                      word = "gap"
+                      valueList:
+                        ValueList (line 75, col 15)
+                          values [1]:
+                            NumberValue (line 75, col 15)
+                              number = "25px"
+                    CssProperty (line 76, col 10)
+                      word = "margin-top"
+                      valueList:
+                        ValueList (line 76, col 22)
+                          values [1]:
+                            NumberValue (line 76, col 22)
+                              number = "30px"
+                CssRule (line 79, col 8)
+                  selectorList:
+                    CssSelectorList (line 79, col 8)
+                      selectors [1]:
+                        CssSelector (line 79, col 8)
+                          parts [1]:
+                            ClassPart (line 79, col 8)
+                              word = "product-card"
+                          pseudo = null
+                  properties [5]:
+                    CssProperty (line 80, col 10)
+                      word = "background"
+                      valueList:
+                        ValueList (line 80, col 22)
+                          values [1]:
+                            ColorValue (line 80, col 22)
+                              color = "#fff"
+                    CssProperty (line 81, col 10)
+                      word = "border-radius"
+                      valueList:
+                        ValueList (line 81, col 25)
+                          values [1]:
+                            NumberValue (line 81, col 25)
+                              number = "10px"
+                    CssProperty (line 82, col 10)
+                      word = "box-shadow"
+                      valueList:
+                        ValueList (line 82, col 22)
+                          values [4]:
+                            NumberValue (line 82, col 22)
+                              number = "0"
+                            NumberValue (line 82, col 24)
+                              number = "4px"
+                            NumberValue (line 82, col 28)
+                              number = "10px"
+                            FunctionValue (line 82, col 33)
+                              function:
+                                CssFunction (line 82, col 33)
+                                  word = "rgba"
+                                  valueList:
+                                    ValueList (line 82, col 38)
+                                      values [4]:
+                                        NumberValue (line 82, col 38)
+                                          number = "0"
+                                        NumberValue (line 82, col 41)
+                                          number = "0"
+                                        NumberValue (line 82, col 44)
+                                          number = "0"
+                                        NumberValue (line 82, col 47)
+                                          number = "0.08"
+                    CssProperty (line 83, col 10)
+                      word = "overflow"
+                      valueList:
+                        ValueList (line 83, col 20)
+                          values [1]:
+                            WordValue (line 83, col 20)
+                              word = "hidden"
+                    CssProperty (line 84, col 10)
+                      word = "transition"
+                      valueList:
+                        ValueList (line 84, col 22)
+                          values [6]:
+                            WordValue (line 84, col 22)
+                              word = "transform"
+                            NumberValue (line 84, col 32)
+                              number = "0.3s"
+                            WordValue (line 84, col 37)
+                              word = "ease"
+                            WordValue (line 84, col 43)
+                              word = "box-shadow"
+                            NumberValue (line 84, col 54)
+                              number = "0.3s"
+                            WordValue (line 84, col 59)
+                              word = "ease"
+                CssRule (line 87, col 8)
+                  selectorList:
+                    CssSelectorList (line 87, col 8)
+                      selectors [1]:
+                        CssSelector (line 87, col 8)
+                          parts [1]:
+                            ClassPart (line 87, col 8)
+                              word = "product-card"
+                          pseudo:
+                            CssPseudo (line 87, col 8)
+                              word = "hover"
+                  properties [2]:
+                    CssProperty (line 88, col 10)
+                      word = "transform"
+                      valueList:
+                        ValueList (line 88, col 21)
+                          values [1]:
+                            FunctionValue (line 88, col 21)
+                              function:
+                                CssFunction (line 88, col 21)
+                                  word = "translateY"
+                                  valueList:
+                                    ValueList (line 88, col 32)
+                                      values [1]:
+                                        NumberValue (line 88, col 32)
+                                          number = "-5px"
+                    CssProperty (line 89, col 10)
+                      word = "box-shadow"
+                      valueList:
+                        ValueList (line 89, col 22)
+                          values [4]:
+                            NumberValue (line 89, col 22)
+                              number = "0"
+                            NumberValue (line 89, col 24)
+                              number = "8px"
+                            NumberValue (line 89, col 28)
+                              number = "20px"
+                            FunctionValue (line 89, col 33)
+                              function:
+                                CssFunction (line 89, col 33)
+                                  word = "rgba"
+                                  valueList:
+                                    ValueList (line 89, col 38)
+                                      values [4]:
+                                        NumberValue (line 89, col 38)
+                                          number = "0"
+                                        NumberValue (line 89, col 41)
+                                          number = "0"
+                                        NumberValue (line 89, col 44)
+                                          number = "0"
+                                        NumberValue (line 89, col 47)
+                                          number = "0.12"
+                CssRule (line 92, col 8)
+                  selectorList:
+                    CssSelectorList (line 92, col 8)
+                      selectors [1]:
+                        CssSelector (line 92, col 8)
+                          parts [2]:
+                            ClassPart (line 92, col 8)
+                              word = "product-card"
+                            TagPart (line 92, col 22)
+                              word = "img"
+                          pseudo = null
+                  properties [3]:
+                    CssProperty (line 93, col 10)
+                      word = "width"
+                      valueList:
+                        ValueList (line 93, col 17)
+                          values [1]:
+                            NumberValue (line 93, col 17)
+                              number = "100%"
+                    CssProperty (line 94, col 10)
+                      word = "height"
+                      valueList:
+                        ValueList (line 94, col 18)
+                          values [1]:
+                            NumberValue (line 94, col 18)
+                              number = "200px"
+                    CssProperty (line 95, col 10)
+                      word = "object-fit"
+                      valueList:
+                        ValueList (line 95, col 22)
+                          values [1]:
+                            WordValue (line 95, col 22)
+                              word = "cover"
+                CssRule (line 98, col 8)
+                  selectorList:
+                    CssSelectorList (line 98, col 8)
+                      selectors [1]:
+                        CssSelector (line 98, col 8)
+                          parts [1]:
+                            ClassPart (line 98, col 8)
+                              word = "card-content"
+                          pseudo = null
+                  properties [1]:
+                    CssProperty (line 99, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 99, col 19)
+                          values [1]:
+                            NumberValue (line 99, col 19)
+                              number = "20px"
+                CssRule (line 102, col 8)
+                  selectorList:
+                    CssSelectorList (line 102, col 8)
+                      selectors [1]:
+                        CssSelector (line 102, col 8)
+                          parts [2]:
+                            ClassPart (line 102, col 8)
+                              word = "card-content"
+                            TagPart (line 102, col 22)
+                              word = "h2"
+                          pseudo = null
+                  properties [3]:
+                    CssProperty (line 103, col 10)
+                      word = "font-size"
+                      valueList:
+                        ValueList (line 103, col 21)
+                          values [1]:
+                            NumberValue (line 103, col 21)
+                              number = "1.25rem"
+                    CssProperty (line 104, col 10)
+                      word = "margin"
+                      valueList:
+                        ValueList (line 104, col 18)
+                          values [4]:
+                            NumberValue (line 104, col 18)
+                              number = "0"
+                            NumberValue (line 104, col 20)
+                              number = "0"
+                            NumberValue (line 104, col 22)
+                              number = "10px"
+                            NumberValue (line 104, col 27)
+                              number = "0"
+                    CssProperty (line 105, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 105, col 17)
+                          values [1]:
+                            ColorValue (line 105, col 17)
+                              color = "#2c3e50"
+                CssRule (line 108, col 8)
+                  selectorList:
+                    CssSelectorList (line 108, col 8)
+                      selectors [1]:
+                        CssSelector (line 108, col 8)
+                          parts [1]:
+                            ClassPart (line 108, col 8)
+                              word = "price"
+                          pseudo = null
+                  properties [4]:
+                    CssProperty (line 109, col 10)
+                      word = "font-size"
+                      valueList:
+                        ValueList (line 109, col 21)
+                          values [1]:
+                            NumberValue (line 109, col 21)
+                              number = "1.2rem"
+                    CssProperty (line 110, col 10)
+                      word = "font-weight"
+                      valueList:
+                        ValueList (line 110, col 23)
+                          values [1]:
+                            NumberValue (line 110, col 23)
+                              number = "600"
+                    CssProperty (line 111, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 111, col 17)
+                          values [1]:
+                            ColorValue (line 111, col 17)
+                              color = "#27ae60"
+                    CssProperty (line 112, col 10)
+                      word = "margin"
+                      valueList:
+                        ValueList (line 112, col 18)
+                          values [2]:
+                            NumberValue (line 112, col 18)
+                              number = "10px"
+                            NumberValue (line 112, col 23)
+                              number = "0"
+                CssRule (line 116, col 8)
+                  selectorList:
+                    CssSelectorList (line 116, col 8)
+                      selectors [1]:
+                        CssSelector (line 116, col 8)
+                          parts [1]:
+                            ClassPart (line 116, col 8)
+                              word = "btn"
+                          pseudo = null
+                  properties [8]:
+                    CssProperty (line 117, col 10)
+                      word = "display"
+                      valueList:
+                        ValueList (line 117, col 19)
+                          values [1]:
+                            WordValue (line 117, col 19)
+                              word = "inline-block"
+                    CssProperty (line 118, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 118, col 28)
+                          values [1]:
+                            ColorValue (line 118, col 28)
+                              color = "#3498db"
+                    CssProperty (line 119, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 119, col 17)
+                          values [1]:
+                            ColorValue (line 119, col 17)
+                              color = "#fff"
+                    CssProperty (line 120, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 120, col 19)
+                          values [2]:
+                            NumberValue (line 120, col 19)
+                              number = "10px"
+                            NumberValue (line 120, col 24)
+                              number = "20px"
+                    CssProperty (line 121, col 10)
+                      word = "border-radius"
+                      valueList:
+                        ValueList (line 121, col 25)
+                          values [1]:
+                            NumberValue (line 121, col 25)
+                              number = "5px"
+                    CssProperty (line 122, col 10)
+                      word = "text-decoration"
+                      valueList:
+                        ValueList (line 122, col 27)
+                          values [1]:
+                            WordValue (line 122, col 27)
+                              word = "none"
+                    CssProperty (line 123, col 10)
+                      word = "font-weight"
+                      valueList:
+                        ValueList (line 123, col 23)
+                          values [1]:
+                            NumberValue (line 123, col 23)
+                              number = "600"
+                    CssProperty (line 124, col 10)
+                      word = "transition"
+                      valueList:
+                        ValueList (line 124, col 22)
+                          values [3]:
+                            WordValue (line 124, col 22)
+                              word = "background-color"
+                            NumberValue (line 124, col 39)
+                              number = "0.3s"
+                            WordValue (line 124, col 44)
+                              word = "ease"
+                CssRule (line 127, col 8)
+                  selectorList:
+                    CssSelectorList (line 127, col 8)
+                      selectors [1]:
+                        CssSelector (line 127, col 8)
+                          parts [1]:
+                            ClassPart (line 127, col 8)
+                              word = "btn"
+                          pseudo:
+                            CssPseudo (line 127, col 8)
+                              word = "hover"
+                  properties [1]:
+                    CssProperty (line 128, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 128, col 28)
+                          values [1]:
+                            ColorValue (line 128, col 28)
+                              color = "#2980b9"
+                CssRule (line 132, col 8)
+                  selectorList:
+                    CssSelectorList (line 132, col 8)
+                      selectors [1]:
+                        CssSelector (line 132, col 8)
+                          parts [1]:
+                            ClassPart (line 132, col 8)
+                              word = "detail-page"
+                          pseudo = null
+                  properties [1]:
+                    CssProperty (line 133, col 10)
+                      word = "margin-top"
+                      valueList:
+                        ValueList (line 133, col 22)
+                          values [1]:
+                            NumberValue (line 133, col 22)
+                              number = "30px"
+                CssRule (line 136, col 8)
+                  selectorList:
+                    CssSelectorList (line 136, col 8)
+                      selectors [1]:
+                        CssSelector (line 136, col 8)
+                          parts [1]:
+                            ClassPart (line 136, col 8)
+                              word = "back-link"
+                          pseudo = null
+                  properties [5]:
+                    CssProperty (line 137, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 137, col 17)
+                          values [1]:
+                            ColorValue (line 137, col 17)
+                              color = "#3498db"
+                    CssProperty (line 138, col 10)
+                      word = "text-decoration"
+                      valueList:
+                        ValueList (line 138, col 27)
+                          values [1]:
+                            WordValue (line 138, col 27)
+                              word = "none"
+                    CssProperty (line 139, col 10)
+                      word = "font-weight"
+                      valueList:
+                        ValueList (line 139, col 23)
+                          values [1]:
+                            NumberValue (line 139, col 23)
+                              number = "600"
+                    CssProperty (line 140, col 10)
+                      word = "margin-bottom"
+                      valueList:
+                        ValueList (line 140, col 25)
+                          values [1]:
+                            NumberValue (line 140, col 25)
+                              number = "20px"
+                    CssProperty (line 141, col 10)
+                      word = "display"
+                      valueList:
+                        ValueList (line 141, col 19)
+                          values [1]:
+                            WordValue (line 141, col 19)
+                              word = "inline-block"
+                CssRule (line 144, col 8)
+                  selectorList:
+                    CssSelectorList (line 144, col 8)
+                      selectors [1]:
+                        CssSelector (line 144, col 8)
+                          parts [1]:
+                            ClassPart (line 144, col 8)
+                              word = "product-detail-card"
+                          pseudo = null
+                  properties [5]:
+                    CssProperty (line 145, col 10)
+                      word = "display"
+                      valueList:
+                        ValueList (line 145, col 19)
+                          values [1]:
+                            WordValue (line 145, col 19)
+                              word = "flex"
+                    CssProperty (line 146, col 10)
+                      word = "background"
+                      valueList:
+                        ValueList (line 146, col 22)
+                          values [1]:
+                            ColorValue (line 146, col 22)
+                              color = "#fff"
+                    CssProperty (line 147, col 10)
+                      word = "border-radius"
+                      valueList:
+                        ValueList (line 147, col 25)
+                          values [1]:
+                            NumberValue (line 147, col 25)
+                              number = "10px"
+                    CssProperty (line 148, col 10)
+                      word = "box-shadow"
+                      valueList:
+                        ValueList (line 148, col 22)
+                          values [4]:
+                            NumberValue (line 148, col 22)
+                              number = "0"
+                            NumberValue (line 148, col 24)
+                              number = "4px"
+                            NumberValue (line 148, col 28)
+                              number = "15px"
+                            FunctionValue (line 148, col 33)
+                              function:
+                                CssFunction (line 148, col 33)
+                                  word = "rgba"
+                                  valueList:
+                                    ValueList (line 148, col 38)
+                                      values [4]:
+                                        NumberValue (line 148, col 38)
+                                          number = "0"
+                                        NumberValue (line 148, col 41)
+                                          number = "0"
+                                        NumberValue (line 148, col 44)
+                                          number = "0"
+                                        NumberValue (line 148, col 47)
+                                          number = "0.1"
+                    CssProperty (line 149, col 10)
+                      word = "overflow"
+                      valueList:
+                        ValueList (line 149, col 20)
+                          values [1]:
+                            WordValue (line 149, col 20)
+                              word = "hidden"
+                CssRule (line 152, col 8)
+                  selectorList:
+                    CssSelectorList (line 152, col 8)
+                      selectors [1]:
+                        CssSelector (line 152, col 8)
+                          parts [2]:
+                            ClassPart (line 152, col 8)
+                              word = "product-detail-card"
+                            TagPart (line 152, col 29)
+                              word = "img"
+                          pseudo = null
+                  properties [2]:
+                    CssProperty (line 153, col 10)
+                      word = "width"
+                      valueList:
+                        ValueList (line 153, col 17)
+                          values [1]:
+                            NumberValue (line 153, col 17)
+                              number = "40%"
+                    CssProperty (line 154, col 10)
+                      word = "object-fit"
+                      valueList:
+                        ValueList (line 154, col 22)
+                          values [1]:
+                            WordValue (line 154, col 22)
+                              word = "cover"
+                CssRule (line 157, col 8)
+                  selectorList:
+                    CssSelectorList (line 157, col 8)
+                      selectors [1]:
+                        CssSelector (line 157, col 8)
+                          parts [1]:
+                            ClassPart (line 157, col 8)
+                              word = "detail-info"
+                          pseudo = null
+                  properties [1]:
+                    CssProperty (line 158, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 158, col 19)
+                          values [1]:
+                            NumberValue (line 158, col 19)
+                              number = "40px"
+                CssRule (line 161, col 8)
+                  selectorList:
+                    CssSelectorList (line 161, col 8)
+                      selectors [1]:
+                        CssSelector (line 161, col 8)
+                          parts [2]:
+                            ClassPart (line 161, col 8)
+                              word = "detail-info"
+                            TagPart (line 161, col 21)
+                              word = "h1"
+                          pseudo = null
+                  properties [2]:
+                    CssProperty (line 162, col 10)
+                      word = "margin-top"
+                      valueList:
+                        ValueList (line 162, col 22)
+                          values [1]:
+                            NumberValue (line 162, col 22)
+                              number = "0"
+                    CssProperty (line 163, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 163, col 17)
+                          values [1]:
+                            ColorValue (line 163, col 17)
+                              color = "#2c3e50"
+                CssRule (line 166, col 8)
+                  selectorList:
+                    CssSelectorList (line 166, col 8)
+                      selectors [1]:
+                        CssSelector (line 166, col 8)
+                          parts [2]:
+                            ClassPart (line 166, col 8)
+                              word = "detail-info"
+                            ClassPart (line 166, col 21)
+                              word = "details"
+                          pseudo = null
+                  properties [2]:
+                    CssProperty (line 167, col 10)
+                      word = "font-size"
+                      valueList:
+                        ValueList (line 167, col 21)
+                          values [1]:
+                            NumberValue (line 167, col 21)
+                              number = "1rem"
+                    CssProperty (line 168, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 168, col 17)
+                          values [1]:
+                            ColorValue (line 168, col 17)
+                              color = "#555"
+                CssRule (line 172, col 8)
+                  selectorList:
+                    CssSelectorList (line 172, col 8)
+                      selectors [1]:
+                        CssSelector (line 172, col 8)
+                          parts [1]:
+                            ClassPart (line 172, col 8)
+                              word = "form-container"
+                          pseudo = null
+                  properties [6]:
+                    CssProperty (line 173, col 10)
+                      word = "max-width"
+                      valueList:
+                        ValueList (line 173, col 21)
+                          values [1]:
+                            NumberValue (line 173, col 21)
+                              number = "600px"
+                    CssProperty (line 174, col 10)
+                      word = "margin-top"
+                      valueList:
+                        ValueList (line 174, col 22)
+                          values [1]:
+                            NumberValue (line 174, col 22)
+                              number = "30px"
+                    CssProperty (line 175, col 10)
+                      word = "background"
+                      valueList:
+                        ValueList (line 175, col 22)
+                          values [1]:
+                            ColorValue (line 175, col 22)
+                              color = "#fff"
+                    CssProperty (line 176, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 176, col 19)
+                          values [1]:
+                            NumberValue (line 176, col 19)
+                              number = "30px"
+                    CssProperty (line 177, col 10)
+                      word = "border-radius"
+                      valueList:
+                        ValueList (line 177, col 25)
+                          values [1]:
+                            NumberValue (line 177, col 25)
+                              number = "10px"
+                    CssProperty (line 178, col 10)
+                      word = "box-shadow"
+                      valueList:
+                        ValueList (line 178, col 22)
+                          values [4]:
+                            NumberValue (line 178, col 22)
+                              number = "0"
+                            NumberValue (line 178, col 24)
+                              number = "4px"
+                            NumberValue (line 178, col 28)
+                              number = "15px"
+                            FunctionValue (line 178, col 33)
+                              function:
+                                CssFunction (line 178, col 33)
+                                  word = "rgba"
+                                  valueList:
+                                    ValueList (line 178, col 38)
+                                      values [4]:
+                                        NumberValue (line 178, col 38)
+                                          number = "0"
+                                        NumberValue (line 178, col 41)
+                                          number = "0"
+                                        NumberValue (line 178, col 44)
+                                          number = "0"
+                                        NumberValue (line 178, col 47)
+                                          number = "0.1"
+                CssRule (line 181, col 8)
+                  selectorList:
+                    CssSelectorList (line 181, col 8)
+                      selectors [1]:
+                        CssSelector (line 181, col 8)
+                          parts [2]:
+                            ClassPart (line 181, col 8)
+                              word = "add-form"
+                            ClassPart (line 181, col 18)
+                              word = "form-group"
+                          pseudo = null
+                  properties [1]:
+                    CssProperty (line 182, col 10)
+                      word = "margin-bottom"
+                      valueList:
+                        ValueList (line 182, col 25)
+                          values [1]:
+                            NumberValue (line 182, col 25)
+                              number = "20px"
+                CssRule (line 185, col 8)
+                  selectorList:
+                    CssSelectorList (line 185, col 8)
+                      selectors [1]:
+                        CssSelector (line 185, col 8)
+                          parts [2]:
+                            ClassPart (line 185, col 8)
+                              word = "add-form"
+                            TagPart (line 185, col 18)
+                              word = "label"
+                          pseudo = null
+                  properties [4]:
+                    CssProperty (line 186, col 10)
+                      word = "display"
+                      valueList:
+                        ValueList (line 186, col 19)
+                          values [1]:
+                            WordValue (line 186, col 19)
+                              word = "block"
+                    CssProperty (line 187, col 10)
+                      word = "margin-bottom"
+                      valueList:
+                        ValueList (line 187, col 25)
+                          values [1]:
+                            NumberValue (line 187, col 25)
+                              number = "8px"
+                    CssProperty (line 188, col 10)
+                      word = "font-weight"
+                      valueList:
+                        ValueList (line 188, col 23)
+                          values [1]:
+                            NumberValue (line 188, col 23)
+                              number = "600"
+                    CssProperty (line 189, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 189, col 17)
+                          values [1]:
+                            ColorValue (line 189, col 17)
+                              color = "#34495e"
+                CssRule (line 192, col 8)
+                  selectorList:
+                    CssSelectorList (line 192, col 8)
+                      selectors [2]:
+                        CssSelector (line 192, col 8)
+                          parts [2]:
+                            ClassPart (line 192, col 8)
+                              word = "add-form"
+                            TagPart (line 192, col 18)
+                              word = "input"
+                          pseudo = null
+                        CssSelector (line 193, col 8)
+                          parts [2]:
+                            ClassPart (line 193, col 8)
+                              word = "add-form"
+                            TagPart (line 193, col 18)
+                              word = "textarea"
+                          pseudo = null
+                  properties [7]:
+                    CssProperty (line 194, col 10)
+                      word = "width"
+                      valueList:
+                        ValueList (line 194, col 17)
+                          values [1]:
+                            NumberValue (line 194, col 17)
+                              number = "100%"
+                    CssProperty (line 195, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 195, col 19)
+                          values [1]:
+                            NumberValue (line 195, col 19)
+                              number = "12px"
+                    CssProperty (line 196, col 10)
+                      word = "border"
+                      valueList:
+                        ValueList (line 196, col 18)
+                          values [3]:
+                            NumberValue (line 196, col 18)
+                              number = "1px"
+                            WordValue (line 196, col 22)
+                              word = "solid"
+                            ColorValue (line 196, col 28)
+                              color = "#ccc"
+                    CssProperty (line 197, col 10)
+                      word = "border-radius"
+                      valueList:
+                        ValueList (line 197, col 25)
+                          values [1]:
+                            NumberValue (line 197, col 25)
+                              number = "5px"
+                    CssProperty (line 198, col 10)
+                      word = "font-family"
+                      valueList:
+                        ValueList (line 198, col 23)
+                          values [2]:
+                            StringValue (line 198, col 23)
+                              string = "\"Poppins\""
+                            WordValue (line 198, col 34)
+                              word = "sans-serif"
+                    CssProperty (line 199, col 10)
+                      word = "font-size"
+                      valueList:
+                        ValueList (line 199, col 21)
+                          values [1]:
+                            NumberValue (line 199, col 21)
+                              number = "1rem"
+                    CssProperty (line 200, col 10)
+                      word = "box-sizing"
+                      valueList:
+                        ValueList (line 200, col 22)
+                          values [1]:
+                            WordValue (line 200, col 22)
+                              word = "border-box"
+                CssRule (line 203, col 8)
+                  selectorList:
+                    CssSelectorList (line 203, col 8)
+                      selectors [1]:
+                        CssSelector (line 203, col 8)
+                          parts [2]:
+                            ClassPart (line 203, col 8)
+                              word = "add-form"
+                            TagPart (line 203, col 18)
+                              word = "button"
+                          pseudo = null
+                  properties [10]:
+                    CssProperty (line 204, col 10)
+                      word = "width"
+                      valueList:
+                        ValueList (line 204, col 17)
+                          values [1]:
+                            NumberValue (line 204, col 17)
+                              number = "100%"
+                    CssProperty (line 205, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 205, col 19)
+                          values [1]:
+                            NumberValue (line 205, col 19)
+                              number = "12px"
+                    CssProperty (line 206, col 10)
+                      word = "border"
+                      valueList:
+                        ValueList (line 206, col 18)
+                          values [1]:
+                            WordValue (line 206, col 18)
+                              word = "none"
+                    CssProperty (line 207, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 207, col 28)
+                          values [1]:
+                            ColorValue (line 207, col 28)
+                              color = "#27ae60"
+                    CssProperty (line 208, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 208, col 17)
+                          values [1]:
+                            WordValue (line 208, col 17)
+                              word = "white"
+                    CssProperty (line 209, col 10)
+                      word = "font-size"
+                      valueList:
+                        ValueList (line 209, col 21)
+                          values [1]:
+                            NumberValue (line 209, col 21)
+                              number = "1.1rem"
+                    CssProperty (line 210, col 10)
+                      word = "font-weight"
+                      valueList:
+                        ValueList (line 210, col 23)
+                          values [1]:
+                            NumberValue (line 210, col 23)
+                              number = "600"
+                    CssProperty (line 211, col 10)
+                      word = "cursor"
+                      valueList:
+                        ValueList (line 211, col 18)
+                          values [1]:
+                            WordValue (line 211, col 18)
+                              word = "pointer"
+                    CssProperty (line 212, col 10)
+                      word = "border-radius"
+                      valueList:
+                        ValueList (line 212, col 25)
+                          values [1]:
+                            NumberValue (line 212, col 25)
+                              number = "5px"
+                    CssProperty (line 213, col 10)
+                      word = "transition"
+                      valueList:
+                        ValueList (line 213, col 22)
+                          values [3]:
+                            WordValue (line 213, col 22)
+                              word = "background-color"
+                            NumberValue (line 213, col 39)
+                              number = "0.3s"
+                            WordValue (line 213, col 44)
+                              word = "ease"
+                CssRule (line 216, col 8)
+                  selectorList:
+                    CssSelectorList (line 216, col 8)
+                      selectors [1]:
+                        CssSelector (line 216, col 8)
+                          parts [2]:
+                            ClassPart (line 216, col 8)
+                              word = "add-form"
+                            TagPart (line 216, col 18)
+                              word = "button"
+                          pseudo:
+                            CssPseudo (line 216, col 8)
+                              word = "hover"
+                  properties [1]:
+                    CssProperty (line 217, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 217, col 28)
+                          values [1]:
+                            ColorValue (line 217, col 28)
+                              color = "#229954"
+                CssRule (line 221, col 8)
+                  selectorList:
+                    CssSelectorList (line 221, col 8)
+                      selectors [1]:
+                        CssSelector (line 221, col 8)
+                          parts [1]:
+                            TagPart (line 221, col 8)
+                              word = "footer"
+                          pseudo = null
+                  properties [5]:
+                    CssProperty (line 222, col 10)
+                      word = "text-align"
+                      valueList:
+                        ValueList (line 222, col 22)
+                          values [1]:
+                            WordValue (line 222, col 22)
+                              word = "center"
+                    CssProperty (line 223, col 10)
+                      word = "padding"
+                      valueList:
+                        ValueList (line 223, col 19)
+                          values [1]:
+                            NumberValue (line 223, col 19)
+                              number = "20px"
+                    CssProperty (line 224, col 10)
+                      word = "margin-top"
+                      valueList:
+                        ValueList (line 224, col 22)
+                          values [1]:
+                            NumberValue (line 224, col 22)
+                              number = "40px"
+                    CssProperty (line 225, col 10)
+                      word = "background"
+                      valueList:
+                        ValueList (line 225, col 22)
+                          values [1]:
+                            ColorValue (line 225, col 22)
+                              color = "#2c3e50"
+                    CssProperty (line 226, col 10)
+                      word = "color"
+                      valueList:
+                        ValueList (line 226, col 17)
+                          values [1]:
+                            ColorValue (line 226, col 17)
+                              color = "#ecf0f1"
+                CssRule (line 228, col 14)
+                  selectorList:
+                    CssSelectorList (line 228, col 14)
+                      selectors [1]:
+                        CssSelector (line 228, col 14)
+                          parts [1]:
+                            ClassPart (line 228, col 14)
+                              word = "btn-danger"
+                          pseudo = null
+                  properties [1]:
+                    CssProperty (line 229, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 229, col 28)
+                          values [1]:
+                            ColorValue (line 229, col 28)
+                              color = "#e74c3c"
+                CssRule (line 232, col 8)
+                  selectorList:
+                    CssSelectorList (line 232, col 8)
+                      selectors [1]:
+                        CssSelector (line 232, col 8)
+                          parts [1]:
+                            ClassPart (line 232, col 8)
+                              word = "btn-danger"
+                          pseudo:
+                            CssPseudo (line 232, col 8)
+                              word = "hover"
+                  properties [1]:
+                    CssProperty (line 233, col 10)
+                      word = "background-color"
+                      valueList:
+                        ValueList (line 233, col 28)
+                          values [1]:
+                            ColorValue (line 233, col 28)
+                              color = "#c0392b"
+            HtmlText (line 235, col 12)
+              text = "\n"
+        HtmlText (line 236, col 7)
+          text = "\n"
+        PairedTag (line 237, col 0)
+          tagName = "body"
+          attributes [0]
+          children [7]:
+            HtmlText (line 237, col 6)
+              text = "\n"
+            PairedTag (line 238, col 0)
+              tagName = "header"
+              attributes [0]
+              children [3]:
+                HtmlText (line 238, col 8)
+                  text = "\n    "
+                PairedTag (line 239, col 4)
+                  tagName = "nav"
+                  attributes [0]
+                  children [5]:
+                    HtmlText (line 239, col 9)
+                      text = "\n        "
+                    PairedTag (line 240, col 8)
+                      tagName = "a"
+                      attributes [2]:
+                        NormalAttribute (line 240, col 11)
+                          key = "href"
+                          value:
+                            JinjaValueExpr (line 240, col 16)
+                              jinjaBlock:
+                                PrintBlock (line 240, col 16)
+                                  jinjaExpression:
+                                    JinjaExpression (line 240, col 16)
+                                      primary:
+                                        FunctionCall (line 240, col 16)
+                                          identifier = "url_for"
+                                          callArgs:
+                                            CallMixedArgs (line 240, col 16)
+                                              posArgs [1]:
+                                                JinjaArg (line 240, col 16)
+                                                  expression:
+                                                    JinjaExpression (line 240, col 16)
+                                                      primary:
+                                                        StringLiteral (line 240, col 16)
+                                                          string = "index"
+                                                      filters [0]
+                                              kwArgs [0]
+                                      filters [0]
+                        NormalAttribute (line 240, col 41)
+                          key = "class"
+                          value:
+                            PlainValue (line 240, col 47)
+                              text = "logo"
+                      children [1]:
+                        HtmlText (line 240, col 54)
+                          text = "ProductHub"
+                    HtmlText (line 240, col 68)
+                      text = "\n        "
+                    PairedTag (line 241, col 8)
+                      tagName = "div"
+                      attributes [1]:
+                        NormalAttribute (line 241, col 13)
+                          key = "class"
+                          value:
+                            PlainValue (line 241, col 19)
+                              text = "nav-links"
+                      children [5]:
+                        HtmlText (line 241, col 31)
+                          text = "\n            "
+                        PairedTag (line 242, col 12)
+                          tagName = "a"
+                          attributes [1]:
+                            NormalAttribute (line 242, col 15)
+                              key = "href"
+                              value:
+                                JinjaValueExpr (line 242, col 20)
+                                  jinjaBlock:
+                                    PrintBlock (line 242, col 20)
+                                      jinjaExpression:
+                                        JinjaExpression (line 242, col 20)
+                                          primary:
+                                            FunctionCall (line 242, col 20)
+                                              identifier = "url_for"
+                                              callArgs:
+                                                CallMixedArgs (line 242, col 20)
+                                                  posArgs [1]:
+                                                    JinjaArg (line 242, col 20)
+                                                      expression:
+                                                        JinjaExpression (line 242, col 20)
+                                                          primary:
+                                                            StringLiteral (line 242, col 20)
+                                                              string = "index"
+                                                          filters [0]
+                                                  kwArgs [0]
+                                          filters [0]
+                          children [1]:
+                            HtmlText (line 242, col 45)
+                              text = "Home"
+                        HtmlText (line 242, col 53)
+                          text = "\n            "
+                        PairedTag (line 243, col 12)
+                          tagName = "a"
+                          attributes [1]:
+                            NormalAttribute (line 243, col 15)
+                              key = "href"
+                              value:
+                                JinjaValueExpr (line 243, col 20)
+                                  jinjaBlock:
+                                    PrintBlock (line 243, col 20)
+                                      jinjaExpression:
+                                        JinjaExpression (line 243, col 20)
+                                          primary:
+                                            FunctionCall (line 243, col 20)
+                                              identifier = "url_for"
+                                              callArgs:
+                                                CallMixedArgs (line 243, col 20)
+                                                  posArgs [1]:
+                                                    JinjaArg (line 243, col 20)
+                                                      expression:
+                                                        JinjaExpression (line 243, col 20)
+                                                          primary:
+                                                            StringLiteral (line 243, col 20)
+                                                              string = "add_product"
+                                                          filters [0]
+                                                  kwArgs [0]
+                                          filters [0]
+                          children [1]:
+                            HtmlText (line 243, col 51)
+                              text = "Add Product"
+                        HtmlText (line 243, col 66)
+                          text = "\n        "
+                    HtmlText (line 244, col 14)
+                      text = "\n    "
+                HtmlText (line 245, col 10)
+                  text = "\n"
+            HtmlText (line 246, col 9)
+              text = "\n\n"
+            PairedTag (line 248, col 0)
+              tagName = "main"
+              attributes [0]
+              children [5]:
+                HtmlText (line 248, col 6)
+                  text = "\n    "
+                HtmlText (line 249, col 68)
+                  text = "\n    "
+                ControlBlock (line 250, col 4)
+                  jinjaStatementHeader:
+                    BlockStart (line 250, col 7)
+                      identifier = "content"
+                ControlBlock (line 250, col 23)
+                  jinjaStatementHeader:
+                    BlockEnd (line 250, col 26)
+                HtmlText (line 250, col 37)
+                  text = "\n"
+            HtmlText (line 251, col 7)
+              text = "\n\n"
+            PairedTag (line 253, col 0)
+              tagName = "footer"
+              attributes [0]
+              children [4]:
+                HtmlText (line 253, col 8)
+                  text = "\n    "
+                PairedTag (line 254, col 4)
+                  tagName = "p"
+                  attributes [0]
+                  children [1]:
+                    HtmlText (line 254, col 7)
+                      text = "&copy; 2023 ProductHub. Made with Flask & Jinja2."
+                HtmlText (line 254, col 60)
+                  text = "\n    "
+                HtmlText (line 255, col 40)
+                  text = "\n"
+            HtmlText (line 256, col 9)
+              text = "\n"
+        HtmlText (line 257, col 7)
+          text = "\n"
+    HtmlText (line 258, col 7)
+      text = "\n"
+

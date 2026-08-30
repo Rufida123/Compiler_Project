@@ -2,7 +2,7 @@ package jinjaClasses;
 
 import java.util.ArrayList;
 import java.util.List;
-public class CssSelectorList {
+public class CssSelectorList extends JinjaNode {
     List<CssSelector> selectors = new ArrayList<>();
     public List<CssSelector> getSelectors() {
         return selectors;
