@@ -71,8 +71,41 @@ public class JinjaRenderer {
     private void attrs(StringBuilder out,List<HtmlAttribute> as,Map<String,Object> c) {
         for(HtmlAttribute a:as) if(a instanceof NormalAttribute n) { out.append(' ').append(n.getKey()); if(n.getValue()!=null) { out.append("=\""); if(n.getValue() instanceof PlainValue p) out.append(p.getText()); else if(n.getValue() instanceof JinjaValueExpr j && j.getJinjaBlock() instanceof PrintBlock pb) out.append(string(value(pb.getJinjaExpression(),c))); out.append('"'); } }
     }
-    private String css(StyleTag style) { StringBuilder b=new StringBuilder("<style>"); for(CssRule r:style.getCssRules()){ for(int i=0;i<r.getSelectorList().getSelectors().size();i++){if(i>0)b.append(',');CssSelector s=r.getSelectorList().getSelectors().get(i);for(SelectorPart p:s.getParts()){if(p instanceof ClassPart x)b.append('.').append(x.getWord());else if(p instanceof TagPart x)b.append(x.getWord());}if(s.getPseudo()!=null)b.append(':').append(s.getPseudo().getWord());} b.append('{');for(CssProperty p:r.getProperties()){b.append(p.getWord()).append(':');for(CssValue v:p.getValueList().getValues())b.append(cssValue(v)).append(' ');b.append(';');}b.append('}');}return b.append("</style>").toString(); }
-    private String cssValue(CssValue v){if(v instanceof StringValue x)return x.getString();if(v instanceof NumberValue x)return x.getNumber();if(v instanceof ColorValue x)return x.getColor();if(v instanceof WordValue x)return x.getWord();if(v instanceof FunctionValue x){StringBuilder b=new StringBuilder(x.getFunction().getWord()).append('(');for(CssValue y:x.getFunction().getValueList().getValues())b.append(cssValue(y)).append(' ');return b.append(')').toString();}return "";}
+    private String css(StyleTag style) {
+        StringBuilder b = new StringBuilder("<style>");
+        for (CssRule r : style.getCssRules()) {
+            List<CssSelector> selectors = r.getSelectorList().getSelectors();
+            for (int i = 0; i < selectors.size(); i++) {
+                if (i > 0) b.append(", ");
+                CssSelector s = selectors.get(i);
+                for (SelectorPart p : s.getParts()) {
+                    if (p.isDescendant()) b.append(' ');
+                    if (p instanceof ClassPart x) b.append('.').append(x.getWord());
+                    else if (p instanceof TagPart x) b.append(x.getWord());
+                }
+                if (s.getPseudo() != null) b.append(':').append(s.getPseudo().getWord());
+            }
+            b.append(" {");
+            for (CssProperty p : r.getProperties()) {
+                b.append(p.getWord()).append(": ").append(values(p.getValueList())).append("; ");
+            }
+            b.append('}');
+        }
+        return b.append("</style>").toString();
+    }
+
+    /** Joins a value list, restoring the source separators. */
+    private String values(ValueList list) {
+        StringBuilder b = new StringBuilder();
+        List<CssValue> vs = list.getValues();
+        for (int i = 0; i < vs.size(); i++) {
+            if (i > 0) b.append(vs.get(i).isCommaBefore() ? ", " : " ");
+            b.append(cssValue(vs.get(i)));
+        }
+        return b.toString();
+    }
+
+    private String cssValue(CssValue v){if(v instanceof StringValue x)return x.getString();if(v instanceof NumberValue x)return x.getNumber();if(v instanceof ColorValue x)return x.getColor();if(v instanceof WordValue x)return x.getWord();if(v instanceof FunctionValue x){return x.getFunction().getWord()+"("+values(x.getFunction().getValueList())+")";}return "";}
     private Object value(JinjaExpression e,Map<String,Object> c) { Object v=primary(e.getPrimary(),c); for(JinjaFilter f:e.getFilters()) v=filter(f,v,c); return v; }
     private Object primary(JinjaPrimary p,Map<String,Object> c) {
         if(p instanceof StringLiteral s) return unquote(s.getString()); if(p instanceof NumberLiteral n) return Double.valueOf(n.getNumber()); if(p instanceof TrueLiteral) return true; if(p instanceof FalseLiteral) return false; if(p instanceof NoneLiteral) return null;

@@ -2750,6 +2750,7 @@
                             "node":"TagPart",
                             "line":23,
                             "column":8,
+                            "descendant":false,
                             "word":"body"
                           }
                         ],
@@ -2772,12 +2773,14 @@
                             "node":"StringValue",
                             "line":24,
                             "column":23,
+                            "commaBefore":false,
                             "string":"\"Poppins\""
                           },
                           {
                             "node":"WordValue",
                             "line":24,
                             "column":34,
+                            "commaBefore":true,
                             "word":"sans-serif"
                           }
                         ]
@@ -2797,6 +2800,7 @@
                             "node":"NumberValue",
                             "line":25,
                             "column":18,
+                            "commaBefore":false,
                             "number":"0"
                           }
                         ]
@@ -2816,6 +2820,7 @@
                             "node":"ColorValue",
                             "line":26,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#f4f7f6"
                           }
                         ]
@@ -2835,6 +2840,7 @@
                             "node":"ColorValue",
                             "line":27,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#333"
                           }
                         ]
@@ -2854,6 +2860,7 @@
                             "node":"NumberValue",
                             "line":28,
                             "column":23,
+                            "commaBefore":false,
                             "number":"1.6"
                           }
                         ]
@@ -2879,6 +2886,7 @@
                             "node":"ClassPart",
                             "line":31,
                             "column":8,
+                            "descendant":false,
                             "word":"container"
                           }
                         ],
@@ -2901,6 +2909,7 @@
                             "node":"NumberValue",
                             "line":32,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1200px"
                           }
                         ]
@@ -2920,12 +2929,14 @@
                             "node":"NumberValue",
                             "line":33,
                             "column":18,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"WordValue",
                             "line":33,
                             "column":20,
+                            "commaBefore":false,
                             "word":"auto"
                           }
                         ]
@@ -2945,6 +2956,7 @@
                             "node":"NumberValue",
                             "line":34,
                             "column":19,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -2970,6 +2982,7 @@
                             "node":"TagPart",
                             "line":38,
                             "column":8,
+                            "descendant":false,
                             "word":"header"
                           }
                         ],
@@ -2992,6 +3005,7 @@
                             "node":"ColorValue",
                             "line":39,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#ffffff"
                           }
                         ]
@@ -3011,24 +3025,28 @@
                             "node":"NumberValue",
                             "line":40,
                             "column":22,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":40,
                             "column":24,
+                            "commaBefore":false,
                             "number":"2px"
                           },
                           {
                             "node":"NumberValue",
                             "line":40,
                             "column":28,
+                            "commaBefore":false,
                             "number":"4px"
                           },
                           {
                             "node":"FunctionValue",
                             "line":40,
                             "column":32,
+                            "commaBefore":false,
                             "function":{
                               "node":"CssFunction",
                               "line":40,
@@ -3043,24 +3061,28 @@
                                     "node":"NumberValue",
                                     "line":40,
                                     "column":37,
+                                    "commaBefore":false,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":40,
                                     "column":40,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":40,
                                     "column":43,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":40,
                                     "column":46,
+                                    "commaBefore":true,
                                     "number":"0.1"
                                   }
                                 ]
@@ -3084,12 +3106,14 @@
                             "node":"NumberValue",
                             "line":41,
                             "column":19,
+                            "commaBefore":false,
                             "number":"1rem"
                           },
                           {
                             "node":"NumberValue",
                             "line":41,
                             "column":24,
+                            "commaBefore":false,
                             "number":"0"
                           }
                         ]
@@ -3109,6 +3133,7 @@
                             "node":"WordValue",
                             "line":42,
                             "column":20,
+                            "commaBefore":false,
                             "word":"sticky"
                           }
                         ]
@@ -3128,6 +3153,7 @@
                             "node":"NumberValue",
                             "line":43,
                             "column":15,
+                            "commaBefore":false,
                             "number":"0"
                           }
                         ]
@@ -3147,6 +3173,7 @@
                             "node":"NumberValue",
                             "line":44,
                             "column":19,
+                            "commaBefore":false,
                             "number":"1000"
                           }
                         ]
@@ -3172,6 +3199,7 @@
                             "node":"TagPart",
                             "line":47,
                             "column":8,
+                            "descendant":false,
                             "word":"nav"
                           }
                         ],
@@ -3194,6 +3222,7 @@
                             "node":"WordValue",
                             "line":48,
                             "column":19,
+                            "commaBefore":false,
                             "word":"flex"
                           }
                         ]
@@ -3213,6 +3242,7 @@
                             "node":"WordValue",
                             "line":49,
                             "column":27,
+                            "commaBefore":false,
                             "word":"space-between"
                           }
                         ]
@@ -3232,6 +3262,7 @@
                             "node":"WordValue",
                             "line":50,
                             "column":23,
+                            "commaBefore":false,
                             "word":"center"
                           }
                         ]
@@ -3251,6 +3282,7 @@
                             "node":"NumberValue",
                             "line":51,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1200px"
                           }
                         ]
@@ -3270,12 +3302,14 @@
                             "node":"NumberValue",
                             "line":52,
                             "column":18,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"WordValue",
                             "line":52,
                             "column":20,
+                            "commaBefore":false,
                             "word":"auto"
                           }
                         ]
@@ -3295,12 +3329,14 @@
                             "node":"NumberValue",
                             "line":53,
                             "column":19,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":53,
                             "column":21,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -3326,6 +3362,7 @@
                             "node":"ClassPart",
                             "line":56,
                             "column":8,
+                            "descendant":false,
                             "word":"logo"
                           }
                         ],
@@ -3348,6 +3385,7 @@
                             "node":"NumberValue",
                             "line":57,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1.5rem"
                           }
                         ]
@@ -3367,6 +3405,7 @@
                             "node":"NumberValue",
                             "line":58,
                             "column":23,
+                            "commaBefore":false,
                             "number":"700"
                           }
                         ]
@@ -3386,6 +3425,7 @@
                             "node":"ColorValue",
                             "line":59,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#2c3e50"
                           }
                         ]
@@ -3405,6 +3445,7 @@
                             "node":"WordValue",
                             "line":60,
                             "column":27,
+                            "commaBefore":false,
                             "word":"none"
                           }
                         ]
@@ -3430,12 +3471,14 @@
                             "node":"ClassPart",
                             "line":63,
                             "column":8,
+                            "descendant":false,
                             "word":"nav-links"
                           },
                           {
                             "node":"TagPart",
                             "line":63,
                             "column":19,
+                            "descendant":true,
                             "word":"a"
                           }
                         ],
@@ -3458,6 +3501,7 @@
                             "node":"NumberValue",
                             "line":64,
                             "column":23,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -3477,6 +3521,7 @@
                             "node":"WordValue",
                             "line":65,
                             "column":27,
+                            "commaBefore":false,
                             "word":"none"
                           }
                         ]
@@ -3496,6 +3541,7 @@
                             "node":"ColorValue",
                             "line":66,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#34495e"
                           }
                         ]
@@ -3515,6 +3561,7 @@
                             "node":"NumberValue",
                             "line":67,
                             "column":23,
+                            "commaBefore":false,
                             "number":"600"
                           }
                         ]
@@ -3534,18 +3581,21 @@
                             "node":"WordValue",
                             "line":68,
                             "column":22,
+                            "commaBefore":false,
                             "word":"color"
                           },
                           {
                             "node":"NumberValue",
                             "line":68,
                             "column":28,
+                            "commaBefore":false,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
                             "line":68,
                             "column":33,
+                            "commaBefore":false,
                             "word":"ease"
                           }
                         ]
@@ -3571,12 +3621,14 @@
                             "node":"ClassPart",
                             "line":71,
                             "column":8,
+                            "descendant":false,
                             "word":"nav-links"
                           },
                           {
                             "node":"TagPart",
                             "line":71,
                             "column":19,
+                            "descendant":true,
                             "word":"a"
                           }
                         ],
@@ -3604,6 +3656,7 @@
                             "node":"ColorValue",
                             "line":72,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#3498db"
                           }
                         ]
@@ -3629,6 +3682,7 @@
                             "node":"ClassPart",
                             "line":76,
                             "column":8,
+                            "descendant":false,
                             "word":"product-grid"
                           }
                         ],
@@ -3651,6 +3705,7 @@
                             "node":"WordValue",
                             "line":77,
                             "column":19,
+                            "commaBefore":false,
                             "word":"grid"
                           }
                         ]
@@ -3670,6 +3725,7 @@
                             "node":"FunctionValue",
                             "line":78,
                             "column":33,
+                            "commaBefore":false,
                             "function":{
                               "node":"CssFunction",
                               "line":78,
@@ -3684,12 +3740,14 @@
                                     "node":"WordValue",
                                     "line":78,
                                     "column":40,
+                                    "commaBefore":false,
                                     "word":"auto-fill"
                                   },
                                   {
                                     "node":"FunctionValue",
                                     "line":78,
                                     "column":51,
+                                    "commaBefore":true,
                                     "function":{
                                       "node":"CssFunction",
                                       "line":78,
@@ -3704,12 +3762,14 @@
                                             "node":"NumberValue",
                                             "line":78,
                                             "column":58,
+                                            "commaBefore":false,
                                             "number":"280px"
                                           },
                                           {
                                             "node":"NumberValue",
                                             "line":78,
                                             "column":65,
+                                            "commaBefore":true,
                                             "number":"1fr"
                                           }
                                         ]
@@ -3737,6 +3797,7 @@
                             "node":"NumberValue",
                             "line":79,
                             "column":15,
+                            "commaBefore":false,
                             "number":"25px"
                           }
                         ]
@@ -3756,6 +3817,7 @@
                             "node":"NumberValue",
                             "line":80,
                             "column":22,
+                            "commaBefore":false,
                             "number":"30px"
                           }
                         ]
@@ -3781,6 +3843,7 @@
                             "node":"ClassPart",
                             "line":83,
                             "column":8,
+                            "descendant":false,
                             "word":"product-card"
                           }
                         ],
@@ -3803,6 +3866,7 @@
                             "node":"ColorValue",
                             "line":84,
                             "column":22,
+                            "commaBefore":false,
                             "color":"#fff"
                           }
                         ]
@@ -3822,6 +3886,7 @@
                             "node":"NumberValue",
                             "line":85,
                             "column":25,
+                            "commaBefore":false,
                             "number":"10px"
                           }
                         ]
@@ -3841,24 +3906,28 @@
                             "node":"NumberValue",
                             "line":86,
                             "column":22,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":86,
                             "column":24,
+                            "commaBefore":false,
                             "number":"4px"
                           },
                           {
                             "node":"NumberValue",
                             "line":86,
                             "column":28,
+                            "commaBefore":false,
                             "number":"10px"
                           },
                           {
                             "node":"FunctionValue",
                             "line":86,
                             "column":33,
+                            "commaBefore":false,
                             "function":{
                               "node":"CssFunction",
                               "line":86,
@@ -3873,24 +3942,28 @@
                                     "node":"NumberValue",
                                     "line":86,
                                     "column":38,
+                                    "commaBefore":false,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":86,
                                     "column":41,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":86,
                                     "column":44,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":86,
                                     "column":47,
+                                    "commaBefore":true,
                                     "number":"0.08"
                                   }
                                 ]
@@ -3914,6 +3987,7 @@
                             "node":"WordValue",
                             "line":87,
                             "column":20,
+                            "commaBefore":false,
                             "word":"hidden"
                           }
                         ]
@@ -3933,36 +4007,42 @@
                             "node":"WordValue",
                             "line":88,
                             "column":22,
+                            "commaBefore":false,
                             "word":"transform"
                           },
                           {
                             "node":"NumberValue",
                             "line":88,
                             "column":32,
+                            "commaBefore":false,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
                             "line":88,
                             "column":37,
+                            "commaBefore":false,
                             "word":"ease"
                           },
                           {
                             "node":"WordValue",
                             "line":88,
                             "column":43,
+                            "commaBefore":true,
                             "word":"box-shadow"
                           },
                           {
                             "node":"NumberValue",
                             "line":88,
                             "column":54,
+                            "commaBefore":false,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
                             "line":88,
                             "column":59,
+                            "commaBefore":false,
                             "word":"ease"
                           }
                         ]
@@ -3988,6 +4068,7 @@
                             "node":"ClassPart",
                             "line":91,
                             "column":8,
+                            "descendant":false,
                             "word":"product-card"
                           }
                         ],
@@ -4015,6 +4096,7 @@
                             "node":"FunctionValue",
                             "line":92,
                             "column":21,
+                            "commaBefore":false,
                             "function":{
                               "node":"CssFunction",
                               "line":92,
@@ -4029,6 +4111,7 @@
                                     "node":"NumberValue",
                                     "line":92,
                                     "column":32,
+                                    "commaBefore":false,
                                     "number":"-5px"
                                   }
                                 ]
@@ -4052,24 +4135,28 @@
                             "node":"NumberValue",
                             "line":93,
                             "column":22,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":93,
                             "column":24,
+                            "commaBefore":false,
                             "number":"8px"
                           },
                           {
                             "node":"NumberValue",
                             "line":93,
                             "column":28,
+                            "commaBefore":false,
                             "number":"20px"
                           },
                           {
                             "node":"FunctionValue",
                             "line":93,
                             "column":33,
+                            "commaBefore":false,
                             "function":{
                               "node":"CssFunction",
                               "line":93,
@@ -4084,24 +4171,28 @@
                                     "node":"NumberValue",
                                     "line":93,
                                     "column":38,
+                                    "commaBefore":false,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":93,
                                     "column":41,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":93,
                                     "column":44,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":93,
                                     "column":47,
+                                    "commaBefore":true,
                                     "number":"0.12"
                                   }
                                 ]
@@ -4131,12 +4222,14 @@
                             "node":"ClassPart",
                             "line":96,
                             "column":8,
+                            "descendant":false,
                             "word":"product-card"
                           },
                           {
                             "node":"TagPart",
                             "line":96,
                             "column":22,
+                            "descendant":true,
                             "word":"img"
                           }
                         ],
@@ -4159,6 +4252,7 @@
                             "node":"NumberValue",
                             "line":97,
                             "column":17,
+                            "commaBefore":false,
                             "number":"100%"
                           }
                         ]
@@ -4178,6 +4272,7 @@
                             "node":"NumberValue",
                             "line":98,
                             "column":18,
+                            "commaBefore":false,
                             "number":"200px"
                           }
                         ]
@@ -4197,6 +4292,7 @@
                             "node":"WordValue",
                             "line":99,
                             "column":22,
+                            "commaBefore":false,
                             "word":"cover"
                           }
                         ]
@@ -4222,6 +4318,7 @@
                             "node":"ClassPart",
                             "line":102,
                             "column":8,
+                            "descendant":false,
                             "word":"card-content"
                           }
                         ],
@@ -4244,6 +4341,7 @@
                             "node":"NumberValue",
                             "line":103,
                             "column":19,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -4269,12 +4367,14 @@
                             "node":"ClassPart",
                             "line":106,
                             "column":8,
+                            "descendant":false,
                             "word":"card-content"
                           },
                           {
                             "node":"TagPart",
                             "line":106,
                             "column":22,
+                            "descendant":true,
                             "word":"h2"
                           }
                         ],
@@ -4297,6 +4397,7 @@
                             "node":"NumberValue",
                             "line":107,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1.25rem"
                           }
                         ]
@@ -4316,24 +4417,28 @@
                             "node":"NumberValue",
                             "line":108,
                             "column":18,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":108,
                             "column":20,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":108,
                             "column":22,
+                            "commaBefore":false,
                             "number":"10px"
                           },
                           {
                             "node":"NumberValue",
                             "line":108,
                             "column":27,
+                            "commaBefore":false,
                             "number":"0"
                           }
                         ]
@@ -4353,6 +4458,7 @@
                             "node":"ColorValue",
                             "line":109,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#2c3e50"
                           }
                         ]
@@ -4378,6 +4484,7 @@
                             "node":"ClassPart",
                             "line":112,
                             "column":8,
+                            "descendant":false,
                             "word":"price"
                           }
                         ],
@@ -4400,6 +4507,7 @@
                             "node":"NumberValue",
                             "line":113,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1.2rem"
                           }
                         ]
@@ -4419,6 +4527,7 @@
                             "node":"NumberValue",
                             "line":114,
                             "column":23,
+                            "commaBefore":false,
                             "number":"600"
                           }
                         ]
@@ -4438,6 +4547,7 @@
                             "node":"ColorValue",
                             "line":115,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#27ae60"
                           }
                         ]
@@ -4457,12 +4567,14 @@
                             "node":"NumberValue",
                             "line":116,
                             "column":18,
+                            "commaBefore":false,
                             "number":"10px"
                           },
                           {
                             "node":"NumberValue",
                             "line":116,
                             "column":23,
+                            "commaBefore":false,
                             "number":"0"
                           }
                         ]
@@ -4488,6 +4600,7 @@
                             "node":"ClassPart",
                             "line":120,
                             "column":8,
+                            "descendant":false,
                             "word":"btn"
                           }
                         ],
@@ -4510,6 +4623,7 @@
                             "node":"WordValue",
                             "line":121,
                             "column":19,
+                            "commaBefore":false,
                             "word":"inline-block"
                           }
                         ]
@@ -4529,6 +4643,7 @@
                             "node":"ColorValue",
                             "line":122,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#3498db"
                           }
                         ]
@@ -4548,6 +4663,7 @@
                             "node":"ColorValue",
                             "line":123,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#fff"
                           }
                         ]
@@ -4567,12 +4683,14 @@
                             "node":"NumberValue",
                             "line":124,
                             "column":19,
+                            "commaBefore":false,
                             "number":"10px"
                           },
                           {
                             "node":"NumberValue",
                             "line":124,
                             "column":24,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -4592,6 +4710,7 @@
                             "node":"NumberValue",
                             "line":125,
                             "column":25,
+                            "commaBefore":false,
                             "number":"5px"
                           }
                         ]
@@ -4611,6 +4730,7 @@
                             "node":"WordValue",
                             "line":126,
                             "column":27,
+                            "commaBefore":false,
                             "word":"none"
                           }
                         ]
@@ -4630,6 +4750,7 @@
                             "node":"NumberValue",
                             "line":127,
                             "column":23,
+                            "commaBefore":false,
                             "number":"600"
                           }
                         ]
@@ -4649,18 +4770,21 @@
                             "node":"WordValue",
                             "line":128,
                             "column":22,
+                            "commaBefore":false,
                             "word":"background-color"
                           },
                           {
                             "node":"NumberValue",
                             "line":128,
                             "column":39,
+                            "commaBefore":false,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
                             "line":128,
                             "column":44,
+                            "commaBefore":false,
                             "word":"ease"
                           }
                         ]
@@ -4686,6 +4810,7 @@
                             "node":"ClassPart",
                             "line":131,
                             "column":8,
+                            "descendant":false,
                             "word":"btn"
                           }
                         ],
@@ -4713,6 +4838,7 @@
                             "node":"ColorValue",
                             "line":132,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#2980b9"
                           }
                         ]
@@ -4738,6 +4864,7 @@
                             "node":"ClassPart",
                             "line":136,
                             "column":8,
+                            "descendant":false,
                             "word":"detail-page"
                           }
                         ],
@@ -4760,6 +4887,7 @@
                             "node":"NumberValue",
                             "line":137,
                             "column":22,
+                            "commaBefore":false,
                             "number":"30px"
                           }
                         ]
@@ -4785,6 +4913,7 @@
                             "node":"ClassPart",
                             "line":140,
                             "column":8,
+                            "descendant":false,
                             "word":"back-link"
                           }
                         ],
@@ -4807,6 +4936,7 @@
                             "node":"ColorValue",
                             "line":141,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#3498db"
                           }
                         ]
@@ -4826,6 +4956,7 @@
                             "node":"WordValue",
                             "line":142,
                             "column":27,
+                            "commaBefore":false,
                             "word":"none"
                           }
                         ]
@@ -4845,6 +4976,7 @@
                             "node":"NumberValue",
                             "line":143,
                             "column":23,
+                            "commaBefore":false,
                             "number":"600"
                           }
                         ]
@@ -4864,6 +4996,7 @@
                             "node":"NumberValue",
                             "line":144,
                             "column":25,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -4883,6 +5016,7 @@
                             "node":"WordValue",
                             "line":145,
                             "column":19,
+                            "commaBefore":false,
                             "word":"inline-block"
                           }
                         ]
@@ -4908,6 +5042,7 @@
                             "node":"ClassPart",
                             "line":148,
                             "column":8,
+                            "descendant":false,
                             "word":"product-detail-card"
                           }
                         ],
@@ -4930,6 +5065,7 @@
                             "node":"WordValue",
                             "line":149,
                             "column":19,
+                            "commaBefore":false,
                             "word":"flex"
                           }
                         ]
@@ -4949,6 +5085,7 @@
                             "node":"ColorValue",
                             "line":150,
                             "column":22,
+                            "commaBefore":false,
                             "color":"#fff"
                           }
                         ]
@@ -4968,6 +5105,7 @@
                             "node":"NumberValue",
                             "line":151,
                             "column":25,
+                            "commaBefore":false,
                             "number":"10px"
                           }
                         ]
@@ -4987,24 +5125,28 @@
                             "node":"NumberValue",
                             "line":152,
                             "column":22,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":152,
                             "column":24,
+                            "commaBefore":false,
                             "number":"4px"
                           },
                           {
                             "node":"NumberValue",
                             "line":152,
                             "column":28,
+                            "commaBefore":false,
                             "number":"15px"
                           },
                           {
                             "node":"FunctionValue",
                             "line":152,
                             "column":33,
+                            "commaBefore":false,
                             "function":{
                               "node":"CssFunction",
                               "line":152,
@@ -5019,24 +5161,28 @@
                                     "node":"NumberValue",
                                     "line":152,
                                     "column":38,
+                                    "commaBefore":false,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":152,
                                     "column":41,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":152,
                                     "column":44,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":152,
                                     "column":47,
+                                    "commaBefore":true,
                                     "number":"0.1"
                                   }
                                 ]
@@ -5060,6 +5206,7 @@
                             "node":"WordValue",
                             "line":153,
                             "column":20,
+                            "commaBefore":false,
                             "word":"hidden"
                           }
                         ]
@@ -5085,12 +5232,14 @@
                             "node":"ClassPart",
                             "line":156,
                             "column":8,
+                            "descendant":false,
                             "word":"product-detail-card"
                           },
                           {
                             "node":"TagPart",
                             "line":156,
                             "column":29,
+                            "descendant":true,
                             "word":"img"
                           }
                         ],
@@ -5113,6 +5262,7 @@
                             "node":"NumberValue",
                             "line":157,
                             "column":17,
+                            "commaBefore":false,
                             "number":"40%"
                           }
                         ]
@@ -5132,6 +5282,7 @@
                             "node":"WordValue",
                             "line":158,
                             "column":22,
+                            "commaBefore":false,
                             "word":"cover"
                           }
                         ]
@@ -5157,6 +5308,7 @@
                             "node":"ClassPart",
                             "line":161,
                             "column":8,
+                            "descendant":false,
                             "word":"detail-info"
                           }
                         ],
@@ -5179,6 +5331,7 @@
                             "node":"NumberValue",
                             "line":162,
                             "column":19,
+                            "commaBefore":false,
                             "number":"40px"
                           }
                         ]
@@ -5204,12 +5357,14 @@
                             "node":"ClassPart",
                             "line":165,
                             "column":8,
+                            "descendant":false,
                             "word":"detail-info"
                           },
                           {
                             "node":"TagPart",
                             "line":165,
                             "column":21,
+                            "descendant":true,
                             "word":"h1"
                           }
                         ],
@@ -5232,6 +5387,7 @@
                             "node":"NumberValue",
                             "line":166,
                             "column":22,
+                            "commaBefore":false,
                             "number":"0"
                           }
                         ]
@@ -5251,6 +5407,7 @@
                             "node":"ColorValue",
                             "line":167,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#2c3e50"
                           }
                         ]
@@ -5276,12 +5433,14 @@
                             "node":"ClassPart",
                             "line":170,
                             "column":8,
+                            "descendant":false,
                             "word":"detail-info"
                           },
                           {
                             "node":"ClassPart",
                             "line":170,
                             "column":21,
+                            "descendant":true,
                             "word":"details"
                           }
                         ],
@@ -5304,6 +5463,7 @@
                             "node":"NumberValue",
                             "line":171,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1rem"
                           }
                         ]
@@ -5323,6 +5483,7 @@
                             "node":"ColorValue",
                             "line":172,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#555"
                           }
                         ]
@@ -5348,6 +5509,7 @@
                             "node":"ClassPart",
                             "line":176,
                             "column":8,
+                            "descendant":false,
                             "word":"form-container"
                           }
                         ],
@@ -5370,6 +5532,7 @@
                             "node":"NumberValue",
                             "line":177,
                             "column":21,
+                            "commaBefore":false,
                             "number":"600px"
                           }
                         ]
@@ -5389,6 +5552,7 @@
                             "node":"NumberValue",
                             "line":178,
                             "column":22,
+                            "commaBefore":false,
                             "number":"30px"
                           }
                         ]
@@ -5408,6 +5572,7 @@
                             "node":"ColorValue",
                             "line":179,
                             "column":22,
+                            "commaBefore":false,
                             "color":"#fff"
                           }
                         ]
@@ -5427,6 +5592,7 @@
                             "node":"NumberValue",
                             "line":180,
                             "column":19,
+                            "commaBefore":false,
                             "number":"30px"
                           }
                         ]
@@ -5446,6 +5612,7 @@
                             "node":"NumberValue",
                             "line":181,
                             "column":25,
+                            "commaBefore":false,
                             "number":"10px"
                           }
                         ]
@@ -5465,24 +5632,28 @@
                             "node":"NumberValue",
                             "line":182,
                             "column":22,
+                            "commaBefore":false,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
                             "line":182,
                             "column":24,
+                            "commaBefore":false,
                             "number":"4px"
                           },
                           {
                             "node":"NumberValue",
                             "line":182,
                             "column":28,
+                            "commaBefore":false,
                             "number":"15px"
                           },
                           {
                             "node":"FunctionValue",
                             "line":182,
                             "column":33,
+                            "commaBefore":false,
                             "function":{
                               "node":"CssFunction",
                               "line":182,
@@ -5497,24 +5668,28 @@
                                     "node":"NumberValue",
                                     "line":182,
                                     "column":38,
+                                    "commaBefore":false,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":182,
                                     "column":41,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":182,
                                     "column":44,
+                                    "commaBefore":true,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
                                     "line":182,
                                     "column":47,
+                                    "commaBefore":true,
                                     "number":"0.1"
                                   }
                                 ]
@@ -5544,12 +5719,14 @@
                             "node":"ClassPart",
                             "line":185,
                             "column":8,
+                            "descendant":false,
                             "word":"add-form"
                           },
                           {
                             "node":"ClassPart",
                             "line":185,
                             "column":18,
+                            "descendant":true,
                             "word":"form-group"
                           }
                         ],
@@ -5572,6 +5749,7 @@
                             "node":"NumberValue",
                             "line":186,
                             "column":25,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -5597,12 +5775,14 @@
                             "node":"ClassPart",
                             "line":189,
                             "column":8,
+                            "descendant":false,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
                             "line":189,
                             "column":18,
+                            "descendant":true,
                             "word":"label"
                           }
                         ],
@@ -5625,6 +5805,7 @@
                             "node":"WordValue",
                             "line":190,
                             "column":19,
+                            "commaBefore":false,
                             "word":"block"
                           }
                         ]
@@ -5644,6 +5825,7 @@
                             "node":"NumberValue",
                             "line":191,
                             "column":25,
+                            "commaBefore":false,
                             "number":"8px"
                           }
                         ]
@@ -5663,6 +5845,7 @@
                             "node":"NumberValue",
                             "line":192,
                             "column":23,
+                            "commaBefore":false,
                             "number":"600"
                           }
                         ]
@@ -5682,6 +5865,7 @@
                             "node":"ColorValue",
                             "line":193,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#34495e"
                           }
                         ]
@@ -5707,12 +5891,14 @@
                             "node":"ClassPart",
                             "line":196,
                             "column":8,
+                            "descendant":false,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
                             "line":196,
                             "column":18,
+                            "descendant":true,
                             "word":"input"
                           }
                         ],
@@ -5727,12 +5913,14 @@
                             "node":"ClassPart",
                             "line":197,
                             "column":8,
+                            "descendant":false,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
                             "line":197,
                             "column":18,
+                            "descendant":true,
                             "word":"textarea"
                           }
                         ],
@@ -5755,6 +5943,7 @@
                             "node":"NumberValue",
                             "line":198,
                             "column":17,
+                            "commaBefore":false,
                             "number":"100%"
                           }
                         ]
@@ -5774,6 +5963,7 @@
                             "node":"NumberValue",
                             "line":199,
                             "column":19,
+                            "commaBefore":false,
                             "number":"12px"
                           }
                         ]
@@ -5793,18 +5983,21 @@
                             "node":"NumberValue",
                             "line":200,
                             "column":18,
+                            "commaBefore":false,
                             "number":"1px"
                           },
                           {
                             "node":"WordValue",
                             "line":200,
                             "column":22,
+                            "commaBefore":false,
                             "word":"solid"
                           },
                           {
                             "node":"ColorValue",
                             "line":200,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#ccc"
                           }
                         ]
@@ -5824,6 +6017,7 @@
                             "node":"NumberValue",
                             "line":201,
                             "column":25,
+                            "commaBefore":false,
                             "number":"5px"
                           }
                         ]
@@ -5843,12 +6037,14 @@
                             "node":"StringValue",
                             "line":202,
                             "column":23,
+                            "commaBefore":false,
                             "string":"\"Poppins\""
                           },
                           {
                             "node":"WordValue",
                             "line":202,
                             "column":34,
+                            "commaBefore":true,
                             "word":"sans-serif"
                           }
                         ]
@@ -5868,6 +6064,7 @@
                             "node":"NumberValue",
                             "line":203,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1rem"
                           }
                         ]
@@ -5887,6 +6084,7 @@
                             "node":"WordValue",
                             "line":204,
                             "column":22,
+                            "commaBefore":false,
                             "word":"border-box"
                           }
                         ]
@@ -5912,12 +6110,14 @@
                             "node":"ClassPart",
                             "line":207,
                             "column":8,
+                            "descendant":false,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
                             "line":207,
                             "column":18,
+                            "descendant":true,
                             "word":"button"
                           }
                         ],
@@ -5940,6 +6140,7 @@
                             "node":"NumberValue",
                             "line":208,
                             "column":17,
+                            "commaBefore":false,
                             "number":"100%"
                           }
                         ]
@@ -5959,6 +6160,7 @@
                             "node":"NumberValue",
                             "line":209,
                             "column":19,
+                            "commaBefore":false,
                             "number":"12px"
                           }
                         ]
@@ -5978,6 +6180,7 @@
                             "node":"WordValue",
                             "line":210,
                             "column":18,
+                            "commaBefore":false,
                             "word":"none"
                           }
                         ]
@@ -5997,6 +6200,7 @@
                             "node":"ColorValue",
                             "line":211,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#27ae60"
                           }
                         ]
@@ -6016,6 +6220,7 @@
                             "node":"WordValue",
                             "line":212,
                             "column":17,
+                            "commaBefore":false,
                             "word":"white"
                           }
                         ]
@@ -6035,6 +6240,7 @@
                             "node":"NumberValue",
                             "line":213,
                             "column":21,
+                            "commaBefore":false,
                             "number":"1.1rem"
                           }
                         ]
@@ -6054,6 +6260,7 @@
                             "node":"NumberValue",
                             "line":214,
                             "column":23,
+                            "commaBefore":false,
                             "number":"600"
                           }
                         ]
@@ -6073,6 +6280,7 @@
                             "node":"WordValue",
                             "line":215,
                             "column":18,
+                            "commaBefore":false,
                             "word":"pointer"
                           }
                         ]
@@ -6092,6 +6300,7 @@
                             "node":"NumberValue",
                             "line":216,
                             "column":25,
+                            "commaBefore":false,
                             "number":"5px"
                           }
                         ]
@@ -6111,18 +6320,21 @@
                             "node":"WordValue",
                             "line":217,
                             "column":22,
+                            "commaBefore":false,
                             "word":"background-color"
                           },
                           {
                             "node":"NumberValue",
                             "line":217,
                             "column":39,
+                            "commaBefore":false,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
                             "line":217,
                             "column":44,
+                            "commaBefore":false,
                             "word":"ease"
                           }
                         ]
@@ -6148,12 +6360,14 @@
                             "node":"ClassPart",
                             "line":220,
                             "column":8,
+                            "descendant":false,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
                             "line":220,
                             "column":18,
+                            "descendant":true,
                             "word":"button"
                           }
                         ],
@@ -6181,6 +6395,7 @@
                             "node":"ColorValue",
                             "line":221,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#229954"
                           }
                         ]
@@ -6206,6 +6421,7 @@
                             "node":"TagPart",
                             "line":225,
                             "column":8,
+                            "descendant":false,
                             "word":"footer"
                           }
                         ],
@@ -6228,6 +6444,7 @@
                             "node":"WordValue",
                             "line":226,
                             "column":22,
+                            "commaBefore":false,
                             "word":"center"
                           }
                         ]
@@ -6247,6 +6464,7 @@
                             "node":"NumberValue",
                             "line":227,
                             "column":19,
+                            "commaBefore":false,
                             "number":"20px"
                           }
                         ]
@@ -6266,6 +6484,7 @@
                             "node":"NumberValue",
                             "line":228,
                             "column":22,
+                            "commaBefore":false,
                             "number":"40px"
                           }
                         ]
@@ -6285,6 +6504,7 @@
                             "node":"ColorValue",
                             "line":229,
                             "column":22,
+                            "commaBefore":false,
                             "color":"#2c3e50"
                           }
                         ]
@@ -6304,6 +6524,7 @@
                             "node":"ColorValue",
                             "line":230,
                             "column":17,
+                            "commaBefore":false,
                             "color":"#ecf0f1"
                           }
                         ]
@@ -6329,6 +6550,7 @@
                             "node":"ClassPart",
                             "line":232,
                             "column":14,
+                            "descendant":false,
                             "word":"btn-danger"
                           }
                         ],
@@ -6351,6 +6573,7 @@
                             "node":"ColorValue",
                             "line":233,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#e74c3c"
                           }
                         ]
@@ -6376,6 +6599,7 @@
                             "node":"ClassPart",
                             "line":236,
                             "column":8,
+                            "descendant":false,
                             "word":"btn-danger"
                           }
                         ],
@@ -6403,6 +6627,7 @@
                             "node":"ColorValue",
                             "line":237,
                             "column":28,
+                            "commaBefore":false,
                             "color":"#c0392b"
                           }
                         ]

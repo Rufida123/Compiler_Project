@@ -526,8 +526,19 @@ public class Visitor {
         @Override
         public CssSelector visitCssSelector(JinjaParser.CssSelectorContext ctx) {
             CssSelector sel = new CssSelector();
-            for (JinjaParser.SelectorPartContext partCtx : ctx.selectorPart())
-                if (partCtx != null) sel.getParts().add((SelectorPart) visit(partCtx));
+            // CSS_WS is hidden, so the descendant combinator is recovered from the
+            // gap between the previous part's last character and this part's first.
+            int previousEnd = -1;
+            for (JinjaParser.SelectorPartContext partCtx : ctx.selectorPart()) {
+                if (partCtx == null) continue;
+                SelectorPart part = (SelectorPart) visit(partCtx);
+                if (part != null) {
+                    int start = partCtx.getStart().getStartIndex();
+                    part.setDescendant(previousEnd >= 0 && start > previousEnd + 1);
+                    sel.getParts().add(part);
+                }
+                previousEnd = partCtx.getStop().getStopIndex();
+            }
             if (ctx.CSS_COLON() != null && ctx.CSS_WORD() != null) {
                 CssPseudo pseudo = new CssPseudo();
                 pseudo.setWord(ctx.CSS_WORD().getText());
@@ -570,8 +581,23 @@ public class Visitor {
         @Override
         public ValueList visitValueList(JinjaParser.ValueListContext ctx) {
             ValueList list = new ValueList();
-            for (JinjaParser.CssValueContext valCtx : ctx.cssValue())
-                if (valCtx != null) list.getValues().add((CssValue) visit(valCtx));
+            // valueList keeps CSS_COMMA in the grammar; record it on the value that
+            // follows so the renderer can put "rgba(0, 0, 0, 0.1)" back together.
+            java.util.List<Integer> commas = new ArrayList<>();
+            for (org.antlr.v4.runtime.tree.TerminalNode comma : ctx.CSS_COMMA())
+                commas.add(comma.getSymbol().getTokenIndex());
+            int previousToken = -1;
+            for (JinjaParser.CssValueContext valueCtx : ctx.cssValue()) {
+                if (valueCtx == null) continue;
+                CssValue value = (CssValue) visit(valueCtx);
+                if (value != null) {
+                    int start = valueCtx.getStart().getTokenIndex();
+                    final int previous = previousToken;
+                    value.setCommaBefore(commas.stream().anyMatch(i -> i > previous && i < start));
+                    list.getValues().add(value);
+                }
+                previousToken = valueCtx.getStop().getTokenIndex();
+            }
             return list;
         }
 
