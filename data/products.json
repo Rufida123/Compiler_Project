@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop Pro",
+    "price": 1299.99,
+    "image": "https://picsum.photos/seed/laptop1/400/300.jpg",
+    "details": "A powerful laptop for professionals with 16GB RAM and a 512GB SSD."
+  },
+  {
+    "id": 2,
+    "name": "Wireless Mouse",
+    "price": 25.5,
+    "image": "https://picsum.photos/seed/mouse1/400/300.jpg",
+    "details": "Ergonomic wireless mouse with a long-lasting battery."
+  },
+  {
+    "id": 3,
+    "name": "Mechanical Keyboard",
+    "price": 89.0,
+    "image": "https://picsum.photos/seed/keyboard1/400/300.jpg",
+    "details": "RGB backlit mechanical keyboard with satisfying clicky keys."
+  },
+  {
+    "id": 4,
+    "name": "Mobile",
+    "price": 155.0,
+    "image": "https://picsum.photos/seed/laptop1/400/300.jpg",
+    "details": "android"
+  }
+]

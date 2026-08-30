@@ -19,7 +19,8 @@ import pyAntlr.pyParser;
 import semantic.SemanticAnalyzer;
 import semantic.TypeChecker;
 import semantic.EnhancedSemanticAnalyzer;
-import codegen.CodeGenerator;
+import codegen.CompilerArtifactWriter;
+import codegen.StaticSiteGenerator;
 import visitor.Visitor;
 
 import java.nio.file.Files;
@@ -30,8 +31,9 @@ import java.util.List;
 import java.util.Map;
 public class Main {
 
-    /** Suppresses ANTLR's default console error output (e.g. mismatched token warnings). */
-    private static final BaseErrorListener SILENT_LISTENER = new BaseErrorListener() {
+    private static final List<String> PARSE_ERRORS = new ArrayList<>();
+    private static String parsingFile = "<input>";
+    private static final BaseErrorListener COLLECTING_LISTENER = new BaseErrorListener() {
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer,
                                 Object            offendingSymbol,
@@ -39,21 +41,25 @@ public class Main {
                                 int               charPositionInLine,
                                 String            msg,
                                 RecognitionException e) {
-            // intentionally silent
+            PARSE_ERRORS.add(parsingFile + ":" + line + ":" + charPositionInLine + " " + msg);
         }
     };
 
     public static void main(String[] args) throws Exception {
+        PARSE_ERRORS.clear();
 
-        String pythonFilePath   = "./test.py";
-        String templatesDirPath = "./templates";
-        String outputDir        = "./generated_app";  // ← NEW: for code generation
+        Path projectRoot = Path.of("").toAbsolutePath().normalize();
+        String pythonFilePath   = args.length > 0 ? args[0] : projectRoot.resolve("app.py").toString();
+        String templatesDirPath = args.length > 1 ? args[1] : projectRoot.resolve("templates").toString();
+        String outputDir        = args.length > 2 ? args[2] : projectRoot.resolve("output").toString();
+        Path compilerOutputDir  = args.length > 3 ? Path.of(args[3]) : projectRoot.resolve("compiler_output");
 
         // ── PHASE 1: PARSE & build Python AST ────────────────────────────
         System.out.println("========================================");
         System.out.println("Processing Python File: " + pythonFilePath);
         System.out.println("========================================");
         PyProgram pythonAst = processPythonFile(pythonFilePath);
+        if (printParseErrorsAndStop()) return;
 
         // ── PHASE 2A: Run both analyzers on Python ───────────────────────
         SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer();
@@ -71,7 +77,7 @@ public class Main {
         Map<String, JinjaProgram> jinjaTemplates = new HashMap<>();  // ← NEW: store templates
         try (var paths = Files.list(Path.of(templatesDirPath))) {
             for (Path htmlPath : paths
-                    .filter(p -> p.toString().endsWith(".html"))
+                    .filter(p -> p.toString().endsWith(".html") || p.toString().endsWith(".jinja"))
                     .sorted()
                     .toList()) {
 
@@ -81,7 +87,8 @@ public class Main {
                 System.out.println("========================================");
 
                 JinjaProgram htmlAst = processHtmlFile(htmlFilePath);
-                jinjaTemplates.put(htmlFilePath, htmlAst);  // ← NEW: save for code generation
+                if (printParseErrorsAndStop()) return;
+                jinjaTemplates.put(htmlPath.getFileName().toString(), htmlAst);
 
                 semanticAnalyzer.analyzeJinja(htmlAst, htmlFilePath);
                 typeChecker.analyzeJinja(htmlAst, htmlFilePath);
@@ -96,6 +103,9 @@ public class Main {
 
         // ── Print all errors ───────────────────────────────────────────
         printAllErrors(allErrors);
+        CompilerArtifactWriter.write(compilerOutputDir, pythonAst, jinjaTemplates, allErrors,
+                List.of("Input Python: " + pythonFilePath, "Templates: " + templatesDirPath,
+                        "Static output: " + outputDir, "Templates parsed: " + jinjaTemplates.size()));
 
         // ── PHASE 4: Code Generation (if no errors) ──────────────────────
         if (!allErrors.isEmpty()) {
@@ -106,19 +116,16 @@ public class Main {
 
         System.out.println("\n No errors found!");
         System.out.println("\n========================================");
-        System.out.println("PHASE 3: CODE GENERATION");
+        System.out.println("PHASE 3: STATIC HTML GENERATION");
         System.out.println("========================================");
 
-        CodeGenerator generator = new CodeGenerator(outputDir);
-        generator.generate(pythonAst, jinjaTemplates);
+        StaticSiteGenerator.generate(Path.of(pythonFilePath), Path.of(templatesDirPath), Path.of(outputDir), pythonAst, jinjaTemplates);
 
         System.out.println("\n========================================");
         System.out.println("COMPILATION COMPLETE!");
         System.out.println("========================================");
-        System.out.println("To run your Flask app:");
-        System.out.println("  $ cd " + outputDir);
-        System.out.println("  $ pip install -r requirements.txt");
-        System.out.println("  $ python app.py\n");
+        System.out.println("Static HTML written to: " + outputDir);
+        System.out.println("Compiler artefacts written to: " + compilerOutputDir + "\n");
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -150,19 +157,22 @@ public class Main {
 
     // ── Python ────────────────────────────────────────────────────────────────
     private static PyProgram processPythonFile(String filePath) throws Exception {
+        parsingFile = filePath;
         String code = Files.readString(Path.of(filePath));
 
         CharStream        input  = CharStreams.fromString(code);
         pyLexer lexer  = new pyLexer(input);
         lexer.removeErrorListeners();
-        lexer.addErrorListener(SILENT_LISTENER);
+        lexer.addErrorListener(COLLECTING_LISTENER);
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         pyParser parser = new pyParser(tokens);
         parser.removeErrorListeners();
-        parser.addErrorListener(SILENT_LISTENER);
+        parser.addErrorListener(COLLECTING_LISTENER);
 
         pyParser.PyProgramContext tree = parser.pyProgram();
+
+        if (!PARSE_ERRORS.isEmpty()) return null;
 
         System.out.println("=========== PYTHON PARSE TREE ===========");
         System.out.println(tree.toStringTree(parser));
@@ -182,17 +192,20 @@ public class Main {
 
     // ── Jinja / HTML ──────────────────────────────────────────────────────────
     private static JinjaProgram processHtmlFile(String filePath) throws Exception {
+        parsingFile = filePath;
         CharStream        input  = CharStreams.fromFileName(filePath);
         JinjaLexer        lexer  = new JinjaLexer(input);
         lexer.removeErrorListeners();
-        lexer.addErrorListener(SILENT_LISTENER);
+        lexer.addErrorListener(COLLECTING_LISTENER);
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         JinjaParser       parser = new JinjaParser(tokens);
         parser.removeErrorListeners();
-        parser.addErrorListener(SILENT_LISTENER);
+        parser.addErrorListener(COLLECTING_LISTENER);
 
         ParseTree tree = parser.jinjaProgram();
+
+        if (!PARSE_ERRORS.isEmpty()) return null;
 
         Visitor.JinjaBaseVisitor visitor = new Visitor.JinjaBaseVisitor();
         JinjaProgram ast = (JinjaProgram) visitor.visit(tree);
@@ -201,5 +214,13 @@ public class Main {
         System.out.println(ast.toString());
 
         return ast;
+    }
+
+    private static boolean printParseErrorsAndStop() {
+        if (PARSE_ERRORS.isEmpty()) return false;
+        System.out.println("=========== PARSE ERRORS ===========");
+        for (String error : PARSE_ERRORS) System.out.println(error);
+        System.out.println("PARSING FAILED - CODE GENERATION SKIPPED");
+        return true;
     }
 }

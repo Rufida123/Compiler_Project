@@ -36,6 +36,8 @@ import PyClasses.TrueExpr;
 import PyClasses.UnaryMinusExpr;
 import PyClasses.UnaryPostfixExpr;
 import jinjaClasses.AccessExpr;
+import jinjaClasses.DotAccess;
+import jinjaClasses.JinjaBinaryExpr;
 import jinjaClasses.ControlBlock;
 import jinjaClasses.DocumentElement;
 import jinjaClasses.For;
@@ -43,8 +45,10 @@ import jinjaClasses.HtmlAttribute;
 import jinjaClasses.JinjaAttribute;
 import jinjaClasses.JinjaBlock;
 import jinjaClasses.JinjaExpression;
+import jinjaClasses.JinjaFilter;
 import jinjaClasses.JinjaIdentifierChain;
 import jinjaClasses.JinjaPrimary;
+import jinjaClasses.JinjaParenthesizedExpr;
 import jinjaClasses.JinjaProgram;
 import jinjaClasses.JinjaStatementHeader;
 import jinjaClasses.JinjaValueExpr;
@@ -53,6 +57,7 @@ import jinjaClasses.PairedTag;
 import jinjaClasses.PrintBlock;
 import jinjaClasses.SelfClosingTag;
 import jinjaClasses.StringLiteral;
+import jinjaClasses.NumberLiteral;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,6 +77,7 @@ public class TypeChecker {
     private final Map<String, Map<String, String>> routeEndpointParamTypes = new LinkedHashMap<>();
 
     private final Map<String, String>              templateVarTypes  = new LinkedHashMap<>();
+    private final Map<String, Map<String, String>> dictFieldTypes = new LinkedHashMap<>();
 
     public void analyzePython(PyProgram program, String pythonFilePath) {
         errors.clear();
@@ -79,6 +85,7 @@ public class TypeChecker {
         varTypes.clear();
         templateContextVarTypes.clear();
         routeEndpointParamTypes.clear();
+        dictFieldTypes.clear();
 
         if (program == null) return;
         String path = displayPath(pythonFilePath);
@@ -140,6 +147,7 @@ public class TypeChecker {
                     getExprLine(assignStmt.getValue()), filePath);
             String t = inferType(assignStmt.getValue());
             if (!"unknown".equals(t)) varTypes.put(assignStmt.getName(), t);
+            collectDictFieldTypes(assignStmt);
 
         } else if (statement instanceof FuncDefStatement funcDef) {
             checkSuite(funcDef.getBody(), filePath);
@@ -404,43 +412,66 @@ public class TypeChecker {
 
     private void checkJinjaExpr(JinjaExpression expression, int line, String filePath) {
         if (expression == null) return;
-        JinjaPrimary primary = expression.getPrimary();
-        if (!(primary instanceof StringLiteral strLit)) return;
+        checkJinjaPrimary(expression.getPrimary(), line, filePath);
+        inferJinjaExpressionType(expression);
+    }
 
-        String text = strLit.getString();
-        if (text == null || !text.contains("+")) return;
-
-        java.util.regex.Matcher mA = java.util.regex.Pattern
-                .compile("^([a-zA-Z_][a-zA-Z0-9_.]*)\\s*\\+\\s*(['\"].+['\"])$")
-                .matcher(text.trim());
-        if (mA.matches()) {
-            String lhs     = mA.group(1).trim();
-            String rootVar = lhs.contains(".") ? lhs.substring(0, lhs.indexOf('.')) : lhs;
-            String type    = templateVarTypes.getOrDefault(rootVar, "unknown");
-            if (isNumeric(type)) {
-                report(filePath, line, lhs,
-                        "Type Error (Jinja): Cannot concatenate '" + type
-                                + "' with 'str' using '+'. "
-                                + "Use the '~' operator or '|string' filter: "
-                                + "{{ " + lhs + "|string ~ " + mA.group(2) + " }}");
-            }
+    private void checkJinjaPrimary(JinjaPrimary primary, int line, String filePath) {
+        if (primary instanceof JinjaBinaryExpr binary) {
+            checkJinjaPrimary(binary.getLeft(), line, filePath);
+            checkJinjaPrimary(binary.getRight(), line, filePath);
+            String left = inferJinjaType(binary.getLeft()), right = inferJinjaType(binary.getRight());
+            String op = binary.getOperator();
+            if (Set.of("+", "-", "*", "/").contains(op) && (!isNumeric(left) || !isNumeric(right)))
+                report(filePath, binary.getLine() > 0 ? binary.getLine() : line, null,
+                        "Type Error (Jinja): operator '" + op + "' cannot use '" + left + "' and '" + right + "'. Separate text from the value.");
+            else if (Set.of("==", "!=", "<", ">", "<=", ">=").contains(op) && !"unknown".equals(left) && !"unknown".equals(right) && !left.equals(right) && !(isNumeric(left) && isNumeric(right)))
+                report(filePath, binary.getLine() > 0 ? binary.getLine() : line, null,
+                        "Type Error (Jinja): operator '" + op + "' compares incompatible types '" + left + "' and '" + right + "'.");
+        } else if (primary instanceof JinjaParenthesizedExpr parenthesized) {
+            checkJinjaExpr(parenthesized.getExpression(), line, filePath);
         }
+    }
 
-        java.util.regex.Matcher mB = java.util.regex.Pattern
-                .compile("^(['\"].+['\"])\\s*\\+\\s*([a-zA-Z_][a-zA-Z0-9_.]*)$")
-                .matcher(text.trim());
-        if (mB.matches()) {
-            String rhs     = mB.group(2).trim();
-            String rootVar = rhs.contains(".") ? rhs.substring(0, rhs.indexOf('.')) : rhs;
-            String type    = templateVarTypes.getOrDefault(rootVar, "unknown");
-            if (isNumeric(type)) {
-                report(filePath, line, rhs,
-                        "Type Error (Jinja): Cannot concatenate 'str' with '"
-                                + type + "' using '+'. "
-                                + "Use the '~' operator: {{ "
-                                + mB.group(1) + " ~ " + rhs + " }}");
-            }
+    private String inferJinjaType(JinjaPrimary primary) {
+        if (primary instanceof NumberLiteral) return "int";
+        if (primary instanceof StringLiteral) return "str";
+        if (primary instanceof JinjaParenthesizedExpr p) return p.getExpression() == null ? "unknown" : inferJinjaType(p.getExpression().getPrimary());
+        if (primary instanceof JinjaBinaryExpr b) {
+            if ("~".equals(b.getOperator())) return "str";
+            return Set.of("==", "!=", "<", ">", "<=", ">=").contains(b.getOperator()) ? "bool" : "int";
         }
+        if (primary instanceof AccessExpr a && a.getChain() != null) {
+            String root = a.getChain().getIdentifier();
+            for (var access : a.getChain().getAccesses()) if (access instanceof DotAccess dot)
+                return dictFieldTypes.getOrDefault(root, Collections.emptyMap()).getOrDefault(dot.getIdentifier(), "unknown");
+            return templateVarTypes.getOrDefault(root, "unknown");
+        }
+        return "unknown";
+    }
+
+    private String inferJinjaExpressionType(JinjaExpression expression) {
+        if (expression == null) return "unknown";
+        String type = inferJinjaType(expression.getPrimary());
+        for (JinjaFilter filter : safeList(expression.getFilters())) {
+            String name = filter.getName();
+            if (Set.of("string", "upper", "lower", "trim", "replace", "format").contains(name)) type = "str";
+            else if ("int".equals(name)) type = "int";
+            else if ("float".equals(name)) type = "float";
+            else if ("list".equals(name)) type = "list";
+        }
+        return type;
+    }
+
+    private void collectDictFieldTypes(AssignStmt assignment) {
+        PrimaryExpr primary = extractSimplePrimary(assignment.getValue());
+        if (!(primary instanceof DictLiteralExpr dict) || dict.getDictLiteral() == null) return;
+        Map<String, String> fields = new LinkedHashMap<>();
+        for (var entry : safeList(dict.getDictLiteral().getEntries())) {
+            PrimaryExpr key = extractSimplePrimary(entry.getKey());
+            if (key instanceof StringExpr string) fields.put(string.getValue(), inferType(entry.getValue()));
+        }
+        dictFieldTypes.put(assignment.getName(), fields);
     }
 
     private void checkJinjaForLoopType(For forHeader, int line, String filePath) {

@@ -272,12 +272,42 @@ public class Visitor {
         @Override
         public JinjaExpression visitJinjaExpression(JinjaParser.JinjaExpressionContext ctx) {
             JinjaExpression expr = new JinjaExpression();
-            if (ctx.jinjaPrimary() != null)
-                expr.setPrimary((JinjaPrimary) visit(ctx.jinjaPrimary()));
+            if (ctx.jinjaComparison() != null)
+                expr.setPrimary((JinjaPrimary) visit(ctx.jinjaComparison()));
             for (JinjaParser.JinjaFilterContext filterCtx : ctx.jinjaFilter())
                 if (filterCtx != null)
                     expr.getFilters().add((JinjaFilter) visitJinjaFilter(filterCtx));
             return expr;
+        }
+
+        @Override
+        public JinjaPrimary visitJinjaComparison(JinjaParser.JinjaComparisonContext ctx) {
+            return buildJinjaBinary(ctx.jinjaAdditive(), ctx);
+        }
+
+        @Override
+        public JinjaPrimary visitJinjaAdditive(JinjaParser.JinjaAdditiveContext ctx) {
+            return buildJinjaBinary(ctx.jinjaMultiplicative(), ctx);
+        }
+
+        @Override
+        public JinjaPrimary visitJinjaMultiplicative(JinjaParser.JinjaMultiplicativeContext ctx) {
+            return buildJinjaBinary(ctx.jinjaPrimary(), ctx);
+        }
+
+        private JinjaPrimary buildJinjaBinary(List<? extends ParserRuleContext> operands,
+                                              ParserRuleContext context) {
+            if (operands == null || operands.isEmpty()) return null;
+            JinjaPrimary left = (JinjaPrimary) visit(operands.get(0));
+            for (int i = 1; i < operands.size(); i++) {
+                JinjaBinaryExpr binary = new JinjaBinaryExpr();
+                binary.setLine(context.getStart().getLine());
+                binary.setLeft(left);
+                binary.setOperator(context.getChild(2 * i - 1).getText());
+                binary.setRight((JinjaPrimary) visit(operands.get(i)));
+                left = binary;
+            }
+            return left;
         }
 
         @Override
@@ -314,6 +344,13 @@ public class Visitor {
             if (ctx.JINJA_IDENTIFIER() != null) func.setIdentifier(ctx.JINJA_IDENTIFIER().getText());
             if (ctx.jinjaCallArgs()     != null) func.setCallArgs(buildJinjaCallArgs(ctx.jinjaCallArgs()));
             return func;
+        }
+
+        @Override
+        public JinjaParenthesizedExpr visitParenthesizedExpr(JinjaParser.ParenthesizedExprContext ctx) {
+            JinjaParenthesizedExpr expr = new JinjaParenthesizedExpr();
+            expr.setExpression((JinjaExpression) visitJinjaExpression(ctx.jinjaExpression()));
+            return expr;
         }
 
         @Override

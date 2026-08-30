@@ -1,4 +1,4 @@
-// Generated from D:/DOC/Compiler_Project-main (1)/Compiler_Project-main/grammars/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from JinjaParser.g4 by ANTLR 4.13.2
  package jinjaAntlr; 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -141,6 +141,24 @@ public interface JinjaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitJinjaExpression(JinjaParser.JinjaExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JinjaParser#jinjaComparison}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaComparison(JinjaParser.JinjaComparisonContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JinjaParser#jinjaAdditive}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaAdditive(JinjaParser.JinjaAdditiveContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JinjaParser#jinjaMultiplicative}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaMultiplicative(JinjaParser.JinjaMultiplicativeContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code AccessExpr}
 	 * labeled alternative in {@link JinjaParser#jinjaPrimary}.
 	 * @param ctx the parse tree
@@ -189,6 +207,13 @@ public interface JinjaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionCall(JinjaParser.FunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ParenthesizedExpr}
+	 * labeled alternative in {@link JinjaParser#jinjaPrimary}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParenthesizedExpr(JinjaParser.ParenthesizedExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JinjaParser#jinjaIdentifierChain}.
 	 * @param ctx the parse tree

@@ -31,6 +31,10 @@ def product_detail(product_id):
 def test():
     return render_template('test.html', name=name)
 
+@app.route('/delete/<int:product_id>', methods=['POST'])
+def delete_product(product_id):
+    return render_template('index.html', products=products)
+
 # ============ Main ============
 
 if __name__ == '__main__':

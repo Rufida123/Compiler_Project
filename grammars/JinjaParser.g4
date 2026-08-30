@@ -47,7 +47,11 @@ jinjaStatementHeader
     | JINJA_ENDFOR                                #EndFor
     ;
 
-jinjaExpression : jinjaPrimary (JINJA_PIPE jinjaFilter)*;
+jinjaExpression : jinjaComparison (JINJA_PIPE jinjaFilter)*;
+
+jinjaComparison : jinjaAdditive ((JINJA_EQ | JINJA_NEQ | JINJA_LT | JINJA_GT | JINJA_LE | JINJA_GE) jinjaAdditive)*;
+jinjaAdditive : jinjaMultiplicative ((JINJA_PLUS | JINJA_MINUS | JINJA_TILDE) jinjaMultiplicative)*;
+jinjaMultiplicative : jinjaPrimary ((JINJA_MULT | JINJA_DIV) jinjaPrimary)*;
 
 jinjaPrimary
     : jinjaIdentifierChain #AccessExpr
@@ -57,6 +61,7 @@ jinjaPrimary
     | JINJA_FALSE          #FalseLiteral
     | JINJA_NONE           #NoneLiteral
     | JINJA_IDENTIFIER JINJA_OPAR jinjaCallArgs JINJA_CPAR #FunctionCall
+    | JINJA_OPAR jinjaExpression JINJA_CPAR #ParenthesizedExpr
     ;
 
 jinjaIdentifierChain : JINJA_IDENTIFIER ( (JINJA_DOT JINJA_IDENTIFIER) | (JINJA_OBRACK jinjaExpression JINJA_CBRACK) )*;

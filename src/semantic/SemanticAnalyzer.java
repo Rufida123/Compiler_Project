@@ -69,6 +69,7 @@ import jinjaClasses.NormalAttribute;
 import jinjaClasses.PairedTag;
 import jinjaClasses.PrintBlock;
 import jinjaClasses.SelfClosingTag;
+import jinjaClasses.StringLiteral;
 
 import java.nio.file.Path;
 import java.util.ArrayDeque;
@@ -124,9 +125,11 @@ public class SemanticAnalyzer {
     private final Set<String> reportedErrors = new LinkedHashSet<>();
     private final Map<String, Set<String>> templateContexts = new LinkedHashMap<>();
     private final Deque<Set<String>> scopes = new ArrayDeque<>();
+    private final Map<String, Set<String>> routeParameters = new LinkedHashMap<>();
 
     private static final Set<String> PYTHON_BUILTINS = new LinkedHashSet<>(Arrays.asList(
-            "__name__", "next", "range", "len", "float", "int", "str", "list", "dict", "print"
+            "__name__", "__file__", "next", "range", "len", "float", "int", "str",
+            "list", "dict", "print", "open"
     ));
 
     private static final Set<String> PYTHON_RESERVED_WORDS = new LinkedHashSet<>(Arrays.asList(
@@ -155,6 +158,7 @@ public class SemanticAnalyzer {
         reportedErrors.clear();
         templateContexts.clear();
         scopes.clear();
+        routeParameters.clear();
         openScope();
         defineAll(PYTHON_BUILTINS);
         String displayPythonPath = displayPath(pythonFilePath);
@@ -221,6 +225,7 @@ public class SemanticAnalyzer {
             analyzeSuite(funcDef.getBody(), pythonFilePath);
             closeScope();
         } else if (statement instanceof RouteStatement routeStatement) {
+            collectRoute(routeStatement);
             analyzePythonStatement(routeStatement.getFuncDef(), pythonFilePath);
         } else if (statement instanceof ForStatement forStatement) {
             analyzePythonExpression(forStatement.getExpression(), pythonFilePath);
@@ -488,9 +493,33 @@ public class SemanticAnalyzer {
                 }
             }
         } else if (primary instanceof FunctionCall functionCall) {
-            useJinjaVariable(functionCall.getIdentifier(), lineNumber, templateFilePath);
+            if ("url_for".equals(functionCall.getIdentifier())) validateJinjaUrlFor(functionCall, lineNumber, templateFilePath);
+            else useJinjaVariable(functionCall.getIdentifier(), lineNumber, templateFilePath);
             analyzeJinjaCallArgs(functionCall.getCallArgs(), lineNumber, templateFilePath);
         }
+    }
+
+    private void collectRoute(RouteStatement route) {
+        if (route == null || route.getFuncDef() == null || route.getRoutePath() == null) return;
+        Set<String> params = new LinkedHashSet<>();
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("<(?:[a-zA-Z_][a-zA-Z0-9_]*:)?([a-zA-Z_][a-zA-Z0-9_]*)>")
+                .matcher(route.getRoutePath().getPath());
+        while (matcher.find()) params.add(matcher.group(1));
+        routeParameters.put(route.getFuncDef().getName(), params);
+    }
+
+    private void validateJinjaUrlFor(FunctionCall call, int line, String file) {
+        if (!(call.getCallArgs() instanceof CallMixedArgs args) || args.getPosArgs().isEmpty()) return;
+        JinjaPrimary primary = args.getPosArgs().get(0).getExpression() == null ? null : args.getPosArgs().get(0).getExpression().getPrimary();
+        if (!(primary instanceof StringLiteral literal)) return;
+        String endpoint = literal.getString();
+        if (endpoint != null) endpoint = endpoint.replaceFirst("^['\"]", "").replaceFirst("['\"]$", "");
+        Set<String> required = routeParameters.get(endpoint);
+        if (required == null) { report(file, line, endpoint, "url_for references unknown endpoint '" + endpoint + "'"); return; }
+        Set<String> supplied = new LinkedHashSet<>();
+        for (JinjaKwArg arg : safeList(args.getKwArgs())) supplied.add(arg.getIdentifier());
+        for (String parameter : required) if (!supplied.contains(parameter)) report(file, line, parameter, "url_for('" + endpoint + "') is missing route parameter '" + parameter + "'");
+        for (String parameter : supplied) if (!required.contains(parameter)) report(file, line, parameter, "url_for('" + endpoint + "') has unknown route parameter '" + parameter + "'");
     }
 
     private void analyzeJinjaCallArgs(JinjaCallArgs callArgs, int lineNumber, String templateFilePath) {

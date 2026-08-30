@@ -1,0 +1,3 @@
+Semantic report
+===============
+No semantic/type errors.

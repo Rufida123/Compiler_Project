@@ -1,4 +1,4 @@
-// Generated from D:/DOC/Compiler_Project-main (1)/Compiler_Project-main/grammars/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from JinjaParser.g4 by ANTLR 4.13.2
  package jinjaAntlr; 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -230,6 +230,36 @@ public interface JinjaParserListener extends ParseTreeListener {
 	 */
 	void exitJinjaExpression(JinjaParser.JinjaExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JinjaParser#jinjaComparison}.
+	 * @param ctx the parse tree
+	 */
+	void enterJinjaComparison(JinjaParser.JinjaComparisonContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinjaParser#jinjaComparison}.
+	 * @param ctx the parse tree
+	 */
+	void exitJinjaComparison(JinjaParser.JinjaComparisonContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JinjaParser#jinjaAdditive}.
+	 * @param ctx the parse tree
+	 */
+	void enterJinjaAdditive(JinjaParser.JinjaAdditiveContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinjaParser#jinjaAdditive}.
+	 * @param ctx the parse tree
+	 */
+	void exitJinjaAdditive(JinjaParser.JinjaAdditiveContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JinjaParser#jinjaMultiplicative}.
+	 * @param ctx the parse tree
+	 */
+	void enterJinjaMultiplicative(JinjaParser.JinjaMultiplicativeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinjaParser#jinjaMultiplicative}.
+	 * @param ctx the parse tree
+	 */
+	void exitJinjaMultiplicative(JinjaParser.JinjaMultiplicativeContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code AccessExpr}
 	 * labeled alternative in {@link JinjaParser#jinjaPrimary}.
 	 * @param ctx the parse tree
@@ -313,6 +343,18 @@ public interface JinjaParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionCall(JinjaParser.FunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ParenthesizedExpr}
+	 * labeled alternative in {@link JinjaParser#jinjaPrimary}.
+	 * @param ctx the parse tree
+	 */
+	void enterParenthesizedExpr(JinjaParser.ParenthesizedExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ParenthesizedExpr}
+	 * labeled alternative in {@link JinjaParser#jinjaPrimary}.
+	 * @param ctx the parse tree
+	 */
+	void exitParenthesizedExpr(JinjaParser.ParenthesizedExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JinjaParser#jinjaIdentifierChain}.
 	 * @param ctx the parse tree

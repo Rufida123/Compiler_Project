@@ -1,0 +1,5 @@
+Generated: 2026-08-30T11:37:13.164409600Z
+Input Python: C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\app.py
+Templates: C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\templates
+Static output: C:\Users\Lenovo\Desktop\Projects\compiler\Compiler_Project\output
+Templates parsed: 5

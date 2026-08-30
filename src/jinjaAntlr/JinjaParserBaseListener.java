@@ -1,4 +1,4 @@
-// Generated from D:/DOC/Compiler_Project-main (1)/Compiler_Project-main/grammars/JinjaParser.g4 by ANTLR 4.13.2
+// Generated from JinjaParser.g4 by ANTLR 4.13.2
  package jinjaAntlr; 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -245,6 +245,42 @@ public class JinjaParserBaseListener implements JinjaParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterJinjaComparison(JinjaParser.JinjaComparisonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitJinjaComparison(JinjaParser.JinjaComparisonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterJinjaAdditive(JinjaParser.JinjaAdditiveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitJinjaAdditive(JinjaParser.JinjaAdditiveContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterJinjaMultiplicative(JinjaParser.JinjaMultiplicativeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitJinjaMultiplicative(JinjaParser.JinjaMultiplicativeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAccessExpr(JinjaParser.AccessExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -324,6 +360,18 @@ public class JinjaParserBaseListener implements JinjaParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionCall(JinjaParser.FunctionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParenthesizedExpr(JinjaParser.ParenthesizedExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParenthesizedExpr(JinjaParser.ParenthesizedExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
