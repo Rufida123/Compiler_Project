@@ -1034,6 +1034,9 @@ diagnostic tables, and carries a fresh verification log.
 | `35e3a1d` | 13 | P1-9: diagnose unbalanced Jinja control blocks (E-J-08 / E-J-09) |
 | `a1ee2d9` | 14 | P1-7 + P1-5: doctype through the pipeline, and one report per undefined name |
 | `c585458` | 15 | P1-6: round-trip CSS selectors and value lists exactly |
+| `8f274cb` | 9 | docs: bring COMPILER_FLOW.md and PROJECT_AUDIT.md in line with the code |
+| `0c20771` | F1 | E-J-10: reject unsupported Jinja filters instead of passing them through |
+| `0e0be27` | F2 | P2-2: delete the stale .g4/.interp copies under src/*Antlr |
 
 ---
 
@@ -1044,7 +1047,7 @@ diagnostic tables, and carries a fresh verification log.
 | **R1** Grammars for Python / Jinja2 / HTML / CSS | ⚠️ partial | ⚠️ **partial (unchanged, by design)** | Still two grammar pairs: `grammars/pyLexer.g4` + `pyParser.g4`, and `grammars/JinjaLexer.g4` + `JinjaParser.g4` covering Jinja + HTML + CSS through four lexer modes. All four languages are handled; they are not four separate files. `DOCTYPE` is now a real token and `doctype` a real rule (`grammars/JinjaParser.g4:8-16`). |
 | **R2** Two ASTs; generator passes the Python data array into the Jinja tree | ⚠️ partial | ✅ **implemented** | `src/codegen/AstContextExtractor.java` builds context data by walking the Python AST — literals evaluated from nodes (`:196-236`), names folded through module-level `AssignStmt` (`:240-259`), `os.path.join`/`dirname`/`__file__` folded (`:296-317`), and the `open(...)`+`json.load(...)` shape detected structurally (`:352-397`). `StaticSiteGenerator` is AST-first (`:20-21, 30-37, 44-58`). For `app.py`, 3 of 4 pages come from the AST; only `product_detail.html` falls back, because its context is a generator expression. |
 | **R3** OOP AST with line (ideally column) on every node | ⚠️ partial | ✅ **implemented** | New `src/jinjaClasses/JinjaNode.java` is the base of every Jinja/HTML/CSS node and carries `line` + `column`; `PyProgram` gained `column`. Stamped from one place — `Visitor.visit(ParseTree)` override — plus explicit stamping for nodes built outside a rule. **Verified by test**: `AstMetadataTest` walks both AST JSONs and asserts every node has `line >= 1` and `column >= 0` — 723 Python nodes, 1054 Jinja nodes, 0 failures. |
-| **R4** Semantic analysis both sides, ≥5 errors | ✅ (13 / 7) | ✅ **implemented (16 / 9)** | Python-side blocking diagnostics 13 → **16** (the three dead checks now fire). Jinja-side 7 → **9** (tag balance). See the tables below. |
+| **R4** Semantic analysis both sides, ≥5 errors | ✅ (13 / 7) | ✅ **implemented (16 / 10)** | Python-side blocking diagnostics 13 → **16** (the three dead checks now fire). Jinja-side 7 → **10** (tag balance E-J-08/09, unsupported filter E-J-10). See the tables below. |
 | **R5** Code generation + regeneration cycle | ✅ | ✅ **implemented (and now side-effect free)** | Regeneration re-verified live. Also fixed a regression this session exposed: route probing during context extraction was writing to `data/products.json` once the delete route worked. Execution now snapshots globals before probing and stubs `open` against writes (`src/codegen/PythonContextExecutor.java:26-59`), guarded by a test. |
 | **R6** Web UI: list / add / detail / delete | ⚠️ partial | ✅ **implemented** | `delete_product` now removes by id, mutates the shared list in place, calls `save_products_to_json(products)` and redirects (`app.py:64-74`). `PersistentProductsIntegrationTest` simulates the POST, asserts the product leaves `products.json`, regenerates, and asserts it leaves `output/index.html`. |
 | **R7** Print on every node + whole-tree and symbol-table printer | ⚠️ partial | ✅ **implemented** | `MainProgram.print(int)` / `printTree()` render an indented tree (kind, `line:col`, fields, children), polymorphic and overridable. `SymbolTable.print()` shows **every scope ever opened** — scopes are retained after closing, so function parameters and Jinja loop variables stay visible. `--print-ast` prints both trees plus the symbol table and writes `ast_python.txt`, `ast_jinja.txt`, `symbol_table.txt`. The duplicate symbol-table print in the visitor is gone. |
@@ -1092,8 +1095,15 @@ diagnostic tables, and carries a fresh verification log.
 | E-J-07 | TypeChecker | `Type Error (Jinja): Cannot iterate over 'X' — it is 'T', not iterable` | BLOCK | unchanged |
 | **E-J-08** | SemanticAnalyzer | `Unclosed '{% for %}' opened at line N` (also `if`, `block`) | BLOCK | ✅ **new** |
 | **E-J-09** | SemanticAnalyzer | `Unexpected '{% endfor %}' at line N` (also `endif`, `endblock`, `else`) | BLOCK | ✅ **new** |
+| **E-J-10** | SemanticAnalyzer | `Unknown/unsupported filter 'X' at line N. Supported filters: [...].` | BLOCK | ✅ **new** |
 
-**Jinja-side blocking diagnostics: 9** (was 7). Warnings: 0. R4 ✅.
+**Jinja-side blocking diagnostics: 10** (was 7). Warnings: 0. R4 ✅.
+
+**Supported Jinja filters** (`jinjaClasses/JinjaFilters.SUPPORTED`, shared by the analyzer and the
+renderer so they cannot drift): `default`, `float`, `format`, `int`, `length`, `list`, `lower`,
+`replace`, `string`, `trim`, `upper`. Anything else is E-J-10. Before this change an unrecognised
+filter fell through the renderer unchanged — `{{ x | trim }}` emitted the untrimmed value with no
+diagnostic at all.
 
 **Cross-language checks: 5** — E-PY-13, E-PY-15, E-J-02, E-J-03, E-J-04 (unchanged).
 
@@ -1120,17 +1130,17 @@ diagnostic tables, and carries a fresh verification log.
 | P2-1 | 1 121 of 1 635 tracked files were build/env noise | `.gitignore` + `git rm --cached`; **1 635 → 210** tracked files |
 | P2-3 | AST "JSON" was one escaped string | `ast/AstJson.java` emits a real recursive tree; validated with `json.load` |
 | IR-3 | Four separate scope mechanisms | `SemanticAnalyzer` and `EnhancedSemanticAnalyzer` now use `SymbolTable`; **4 → 2** |
+| **P1-8** | Renderer silently passed unknown filters through | `JinjaFilters.SUPPORTED` shared by analyzer + renderer; 11 filters really implemented; E-J-10 blocks the rest |
+| **P2-2** | Stale `.g4`/`.interp` copies under `src/*Antlr` | 8 files deleted; `grammars/README.md` names the authoritative source and the regeneration command |
 
 ### Still open
 
 | Priority | Gap | Why it is still open |
 | --- | --- | --- |
-| **P2-2** | `src/pyAntlr/*.g4` and `src/jinjaAntlr/*.g4` are stale copies of the grammars | Not touched this session. The generated `.java` **is** current and reproducible (re-verified), but the `.g4`/`.interp` copies in those directories still differ from `grammars/`. Fix: delete them, or regenerate with `-encoding UTF-8`. Size: **S** |
 | **P2-4** | `generated_app/` is stale (built from `test.py`), `test.py` is dead input, `Compiler/` is an orphan | Deliberately left: `generated_app/requirements.txt` is what `README.md` uses for venv setup, and `CodeGeneratorIntegrationTest` pins it. Size: **S** |
 | **P2-5** | Dead AST classes (`AttrExpr`, `CallExpr`, `SubscriptExpr`, `IdExpr`, `CssPseudo` partly) never constructed | Cosmetic; removing them risks touching the visitor for no functional gain. Size: **S** |
 | **P2-6** | No build script; every command is a hand-typed `javac`/`java` | Out of scope for this session. `README.md` now carries the exact commands. Size: **S** |
 | **R1 note** | Jinja + HTML + CSS share one grammar pair rather than three files | This is a design choice (lexer modes), not a defect. Only worth changing if the rubric literally demands four grammar files. Size: **M** |
-| **Renderer** | Filters implemented: `upper`, `lower`, `format`. The type checker knows nine. | Partially addressed only: unknown filters still pass the value through silently rather than erroring. Size: **M** |
 | **Attribute Jinja** | The hand-written parser in `Visitor.parseJinjaContent` still stubs `parseBinaryExpr` / `parseConditionalExpr` / `parseLogicalExpr` | Arithmetic or conditionals inside a quoted attribute value are still wrapped as a `StringLiteral`. Size: **M** |
 | **Off-by-one** | Fixed for statements; other contexts not audited | `Visitor` no longer overwrites a statement's line with the preceding `NEWLINE`. Other rules were not systematically re-checked. Size: **S** |
 
@@ -1167,6 +1177,11 @@ Run from the repository root. `CP` = `".build/classes;dependencies/antlr-4.13.2-
 | **F23** | `head -3 output/index.html`, `head -1 output/test.html` | Both start with `<!DOCTYPE html>` |
 | **F24** | `cmp static/style.css output/style.css` and the three other copies | All four **identical** |
 | **F25** | `git ls-files \| wc -l` | **210** (was 1 635) |
+| **F26** | `java -cp $CP app.Main <fixture with `{{ x \| mystery }}`>` | **BLOCKED** — `Unknown/unsupported filter 'mystery' at line 1. Supported filters: [default, float, format, int, length, list, lower, replace, string, trim, upper].` + `CODE GENERATION SKIPPED` |
+| **F27** | Fixture using `upper`, `string`, `trim`, `length`, `format` | **PASS** — `No semantic errors`, renders `  LAPTOP  \|1299.99\|Laptop\|10\|1299.99`; `trim` and `length` now really apply |
+| **F28** | `rm -rf .build/classes` then full rebuild after deleting the stale `.g4`/`.interp` | **PASS** — src and tests compile, all 6 tests pass, generation and `py_compile` pass |
+| **F29** | `ls src/pyAntlr src/jinjaAntlr` | Only generated `.java` and `.tokens` remain (8 files each side) |
+| **F30** | Final full run: `app.Main` then `app.Main --print-ast` | **PASS** — `No semantic/type errors.`, 7 artefacts in `compiler_output/`, 9 files in `output/` |
 
 **Environment:** unchanged from the original audit — Windows 11 Pro 26200, OpenJDK Corretto 17.0.17,
 ANTLR 4.13.2, Python 3.12.10 in `.venv`. No packages were installed during the fix session.

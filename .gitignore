@@ -14,3 +14,5 @@ __pycache__/
 
 # Note: output/ and compiler_output/ are intentionally TRACKED.
 # They are required deliverables of the assignment.
+report_package/
+report_package.zip
