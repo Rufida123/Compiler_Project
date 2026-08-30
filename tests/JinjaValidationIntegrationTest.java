@@ -11,9 +11,41 @@ public final class JinjaValidationIntegrationTest {
         run("missing_parameter", "{{ url_for('detail') }}", false);
         run("unknown_parameter", "{{ url_for('detail', other=product.id) }}", false);
         run("malformed_jinja", "{{ product.price + }}", false);
+
+        // E-J-08 / E-J-09: the grammar accepts unbalanced control blocks, so the
+        // semantic balance pass is what has to catch them.
+        run("balanced_blocks", "{% if product %}<b>{{ product.price }}</b>{% else %}<b>0</b>{% endif %}", true);
+        expect("unclosed_for",   "{% for p in product %}<b>x</b>", "Unclosed '{% for %}' opened at line 1");
+        expect("unclosed_if",    "{% if product %}<b>x</b>",       "Unclosed '{% if %}' opened at line 1");
+        expect("unclosed_block", "{% block body %}<b>x</b>",       "Unclosed '{% block %}' opened at line 1");
+        expect("stray_endfor",   "{% endfor %}",                   "Unexpected '{% endfor %}' at line 1");
+        expect("stray_endif",    "{% endif %}",                    "Unexpected '{% endif %}' at line 1");
+        expect("stray_else",     "{% else %}",                     "Unexpected '{% else %}' at line 1");
         runMalformedPython();
         System.out.println("JinjaValidationIntegrationTest passed");
     }
+
+    /** Asserts the template is rejected AND that semantic_report.txt carries the exact message. */
+    private static void expect(String name, String template, String message) throws Exception {
+        Path root = Files.createTempDirectory("jinja-validation-" + name);
+        Path templates = Files.createDirectory(root.resolve("templates"));
+        Files.writeString(templates.resolve("page.html"), template);
+        Files.writeString(root.resolve("input.py"), INPUT);
+        Path output = root.resolve("generated_app");
+        Path reports = root.resolve("compiler_output");
+        Main.main(new String[]{root.resolve("input.py").toString(), templates.toString(),
+                output.toString(), reports.toString()});
+        if (Files.exists(output)) throw new AssertionError(name + " must not generate output");
+        String report = Files.readString(reports.resolve("semantic_report.txt"));
+        if (!report.contains(message)) {
+            throw new AssertionError(name + ": expected \"" + message + "\" in semantic_report.txt, got:\n" + report);
+        }
+    }
+
+    private static final String INPUT =
+            "from flask import Flask, render_template\napp = Flask(__name__)\n"
+            + "product = {'id': 1, 'price': 100}\n@app.route('/detail/<int:product_id>')\n"
+            + "def detail(product_id):\n    return render_template('page.html', product=product)\n";
 
     private static void run(String name, String template, boolean shouldGenerate) throws Exception {
         Path root = Files.createTempDirectory("jinja-validation-" + name);

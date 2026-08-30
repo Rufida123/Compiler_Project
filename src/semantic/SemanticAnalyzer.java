@@ -47,7 +47,11 @@ import jinjaClasses.CallKwArgs;
 import jinjaClasses.CallMixedArgs;
 import jinjaClasses.ControlBlock;
 import jinjaClasses.DocumentElement;
+import jinjaClasses.Else;
 import jinjaClasses.EndFor;
+import jinjaClasses.EndIf;
+import jinjaClasses.BlockStart;
+import jinjaClasses.BlockEnd;
 import jinjaClasses.For;
 import jinjaClasses.FunctionCall;
 import jinjaClasses.HtmlAttribute;
@@ -191,6 +195,7 @@ public class SemanticAnalyzer {
         defineAll(templateContexts.get(normalizedTemplateName), "context");
 
         if (program != null) {
+            checkTagBalance(program.getHtmlElements(), displayTemplatePath);
             analyzeJinjaElements(program.getHtmlElements(), displayTemplatePath);
         }
 
@@ -428,6 +433,68 @@ public class SemanticAnalyzer {
         if (name != null && !PYTHON_RESERVED_WORDS.contains(name) && !isDefined(name)) {
             report(pythonFilePath, lineNumber, name, "Undefined variable '" + name + "'");
         }
+    }
+
+    /**
+     * The grammar treats {% for %} / {% endfor %} (and if/else/endif,
+     * block/endblock) as independent siblings, so an unbalanced template still
+     * parses.  This pass pairs them and reports the mismatches as blocking
+     * errors, walking the document in source order.
+     */
+    private void checkTagBalance(List<DocumentElement> elements, String templateFilePath) {
+        Deque<OpenTag> open = new ArrayDeque<>();
+        walkTagBalance(elements, open, templateFilePath);
+        while (!open.isEmpty()) {
+            OpenTag unclosed = open.pop();
+            report(templateFilePath, unclosed.line(), unclosed.keyword(),
+                    "Unclosed '{% " + unclosed.keyword() + " %}' opened at line " + unclosed.line());
+        }
+    }
+
+    private record OpenTag(String keyword, int line) {}
+
+    private void walkTagBalance(List<DocumentElement> elements, Deque<OpenTag> open, String templateFilePath) {
+        for (DocumentElement element : safeList(elements)) {
+            if (element instanceof PairedTag pairedTag) {
+                walkTagBalanceAttributes(pairedTag.getAttributes(), open, templateFilePath);
+                walkTagBalance(pairedTag.getChildren(), open, templateFilePath);
+            } else if (element instanceof SelfClosingTag selfClosingTag) {
+                walkTagBalanceAttributes(selfClosingTag.getAttributes(), open, templateFilePath);
+            } else if (element instanceof ControlBlock controlBlock) {
+                balanceHeader(controlBlock.getJinjaStatementHeader(), controlBlock.getLine(), open, templateFilePath);
+            }
+        }
+    }
+
+    private void walkTagBalanceAttributes(List<HtmlAttribute> attributes, Deque<OpenTag> open, String templateFilePath) {
+        for (HtmlAttribute attribute : safeList(attributes)) {
+            if (attribute instanceof JinjaAttribute jinjaAttribute
+                    && jinjaAttribute.getJinjaBlock() instanceof ControlBlock controlBlock) {
+                balanceHeader(controlBlock.getJinjaStatementHeader(), controlBlock.getLine(), open, templateFilePath);
+            }
+        }
+    }
+
+    private void balanceHeader(JinjaStatementHeader header, int line, Deque<OpenTag> open, String templateFilePath) {
+        if (header instanceof For)        { open.push(new OpenTag("for", line)); }
+        else if (header instanceof If)    { open.push(new OpenTag("if", line)); }
+        else if (header instanceof BlockStart) { open.push(new OpenTag("block", line)); }
+        else if (header instanceof EndFor)   { expectOpen(open, "for", "endfor", line, templateFilePath); }
+        else if (header instanceof EndIf)    { expectOpen(open, "if", "endif", line, templateFilePath); }
+        else if (header instanceof BlockEnd) { expectOpen(open, "block", "endblock", line, templateFilePath); }
+        else if (header instanceof Else) {
+            if (open.isEmpty() || !"if".equals(open.peek().keyword())) {
+                report(templateFilePath, line, "else", "Unexpected '{% else %}' at line " + line);
+            }
+        }
+    }
+
+    private void expectOpen(Deque<OpenTag> open, String expected, String closing, int line, String templateFilePath) {
+        if (open.isEmpty() || !expected.equals(open.peek().keyword())) {
+            report(templateFilePath, line, closing, "Unexpected '{% " + closing + " %}' at line " + line);
+            return;
+        }
+        open.pop();
     }
 
     private void analyzeJinjaElements(List<DocumentElement> elements, String templateFilePath) {

@@ -274,7 +274,9 @@ public class Visitor {
 
         @Override
         public BlockEnd visitBlockEnd(JinjaParser.BlockEndContext ctx) {
-            symbolTable.closeScope();
+            // An unbalanced {% endblock %} must not pop the global scope: the
+            // semantic balance pass reports it, the visitor just stays stable.
+            if (symbolTable.getCurrentScopeLevel() > 0) symbolTable.closeScope();
             return new BlockEnd();
         }
 
@@ -307,7 +309,7 @@ public class Visitor {
 
         @Override
         public EndFor visitEndFor(JinjaParser.EndForContext ctx) {
-            symbolTable.closeScope();
+            if (symbolTable.getCurrentScopeLevel() > 0) symbolTable.closeScope();
             return new EndFor();
         }
 
