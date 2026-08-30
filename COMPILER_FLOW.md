@@ -19,9 +19,9 @@ Visitor.java
         ↓
 Python AST
         ↓
-SemanticAnalyzer + TypeChecker
+SemanticAnalyzer + TypeChecker + EnhancedSemanticAnalyzer
         ↓
-Python 3.12 execution
+AstContextExtractor   (تنفيذ Python 3.12 fallback فقط)
         ↓
 Context Data
 
@@ -179,6 +179,10 @@ filename:line:column message
 - إعادة تعريف built-in.
 - attribute غير متوافق مع نوع `str` أو `list` أو `dict` عندما يكون النوع معروفاً.
 - index غير متوافق مع نوع الحاوية.
+- مفتاح dict بقيمة `None`.
+
+> ملاحظة: هذه الفحوصات الثلاث كانت مكتوبة لكنها لم تكن تعمل إطلاقاً
+> (`inferSimpleType` لم تكن ترى خلال `PostfixExpr`)، وتم إصلاحها وإثباتها باختبارات.
 - تعريف الدالة نفسها أكثر من مرة.
 - تحذير عند إسناد المتغير أكثر من مرة في النطاق نفسه.
 - تحذير عند وجود دالة لا تحتوي `return` ويُتوقع أن تعيد قيمة.
@@ -263,11 +267,30 @@ json.dump(products, data_file, indent=2, ensure_ascii=False)
 
 لذلك تبقى المنتجات محفوظة بعد إيقاف Flask.
 
-الحذف الدائم غير منفذ حالياً؛ route الحذف الحالي لا يزيل منتجاً من JSON.
+الحذف الدائم منفذ الآن: `delete_product` يزيل المنتج حسب `id`، يستدعي
+`save_products_to_json(products)`، ثم `redirect(url_for("index"))`.
 
-## 9. استخراج Context Data
+## 9. استخراج Context Data (من Python AST أولاً)
 
-`src/codegen/PythonContextExecutor.java` يشغّل ملف Python باستخدام Python 3.12 للحصول على globals وسياقات `render_template`.
+المسار الافتراضي هو `src/codegen/AstContextExtractor.java`، وهو يبني Context Data بالمشي على
+Python AST دون تنفيذ البرنامج:
+
+- القيم الحرفية (str/int/float/bool/list/dict) تُقَيّم من عقد AST مباشرة.
+- الأسماء تُحل عبر `AssignStmt` على مستوى الموديول (constant folding).
+- `os.path.join` و`os.path.dirname` و`__file__` تُطوى لاسترجاع مسار ملف البيانات من AST.
+- نمط `load_products_from_json()` يُكتشف بنيوياً (`open(<path>)` ثم `json.load(<handle>)`)،
+  ثم يُقرأ ملف JSON المطوي مساره.
+
+`src/codegen/PythonContextExecutor.java` بقي كـ fallback صريح فقط، للقوالب التي يوجد في
+سياقها تعبير لا يمكن طيّه (مثل generator expression في `product_detail`).
+`generation_log.txt` يسجل لكل قالب: `Context source [name]: ast` أو `: executor`.
+
+العلم `-Dcompiler.astContext=false` يعيد السلوك القديم (executor لكل شيء).
+
+يُحل مفسر Python بالترتيب: `.venv\Scripts\python.exe` ثم `COMPILER_PYTHON` ثم `py -3.12` ثم `python3`.
+
+التنفيذ بلا آثار جانبية: يجري التقاط globals قبل استدعاء الـ routes، ويُستبدل `open`
+بنسخة ترفض الكتابة، لأن route الحذف يكتب فعلياً إلى `products.json`.
 
 التنفيذ يستخدم Flask stub صغيراً:
 
@@ -330,16 +353,35 @@ output/
 
 ```text
 compiler_output/
-├── ast_python.json
-├── ast_jinja.json
+├── ast_python.json      شجرة JSON حقيقية متداخلة
+├── ast_jinja.json       شجرة JSON لكل قالب
+├── ast_python.txt       طباعة مقروءة منسقة
+├── ast_jinja.txt        طباعة مقروءة لكل قالب
+├── symbol_table.txt     كل النطاقات ومدخلاتها
 ├── semantic_report.txt
 └── generation_log.txt
 ```
+
+كل عقدة في ملفات JSON تحمل `node` و`line` و`column`.
 
 - `ast_python.json`: تمثيل Python AST.
 - `ast_jinja.json`: AST لكل قالب.
 - `semantic_report.txt`: أخطاء semantic/type أو رسالة نجاح.
 - `generation_log.txt`: وقت التوليد ومسارات الإدخال والخرج وعدد القوالب.
+
+## 11ب. الطباعة (Print)
+
+كل عقدة في الشجرتين ترث `print(int indent)` من `ast.MainProgram`، وهي قابلة للإعادة
+وتطبع: نوع العقدة ثم `line:col` ثم حقولها ثم أبناءها بإزاحة أعمق.
+`printTree()` يطبع الشجرة كاملة، و`SymbolTable.print()` يعرض كل نطاق فُتح أثناء المشي
+(global، `func_*`، `suite_*`، `block_*`، `for_loop`) مع اسم كل مدخل ونوعه وسطره —
+النطاقات تُحفظ بعد إغلاقها لذلك تبقى معاملات الدوال ظاهرة.
+
+```powershell
+java -cp ".build\classes;dependencies\antlr-4.13.2-complete.jar" app.Main --print-ast
+```
+
+يطبع الشجرتين وجدول الرموز على الـ console ويكتب ملفات `.txt` في `compiler_output/`.
 
 ## 12. دورة التشغيل أمام المشرف
 
@@ -427,7 +469,10 @@ Werkzeug==2.3.0
 - `JinjaValidationIntegrationTest`: parsing وJinja semantic/type و`url_for`.
 - `CodeGeneratorIntegrationTest`: يحافظ على اختبار المولد القديم.
 - `PersistentProductsIntegrationTest`: التخزين الدائم وإعادة التوليد.
-- `EnhancedSemanticReportIntegrationTest`: أخطاء وتحذيرات المحلل الإضافي وربطها بالتقرير.
+- `EnhancedSemanticReportIntegrationTest`: أخطاء وتحذيرات المحلل الإضافي، بما فيها
+  الفحوصات الثلاث التي أُصلحت، مع حالة سلبية تثبت عدم وجود false positives.
+- `AstContextExtractorTest`: طي القوائم والقواميس، حل الأسماء، نمط json.load، وتفعيل الـ fallback.
+- `AstMetadataTest`: كل عقدة في الشجرتين تحمل line وcolumn (723 + 1054 عقدة).
 
 اختبار التخزين الدائم يتحقق من:
 
@@ -471,10 +516,10 @@ Semantic/type report: No errors
 - صفحات `output/*.html` ثابتة ولا تعالج POST بنفسها.
 - روابط Flask الديناميكية تحتاج تشغيل Flask؛ أما ملفات HTML فيمكن فتحها مباشرة كصفحات مولدة.
 - إعادة render بعد الإضافة يدوية ومقصودة في هذا التصميم.
-- الحذف الدائم من `products.json` غير منفذ بعد.
 - Jinja macros وincludes وميزات متقدمة أخرى ليست ضمن grammar الحالية.
 - filters غير المعروفة قد تبقى في AST دون استنتاج نوع دقيق.
-- مفسر CSS يعيد بناء ما تمثله CSS AST؛ دعم CSS ليس بعمومية متصفح كامل.
+- مفسر CSS يعيد بناء ما تمثله CSS AST، ويحافظ الآن على descendant combinator
+  وفواصل قوائم القيم (تم التحقق: 32 قاعدة تطابق المصدر تماماً)؛ لكنه ليس بعمومية متصفح كامل.
 - parsing errors تظهر في console، بينما ملفات التقارير الكاملة تُكتب بعد نجاح parsing وبناء AST.
 
 ## 16. قاعدة تطوير أي ميزة جديدة
@@ -492,3 +537,21 @@ authoritative grammar
 ```
 
 لا يجب تعديل Java files المولدة من ANTLR يدوياً.
+
+## 17. الحالة بعد جولة الإصلاحات
+
+ملخص ما تغير عن النسخة السابقة من هذا الملف:
+
+| الموضوع | قبل | بعد |
+| --- | --- | --- |
+| Context Data | تنفيذ `app.py` في subprocess | `AstContextExtractor` يطوي من Python AST؛ executor fallback فقط |
+| موقع العقدة | Python فقط وبدون column | line + column لكل عقدة في الشجرتين |
+| أخطاء Python الحاجبة | 13 | 16 |
+| أخطاء Jinja الحاجبة | 7 | 9 |
+| الحذف | لا يحذف | يحذف ويحفظ |
+| `ast_*.json` | نص مهرّب داخل سلسلة واحدة | شجرة JSON حقيقية |
+| جدول الرموز | غير مستخدم في التحليل الدلالي | مصدر التعريفات لـ E-PY-01 وE-J-01 وE-PY-03 |
+| `<!DOCTYPE html>` | يُحذف (skip) | token → عقدة `Doctype` → يُطبع |
+| مفسر Python | `py -3.12` ثابت | `.venv` ← `COMPILER_PYTHON` ← `py -3.12` ← `python3` |
+
+التفاصيل الكاملة مع الأدلة وأرقام الأسطر في `PROJECT_AUDIT.md`.
