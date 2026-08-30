@@ -69,8 +69,10 @@ public final class StaticSiteGenerator {
         copyAsset(sourceRoot.resolve("static"), output, "style.css");
         copyAsset(sourceRoot.resolve("static"), output, "script.js");
 
-        // Keep the copied app.py runnable from output/ with the same persistent data.
+        // Keep the copied app.py runnable from output/ with the same persistent data
+        // and the same static assets Flask serves at /static/.
         copyDirectory(sourceRoot.resolve("data"), output.resolve("data"));
+        copyDirectory(sourceRoot.resolve("static"), output.resolve("static"));
         return log;
     }
 

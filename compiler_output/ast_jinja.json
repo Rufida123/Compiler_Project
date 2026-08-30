@@ -1539,7 +1539,7 @@
       "node":"HtmlText",
       "line":1,
       "column":38,
-      "text":"\r\n"
+      "text":"\n"
     },
     {
       "node":"ControlBlock",
@@ -1556,7 +1556,7 @@
       "node":"HtmlText",
       "line":2,
       "column":25,
-      "text":"\r\n"
+      "text":"\n"
     },
     {
       "node":"ControlBlock",
@@ -1573,7 +1573,7 @@
       "node":"HtmlText",
       "line":3,
       "column":19,
-      "text":"\r\n"
+      "text":"\n"
     },
     {
       "node":"PairedTag",
@@ -1599,7 +1599,7 @@
           "node":"HtmlText",
           "line":4,
           "column":35,
-          "text":"\r\n    "
+          "text":"\n    "
         },
         {
           "node":"PairedTag",
@@ -1686,7 +1686,7 @@
           "node":"HtmlText",
           "line":5,
           "column":82,
-          "text":"\r\n    "
+          "text":"\n    "
         },
         {
           "node":"PairedTag",
@@ -1712,7 +1712,7 @@
               "node":"HtmlText",
               "line":6,
               "column":37,
-              "text":"\r\n        "
+              "text":"\n        "
             },
             {
               "node":"SelfClosingTag",
@@ -1808,7 +1808,7 @@
               "node":"HtmlText",
               "line":7,
               "column":66,
-              "text":"\r\n        "
+              "text":"\n        "
             },
             {
               "node":"PairedTag",
@@ -1834,7 +1834,7 @@
                   "node":"HtmlText",
                   "line":8,
                   "column":33,
-                  "text":"\r\n            "
+                  "text":"\n            "
                 },
                 {
                   "node":"PairedTag",
@@ -1879,7 +1879,7 @@
                   "node":"HtmlText",
                   "line":9,
                   "column":39,
-                  "text":"\r\n            "
+                  "text":"\n            "
                 },
                 {
                   "node":"PairedTag",
@@ -1975,7 +1975,7 @@
                   "node":"HtmlText",
                   "line":10,
                   "column":68,
-                  "text":"\r\n            "
+                  "text":"\n            "
                 },
                 {
                   "node":"PairedTag",
@@ -2033,7 +2033,7 @@
                   "node":"HtmlText",
                   "line":11,
                   "column":56,
-                  "text":"\r\n            "
+                  "text":"\n            "
                 },
                 {
                   "node":"PairedTag",
@@ -2090,13 +2090,13 @@
                   "node":"HtmlText",
                   "line":12,
                   "column":49,
-                  "text":"\r\n            "
+                  "text":"\n            "
                 },
                 {
                   "node":"HtmlText",
                   "line":13,
                   "column":32,
-                  "text":"\r\n            "
+                  "text":"\n            "
                 },
                 {
                   "node":"PairedTag",
@@ -2205,11 +2205,52 @@
                       "node":"NormalAttribute",
                       "line":14,
                       "column":96,
+                      "key":"data-product-name",
+                      "value":{
+                        "node":"JinjaValueExpr",
+                        "line":14,
+                        "column":114,
+                        "jinjaBlock":{
+                          "node":"PrintBlock",
+                          "line":14,
+                          "column":114,
+                          "jinjaExpression":{
+                            "node":"JinjaExpression",
+                            "line":14,
+                            "column":114,
+                            "primary":{
+                              "node":"AccessExpr",
+                              "line":14,
+                              "column":114,
+                              "chain":{
+                                "node":"JinjaIdentifierChain",
+                                "line":14,
+                                "column":114,
+                                "identifier":"product",
+                                "accesses":[
+                                  {
+                                    "node":"DotAccess",
+                                    "line":14,
+                                    "column":114,
+                                    "identifier":"name"
+                                  }
+                                ]
+                              }
+                            },
+                            "filters":[]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "node":"NormalAttribute",
+                      "line":14,
+                      "column":135,
                       "key":"style",
                       "value":{
                         "node":"PlainValue",
                         "line":14,
-                        "column":102,
+                        "column":141,
                         "text":"margin-top: 30px;"
                       }
                     }
@@ -2218,8 +2259,8 @@
                     {
                       "node":"HtmlText",
                       "line":14,
-                      "column":122,
-                      "text":"\r\n                "
+                      "column":161,
+                      "text":"\n                "
                     },
                     {
                       "node":"PairedTag",
@@ -2269,7 +2310,7 @@
                           "node":"HtmlText",
                           "line":19,
                           "column":17,
-                          "text":"\r\n                    Delete Product\r\n                "
+                          "text":"\n                    Delete Product\n                "
                         }
                       ]
                     },
@@ -2277,7 +2318,7 @@
                       "node":"HtmlText",
                       "line":21,
                       "column":25,
-                      "text":"\r\n            "
+                      "text":"\n            "
                     }
                   ]
                 },
@@ -2285,7 +2326,7 @@
                   "node":"HtmlText",
                   "line":22,
                   "column":19,
-                  "text":"\r\n        "
+                  "text":"\n        "
                 }
               ]
             },
@@ -2293,7 +2334,7 @@
               "node":"HtmlText",
               "line":23,
               "column":14,
-              "text":"\r\n    "
+              "text":"\n    "
             }
           ]
         },
@@ -2301,7 +2342,7 @@
           "node":"HtmlText",
           "line":24,
           "column":10,
-          "text":"\r\n"
+          "text":"\n"
         }
       ]
     },
@@ -2309,7 +2350,7 @@
       "node":"HtmlText",
       "line":25,
       "column":6,
-      "text":"\r\n"
+      "text":"\n"
     },
     {
       "node":"ControlBlock",
@@ -2325,7 +2366,7 @@
       "node":"HtmlText",
       "line":26,
       "column":14,
-      "text":"\r\n"
+      "text":"\n"
     }
   ]},
 "base.html": {
@@ -2337,13 +2378,13 @@
       "node":"HtmlText",
       "line":1,
       "column":28,
-      "text":"\r\n"
+      "text":"\n"
     },
     {
       "node":"HtmlText",
       "line":2,
       "column":15,
-      "text":"\r\n"
+      "text":"\n"
     },
     {
       "node":"PairedTag",
@@ -2369,7 +2410,7 @@
           "node":"HtmlText",
           "line":3,
           "column":16,
-          "text":"\r\n"
+          "text":"\n"
         },
         {
           "node":"PairedTag",
@@ -2382,7 +2423,7 @@
               "node":"HtmlText",
               "line":4,
               "column":6,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"SelfClosingTag",
@@ -2408,7 +2449,7 @@
               "node":"HtmlText",
               "line":5,
               "column":28,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"SelfClosingTag",
@@ -2446,7 +2487,7 @@
               "node":"HtmlText",
               "line":6,
               "column":76,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"PairedTag",
@@ -2467,13 +2508,13 @@
               "node":"HtmlText",
               "line":7,
               "column":37,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"HtmlText",
               "line":8,
               "column":41,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"SelfClosingTag",
@@ -2511,7 +2552,7 @@
               "node":"HtmlText",
               "line":9,
               "column":65,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"SelfClosingTag",
@@ -2556,7 +2597,7 @@
               "node":"HtmlText",
               "line":10,
               "column":74,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"SelfClosingTag",
@@ -2594,37 +2635,108 @@
               "node":"HtmlText",
               "line":14,
               "column":6,
-              "text":"\r\n    "
+              "text":"\n    "
             },
             {
               "node":"HtmlText",
-              "line":15,
+              "line":16,
+              "column":69,
+              "text":"\n    "
+            },
+            {
+              "node":"SelfClosingTag",
+              "line":17,
+              "column":4,
+              "tagName":"link",
+              "attributes":[
+                {
+                  "node":"NormalAttribute",
+                  "line":17,
+                  "column":10,
+                  "key":"rel",
+                  "value":{
+                    "node":"PlainValue",
+                    "line":17,
+                    "column":14,
+                    "text":"stylesheet"
+                  }
+                },
+                {
+                  "node":"NormalAttribute",
+                  "line":17,
+                  "column":27,
+                  "key":"href",
+                  "value":{
+                    "node":"PlainValue",
+                    "line":17,
+                    "column":32,
+                    "text":"/static/style.css"
+                  }
+                }
+              ]
+            },
+            {
+              "node":"HtmlText",
+              "line":17,
+              "column":54,
+              "text":"\n    "
+            },
+            {
+              "node":"PairedTag",
+              "line":18,
+              "column":4,
+              "tagName":"script",
+              "attributes":[
+                {
+                  "node":"NormalAttribute",
+                  "line":18,
+                  "column":12,
+                  "key":"src",
+                  "value":{
+                    "node":"PlainValue",
+                    "line":18,
+                    "column":16,
+                    "text":"/static/script.js"
+                  }
+                }
+              ],
+              "children":[]
+            },
+            {
+              "node":"HtmlText",
+              "line":18,
+              "column":45,
+              "text":"\n    "
+            },
+            {
+              "node":"HtmlText",
+              "line":19,
               "column":30,
-              "text":"\r\n\r\n    "
+              "text":"\n\n    "
             },
             {
               "node":"StyleTag",
-              "line":17,
+              "line":21,
               "column":4,
               "tagName":"<style>",
               "cssRules":[
                 {
                   "node":"CssRule",
-                  "line":19,
+                  "line":23,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":19,
+                    "line":23,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":19,
+                        "line":23,
                         "column":8,
                         "parts":[
                           {
                             "node":"TagPart",
-                            "line":19,
+                            "line":23,
                             "column":8,
                             "word":"body"
                           }
@@ -2636,23 +2748,23 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":20,
+                      "line":24,
                       "column":10,
                       "word":"font-family",
                       "valueList":{
                         "node":"ValueList",
-                        "line":20,
+                        "line":24,
                         "column":23,
                         "values":[
                           {
                             "node":"StringValue",
-                            "line":20,
+                            "line":24,
                             "column":23,
                             "string":"\"Poppins\""
                           },
                           {
                             "node":"WordValue",
-                            "line":20,
+                            "line":24,
                             "column":34,
                             "word":"sans-serif"
                           }
@@ -2661,17 +2773,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":21,
+                      "line":25,
                       "column":10,
                       "word":"margin",
                       "valueList":{
                         "node":"ValueList",
-                        "line":21,
+                        "line":25,
                         "column":18,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":21,
+                            "line":25,
                             "column":18,
                             "number":"0"
                           }
@@ -2680,17 +2792,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":22,
+                      "line":26,
                       "column":10,
                       "word":"background-color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":22,
+                        "line":26,
                         "column":28,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":22,
+                            "line":26,
                             "column":28,
                             "color":"#f4f7f6"
                           }
@@ -2699,17 +2811,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":23,
+                      "line":27,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":23,
+                        "line":27,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":23,
+                            "line":27,
                             "column":17,
                             "color":"#333"
                           }
@@ -2718,17 +2830,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":24,
+                      "line":28,
                       "column":10,
                       "word":"line-height",
                       "valueList":{
                         "node":"ValueList",
-                        "line":24,
+                        "line":28,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":24,
+                            "line":28,
                             "column":23,
                             "number":"1.6"
                           }
@@ -2739,21 +2851,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":27,
+                  "line":31,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":27,
+                    "line":31,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":27,
+                        "line":31,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":27,
+                            "line":31,
                             "column":8,
                             "word":"container"
                           }
@@ -2765,17 +2877,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":28,
+                      "line":32,
                       "column":10,
                       "word":"max-width",
                       "valueList":{
                         "node":"ValueList",
-                        "line":28,
+                        "line":32,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":28,
+                            "line":32,
                             "column":21,
                             "number":"1200px"
                           }
@@ -2784,23 +2896,23 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":29,
+                      "line":33,
                       "column":10,
                       "word":"margin",
                       "valueList":{
                         "node":"ValueList",
-                        "line":29,
+                        "line":33,
                         "column":18,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":29,
+                            "line":33,
                             "column":18,
                             "number":"0"
                           },
                           {
                             "node":"WordValue",
-                            "line":29,
+                            "line":33,
                             "column":20,
                             "word":"auto"
                           }
@@ -2809,17 +2921,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":30,
+                      "line":34,
                       "column":10,
                       "word":"padding",
                       "valueList":{
                         "node":"ValueList",
-                        "line":30,
+                        "line":34,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":30,
+                            "line":34,
                             "column":19,
                             "number":"20px"
                           }
@@ -2830,21 +2942,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":34,
+                  "line":38,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":34,
+                    "line":38,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":34,
+                        "line":38,
                         "column":8,
                         "parts":[
                           {
                             "node":"TagPart",
-                            "line":34,
+                            "line":38,
                             "column":8,
                             "word":"header"
                           }
@@ -2856,17 +2968,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":35,
+                      "line":39,
                       "column":10,
                       "word":"background-color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":35,
+                        "line":39,
                         "column":28,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":35,
+                            "line":39,
                             "column":28,
                             "color":"#ffffff"
                           }
@@ -2875,67 +2987,67 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":36,
+                      "line":40,
                       "column":10,
                       "word":"box-shadow",
                       "valueList":{
                         "node":"ValueList",
-                        "line":36,
+                        "line":40,
                         "column":22,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":36,
+                            "line":40,
                             "column":22,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":36,
+                            "line":40,
                             "column":24,
                             "number":"2px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":36,
+                            "line":40,
                             "column":28,
                             "number":"4px"
                           },
                           {
                             "node":"FunctionValue",
-                            "line":36,
+                            "line":40,
                             "column":32,
                             "function":{
                               "node":"CssFunction",
-                              "line":36,
+                              "line":40,
                               "column":32,
                               "word":"rgba",
                               "valueList":{
                                 "node":"ValueList",
-                                "line":36,
+                                "line":40,
                                 "column":37,
                                 "values":[
                                   {
                                     "node":"NumberValue",
-                                    "line":36,
+                                    "line":40,
                                     "column":37,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":36,
+                                    "line":40,
                                     "column":40,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":36,
+                                    "line":40,
                                     "column":43,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":36,
+                                    "line":40,
                                     "column":46,
                                     "number":"0.1"
                                   }
@@ -2948,23 +3060,23 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":37,
+                      "line":41,
                       "column":10,
                       "word":"padding",
                       "valueList":{
                         "node":"ValueList",
-                        "line":37,
+                        "line":41,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":37,
+                            "line":41,
                             "column":19,
                             "number":"1rem"
                           },
                           {
                             "node":"NumberValue",
-                            "line":37,
+                            "line":41,
                             "column":24,
                             "number":"0"
                           }
@@ -2973,17 +3085,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":38,
+                      "line":42,
                       "column":10,
                       "word":"position",
                       "valueList":{
                         "node":"ValueList",
-                        "line":38,
+                        "line":42,
                         "column":20,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":38,
+                            "line":42,
                             "column":20,
                             "word":"sticky"
                           }
@@ -2992,17 +3104,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":39,
+                      "line":43,
                       "column":10,
                       "word":"top",
                       "valueList":{
                         "node":"ValueList",
-                        "line":39,
+                        "line":43,
                         "column":15,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":39,
+                            "line":43,
                             "column":15,
                             "number":"0"
                           }
@@ -3011,17 +3123,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":40,
+                      "line":44,
                       "column":10,
                       "word":"z-index",
                       "valueList":{
                         "node":"ValueList",
-                        "line":40,
+                        "line":44,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":40,
+                            "line":44,
                             "column":19,
                             "number":"1000"
                           }
@@ -3032,21 +3144,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":43,
+                  "line":47,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":43,
+                    "line":47,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":43,
+                        "line":47,
                         "column":8,
                         "parts":[
                           {
                             "node":"TagPart",
-                            "line":43,
+                            "line":47,
                             "column":8,
                             "word":"nav"
                           }
@@ -3058,17 +3170,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":44,
+                      "line":48,
                       "column":10,
                       "word":"display",
                       "valueList":{
                         "node":"ValueList",
-                        "line":44,
+                        "line":48,
                         "column":19,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":44,
+                            "line":48,
                             "column":19,
                             "word":"flex"
                           }
@@ -3077,17 +3189,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":45,
+                      "line":49,
                       "column":10,
                       "word":"justify-content",
                       "valueList":{
                         "node":"ValueList",
-                        "line":45,
+                        "line":49,
                         "column":27,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":45,
+                            "line":49,
                             "column":27,
                             "word":"space-between"
                           }
@@ -3096,17 +3208,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":46,
+                      "line":50,
                       "column":10,
                       "word":"align-items",
                       "valueList":{
                         "node":"ValueList",
-                        "line":46,
+                        "line":50,
                         "column":23,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":46,
+                            "line":50,
                             "column":23,
                             "word":"center"
                           }
@@ -3115,17 +3227,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":47,
+                      "line":51,
                       "column":10,
                       "word":"max-width",
                       "valueList":{
                         "node":"ValueList",
-                        "line":47,
+                        "line":51,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":47,
+                            "line":51,
                             "column":21,
                             "number":"1200px"
                           }
@@ -3134,23 +3246,23 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":48,
+                      "line":52,
                       "column":10,
                       "word":"margin",
                       "valueList":{
                         "node":"ValueList",
-                        "line":48,
+                        "line":52,
                         "column":18,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":48,
+                            "line":52,
                             "column":18,
                             "number":"0"
                           },
                           {
                             "node":"WordValue",
-                            "line":48,
+                            "line":52,
                             "column":20,
                             "word":"auto"
                           }
@@ -3159,23 +3271,23 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":49,
+                      "line":53,
                       "column":10,
                       "word":"padding",
                       "valueList":{
                         "node":"ValueList",
-                        "line":49,
+                        "line":53,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":49,
+                            "line":53,
                             "column":19,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":49,
+                            "line":53,
                             "column":21,
                             "number":"20px"
                           }
@@ -3186,21 +3298,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":52,
+                  "line":56,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":52,
+                    "line":56,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":52,
+                        "line":56,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":52,
+                            "line":56,
                             "column":8,
                             "word":"logo"
                           }
@@ -3212,17 +3324,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":53,
+                      "line":57,
                       "column":10,
                       "word":"font-size",
                       "valueList":{
                         "node":"ValueList",
-                        "line":53,
+                        "line":57,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":53,
+                            "line":57,
                             "column":21,
                             "number":"1.5rem"
                           }
@@ -3231,17 +3343,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":54,
+                      "line":58,
                       "column":10,
                       "word":"font-weight",
                       "valueList":{
                         "node":"ValueList",
-                        "line":54,
+                        "line":58,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":54,
+                            "line":58,
                             "column":23,
                             "number":"700"
                           }
@@ -3250,17 +3362,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":55,
+                      "line":59,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":55,
+                        "line":59,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":55,
+                            "line":59,
                             "column":17,
                             "color":"#2c3e50"
                           }
@@ -3269,17 +3381,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":56,
+                      "line":60,
                       "column":10,
                       "word":"text-decoration",
                       "valueList":{
                         "node":"ValueList",
-                        "line":56,
+                        "line":60,
                         "column":27,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":56,
+                            "line":60,
                             "column":27,
                             "word":"none"
                           }
@@ -3290,27 +3402,27 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":59,
+                  "line":63,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":59,
+                    "line":63,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":59,
+                        "line":63,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":59,
+                            "line":63,
                             "column":8,
                             "word":"nav-links"
                           },
                           {
                             "node":"TagPart",
-                            "line":59,
+                            "line":63,
                             "column":19,
                             "word":"a"
                           }
@@ -3322,17 +3434,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":60,
+                      "line":64,
                       "column":10,
                       "word":"margin-left",
                       "valueList":{
                         "node":"ValueList",
-                        "line":60,
+                        "line":64,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":60,
+                            "line":64,
                             "column":23,
                             "number":"20px"
                           }
@@ -3341,17 +3453,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":61,
+                      "line":65,
                       "column":10,
                       "word":"text-decoration",
                       "valueList":{
                         "node":"ValueList",
-                        "line":61,
+                        "line":65,
                         "column":27,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":61,
+                            "line":65,
                             "column":27,
                             "word":"none"
                           }
@@ -3360,17 +3472,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":62,
+                      "line":66,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":62,
+                        "line":66,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":62,
+                            "line":66,
                             "column":17,
                             "color":"#34495e"
                           }
@@ -3379,17 +3491,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":63,
+                      "line":67,
                       "column":10,
                       "word":"font-weight",
                       "valueList":{
                         "node":"ValueList",
-                        "line":63,
+                        "line":67,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":63,
+                            "line":67,
                             "column":23,
                             "number":"600"
                           }
@@ -3398,29 +3510,29 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":64,
+                      "line":68,
                       "column":10,
                       "word":"transition",
                       "valueList":{
                         "node":"ValueList",
-                        "line":64,
+                        "line":68,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":64,
+                            "line":68,
                             "column":22,
                             "word":"color"
                           },
                           {
                             "node":"NumberValue",
-                            "line":64,
+                            "line":68,
                             "column":28,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
-                            "line":64,
+                            "line":68,
                             "column":33,
                             "word":"ease"
                           }
@@ -3431,34 +3543,34 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":67,
+                  "line":71,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":67,
+                    "line":71,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":67,
+                        "line":71,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":67,
+                            "line":71,
                             "column":8,
                             "word":"nav-links"
                           },
                           {
                             "node":"TagPart",
-                            "line":67,
+                            "line":71,
                             "column":19,
                             "word":"a"
                           }
                         ],
                         "pseudo":{
                           "node":"CssPseudo",
-                          "line":67,
+                          "line":71,
                           "column":8,
                           "word":"hover"
                         }
@@ -3468,17 +3580,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":68,
+                      "line":72,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":68,
+                        "line":72,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":68,
+                            "line":72,
                             "column":17,
                             "color":"#3498db"
                           }
@@ -3489,21 +3601,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":72,
+                  "line":76,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":72,
+                    "line":76,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":72,
+                        "line":76,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":72,
+                            "line":76,
                             "column":8,
                             "word":"product-grid"
                           }
@@ -3515,17 +3627,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":73,
+                      "line":77,
                       "column":10,
                       "word":"display",
                       "valueList":{
                         "node":"ValueList",
-                        "line":73,
+                        "line":77,
                         "column":19,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":73,
+                            "line":77,
                             "column":19,
                             "word":"grid"
                           }
@@ -3534,57 +3646,57 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":74,
+                      "line":78,
                       "column":10,
                       "word":"grid-template-columns",
                       "valueList":{
                         "node":"ValueList",
-                        "line":74,
+                        "line":78,
                         "column":33,
                         "values":[
                           {
                             "node":"FunctionValue",
-                            "line":74,
+                            "line":78,
                             "column":33,
                             "function":{
                               "node":"CssFunction",
-                              "line":74,
+                              "line":78,
                               "column":33,
                               "word":"repeat",
                               "valueList":{
                                 "node":"ValueList",
-                                "line":74,
+                                "line":78,
                                 "column":40,
                                 "values":[
                                   {
                                     "node":"WordValue",
-                                    "line":74,
+                                    "line":78,
                                     "column":40,
                                     "word":"auto-fill"
                                   },
                                   {
                                     "node":"FunctionValue",
-                                    "line":74,
+                                    "line":78,
                                     "column":51,
                                     "function":{
                                       "node":"CssFunction",
-                                      "line":74,
+                                      "line":78,
                                       "column":51,
                                       "word":"minmax",
                                       "valueList":{
                                         "node":"ValueList",
-                                        "line":74,
+                                        "line":78,
                                         "column":58,
                                         "values":[
                                           {
                                             "node":"NumberValue",
-                                            "line":74,
+                                            "line":78,
                                             "column":58,
                                             "number":"280px"
                                           },
                                           {
                                             "node":"NumberValue",
-                                            "line":74,
+                                            "line":78,
                                             "column":65,
                                             "number":"1fr"
                                           }
@@ -3601,17 +3713,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":75,
+                      "line":79,
                       "column":10,
                       "word":"gap",
                       "valueList":{
                         "node":"ValueList",
-                        "line":75,
+                        "line":79,
                         "column":15,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":75,
+                            "line":79,
                             "column":15,
                             "number":"25px"
                           }
@@ -3620,17 +3732,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":76,
+                      "line":80,
                       "column":10,
                       "word":"margin-top",
                       "valueList":{
                         "node":"ValueList",
-                        "line":76,
+                        "line":80,
                         "column":22,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":76,
+                            "line":80,
                             "column":22,
                             "number":"30px"
                           }
@@ -3641,21 +3753,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":79,
+                  "line":83,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":79,
+                    "line":83,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":79,
+                        "line":83,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":79,
+                            "line":83,
                             "column":8,
                             "word":"product-card"
                           }
@@ -3667,17 +3779,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":80,
+                      "line":84,
                       "column":10,
                       "word":"background",
                       "valueList":{
                         "node":"ValueList",
-                        "line":80,
+                        "line":84,
                         "column":22,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":80,
+                            "line":84,
                             "column":22,
                             "color":"#fff"
                           }
@@ -3686,17 +3798,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":81,
+                      "line":85,
                       "column":10,
                       "word":"border-radius",
                       "valueList":{
                         "node":"ValueList",
-                        "line":81,
+                        "line":85,
                         "column":25,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":81,
+                            "line":85,
                             "column":25,
                             "number":"10px"
                           }
@@ -3705,67 +3817,67 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":82,
+                      "line":86,
                       "column":10,
                       "word":"box-shadow",
                       "valueList":{
                         "node":"ValueList",
-                        "line":82,
+                        "line":86,
                         "column":22,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":82,
+                            "line":86,
                             "column":22,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":82,
+                            "line":86,
                             "column":24,
                             "number":"4px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":82,
+                            "line":86,
                             "column":28,
                             "number":"10px"
                           },
                           {
                             "node":"FunctionValue",
-                            "line":82,
+                            "line":86,
                             "column":33,
                             "function":{
                               "node":"CssFunction",
-                              "line":82,
+                              "line":86,
                               "column":33,
                               "word":"rgba",
                               "valueList":{
                                 "node":"ValueList",
-                                "line":82,
+                                "line":86,
                                 "column":38,
                                 "values":[
                                   {
                                     "node":"NumberValue",
-                                    "line":82,
+                                    "line":86,
                                     "column":38,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":82,
+                                    "line":86,
                                     "column":41,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":82,
+                                    "line":86,
                                     "column":44,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":82,
+                                    "line":86,
                                     "column":47,
                                     "number":"0.08"
                                   }
@@ -3778,17 +3890,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":83,
+                      "line":87,
                       "column":10,
                       "word":"overflow",
                       "valueList":{
                         "node":"ValueList",
-                        "line":83,
+                        "line":87,
                         "column":20,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":83,
+                            "line":87,
                             "column":20,
                             "word":"hidden"
                           }
@@ -3797,47 +3909,47 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":84,
+                      "line":88,
                       "column":10,
                       "word":"transition",
                       "valueList":{
                         "node":"ValueList",
-                        "line":84,
+                        "line":88,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":84,
+                            "line":88,
                             "column":22,
                             "word":"transform"
                           },
                           {
                             "node":"NumberValue",
-                            "line":84,
+                            "line":88,
                             "column":32,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
-                            "line":84,
+                            "line":88,
                             "column":37,
                             "word":"ease"
                           },
                           {
                             "node":"WordValue",
-                            "line":84,
+                            "line":88,
                             "column":43,
                             "word":"box-shadow"
                           },
                           {
                             "node":"NumberValue",
-                            "line":84,
+                            "line":88,
                             "column":54,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
-                            "line":84,
+                            "line":88,
                             "column":59,
                             "word":"ease"
                           }
@@ -3848,28 +3960,28 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":87,
+                  "line":91,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":87,
+                    "line":91,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":87,
+                        "line":91,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":87,
+                            "line":91,
                             "column":8,
                             "word":"product-card"
                           }
                         ],
                         "pseudo":{
                           "node":"CssPseudo",
-                          "line":87,
+                          "line":91,
                           "column":8,
                           "word":"hover"
                         }
@@ -3879,31 +3991,31 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":88,
+                      "line":92,
                       "column":10,
                       "word":"transform",
                       "valueList":{
                         "node":"ValueList",
-                        "line":88,
+                        "line":92,
                         "column":21,
                         "values":[
                           {
                             "node":"FunctionValue",
-                            "line":88,
+                            "line":92,
                             "column":21,
                             "function":{
                               "node":"CssFunction",
-                              "line":88,
+                              "line":92,
                               "column":21,
                               "word":"translateY",
                               "valueList":{
                                 "node":"ValueList",
-                                "line":88,
+                                "line":92,
                                 "column":32,
                                 "values":[
                                   {
                                     "node":"NumberValue",
-                                    "line":88,
+                                    "line":92,
                                     "column":32,
                                     "number":"-5px"
                                   }
@@ -3916,67 +4028,67 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":89,
+                      "line":93,
                       "column":10,
                       "word":"box-shadow",
                       "valueList":{
                         "node":"ValueList",
-                        "line":89,
+                        "line":93,
                         "column":22,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":89,
+                            "line":93,
                             "column":22,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":89,
+                            "line":93,
                             "column":24,
                             "number":"8px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":89,
+                            "line":93,
                             "column":28,
                             "number":"20px"
                           },
                           {
                             "node":"FunctionValue",
-                            "line":89,
+                            "line":93,
                             "column":33,
                             "function":{
                               "node":"CssFunction",
-                              "line":89,
+                              "line":93,
                               "column":33,
                               "word":"rgba",
                               "valueList":{
                                 "node":"ValueList",
-                                "line":89,
+                                "line":93,
                                 "column":38,
                                 "values":[
                                   {
                                     "node":"NumberValue",
-                                    "line":89,
+                                    "line":93,
                                     "column":38,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":89,
+                                    "line":93,
                                     "column":41,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":89,
+                                    "line":93,
                                     "column":44,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":89,
+                                    "line":93,
                                     "column":47,
                                     "number":"0.12"
                                   }
@@ -3991,27 +4103,27 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":92,
+                  "line":96,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":92,
+                    "line":96,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":92,
+                        "line":96,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":92,
+                            "line":96,
                             "column":8,
                             "word":"product-card"
                           },
                           {
                             "node":"TagPart",
-                            "line":92,
+                            "line":96,
                             "column":22,
                             "word":"img"
                           }
@@ -4023,17 +4135,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":93,
+                      "line":97,
                       "column":10,
                       "word":"width",
                       "valueList":{
                         "node":"ValueList",
-                        "line":93,
+                        "line":97,
                         "column":17,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":93,
+                            "line":97,
                             "column":17,
                             "number":"100%"
                           }
@@ -4042,17 +4154,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":94,
+                      "line":98,
                       "column":10,
                       "word":"height",
                       "valueList":{
                         "node":"ValueList",
-                        "line":94,
+                        "line":98,
                         "column":18,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":94,
+                            "line":98,
                             "column":18,
                             "number":"200px"
                           }
@@ -4061,66 +4173,19 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":95,
+                      "line":99,
                       "column":10,
                       "word":"object-fit",
                       "valueList":{
                         "node":"ValueList",
-                        "line":95,
+                        "line":99,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":95,
+                            "line":99,
                             "column":22,
                             "word":"cover"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "node":"CssRule",
-                  "line":98,
-                  "column":8,
-                  "selectorList":{
-                    "node":"CssSelectorList",
-                    "line":98,
-                    "column":8,
-                    "selectors":[
-                      {
-                        "node":"CssSelector",
-                        "line":98,
-                        "column":8,
-                        "parts":[
-                          {
-                            "node":"ClassPart",
-                            "line":98,
-                            "column":8,
-                            "word":"card-content"
-                          }
-                        ],
-                        "pseudo":null
-                      }
-                    ]
-                  },
-                  "properties":[
-                    {
-                      "node":"CssProperty",
-                      "line":99,
-                      "column":10,
-                      "word":"padding",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":99,
-                        "column":19,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":99,
-                            "column":19,
-                            "number":"20px"
                           }
                         ]
                       }
@@ -4146,12 +4211,6 @@
                             "line":102,
                             "column":8,
                             "word":"card-content"
-                          },
-                          {
-                            "node":"TagPart",
-                            "line":102,
-                            "column":22,
-                            "word":"h2"
                           }
                         ],
                         "pseudo":null
@@ -4163,15 +4222,68 @@
                       "node":"CssProperty",
                       "line":103,
                       "column":10,
-                      "word":"font-size",
+                      "word":"padding",
                       "valueList":{
                         "node":"ValueList",
                         "line":103,
-                        "column":21,
+                        "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
                             "line":103,
+                            "column":19,
+                            "number":"20px"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "node":"CssRule",
+                  "line":106,
+                  "column":8,
+                  "selectorList":{
+                    "node":"CssSelectorList",
+                    "line":106,
+                    "column":8,
+                    "selectors":[
+                      {
+                        "node":"CssSelector",
+                        "line":106,
+                        "column":8,
+                        "parts":[
+                          {
+                            "node":"ClassPart",
+                            "line":106,
+                            "column":8,
+                            "word":"card-content"
+                          },
+                          {
+                            "node":"TagPart",
+                            "line":106,
+                            "column":22,
+                            "word":"h2"
+                          }
+                        ],
+                        "pseudo":null
+                      }
+                    ]
+                  },
+                  "properties":[
+                    {
+                      "node":"CssProperty",
+                      "line":107,
+                      "column":10,
+                      "word":"font-size",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":107,
+                        "column":21,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":107,
                             "column":21,
                             "number":"1.25rem"
                           }
@@ -4180,35 +4292,35 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":104,
+                      "line":108,
                       "column":10,
                       "word":"margin",
                       "valueList":{
                         "node":"ValueList",
-                        "line":104,
+                        "line":108,
                         "column":18,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":104,
+                            "line":108,
                             "column":18,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":104,
+                            "line":108,
                             "column":20,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":104,
+                            "line":108,
                             "column":22,
                             "number":"10px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":104,
+                            "line":108,
                             "column":27,
                             "number":"0"
                           }
@@ -4217,17 +4329,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":105,
+                      "line":109,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":105,
+                        "line":109,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":105,
+                            "line":109,
                             "column":17,
                             "color":"#2c3e50"
                           }
@@ -4238,21 +4350,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":108,
+                  "line":112,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":108,
+                    "line":112,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":108,
+                        "line":112,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":108,
+                            "line":112,
                             "column":8,
                             "word":"price"
                           }
@@ -4264,17 +4376,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":109,
+                      "line":113,
                       "column":10,
                       "word":"font-size",
                       "valueList":{
                         "node":"ValueList",
-                        "line":109,
+                        "line":113,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":109,
+                            "line":113,
                             "column":21,
                             "number":"1.2rem"
                           }
@@ -4283,17 +4395,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":110,
+                      "line":114,
                       "column":10,
                       "word":"font-weight",
                       "valueList":{
                         "node":"ValueList",
-                        "line":110,
+                        "line":114,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":110,
+                            "line":114,
                             "column":23,
                             "number":"600"
                           }
@@ -4302,17 +4414,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":111,
+                      "line":115,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":111,
+                        "line":115,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":111,
+                            "line":115,
                             "column":17,
                             "color":"#27ae60"
                           }
@@ -4321,23 +4433,23 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":112,
+                      "line":116,
                       "column":10,
                       "word":"margin",
                       "valueList":{
                         "node":"ValueList",
-                        "line":112,
+                        "line":116,
                         "column":18,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":112,
+                            "line":116,
                             "column":18,
                             "number":"10px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":112,
+                            "line":116,
                             "column":23,
                             "number":"0"
                           }
@@ -4348,21 +4460,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":116,
+                  "line":120,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":116,
+                    "line":120,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":116,
+                        "line":120,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":116,
+                            "line":120,
                             "column":8,
                             "word":"btn"
                           }
@@ -4374,17 +4486,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":117,
+                      "line":121,
                       "column":10,
                       "word":"display",
                       "valueList":{
                         "node":"ValueList",
-                        "line":117,
+                        "line":121,
                         "column":19,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":117,
+                            "line":121,
                             "column":19,
                             "word":"inline-block"
                           }
@@ -4393,17 +4505,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":118,
+                      "line":122,
                       "column":10,
                       "word":"background-color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":118,
+                        "line":122,
                         "column":28,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":118,
+                            "line":122,
                             "column":28,
                             "color":"#3498db"
                           }
@@ -4412,17 +4524,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":119,
+                      "line":123,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":119,
+                        "line":123,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":119,
+                            "line":123,
                             "column":17,
                             "color":"#fff"
                           }
@@ -4431,23 +4543,23 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":120,
+                      "line":124,
                       "column":10,
                       "word":"padding",
                       "valueList":{
                         "node":"ValueList",
-                        "line":120,
+                        "line":124,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":120,
+                            "line":124,
                             "column":19,
                             "number":"10px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":120,
+                            "line":124,
                             "column":24,
                             "number":"20px"
                           }
@@ -4456,17 +4568,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":121,
+                      "line":125,
                       "column":10,
                       "word":"border-radius",
                       "valueList":{
                         "node":"ValueList",
-                        "line":121,
+                        "line":125,
                         "column":25,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":121,
+                            "line":125,
                             "column":25,
                             "number":"5px"
                           }
@@ -4475,17 +4587,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":122,
+                      "line":126,
                       "column":10,
                       "word":"text-decoration",
                       "valueList":{
                         "node":"ValueList",
-                        "line":122,
+                        "line":126,
                         "column":27,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":122,
+                            "line":126,
                             "column":27,
                             "word":"none"
                           }
@@ -4494,17 +4606,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":123,
+                      "line":127,
                       "column":10,
                       "word":"font-weight",
                       "valueList":{
                         "node":"ValueList",
-                        "line":123,
+                        "line":127,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":123,
+                            "line":127,
                             "column":23,
                             "number":"600"
                           }
@@ -4513,29 +4625,29 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":124,
+                      "line":128,
                       "column":10,
                       "word":"transition",
                       "valueList":{
                         "node":"ValueList",
-                        "line":124,
+                        "line":128,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":124,
+                            "line":128,
                             "column":22,
                             "word":"background-color"
                           },
                           {
                             "node":"NumberValue",
-                            "line":124,
+                            "line":128,
                             "column":39,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
-                            "line":124,
+                            "line":128,
                             "column":44,
                             "word":"ease"
                           }
@@ -4546,28 +4658,28 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":127,
+                  "line":131,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":127,
+                    "line":131,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":127,
+                        "line":131,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":127,
+                            "line":131,
                             "column":8,
                             "word":"btn"
                           }
                         ],
                         "pseudo":{
                           "node":"CssPseudo",
-                          "line":127,
+                          "line":131,
                           "column":8,
                           "word":"hover"
                         }
@@ -4577,66 +4689,19 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":128,
+                      "line":132,
                       "column":10,
                       "word":"background-color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":128,
+                        "line":132,
                         "column":28,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":128,
+                            "line":132,
                             "column":28,
                             "color":"#2980b9"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "node":"CssRule",
-                  "line":132,
-                  "column":8,
-                  "selectorList":{
-                    "node":"CssSelectorList",
-                    "line":132,
-                    "column":8,
-                    "selectors":[
-                      {
-                        "node":"CssSelector",
-                        "line":132,
-                        "column":8,
-                        "parts":[
-                          {
-                            "node":"ClassPart",
-                            "line":132,
-                            "column":8,
-                            "word":"detail-page"
-                          }
-                        ],
-                        "pseudo":null
-                      }
-                    ]
-                  },
-                  "properties":[
-                    {
-                      "node":"CssProperty",
-                      "line":133,
-                      "column":10,
-                      "word":"margin-top",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":133,
-                        "column":22,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":133,
-                            "column":22,
-                            "number":"30px"
                           }
                         ]
                       }
@@ -4661,7 +4726,7 @@
                             "node":"ClassPart",
                             "line":136,
                             "column":8,
-                            "word":"back-link"
+                            "word":"detail-page"
                           }
                         ],
                         "pseudo":null
@@ -4673,93 +4738,17 @@
                       "node":"CssProperty",
                       "line":137,
                       "column":10,
-                      "word":"color",
+                      "word":"margin-top",
                       "valueList":{
                         "node":"ValueList",
                         "line":137,
-                        "column":17,
+                        "column":22,
                         "values":[
                           {
-                            "node":"ColorValue",
+                            "node":"NumberValue",
                             "line":137,
-                            "column":17,
-                            "color":"#3498db"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
-                      "line":138,
-                      "column":10,
-                      "word":"text-decoration",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":138,
-                        "column":27,
-                        "values":[
-                          {
-                            "node":"WordValue",
-                            "line":138,
-                            "column":27,
-                            "word":"none"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
-                      "line":139,
-                      "column":10,
-                      "word":"font-weight",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":139,
-                        "column":23,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":139,
-                            "column":23,
-                            "number":"600"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
-                      "line":140,
-                      "column":10,
-                      "word":"margin-bottom",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":140,
-                        "column":25,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":140,
-                            "column":25,
-                            "number":"20px"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
-                      "line":141,
-                      "column":10,
-                      "word":"display",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":141,
-                        "column":19,
-                        "values":[
-                          {
-                            "node":"WordValue",
-                            "line":141,
-                            "column":19,
-                            "word":"inline-block"
+                            "column":22,
+                            "number":"30px"
                           }
                         ]
                       }
@@ -4768,23 +4757,23 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":144,
+                  "line":140,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":144,
+                    "line":140,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":144,
+                        "line":140,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":144,
+                            "line":140,
                             "column":8,
-                            "word":"product-detail-card"
+                            "word":"back-link"
                           }
                         ],
                         "pseudo":null
@@ -4792,6 +4781,82 @@
                     ]
                   },
                   "properties":[
+                    {
+                      "node":"CssProperty",
+                      "line":141,
+                      "column":10,
+                      "word":"color",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":141,
+                        "column":17,
+                        "values":[
+                          {
+                            "node":"ColorValue",
+                            "line":141,
+                            "column":17,
+                            "color":"#3498db"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "node":"CssProperty",
+                      "line":142,
+                      "column":10,
+                      "word":"text-decoration",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":142,
+                        "column":27,
+                        "values":[
+                          {
+                            "node":"WordValue",
+                            "line":142,
+                            "column":27,
+                            "word":"none"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "node":"CssProperty",
+                      "line":143,
+                      "column":10,
+                      "word":"font-weight",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":143,
+                        "column":23,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":143,
+                            "column":23,
+                            "number":"600"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "node":"CssProperty",
+                      "line":144,
+                      "column":10,
+                      "word":"margin-bottom",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":144,
+                        "column":25,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":144,
+                            "column":25,
+                            "number":"20px"
+                          }
+                        ]
+                      }
+                    },
                     {
                       "node":"CssProperty",
                       "line":145,
@@ -4806,6 +4871,53 @@
                             "node":"WordValue",
                             "line":145,
                             "column":19,
+                            "word":"inline-block"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "node":"CssRule",
+                  "line":148,
+                  "column":8,
+                  "selectorList":{
+                    "node":"CssSelectorList",
+                    "line":148,
+                    "column":8,
+                    "selectors":[
+                      {
+                        "node":"CssSelector",
+                        "line":148,
+                        "column":8,
+                        "parts":[
+                          {
+                            "node":"ClassPart",
+                            "line":148,
+                            "column":8,
+                            "word":"product-detail-card"
+                          }
+                        ],
+                        "pseudo":null
+                      }
+                    ]
+                  },
+                  "properties":[
+                    {
+                      "node":"CssProperty",
+                      "line":149,
+                      "column":10,
+                      "word":"display",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":149,
+                        "column":19,
+                        "values":[
+                          {
+                            "node":"WordValue",
+                            "line":149,
+                            "column":19,
                             "word":"flex"
                           }
                         ]
@@ -4813,17 +4925,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":146,
+                      "line":150,
                       "column":10,
                       "word":"background",
                       "valueList":{
                         "node":"ValueList",
-                        "line":146,
+                        "line":150,
                         "column":22,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":146,
+                            "line":150,
                             "column":22,
                             "color":"#fff"
                           }
@@ -4832,17 +4944,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":147,
+                      "line":151,
                       "column":10,
                       "word":"border-radius",
                       "valueList":{
                         "node":"ValueList",
-                        "line":147,
+                        "line":151,
                         "column":25,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":147,
+                            "line":151,
                             "column":25,
                             "number":"10px"
                           }
@@ -4851,67 +4963,67 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":148,
+                      "line":152,
                       "column":10,
                       "word":"box-shadow",
                       "valueList":{
                         "node":"ValueList",
-                        "line":148,
+                        "line":152,
                         "column":22,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":148,
+                            "line":152,
                             "column":22,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":148,
+                            "line":152,
                             "column":24,
                             "number":"4px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":148,
+                            "line":152,
                             "column":28,
                             "number":"15px"
                           },
                           {
                             "node":"FunctionValue",
-                            "line":148,
+                            "line":152,
                             "column":33,
                             "function":{
                               "node":"CssFunction",
-                              "line":148,
+                              "line":152,
                               "column":33,
                               "word":"rgba",
                               "valueList":{
                                 "node":"ValueList",
-                                "line":148,
+                                "line":152,
                                 "column":38,
                                 "values":[
                                   {
                                     "node":"NumberValue",
-                                    "line":148,
+                                    "line":152,
                                     "column":38,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":148,
+                                    "line":152,
                                     "column":41,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":148,
+                                    "line":152,
                                     "column":44,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":148,
+                                    "line":152,
                                     "column":47,
                                     "number":"0.1"
                                   }
@@ -4924,17 +5036,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":149,
+                      "line":153,
                       "column":10,
                       "word":"overflow",
                       "valueList":{
                         "node":"ValueList",
-                        "line":149,
+                        "line":153,
                         "column":20,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":149,
+                            "line":153,
                             "column":20,
                             "word":"hidden"
                           }
@@ -4945,27 +5057,27 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":152,
+                  "line":156,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":152,
+                    "line":156,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":152,
+                        "line":156,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":152,
+                            "line":156,
                             "column":8,
                             "word":"product-detail-card"
                           },
                           {
                             "node":"TagPart",
-                            "line":152,
+                            "line":156,
                             "column":29,
                             "word":"img"
                           }
@@ -4977,17 +5089,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":153,
+                      "line":157,
                       "column":10,
                       "word":"width",
                       "valueList":{
                         "node":"ValueList",
-                        "line":153,
+                        "line":157,
                         "column":17,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":153,
+                            "line":157,
                             "column":17,
                             "number":"40%"
                           }
@@ -4996,66 +5108,19 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":154,
+                      "line":158,
                       "column":10,
                       "word":"object-fit",
                       "valueList":{
                         "node":"ValueList",
-                        "line":154,
+                        "line":158,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":154,
+                            "line":158,
                             "column":22,
                             "word":"cover"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "node":"CssRule",
-                  "line":157,
-                  "column":8,
-                  "selectorList":{
-                    "node":"CssSelectorList",
-                    "line":157,
-                    "column":8,
-                    "selectors":[
-                      {
-                        "node":"CssSelector",
-                        "line":157,
-                        "column":8,
-                        "parts":[
-                          {
-                            "node":"ClassPart",
-                            "line":157,
-                            "column":8,
-                            "word":"detail-info"
-                          }
-                        ],
-                        "pseudo":null
-                      }
-                    ]
-                  },
-                  "properties":[
-                    {
-                      "node":"CssProperty",
-                      "line":158,
-                      "column":10,
-                      "word":"padding",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":158,
-                        "column":19,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":158,
-                            "column":19,
-                            "number":"40px"
                           }
                         ]
                       }
@@ -5081,12 +5146,6 @@
                             "line":161,
                             "column":8,
                             "word":"detail-info"
-                          },
-                          {
-                            "node":"TagPart",
-                            "line":161,
-                            "column":21,
-                            "word":"h1"
                           }
                         ],
                         "pseudo":null
@@ -5098,15 +5157,68 @@
                       "node":"CssProperty",
                       "line":162,
                       "column":10,
-                      "word":"margin-top",
+                      "word":"padding",
                       "valueList":{
                         "node":"ValueList",
                         "line":162,
-                        "column":22,
+                        "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
                             "line":162,
+                            "column":19,
+                            "number":"40px"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "node":"CssRule",
+                  "line":165,
+                  "column":8,
+                  "selectorList":{
+                    "node":"CssSelectorList",
+                    "line":165,
+                    "column":8,
+                    "selectors":[
+                      {
+                        "node":"CssSelector",
+                        "line":165,
+                        "column":8,
+                        "parts":[
+                          {
+                            "node":"ClassPart",
+                            "line":165,
+                            "column":8,
+                            "word":"detail-info"
+                          },
+                          {
+                            "node":"TagPart",
+                            "line":165,
+                            "column":21,
+                            "word":"h1"
+                          }
+                        ],
+                        "pseudo":null
+                      }
+                    ]
+                  },
+                  "properties":[
+                    {
+                      "node":"CssProperty",
+                      "line":166,
+                      "column":10,
+                      "word":"margin-top",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":166,
+                        "column":22,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":166,
                             "column":22,
                             "number":"0"
                           }
@@ -5115,17 +5227,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":163,
+                      "line":167,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":163,
+                        "line":167,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":163,
+                            "line":167,
                             "column":17,
                             "color":"#2c3e50"
                           }
@@ -5136,27 +5248,27 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":166,
+                  "line":170,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":166,
+                    "line":170,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":166,
+                        "line":170,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":166,
+                            "line":170,
                             "column":8,
                             "word":"detail-info"
                           },
                           {
                             "node":"ClassPart",
-                            "line":166,
+                            "line":170,
                             "column":21,
                             "word":"details"
                           }
@@ -5168,17 +5280,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":167,
+                      "line":171,
                       "column":10,
                       "word":"font-size",
                       "valueList":{
                         "node":"ValueList",
-                        "line":167,
+                        "line":171,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":167,
+                            "line":171,
                             "column":21,
                             "number":"1rem"
                           }
@@ -5187,17 +5299,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":168,
+                      "line":172,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":168,
+                        "line":172,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":168,
+                            "line":172,
                             "column":17,
                             "color":"#555"
                           }
@@ -5208,21 +5320,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":172,
+                  "line":176,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":172,
+                    "line":176,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":172,
+                        "line":176,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":172,
+                            "line":176,
                             "column":8,
                             "word":"form-container"
                           }
@@ -5234,17 +5346,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":173,
+                      "line":177,
                       "column":10,
                       "word":"max-width",
                       "valueList":{
                         "node":"ValueList",
-                        "line":173,
+                        "line":177,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":173,
+                            "line":177,
                             "column":21,
                             "number":"600px"
                           }
@@ -5253,85 +5365,9 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":174,
-                      "column":10,
-                      "word":"margin-top",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":174,
-                        "column":22,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":174,
-                            "column":22,
-                            "number":"30px"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
-                      "line":175,
-                      "column":10,
-                      "word":"background",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":175,
-                        "column":22,
-                        "values":[
-                          {
-                            "node":"ColorValue",
-                            "line":175,
-                            "column":22,
-                            "color":"#fff"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
-                      "line":176,
-                      "column":10,
-                      "word":"padding",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":176,
-                        "column":19,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":176,
-                            "column":19,
-                            "number":"30px"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
-                      "line":177,
-                      "column":10,
-                      "word":"border-radius",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":177,
-                        "column":25,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":177,
-                            "column":25,
-                            "number":"10px"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "node":"CssProperty",
                       "line":178,
                       "column":10,
-                      "word":"box-shadow",
+                      "word":"margin-top",
                       "valueList":{
                         "node":"ValueList",
                         "line":178,
@@ -5341,114 +5377,137 @@
                             "node":"NumberValue",
                             "line":178,
                             "column":22,
+                            "number":"30px"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "node":"CssProperty",
+                      "line":179,
+                      "column":10,
+                      "word":"background",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":179,
+                        "column":22,
+                        "values":[
+                          {
+                            "node":"ColorValue",
+                            "line":179,
+                            "column":22,
+                            "color":"#fff"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "node":"CssProperty",
+                      "line":180,
+                      "column":10,
+                      "word":"padding",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":180,
+                        "column":19,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":180,
+                            "column":19,
+                            "number":"30px"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "node":"CssProperty",
+                      "line":181,
+                      "column":10,
+                      "word":"border-radius",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":181,
+                        "column":25,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":181,
+                            "column":25,
+                            "number":"10px"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "node":"CssProperty",
+                      "line":182,
+                      "column":10,
+                      "word":"box-shadow",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":182,
+                        "column":22,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":182,
+                            "column":22,
                             "number":"0"
                           },
                           {
                             "node":"NumberValue",
-                            "line":178,
+                            "line":182,
                             "column":24,
                             "number":"4px"
                           },
                           {
                             "node":"NumberValue",
-                            "line":178,
+                            "line":182,
                             "column":28,
                             "number":"15px"
                           },
                           {
                             "node":"FunctionValue",
-                            "line":178,
+                            "line":182,
                             "column":33,
                             "function":{
                               "node":"CssFunction",
-                              "line":178,
+                              "line":182,
                               "column":33,
                               "word":"rgba",
                               "valueList":{
                                 "node":"ValueList",
-                                "line":178,
+                                "line":182,
                                 "column":38,
                                 "values":[
                                   {
                                     "node":"NumberValue",
-                                    "line":178,
+                                    "line":182,
                                     "column":38,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":178,
+                                    "line":182,
                                     "column":41,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":178,
+                                    "line":182,
                                     "column":44,
                                     "number":"0"
                                   },
                                   {
                                     "node":"NumberValue",
-                                    "line":178,
+                                    "line":182,
                                     "column":47,
                                     "number":"0.1"
                                   }
                                 ]
                               }
                             }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "node":"CssRule",
-                  "line":181,
-                  "column":8,
-                  "selectorList":{
-                    "node":"CssSelectorList",
-                    "line":181,
-                    "column":8,
-                    "selectors":[
-                      {
-                        "node":"CssSelector",
-                        "line":181,
-                        "column":8,
-                        "parts":[
-                          {
-                            "node":"ClassPart",
-                            "line":181,
-                            "column":8,
-                            "word":"add-form"
-                          },
-                          {
-                            "node":"ClassPart",
-                            "line":181,
-                            "column":18,
-                            "word":"form-group"
-                          }
-                        ],
-                        "pseudo":null
-                      }
-                    ]
-                  },
-                  "properties":[
-                    {
-                      "node":"CssProperty",
-                      "line":182,
-                      "column":10,
-                      "word":"margin-bottom",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":182,
-                        "column":25,
-                        "values":[
-                          {
-                            "node":"NumberValue",
-                            "line":182,
-                            "column":25,
-                            "number":"20px"
                           }
                         ]
                       }
@@ -5476,10 +5535,10 @@
                             "word":"add-form"
                           },
                           {
-                            "node":"TagPart",
+                            "node":"ClassPart",
                             "line":185,
                             "column":18,
-                            "word":"label"
+                            "word":"form-group"
                           }
                         ],
                         "pseudo":null
@@ -5491,15 +5550,68 @@
                       "node":"CssProperty",
                       "line":186,
                       "column":10,
-                      "word":"display",
+                      "word":"margin-bottom",
                       "valueList":{
                         "node":"ValueList",
                         "line":186,
+                        "column":25,
+                        "values":[
+                          {
+                            "node":"NumberValue",
+                            "line":186,
+                            "column":25,
+                            "number":"20px"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "node":"CssRule",
+                  "line":189,
+                  "column":8,
+                  "selectorList":{
+                    "node":"CssSelectorList",
+                    "line":189,
+                    "column":8,
+                    "selectors":[
+                      {
+                        "node":"CssSelector",
+                        "line":189,
+                        "column":8,
+                        "parts":[
+                          {
+                            "node":"ClassPart",
+                            "line":189,
+                            "column":8,
+                            "word":"add-form"
+                          },
+                          {
+                            "node":"TagPart",
+                            "line":189,
+                            "column":18,
+                            "word":"label"
+                          }
+                        ],
+                        "pseudo":null
+                      }
+                    ]
+                  },
+                  "properties":[
+                    {
+                      "node":"CssProperty",
+                      "line":190,
+                      "column":10,
+                      "word":"display",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":190,
                         "column":19,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":186,
+                            "line":190,
                             "column":19,
                             "word":"block"
                           }
@@ -5508,17 +5620,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":187,
+                      "line":191,
                       "column":10,
                       "word":"margin-bottom",
                       "valueList":{
                         "node":"ValueList",
-                        "line":187,
+                        "line":191,
                         "column":25,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":187,
+                            "line":191,
                             "column":25,
                             "number":"8px"
                           }
@@ -5527,17 +5639,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":188,
+                      "line":192,
                       "column":10,
                       "word":"font-weight",
                       "valueList":{
                         "node":"ValueList",
-                        "line":188,
+                        "line":192,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":188,
+                            "line":192,
                             "column":23,
                             "number":"600"
                           }
@@ -5546,17 +5658,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":189,
+                      "line":193,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":189,
+                        "line":193,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":189,
+                            "line":193,
                             "column":17,
                             "color":"#34495e"
                           }
@@ -5567,27 +5679,27 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":192,
+                  "line":196,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":192,
+                    "line":196,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":192,
+                        "line":196,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":192,
+                            "line":196,
                             "column":8,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
-                            "line":192,
+                            "line":196,
                             "column":18,
                             "word":"input"
                           }
@@ -5596,18 +5708,18 @@
                       },
                       {
                         "node":"CssSelector",
-                        "line":193,
+                        "line":197,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":193,
+                            "line":197,
                             "column":8,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
-                            "line":193,
+                            "line":197,
                             "column":18,
                             "word":"textarea"
                           }
@@ -5619,17 +5731,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":194,
+                      "line":198,
                       "column":10,
                       "word":"width",
                       "valueList":{
                         "node":"ValueList",
-                        "line":194,
+                        "line":198,
                         "column":17,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":194,
+                            "line":198,
                             "column":17,
                             "number":"100%"
                           }
@@ -5638,17 +5750,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":195,
+                      "line":199,
                       "column":10,
                       "word":"padding",
                       "valueList":{
                         "node":"ValueList",
-                        "line":195,
+                        "line":199,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":195,
+                            "line":199,
                             "column":19,
                             "number":"12px"
                           }
@@ -5657,29 +5769,29 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":196,
+                      "line":200,
                       "column":10,
                       "word":"border",
                       "valueList":{
                         "node":"ValueList",
-                        "line":196,
+                        "line":200,
                         "column":18,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":196,
+                            "line":200,
                             "column":18,
                             "number":"1px"
                           },
                           {
                             "node":"WordValue",
-                            "line":196,
+                            "line":200,
                             "column":22,
                             "word":"solid"
                           },
                           {
                             "node":"ColorValue",
-                            "line":196,
+                            "line":200,
                             "column":28,
                             "color":"#ccc"
                           }
@@ -5688,17 +5800,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":197,
+                      "line":201,
                       "column":10,
                       "word":"border-radius",
                       "valueList":{
                         "node":"ValueList",
-                        "line":197,
+                        "line":201,
                         "column":25,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":197,
+                            "line":201,
                             "column":25,
                             "number":"5px"
                           }
@@ -5707,23 +5819,23 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":198,
+                      "line":202,
                       "column":10,
                       "word":"font-family",
                       "valueList":{
                         "node":"ValueList",
-                        "line":198,
+                        "line":202,
                         "column":23,
                         "values":[
                           {
                             "node":"StringValue",
-                            "line":198,
+                            "line":202,
                             "column":23,
                             "string":"\"Poppins\""
                           },
                           {
                             "node":"WordValue",
-                            "line":198,
+                            "line":202,
                             "column":34,
                             "word":"sans-serif"
                           }
@@ -5732,17 +5844,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":199,
+                      "line":203,
                       "column":10,
                       "word":"font-size",
                       "valueList":{
                         "node":"ValueList",
-                        "line":199,
+                        "line":203,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":199,
+                            "line":203,
                             "column":21,
                             "number":"1rem"
                           }
@@ -5751,17 +5863,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":200,
+                      "line":204,
                       "column":10,
                       "word":"box-sizing",
                       "valueList":{
                         "node":"ValueList",
-                        "line":200,
+                        "line":204,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":200,
+                            "line":204,
                             "column":22,
                             "word":"border-box"
                           }
@@ -5772,27 +5884,27 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":203,
+                  "line":207,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":203,
+                    "line":207,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":203,
+                        "line":207,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":203,
+                            "line":207,
                             "column":8,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
-                            "line":203,
+                            "line":207,
                             "column":18,
                             "word":"button"
                           }
@@ -5804,17 +5916,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":204,
+                      "line":208,
                       "column":10,
                       "word":"width",
                       "valueList":{
                         "node":"ValueList",
-                        "line":204,
+                        "line":208,
                         "column":17,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":204,
+                            "line":208,
                             "column":17,
                             "number":"100%"
                           }
@@ -5823,17 +5935,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":205,
+                      "line":209,
                       "column":10,
                       "word":"padding",
                       "valueList":{
                         "node":"ValueList",
-                        "line":205,
+                        "line":209,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":205,
+                            "line":209,
                             "column":19,
                             "number":"12px"
                           }
@@ -5842,17 +5954,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":206,
+                      "line":210,
                       "column":10,
                       "word":"border",
                       "valueList":{
                         "node":"ValueList",
-                        "line":206,
+                        "line":210,
                         "column":18,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":206,
+                            "line":210,
                             "column":18,
                             "word":"none"
                           }
@@ -5861,17 +5973,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":207,
+                      "line":211,
                       "column":10,
                       "word":"background-color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":207,
+                        "line":211,
                         "column":28,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":207,
+                            "line":211,
                             "column":28,
                             "color":"#27ae60"
                           }
@@ -5880,17 +5992,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":208,
+                      "line":212,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":208,
+                        "line":212,
                         "column":17,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":208,
+                            "line":212,
                             "column":17,
                             "word":"white"
                           }
@@ -5899,17 +6011,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":209,
+                      "line":213,
                       "column":10,
                       "word":"font-size",
                       "valueList":{
                         "node":"ValueList",
-                        "line":209,
+                        "line":213,
                         "column":21,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":209,
+                            "line":213,
                             "column":21,
                             "number":"1.1rem"
                           }
@@ -5918,17 +6030,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":210,
+                      "line":214,
                       "column":10,
                       "word":"font-weight",
                       "valueList":{
                         "node":"ValueList",
-                        "line":210,
+                        "line":214,
                         "column":23,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":210,
+                            "line":214,
                             "column":23,
                             "number":"600"
                           }
@@ -5937,17 +6049,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":211,
+                      "line":215,
                       "column":10,
                       "word":"cursor",
                       "valueList":{
                         "node":"ValueList",
-                        "line":211,
+                        "line":215,
                         "column":18,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":211,
+                            "line":215,
                             "column":18,
                             "word":"pointer"
                           }
@@ -5956,17 +6068,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":212,
+                      "line":216,
                       "column":10,
                       "word":"border-radius",
                       "valueList":{
                         "node":"ValueList",
-                        "line":212,
+                        "line":216,
                         "column":25,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":212,
+                            "line":216,
                             "column":25,
                             "number":"5px"
                           }
@@ -5975,29 +6087,29 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":213,
+                      "line":217,
                       "column":10,
                       "word":"transition",
                       "valueList":{
                         "node":"ValueList",
-                        "line":213,
+                        "line":217,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":213,
+                            "line":217,
                             "column":22,
                             "word":"background-color"
                           },
                           {
                             "node":"NumberValue",
-                            "line":213,
+                            "line":217,
                             "column":39,
                             "number":"0.3s"
                           },
                           {
                             "node":"WordValue",
-                            "line":213,
+                            "line":217,
                             "column":44,
                             "word":"ease"
                           }
@@ -6008,34 +6120,34 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":216,
+                  "line":220,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":216,
+                    "line":220,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":216,
+                        "line":220,
                         "column":8,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":216,
+                            "line":220,
                             "column":8,
                             "word":"add-form"
                           },
                           {
                             "node":"TagPart",
-                            "line":216,
+                            "line":220,
                             "column":18,
                             "word":"button"
                           }
                         ],
                         "pseudo":{
                           "node":"CssPseudo",
-                          "line":216,
+                          "line":220,
                           "column":8,
                           "word":"hover"
                         }
@@ -6045,17 +6157,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":217,
+                      "line":221,
                       "column":10,
                       "word":"background-color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":217,
+                        "line":221,
                         "column":28,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":217,
+                            "line":221,
                             "column":28,
                             "color":"#229954"
                           }
@@ -6066,21 +6178,21 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":221,
+                  "line":225,
                   "column":8,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":221,
+                    "line":225,
                     "column":8,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":221,
+                        "line":225,
                         "column":8,
                         "parts":[
                           {
                             "node":"TagPart",
-                            "line":221,
+                            "line":225,
                             "column":8,
                             "word":"footer"
                           }
@@ -6092,17 +6204,17 @@
                   "properties":[
                     {
                       "node":"CssProperty",
-                      "line":222,
+                      "line":226,
                       "column":10,
                       "word":"text-align",
                       "valueList":{
                         "node":"ValueList",
-                        "line":222,
+                        "line":226,
                         "column":22,
                         "values":[
                           {
                             "node":"WordValue",
-                            "line":222,
+                            "line":226,
                             "column":22,
                             "word":"center"
                           }
@@ -6111,17 +6223,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":223,
+                      "line":227,
                       "column":10,
                       "word":"padding",
                       "valueList":{
                         "node":"ValueList",
-                        "line":223,
+                        "line":227,
                         "column":19,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":223,
+                            "line":227,
                             "column":19,
                             "number":"20px"
                           }
@@ -6130,17 +6242,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":224,
+                      "line":228,
                       "column":10,
                       "word":"margin-top",
                       "valueList":{
                         "node":"ValueList",
-                        "line":224,
+                        "line":228,
                         "column":22,
                         "values":[
                           {
                             "node":"NumberValue",
-                            "line":224,
+                            "line":228,
                             "column":22,
                             "number":"40px"
                           }
@@ -6149,17 +6261,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":225,
+                      "line":229,
                       "column":10,
                       "word":"background",
                       "valueList":{
                         "node":"ValueList",
-                        "line":225,
+                        "line":229,
                         "column":22,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":225,
+                            "line":229,
                             "column":22,
                             "color":"#2c3e50"
                           }
@@ -6168,17 +6280,17 @@
                     },
                     {
                       "node":"CssProperty",
-                      "line":226,
+                      "line":230,
                       "column":10,
                       "word":"color",
                       "valueList":{
                         "node":"ValueList",
-                        "line":226,
+                        "line":230,
                         "column":17,
                         "values":[
                           {
                             "node":"ColorValue",
-                            "line":226,
+                            "line":230,
                             "column":17,
                             "color":"#ecf0f1"
                           }
@@ -6189,78 +6301,26 @@
                 },
                 {
                   "node":"CssRule",
-                  "line":228,
+                  "line":232,
                   "column":14,
                   "selectorList":{
                     "node":"CssSelectorList",
-                    "line":228,
+                    "line":232,
                     "column":14,
                     "selectors":[
                       {
                         "node":"CssSelector",
-                        "line":228,
+                        "line":232,
                         "column":14,
                         "parts":[
                           {
                             "node":"ClassPart",
-                            "line":228,
+                            "line":232,
                             "column":14,
                             "word":"btn-danger"
                           }
                         ],
                         "pseudo":null
-                      }
-                    ]
-                  },
-                  "properties":[
-                    {
-                      "node":"CssProperty",
-                      "line":229,
-                      "column":10,
-                      "word":"background-color",
-                      "valueList":{
-                        "node":"ValueList",
-                        "line":229,
-                        "column":28,
-                        "values":[
-                          {
-                            "node":"ColorValue",
-                            "line":229,
-                            "column":28,
-                            "color":"#e74c3c"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "node":"CssRule",
-                  "line":232,
-                  "column":8,
-                  "selectorList":{
-                    "node":"CssSelectorList",
-                    "line":232,
-                    "column":8,
-                    "selectors":[
-                      {
-                        "node":"CssSelector",
-                        "line":232,
-                        "column":8,
-                        "parts":[
-                          {
-                            "node":"ClassPart",
-                            "line":232,
-                            "column":8,
-                            "word":"btn-danger"
-                          }
-                        ],
-                        "pseudo":{
-                          "node":"CssPseudo",
-                          "line":232,
-                          "column":8,
-                          "word":"hover"
-                        }
                       }
                     ]
                   },
@@ -6279,6 +6339,58 @@
                             "node":"ColorValue",
                             "line":233,
                             "column":28,
+                            "color":"#e74c3c"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "node":"CssRule",
+                  "line":236,
+                  "column":8,
+                  "selectorList":{
+                    "node":"CssSelectorList",
+                    "line":236,
+                    "column":8,
+                    "selectors":[
+                      {
+                        "node":"CssSelector",
+                        "line":236,
+                        "column":8,
+                        "parts":[
+                          {
+                            "node":"ClassPart",
+                            "line":236,
+                            "column":8,
+                            "word":"btn-danger"
+                          }
+                        ],
+                        "pseudo":{
+                          "node":"CssPseudo",
+                          "line":236,
+                          "column":8,
+                          "word":"hover"
+                        }
+                      }
+                    ]
+                  },
+                  "properties":[
+                    {
+                      "node":"CssProperty",
+                      "line":237,
+                      "column":10,
+                      "word":"background-color",
+                      "valueList":{
+                        "node":"ValueList",
+                        "line":237,
+                        "column":28,
+                        "values":[
+                          {
+                            "node":"ColorValue",
+                            "line":237,
+                            "column":28,
                             "color":"#c0392b"
                           }
                         ]
@@ -6290,101 +6402,101 @@
             },
             {
               "node":"HtmlText",
-              "line":235,
+              "line":239,
               "column":12,
-              "text":"\r\n"
+              "text":"\n"
             }
           ]
         },
         {
           "node":"HtmlText",
-          "line":236,
+          "line":240,
           "column":7,
-          "text":"\r\n"
+          "text":"\n"
         },
         {
           "node":"PairedTag",
-          "line":237,
+          "line":241,
           "column":0,
           "tagName":"body",
           "attributes":[],
           "children":[
             {
               "node":"HtmlText",
-              "line":237,
+              "line":241,
               "column":6,
-              "text":"\r\n"
+              "text":"\n"
             },
             {
               "node":"PairedTag",
-              "line":238,
+              "line":242,
               "column":0,
               "tagName":"header",
               "attributes":[],
               "children":[
                 {
                   "node":"HtmlText",
-                  "line":238,
+                  "line":242,
                   "column":8,
-                  "text":"\r\n    "
+                  "text":"\n    "
                 },
                 {
                   "node":"PairedTag",
-                  "line":239,
+                  "line":243,
                   "column":4,
                   "tagName":"nav",
                   "attributes":[],
                   "children":[
                     {
                       "node":"HtmlText",
-                      "line":239,
+                      "line":243,
                       "column":9,
-                      "text":"\r\n        "
+                      "text":"\n        "
                     },
                     {
                       "node":"PairedTag",
-                      "line":240,
+                      "line":244,
                       "column":8,
                       "tagName":"a",
                       "attributes":[
                         {
                           "node":"NormalAttribute",
-                          "line":240,
+                          "line":244,
                           "column":11,
                           "key":"href",
                           "value":{
                             "node":"JinjaValueExpr",
-                            "line":240,
+                            "line":244,
                             "column":16,
                             "jinjaBlock":{
                               "node":"PrintBlock",
-                              "line":240,
+                              "line":244,
                               "column":16,
                               "jinjaExpression":{
                                 "node":"JinjaExpression",
-                                "line":240,
+                                "line":244,
                                 "column":16,
                                 "primary":{
                                   "node":"FunctionCall",
-                                  "line":240,
+                                  "line":244,
                                   "column":16,
                                   "identifier":"url_for",
                                   "callArgs":{
                                     "node":"CallMixedArgs",
-                                    "line":240,
+                                    "line":244,
                                     "column":16,
                                     "posArgs":[
                                       {
                                         "node":"JinjaArg",
-                                        "line":240,
+                                        "line":244,
                                         "column":16,
                                         "expression":{
                                           "node":"JinjaExpression",
-                                          "line":240,
+                                          "line":244,
                                           "column":16,
                                           "primary":{
                                             "node":"StringLiteral",
-                                            "line":240,
+                                            "line":244,
                                             "column":16,
                                             "string":"index"
                                           },
@@ -6402,12 +6514,12 @@
                         },
                         {
                           "node":"NormalAttribute",
-                          "line":240,
+                          "line":244,
                           "column":41,
                           "key":"class",
                           "value":{
                             "node":"PlainValue",
-                            "line":240,
+                            "line":244,
                             "column":47,
                             "text":"logo"
                           }
@@ -6416,7 +6528,7 @@
                       "children":[
                         {
                           "node":"HtmlText",
-                          "line":240,
+                          "line":244,
                           "column":54,
                           "text":"ProductHub"
                         }
@@ -6424,24 +6536,24 @@
                     },
                     {
                       "node":"HtmlText",
-                      "line":240,
+                      "line":244,
                       "column":68,
-                      "text":"\r\n        "
+                      "text":"\n        "
                     },
                     {
                       "node":"PairedTag",
-                      "line":241,
+                      "line":245,
                       "column":8,
                       "tagName":"div",
                       "attributes":[
                         {
                           "node":"NormalAttribute",
-                          "line":241,
+                          "line":245,
                           "column":13,
                           "key":"class",
                           "value":{
                             "node":"PlainValue",
-                            "line":241,
+                            "line":245,
                             "column":19,
                             "text":"nav-links"
                           }
@@ -6450,54 +6562,54 @@
                       "children":[
                         {
                           "node":"HtmlText",
-                          "line":241,
+                          "line":245,
                           "column":31,
-                          "text":"\r\n            "
+                          "text":"\n            "
                         },
                         {
                           "node":"PairedTag",
-                          "line":242,
+                          "line":246,
                           "column":12,
                           "tagName":"a",
                           "attributes":[
                             {
                               "node":"NormalAttribute",
-                              "line":242,
+                              "line":246,
                               "column":15,
                               "key":"href",
                               "value":{
                                 "node":"JinjaValueExpr",
-                                "line":242,
+                                "line":246,
                                 "column":20,
                                 "jinjaBlock":{
                                   "node":"PrintBlock",
-                                  "line":242,
+                                  "line":246,
                                   "column":20,
                                   "jinjaExpression":{
                                     "node":"JinjaExpression",
-                                    "line":242,
+                                    "line":246,
                                     "column":20,
                                     "primary":{
                                       "node":"FunctionCall",
-                                      "line":242,
+                                      "line":246,
                                       "column":20,
                                       "identifier":"url_for",
                                       "callArgs":{
                                         "node":"CallMixedArgs",
-                                        "line":242,
+                                        "line":246,
                                         "column":20,
                                         "posArgs":[
                                           {
                                             "node":"JinjaArg",
-                                            "line":242,
+                                            "line":246,
                                             "column":20,
                                             "expression":{
                                               "node":"JinjaExpression",
-                                              "line":242,
+                                              "line":246,
                                               "column":20,
                                               "primary":{
                                                 "node":"StringLiteral",
-                                                "line":242,
+                                                "line":246,
                                                 "column":20,
                                                 "string":"index"
                                               },
@@ -6517,7 +6629,7 @@
                           "children":[
                             {
                               "node":"HtmlText",
-                              "line":242,
+                              "line":246,
                               "column":45,
                               "text":"Home"
                             }
@@ -6525,54 +6637,54 @@
                         },
                         {
                           "node":"HtmlText",
-                          "line":242,
+                          "line":246,
                           "column":53,
-                          "text":"\r\n            "
+                          "text":"\n            "
                         },
                         {
                           "node":"PairedTag",
-                          "line":243,
+                          "line":247,
                           "column":12,
                           "tagName":"a",
                           "attributes":[
                             {
                               "node":"NormalAttribute",
-                              "line":243,
+                              "line":247,
                               "column":15,
                               "key":"href",
                               "value":{
                                 "node":"JinjaValueExpr",
-                                "line":243,
+                                "line":247,
                                 "column":20,
                                 "jinjaBlock":{
                                   "node":"PrintBlock",
-                                  "line":243,
+                                  "line":247,
                                   "column":20,
                                   "jinjaExpression":{
                                     "node":"JinjaExpression",
-                                    "line":243,
+                                    "line":247,
                                     "column":20,
                                     "primary":{
                                       "node":"FunctionCall",
-                                      "line":243,
+                                      "line":247,
                                       "column":20,
                                       "identifier":"url_for",
                                       "callArgs":{
                                         "node":"CallMixedArgs",
-                                        "line":243,
+                                        "line":247,
                                         "column":20,
                                         "posArgs":[
                                           {
                                             "node":"JinjaArg",
-                                            "line":243,
+                                            "line":247,
                                             "column":20,
                                             "expression":{
                                               "node":"JinjaExpression",
-                                              "line":243,
+                                              "line":247,
                                               "column":20,
                                               "primary":{
                                                 "node":"StringLiteral",
-                                                "line":243,
+                                                "line":247,
                                                 "column":20,
                                                 "string":"add_product"
                                               },
@@ -6592,7 +6704,7 @@
                           "children":[
                             {
                               "node":"HtmlText",
-                              "line":243,
+                              "line":247,
                               "column":51,
                               "text":"Add Product"
                             }
@@ -6600,111 +6712,111 @@
                         },
                         {
                           "node":"HtmlText",
-                          "line":243,
+                          "line":247,
                           "column":66,
-                          "text":"\r\n        "
+                          "text":"\n        "
                         }
                       ]
                     },
                     {
                       "node":"HtmlText",
-                      "line":244,
+                      "line":248,
                       "column":14,
-                      "text":"\r\n    "
+                      "text":"\n    "
                     }
                   ]
                 },
                 {
                   "node":"HtmlText",
-                  "line":245,
+                  "line":249,
                   "column":10,
-                  "text":"\r\n"
+                  "text":"\n"
                 }
               ]
             },
             {
               "node":"HtmlText",
-              "line":246,
+              "line":250,
               "column":9,
-              "text":"\r\n\r\n"
+              "text":"\n\n"
             },
             {
               "node":"PairedTag",
-              "line":248,
+              "line":252,
               "column":0,
               "tagName":"main",
               "attributes":[],
               "children":[
                 {
                   "node":"HtmlText",
-                  "line":248,
+                  "line":252,
                   "column":6,
-                  "text":"\r\n    "
+                  "text":"\n    "
                 },
                 {
                   "node":"HtmlText",
-                  "line":249,
+                  "line":253,
                   "column":68,
-                  "text":"\r\n    "
+                  "text":"\n    "
                 },
                 {
                   "node":"ControlBlock",
-                  "line":250,
+                  "line":254,
                   "column":4,
                   "jinjaStatementHeader":{
                     "node":"BlockStart",
-                    "line":250,
+                    "line":254,
                     "column":7,
                     "identifier":"content"
                   }
                 },
                 {
                   "node":"ControlBlock",
-                  "line":250,
+                  "line":254,
                   "column":23,
                   "jinjaStatementHeader":{
                     "node":"BlockEnd",
-                    "line":250,
+                    "line":254,
                     "column":26
                   }
                 },
                 {
                   "node":"HtmlText",
-                  "line":250,
+                  "line":254,
                   "column":37,
-                  "text":"\r\n"
+                  "text":"\n"
                 }
               ]
             },
             {
               "node":"HtmlText",
-              "line":251,
+              "line":255,
               "column":7,
-              "text":"\r\n\r\n"
+              "text":"\n\n"
             },
             {
               "node":"PairedTag",
-              "line":253,
+              "line":257,
               "column":0,
               "tagName":"footer",
               "attributes":[],
               "children":[
                 {
                   "node":"HtmlText",
-                  "line":253,
+                  "line":257,
                   "column":8,
-                  "text":"\r\n    "
+                  "text":"\n    "
                 },
                 {
                   "node":"PairedTag",
-                  "line":254,
+                  "line":258,
                   "column":4,
                   "tagName":"p",
                   "attributes":[],
                   "children":[
                     {
                       "node":"HtmlText",
-                      "line":254,
+                      "line":258,
                       "column":7,
                       "text":"&copy; 2023 ProductHub. Made with Flask & Jinja2."
                     }
@@ -6712,39 +6824,39 @@
                 },
                 {
                   "node":"HtmlText",
-                  "line":254,
+                  "line":258,
                   "column":60,
-                  "text":"\r\n    "
+                  "text":"\n    "
                 },
                 {
                   "node":"HtmlText",
-                  "line":255,
+                  "line":259,
                   "column":40,
-                  "text":"\r\n"
+                  "text":"\n"
                 }
               ]
             },
             {
               "node":"HtmlText",
-              "line":256,
+              "line":260,
               "column":9,
-              "text":"\r\n"
+              "text":"\n"
             }
           ]
         },
         {
           "node":"HtmlText",
-          "line":257,
+          "line":261,
           "column":7,
-          "text":"\r\n"
+          "text":"\n"
         }
       ]
     },
     {
       "node":"HtmlText",
-      "line":258,
+      "line":262,
       "column":7,
-      "text":"\r\n"
+      "text":"\n"
     }
   ]}
 }

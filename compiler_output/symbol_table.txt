@@ -114,36 +114,36 @@ Scope Level 1 [block_content]:
 
 Scope Level 0 [global]:
 ------------------------------------------------------------
-   1. body                       kind=selector       line=19
-   2. container                  kind=selector       line=27
-   3. header                     kind=selector       line=34
-   4. nav                        kind=selector       line=43
-   5. logo                       kind=selector       line=52
-   6. nav-links                  kind=selector       line=59
-   7. a                          kind=selector       line=59
-   8. product-grid               kind=selector       line=72
-   9. product-card               kind=selector       line=79
-  10. img                        kind=selector       line=92
-  11. card-content               kind=selector       line=98
-  12. h2                         kind=selector       line=102
-  13. price                      kind=selector       line=108
-  14. btn                        kind=selector       line=116
-  15. detail-page                kind=selector       line=132
-  16. back-link                  kind=selector       line=136
-  17. product-detail-card        kind=selector       line=144
-  18. detail-info                kind=selector       line=157
-  19. h1                         kind=selector       line=161
-  20. details                    kind=selector       line=166
-  21. form-container             kind=selector       line=172
-  22. add-form                   kind=selector       line=181
-  23. form-group                 kind=selector       line=181
-  24. label                      kind=selector       line=185
-  25. input                      kind=selector       line=192
-  26. textarea                   kind=selector       line=193
-  27. button                     kind=selector       line=203
-  28. footer                     kind=selector       line=221
-  29. btn-danger                 kind=selector       line=228
-  30. content                    kind=block          line=250
+   1. body                       kind=selector       line=23
+   2. container                  kind=selector       line=31
+   3. header                     kind=selector       line=38
+   4. nav                        kind=selector       line=47
+   5. logo                       kind=selector       line=56
+   6. nav-links                  kind=selector       line=63
+   7. a                          kind=selector       line=63
+   8. product-grid               kind=selector       line=76
+   9. product-card               kind=selector       line=83
+  10. img                        kind=selector       line=96
+  11. card-content               kind=selector       line=102
+  12. h2                         kind=selector       line=106
+  13. price                      kind=selector       line=112
+  14. btn                        kind=selector       line=120
+  15. detail-page                kind=selector       line=136
+  16. back-link                  kind=selector       line=140
+  17. product-detail-card        kind=selector       line=148
+  18. detail-info                kind=selector       line=161
+  19. h1                         kind=selector       line=165
+  20. details                    kind=selector       line=170
+  21. form-container             kind=selector       line=176
+  22. add-form                   kind=selector       line=185
+  23. form-group                 kind=selector       line=185
+  24. label                      kind=selector       line=189
+  25. input                      kind=selector       line=196
+  26. textarea                   kind=selector       line=197
+  27. button                     kind=selector       line=207
+  28. footer                     kind=selector       line=225
+  29. btn-danger                 kind=selector       line=232
+  30. content                    kind=block          line=254
 
 Scope Level 1 [block_content]:
 ------------------------------------------------------------
