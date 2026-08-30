@@ -7,13 +7,6 @@
     "details": "A powerful laptop for professionals with 16GB RAM and a 512GB SSD."
   },
   {
-    "id": 2,
-    "name": "Wireless Mouse",
-    "price": 25.5,
-    "image": "https://picsum.photos/seed/mouse1/400/300.jpg",
-    "details": "Ergonomic wireless mouse with a long-lasting battery."
-  },
-  {
     "id": 3,
     "name": "Mechanical Keyboard",
     "price": 89.0,
@@ -33,5 +26,12 @@
     "price": 190.0,
     "image": "https://picsum.photos/seed/laptop1/400/300.jpg",
     "details": "test"
+  },
+  {
+    "id": 6,
+    "name": "Wireless mouse",
+    "price": 22.96,
+    "image": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*9-ZvY7rVLT9EvD9VFU3wAA.png",
+    "details": "perfect"
   }
 ]
