@@ -63,6 +63,7 @@ import jinjaClasses.JinjaBlock;
 import jinjaClasses.JinjaCallArgs;
 import jinjaClasses.JinjaExpression;
 import jinjaClasses.JinjaFilter;
+import jinjaClasses.JinjaFilters;
 import jinjaClasses.JinjaIdentifierChain;
 import jinjaClasses.JinjaKwArg;
 import jinjaClasses.JinjaPrimary;
@@ -564,8 +565,23 @@ public class SemanticAnalyzer {
 
         analyzeJinjaPrimary(expression.getPrimary(), lineNumber, templateFilePath);
         for (JinjaFilter filter : safeList(expression.getFilters())) {
+            checkFilterSupported(filter, lineNumber, templateFilePath);
             analyzeJinjaCallArgs(filter.getArgs(), lineNumber, templateFilePath);
         }
+    }
+
+    /**
+     * E-J-10.  An unsupported filter used to fall through the renderer silently,
+     * emitting the unfiltered value.  The supported set lives in
+     * {@link JinjaFilters#SUPPORTED} and is shared with the renderer.
+     */
+    private void checkFilterSupported(JinjaFilter filter, int lineNumber, String templateFilePath) {
+        if (filter == null) return;
+        String name = filter.getName();
+        if (JinjaFilters.isSupported(name)) return;
+        report(templateFilePath, lineNumber, name,
+                "Unknown/unsupported filter '" + name + "' at line " + lineNumber
+                        + ". Supported filters: " + JinjaFilters.supportedList() + ".");
     }
 
     private void analyzeJinjaPrimary(JinjaPrimary primary, int lineNumber, String templateFilePath) {

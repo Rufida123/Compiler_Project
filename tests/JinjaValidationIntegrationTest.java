@@ -21,6 +21,11 @@ public final class JinjaValidationIntegrationTest {
         expect("stray_endfor",   "{% endfor %}",                   "Unexpected '{% endfor %}' at line 1");
         expect("stray_endif",    "{% endif %}",                    "Unexpected '{% endif %}' at line 1");
         expect("stray_else",     "{% else %}",                     "Unexpected '{% else %}' at line 1");
+
+        // E-J-10: a filter the renderer cannot apply must be rejected during
+        // analysis, not silently passed through at render time.
+        run("supported_filters", "{{ product.name | upper }} {{ product.price | string }} {{ product.name | trim }}", true);
+        expect("unknown_filter", "{{ product.name | mystery }}", "Unknown/unsupported filter 'mystery' at line 1");
         runMalformedPython();
         System.out.println("JinjaValidationIntegrationTest passed");
     }

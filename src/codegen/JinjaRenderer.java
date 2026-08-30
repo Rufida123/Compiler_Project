@@ -120,7 +120,43 @@ public class JinjaRenderer {
     private Object binary(String op,Object a,Object b) { if("~".equals(op)) return string(a)+string(b); if("==".equals(op)) return Objects.equals(a,b); if("!=".equals(op)) return !Objects.equals(a,b); if(a instanceof Number x&&b instanceof Number y) { double l=x.doubleValue(),r=y.doubleValue(); return switch(op){case "+"->l+r;case "-"->l-r;case "*"->l*r;case "/"->l/r;case "<"->l<r;case ">"->l>r;case "<="->l<=r;case ">="->l>=r;default->null;}; } return null; }
     private Object call(FunctionCall f,Map<String,Object> c) { if("url_for".equals(f.getIdentifier())) { String endpoint=""; Map<String,Object> args=args(f.getCallArgs(),c); Object p=args.remove("$0"); if(p!=null) endpoint=String.valueOf(p); String path=routes.getOrDefault(endpoint,"#"+endpoint); for(var e:args.entrySet()) path=path.replace("<int:"+e.getKey()+">",string(e.getValue())).replace("<"+e.getKey()+">",string(e.getValue())); return path; } return null; }
     private Map<String,Object> args(JinjaCallArgs a,Map<String,Object> c) { Map<String,Object> r=new HashMap<>(); if(a instanceof CallMixedArgs m) { int i=0; for(JinjaArg x:m.getPosArgs()) r.put("$"+(i++),value(x.getExpression(),c)); for(JinjaKwArg x:m.getKwArgs()) r.put(x.getIdentifier(),value(x.getExpression(),c)); } else if(a instanceof CallKwArgs k) for(JinjaKwArg x:k.getKwArgs()) r.put(x.getIdentifier(),value(x.getExpression(),c)); return r; }
-    private Object filter(JinjaFilter f,Object v,Map<String,Object> c) { String n=f.getName(); if("upper".equals(n))return string(v).toUpperCase(); if("lower".equals(n))return string(v).toLowerCase(); if("format".equals(n)) { Object fmt=args(f.getArgs(),c).get("$0"); try{return String.format(String.valueOf(v),fmt);}catch(Exception ignored){return v;} } return v; }
+    /**
+     * Applies one filter.  The set handled here is exactly
+     * {@link JinjaFilters#SUPPORTED}; anything else was already rejected during
+     * semantic analysis (E-J-10), so reaching the default branch is a bug.
+     */
+    private Object filter(JinjaFilter f, Object v, Map<String,Object> c) {
+        String name = f.getName();
+        Map<String,Object> a = args(f.getArgs(), c);
+        switch (name == null ? "" : name) {
+            case "upper":  return string(v).toUpperCase();
+            case "lower":  return string(v).toLowerCase();
+            case "string": return string(v);
+            case "trim":   return string(v).trim();
+            case "length": return (long) (v instanceof List<?> l ? l.size()
+                                        : v instanceof Map<?,?> m ? m.size() : string(v).length());
+            case "list":   return v instanceof List<?> ? v : new ArrayList<>(List.of(v == null ? "" : v));
+            case "int":    { Double d = number(v); return d == null ? 0L : (long) (double) d; }
+            case "float":  { Double d = number(v); return d == null ? 0d : d; }
+            case "default": return v == null || "".equals(string(v)) ? a.get("$0") : v;
+            case "replace": return string(v).replace(string(a.get("$0")), string(a.get("$1")));
+            case "format": {
+                // The Jinja idiom is "%.2f"|format(value): the value being filtered
+                // is the format string and the argument is what gets formatted.
+                try { return String.format(String.valueOf(v), a.get("$0")); }
+                catch (RuntimeException ignored) { return v; }
+            }
+            default:
+                throw new IllegalStateException("Unsupported filter reached the renderer: '" + name
+                        + "'. Semantic analysis should have rejected it (E-J-10).");
+        }
+    }
+
+    /** Best-effort numeric read, for the int/float filters. */
+    private static Double number(Object v) {
+        if (v instanceof Number n) return n.doubleValue();
+        try { return Double.valueOf(string(v).trim()); } catch (RuntimeException ignored) { return null; }
+    }
     private static boolean truth(Object x){return x instanceof Boolean b?b:x!=null && !(x instanceof Number n&&n.doubleValue()==0) && !"".equals(x);}
     private static String string(Object x){ if(x==null)return ""; if(x instanceof Number n && n.doubleValue()==Math.rint(n.doubleValue()))return String.valueOf(n.longValue()); return String.valueOf(x); }
     private static String unquote(String x){return x!=null&&x.length()>=2&&((x.startsWith("\"")&&x.endsWith("\""))||(x.startsWith("'")&&x.endsWith("'")))?x.substring(1,x.length()-1):x;}
