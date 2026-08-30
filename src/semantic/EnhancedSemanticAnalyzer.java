@@ -296,7 +296,16 @@ public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
             if (current instanceof CondExpr value && value.getCondition() == null) current = value.getThenExpr();
             else if (current instanceof OrPassExpr value) current = value.getInner();
             else if (current instanceof UnaryPostfixExpr value) current = value.getExpr();
+            else if (current instanceof ParenExpr value) current = value.getInner();
             else break;
+        }
+        // The parser always wraps a primary in a PostfixExpr.  When that wrapper
+        // carries no operations it is transparent, so unwrap it before matching
+        // literal node types - otherwise every inferred type stays "unknown".
+        if (current instanceof PostfixExpr value && safe(value.getOps()).isEmpty()) {
+            PrimaryExpr primary = value.getPrimary();
+            if (primary instanceof IdentifierExpr id) return lookupType(id.getName());
+            current = primary;
         }
         if (current instanceof StringExpr) return "str";
         if (current instanceof IntExpr) return "int";
@@ -307,7 +316,9 @@ public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
         if (current instanceof DictLiteralExpr) return "dict";
         if (current instanceof IdentifierExpr value) return lookupType(value.getName());
         if (current instanceof PostfixExpr value && value.getPrimary() instanceof IdentifierExpr id) {
-            return lookupType(id.getName());
+            // A call/subscript/attribute chain on a name: the result type is not
+            // the name's own type, so only a bare name resolves here.
+            return safe(value.getOps()).isEmpty() ? lookupType(id.getName()) : "unknown";
         }
         return "unknown";
     }
