@@ -45,7 +45,8 @@ public class JinjaRenderer {
         for (int i=from;i<es.size();i++) {
             DocumentElement e=es.get(i);
             Object h=header(e); if (stop != null && stop.isInstance(h)) return new Slice(out.toString(), i);
-            if (e instanceof HtmlText t) out.append(t.getText());
+            if (e instanceof Doctype d) out.append(d.getText());
+            else if (e instanceof HtmlText t) out.append(t.getText());
             else if (e instanceof PrintBlock p) out.append(string(value(p.getJinjaExpression(), c)));
             else if (e instanceof StyleTag style) out.append(css(style));
             else if (e instanceof PairedTag t) { out.append('<').append(t.getTagName()); attrs(out,t.getAttributes(),c); out.append('>'); out.append(renderElements(t.getChildren(),c,overrides,0,null).text); out.append("</").append(t.getTagName()).append('>'); }

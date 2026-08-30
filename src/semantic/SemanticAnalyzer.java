@@ -140,10 +140,22 @@ public class SemanticAnalyzer {
     private int scopeCounter = 0;
     private final Map<String, Set<String>> routeParameters = new LinkedHashMap<>();
 
-    private static final Set<String> PYTHON_BUILTINS = new LinkedHashSet<>(Arrays.asList(
+    /**
+     * The single built-in set shared by every Python-side analyzer.  Keeping two
+     * disagreeing copies is what made {@code missing_function()} report twice
+     * with different wording.
+     */
+    public static final Set<String> PYTHON_BUILTINS = Collections.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(
             "__name__", "__file__", "next", "range", "len", "float", "int", "str",
-            "list", "dict", "print", "open"
-    ));
+            "list", "dict", "print", "open",
+            "sum", "max", "min", "sorted", "reversed", "enumerate", "zip", "abs", "round"
+    )));
+
+    /** The callable subset, used for the "cannot redefine a built-in" check. */
+    public static final Set<String> CALLABLE_BUILTINS = Collections.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(
+            "next", "range", "len", "float", "int", "str", "list", "dict", "print", "open",
+            "sum", "max", "min", "sorted", "reversed", "enumerate", "zip", "abs", "round"
+    )));
 
     private static final Set<String> PYTHON_RESERVED_WORDS = new LinkedHashSet<>(Arrays.asList(
             "def", "return", "if", "else", "elif", "for", "in", "import", "from", "as",

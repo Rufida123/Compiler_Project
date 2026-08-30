@@ -13,7 +13,7 @@ TAG_OPEN: '<' -> pushMode(TAG_MODE);
 TAG_CLOSE_START: '</' -> pushMode(TAG_MODE);
 
 HTML_COMMENT: '<!--' .*? '-->' -> channel(HIDDEN);
-DOCTYPE: '<!DOCTYPE' .*? '>' -> skip;
+DOCTYPE: '<!DOCTYPE' .*? '>';
 STYLE_OPEN: '<style' .*? '>' -> pushMode(CSS_MODE);
 
 // Text that isn't a tag or Jinja start

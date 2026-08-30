@@ -27,11 +27,8 @@ public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
     private static final Set<String> FLASK_EXPORTS = Set.of(
             "Flask", "render_template", "request", "redirect", "url_for"
     );
-    private static final Set<String> BUILTINS = Set.of(
-            "print", "len", "range", "int", "str", "float", "list", "dict",
-            "sum", "max", "min", "sorted", "reversed", "enumerate", "zip",
-            "next", "open"
-    );
+    /** Shared with SemanticAnalyzer so the two analyzers cannot disagree. */
+    private static final Set<String> BUILTINS = SemanticAnalyzer.PYTHON_BUILTINS;
 
     @Override
     public void analyzePython(PyProgram program, String filePath) {
@@ -286,7 +283,7 @@ public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
     }
 
     private void checkBuiltinRedefinition(String name, int line, String filePath) {
-        if (BUILTINS.contains(name)) {
+        if (SemanticAnalyzer.CALLABLE_BUILTINS.contains(name)) {
             add(filePath, line, name,
                     "Cannot redefine built-in function '" + name + "'.");
         }

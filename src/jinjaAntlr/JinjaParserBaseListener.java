@@ -41,6 +41,18 @@ public class JinjaParserBaseListener implements JinjaParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDoctype(JinjaParser.DoctypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDoctype(JinjaParser.DoctypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPairedTag(JinjaParser.PairedTagContext ctx) { }
 	/**
 	 * {@inheritDoc}

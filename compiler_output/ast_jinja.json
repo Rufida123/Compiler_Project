@@ -790,8 +790,14 @@
 "test.html": {
   "node":"JinjaProgram",
   "line":1,
-  "column":15,
+  "column":0,
   "htmlElements":[
+    {
+      "node":"Doctype",
+      "line":1,
+      "column":0,
+      "text":"<!DOCTYPE html>"
+    },
     {
       "node":"HtmlText",
       "line":1,
@@ -2379,6 +2385,12 @@
       "line":1,
       "column":28,
       "text":"\n"
+    },
+    {
+      "node":"Doctype",
+      "line":2,
+      "column":0,
+      "text":"<!DOCTYPE html>"
     },
     {
       "node":"HtmlText",

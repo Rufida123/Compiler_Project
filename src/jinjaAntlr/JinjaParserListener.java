@@ -28,6 +28,16 @@ public interface JinjaParserListener extends ParseTreeListener {
 	 */
 	void exitDocumentElement(JinjaParser.DocumentElementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JinjaParser#doctype}.
+	 * @param ctx the parse tree
+	 */
+	void enterDoctype(JinjaParser.DoctypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinjaParser#doctype}.
+	 * @param ctx the parse tree
+	 */
+	void exitDoctype(JinjaParser.DoctypeContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code PairedTag}
 	 * labeled alternative in {@link JinjaParser#htmlTag}.
 	 * @param ctx the parse tree

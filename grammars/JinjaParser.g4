@@ -6,11 +6,14 @@ options { tokenVocab = JinjaLexer; }
 jinjaProgram : documentElement* EOF ;
 
 documentElement
-    : styleTag
+    : doctype
+    | styleTag
     | jinjaBlock
     | htmlTag
     | htmlText
     ;
+
+doctype : DOCTYPE ;
 
 // --- HTML Tag Structure ---
 

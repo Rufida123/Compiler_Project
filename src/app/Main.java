@@ -119,6 +119,7 @@ public class Main {
         allErrors.addAll(semanticAnalyzer.getErrors());
         allErrors.addAll(typeChecker.getErrors());
         allErrors.addAll(enhanced.getErrors());
+        allErrors = dedupe(allErrors);
 
         // Enhanced warnings belong in the final report, but only real errors
         // block generation. Python permits patterns such as reassignment and
@@ -193,6 +194,44 @@ public class Main {
     // ─────────────────────────────────────────────────────────────────────────
     // Error printing - updated version
     // ─────────────────────────────────────────────────────────────────────────
+    /**
+     * Two analyzers can see the same problem from different angles: a call to an
+     * unknown name is both an undefined variable (SemanticAnalyzer) and an
+     * undefined function (EnhancedSemanticAnalyzer).  Collapse those onto one
+     * report per (file, line, kind, name), keeping the more specific wording.
+     */
+    private static List<SemanticAnalyzer.SemanticError> dedupe(List<SemanticAnalyzer.SemanticError> errors) {
+        Map<String, SemanticAnalyzer.SemanticError> best = new LinkedHashMap<>();
+        List<SemanticAnalyzer.SemanticError> ordered = new ArrayList<>();
+        for (SemanticAnalyzer.SemanticError error : errors) {
+            String kind = kindOf(error.getMessage());
+            if (kind == null) { ordered.add(error); continue; }
+            String key = error.getFilePath() + "|" + error.getLineNumber() + "|" + kind + "|" + error.getVariableName();
+            SemanticAnalyzer.SemanticError existing = best.get(key);
+            if (existing == null) {
+                best.put(key, error);
+                ordered.add(error);
+            } else if (specificity(error.getMessage()) > specificity(existing.getMessage())) {
+                ordered.set(ordered.indexOf(existing), error);
+                best.put(key, error);
+            }
+        }
+        return ordered;
+    }
+
+    /** Diagnostics that describe the same underlying problem share a kind. */
+    private static String kindOf(String message) {
+        if (message.startsWith("Undefined variable '") || message.startsWith("Undefined function '")) {
+            return "undefined-name";
+        }
+        return null;
+    }
+
+    /** Prefer the message that tells the student more. */
+    private static int specificity(String message) {
+        return message.startsWith("Undefined function '") ? 2 : 1;
+    }
+
     private static void printAllErrors(List<SemanticAnalyzer.SemanticError> all) {
 
         System.out.println("\n=========== SEMANTIC ERRORS ===========");

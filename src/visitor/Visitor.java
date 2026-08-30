@@ -102,11 +102,19 @@ public class Visitor {
 
         @Override
         public DocumentElement visitDocumentElement(JinjaParser.DocumentElementContext ctx) {
-            if      (ctx.styleTag()   != null) return (DocumentElement) visit(ctx.styleTag());
+            if      (ctx.doctype()    != null) return (DocumentElement) visit(ctx.doctype());
+            else if (ctx.styleTag()   != null) return (DocumentElement) visit(ctx.styleTag());
             else if (ctx.jinjaBlock() != null) return (DocumentElement) visit(ctx.jinjaBlock());
             else if (ctx.htmlTag()    != null) return (DocumentElement) visit(ctx.htmlTag());
             else if (ctx.htmlText()   != null) return (HtmlText)        visit(ctx.htmlText());
             return null;
+        }
+
+        @Override
+        public Doctype visitDoctype(JinjaParser.DoctypeContext ctx) {
+            Doctype doctype = new Doctype();
+            if (ctx.DOCTYPE() != null) doctype.setText(ctx.DOCTYPE().getText());
+            return doctype;
         }
 
         // ── Style tag ────────────────────────────────────────────────────────

@@ -309,8 +309,10 @@ JinjaProgram (line 1, col 35)
       text = "\n"
 
 =========== JINJA/HTML AST: test.html ===========
-JinjaProgram (line 1, col 15)
-  htmlElements [3]:
+JinjaProgram (line 1, col 0)
+  htmlElements [4]:
+    Doctype (line 1, col 0)
+      text = "<!DOCTYPE html>"
     HtmlText (line 1, col 15)
       text = "\n"
     PairedTag (line 2, col 0)
@@ -937,9 +939,11 @@ JinjaProgram (line 1, col 38)
 
 =========== JINJA/HTML AST: base.html ===========
 JinjaProgram (line 1, col 28)
-  htmlElements [4]:
+  htmlElements [5]:
     HtmlText (line 1, col 28)
       text = "\n"
+    Doctype (line 2, col 0)
+      text = "<!DOCTYPE html>"
     HtmlText (line 2, col 15)
       text = "\n"
     PairedTag (line 3, col 0)

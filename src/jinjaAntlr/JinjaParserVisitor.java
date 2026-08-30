@@ -23,6 +23,12 @@ public interface JinjaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDocumentElement(JinjaParser.DocumentElementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JinjaParser#doctype}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDoctype(JinjaParser.DoctypeContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code PairedTag}
 	 * labeled alternative in {@link JinjaParser#htmlTag}.
 	 * @param ctx the parse tree
