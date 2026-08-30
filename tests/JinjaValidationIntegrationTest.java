@@ -21,7 +21,10 @@ public final class JinjaValidationIntegrationTest {
         Files.writeString(templates.resolve("page.html"), template);
         Files.writeString(root.resolve("input.py"), "from flask import Flask, render_template\napp = Flask(__name__)\nproduct = {'id': 1, 'price': 100}\n@app.route('/detail/<int:product_id>')\ndef detail(product_id):\n    return render_template('page.html', product=product)\n");
         Path output = root.resolve("generated_app");
-        Main.main(new String[]{root.resolve("input.py").toString(), templates.toString(), output.toString()});
+        // Always pass the 4th argument: without it Main falls back to the project's
+        // own compiler_output/ and the test would overwrite a graded deliverable.
+        Main.main(new String[]{root.resolve("input.py").toString(), templates.toString(),
+                output.toString(), root.resolve("compiler_output").toString()});
         if (Files.exists(output) != shouldGenerate) throw new AssertionError(name + " generation result was incorrect");
     }
 
@@ -31,7 +34,8 @@ public final class JinjaValidationIntegrationTest {
         Files.writeString(templates.resolve("page.html"), "ok");
         Files.writeString(root.resolve("input.py"), "def broken(\n");
         Path output = root.resolve("generated_app");
-        Main.main(new String[]{root.resolve("input.py").toString(), templates.toString(), output.toString()});
+        Main.main(new String[]{root.resolve("input.py").toString(), templates.toString(),
+                output.toString(), root.resolve("compiler_output").toString()});
         if (Files.exists(output)) throw new AssertionError("malformed Python generated output");
     }
 }
