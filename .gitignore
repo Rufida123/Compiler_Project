@@ -1,2 +1,16 @@
+# Build output
+.build/
 out/
 *.class
+
+# Python environment and bytecode
+.venv/
+__pycache__/
+*.pyc
+
+# IDE state
+.idea/
+*.iml
+
+# Note: output/ and compiler_output/ are intentionally TRACKED.
+# They are required deliverables of the assignment.
