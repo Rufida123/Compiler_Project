@@ -1,6 +1,8 @@
 package semantic;
 
 import PyClasses.*;
+import sharedSymbolTable.Symbol;
+import sharedSymbolTable.SymbolTable;
 
 import java.util.*;
 
@@ -12,7 +14,9 @@ import java.util.*;
 public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
     private final List<SemanticError> findings = new ArrayList<>();
     private final Set<String> reported = new LinkedHashSet<>();
-    private final Map<String, FunctionDefinition> functions = new LinkedHashMap<>();
+    /** Declared functions, held as Symbols so arity comes from the symbol's own
+     *  parameter list rather than from a second private map. */
+    private final SymbolTable declarations = new SymbolTable();
     private final Set<String> importedNames = new LinkedHashSet<>();
     private final Deque<Set<String>> assignedScopes = new ArrayDeque<>();
     private final Deque<Map<String,String>> typeScopes = new ArrayDeque<>();
@@ -29,13 +33,11 @@ public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
             "next", "open"
     );
 
-    private record FunctionDefinition(String name, int parameterCount, int line) {}
-
     @Override
     public void analyzePython(PyProgram program, String filePath) {
         findings.clear();
         reported.clear();
-        functions.clear();
+        declarations.initGlobal();
         importedNames.clear();
         assignedScopes.clear();
         typeScopes.clear();
@@ -59,12 +61,12 @@ public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
         for (Statement statement : safe(statements)) {
             FuncDefStatement function = functionOf(statement);
             if (function != null) {
-                if (functions.containsKey(function.getName())) {
+                if (declarations.lookup(function.getName()) != null) {
                     add(filePath, line(statement), function.getName(),
                             "Function '" + function.getName() + "' is defined more than once.");
                 } else {
-                    functions.put(function.getName(), new FunctionDefinition(
-                            function.getName(), function.getParams().size(), line(statement)));
+                    declarations.add(new Symbol(function.getName(), "function", 0,
+                            line(statement), function.getParams()));
                 }
             }
         }
@@ -215,19 +217,19 @@ public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
     }
 
     private void checkUndefinedFunction(String name, int line, String filePath) {
-        if (!BUILTINS.contains(name) && !functions.containsKey(name) && !importedNames.contains(name)) {
+        if (!BUILTINS.contains(name) && declarations.lookup(name) == null && !importedNames.contains(name)) {
             add(filePath, line, name,
                     "Undefined function '" + name + "'. Did you forget to define or import it?");
         }
     }
 
     private void checkFunctionArguments(String name, int count, int line, String filePath) {
-        FunctionDefinition definition = functions.get(name);
-        if (definition != null && definition.parameterCount() != count) {
+        Symbol definition = declarations.lookup(name);
+        if (definition != null && definition.getParameterCount() != count) {
             add(filePath, line, name,
-                    "Function '" + name + "' expects " + definition.parameterCount()
+                    "Function '" + name + "' expects " + definition.getParameterCount()
                             + " argument(s) but got " + count
-                            + ". Definition is at line " + definition.line() + ".");
+                            + ". Definition is at line " + definition.getLineNumber() + ".");
         }
     }
 

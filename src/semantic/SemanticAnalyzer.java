@@ -71,6 +71,9 @@ import jinjaClasses.PrintBlock;
 import jinjaClasses.SelfClosingTag;
 import jinjaClasses.StringLiteral;
 
+import sharedSymbolTable.Symbol;
+import sharedSymbolTable.SymbolTable;
+
 import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -124,7 +127,13 @@ public class SemanticAnalyzer {
     private final List<SemanticError> errors = new ArrayList<>();
     private final Set<String> reportedErrors = new LinkedHashSet<>();
     private final Map<String, Set<String>> templateContexts = new LinkedHashMap<>();
-    private final Deque<Set<String>> scopes = new ArrayDeque<>();
+    /**
+     * The declaration store.  Undefined-variable resolution on both the Python
+     * and the Jinja side goes through {@link SymbolTable#lookup}, so there is one
+     * scope mechanism rather than a private stack per analyzer.
+     */
+    private final SymbolTable symbols = new SymbolTable();
+    private int scopeCounter = 0;
     private final Map<String, Set<String>> routeParameters = new LinkedHashMap<>();
 
     private static final Set<String> PYTHON_BUILTINS = new LinkedHashSet<>(Arrays.asList(
@@ -157,10 +166,10 @@ public class SemanticAnalyzer {
         errors.clear();
         reportedErrors.clear();
         templateContexts.clear();
-        scopes.clear();
         routeParameters.clear();
-        openScope();
-        defineAll(PYTHON_BUILTINS);
+        symbols.initGlobal();
+        scopeCounter = 0;
+        defineAll(PYTHON_BUILTINS, "builtin");
         String displayPythonPath = displayPath(pythonFilePath);
 
         if (program != null) {
@@ -173,22 +182,21 @@ public class SemanticAnalyzer {
     }
 
     public void analyzeJinja(JinjaProgram program, String templateFilePath) {
-        scopes.clear();
-        openScope();
-        defineAll(JINJA_BUILTINS);
+        symbols.initGlobal();
+        scopeCounter = 0;
+        defineAll(JINJA_BUILTINS, "builtin");
 
         String displayTemplatePath = displayPath(templateFilePath);
         String normalizedTemplateName = normalizeTemplateName(templateFilePath);
-        defineAll(templateContexts.get(normalizedTemplateName));
+        defineAll(templateContexts.get(normalizedTemplateName), "context");
 
         if (program != null) {
             analyzeJinjaElements(program.getHtmlElements(), displayTemplatePath);
         }
 
-        while (scopes.size() > 1) {
+        while (symbols.getCurrentScopeLevel() > 0) {
             closeScope();
         }
-        closeScope();
     }
 
     public List<SemanticError> getErrors() {
@@ -217,11 +225,11 @@ public class SemanticAnalyzer {
             defineImports(importStmt);
         } else if (statement instanceof AssignStmt assignStmt) {
             analyzePythonExpression(assignStmt.getValue(), pythonFilePath);
-            define(assignStmt.getName());
+            define(assignStmt.getName(), "variable", assignStmt.getLineNumber());
         } else if (statement instanceof FuncDefStatement funcDef) {
-            define(funcDef.getName());
-            openScope();
-            defineAll(funcDef.getParams());
+            defineFunction(funcDef);
+            openScope("func_" + funcDef.getName());
+            defineAll(funcDef.getParams(), "parameter");
             analyzeSuite(funcDef.getBody(), pythonFilePath);
             closeScope();
         } else if (statement instanceof RouteStatement routeStatement) {
@@ -229,8 +237,8 @@ public class SemanticAnalyzer {
             analyzePythonStatement(routeStatement.getFuncDef(), pythonFilePath);
         } else if (statement instanceof ForStatement forStatement) {
             analyzePythonExpression(forStatement.getExpression(), pythonFilePath);
-            openScope();
-            define(forStatement.getVarName());
+            openScope("for_" + forStatement.getVarName());
+            define(forStatement.getVarName(), "loop_variable", forStatement.getLineNumber());
             analyzeSuite(forStatement.getForBlock(), pythonFilePath);
             closeScope();
         } else if (statement instanceof IfStatement ifStatement) {
@@ -252,7 +260,7 @@ public class SemanticAnalyzer {
 
         for (ImportItem item : safeList(importList.getItems())) {
             String definedName = item.getAlias() != null ? item.getAlias() : item.getName();
-            define(definedName);
+            define(definedName, "import", importStmt.getLineNumber());
         }
     }
 
@@ -343,8 +351,8 @@ public class SemanticAnalyzer {
         if (generatorExpr == null) return;
 
         analyzePythonExpression(generatorExpr.getIterable(), pythonFilePath);
-        openScope();
-        define(generatorExpr.getLoopVarName());
+        openScope("generator");
+        define(generatorExpr.getLoopVarName(), "loop_variable", generatorExpr.getLineNumber());
         usePythonVariable(generatorExpr.getYieldName(), generatorExpr.getLineNumber(), pythonFilePath);
         analyzePythonExpression(generatorExpr.getFilter(), pythonFilePath);
         closeScope();
@@ -463,10 +471,10 @@ public class SemanticAnalyzer {
             analyzeJinjaExpression(ifHeader.getExpression(), lineNumber, templateFilePath);
         } else if (header instanceof For forHeader) {
             analyzeJinjaExpression(forHeader.getExpression(), lineNumber, templateFilePath);
-            openScope();
-            define(forHeader.getIdentifier());
+            openScope("jinja_for_" + forHeader.getIdentifier());
+            define(forHeader.getIdentifier(), "loop_variable", lineNumber);
         } else if (header instanceof EndFor) {
-            if (scopes.size() > 1) {
+            if (symbols.getCurrentScopeLevel() > 0) {
                 closeScope();
             }
         }
@@ -543,36 +551,39 @@ public class SemanticAnalyzer {
         }
     }
 
-    private void openScope() {
-        scopes.push(new LinkedHashSet<>());
+    private void openScope(String label) {
+        symbols.openScope(label + "_" + (++scopeCounter));
     }
 
+    /** Closes the innermost scope; the global scope is never popped. */
     private void closeScope() {
-        if (!scopes.isEmpty()) {
-            scopes.pop();
-        }
+        if (symbols.getCurrentScopeLevel() > 0) symbols.closeScope();
     }
 
-    private void define(String name) {
-        if (name != null && !scopes.isEmpty()) {
-            scopes.peek().add(name);
-        }
+    private void define(String name, String kind, int line) {
+        if (name != null) symbols.addSymbol(name, kind, line);
     }
 
-    private void defineAll(Iterable<String> names) {
+    /** Functions are recorded with their parameter list so arity can be checked from the table. */
+    private void defineFunction(FuncDefStatement function) {
+        if (function == null || function.getName() == null) return;
+        symbols.add(new Symbol(function.getName(), "function",
+                symbols.getCurrentScopeLevel(), function.getLineNumber(), function.getParams()));
+    }
+
+    private void defineAll(Iterable<String> names, String kind) {
         if (names == null) return;
-        for (String name : names) {
-            define(name);
-        }
+        for (String name : names) define(name, kind, -1);
     }
 
+    /** Resolution goes through the shared symbol table, innermost scope outward. */
     private boolean isDefined(String name) {
-        for (Set<String> scope : scopes) {
-            if (scope.contains(name)) {
-                return true;
-            }
-        }
-        return false;
+        return symbols.lookup(name) != null;
+    }
+
+    /** The declaration store this analyzer built, for reporting. */
+    public SymbolTable getSymbolTable() {
+        return symbols;
     }
 
     private void report(String filePath, int lineNumber, String variableName, String message) {

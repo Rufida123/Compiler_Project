@@ -10,6 +10,8 @@ public class Symbol {
     private final String type;       // e.g. "block", "variable", "selector", "function", "parameter", "loop_variable"
     private final int scopeLevel;
     private final int lineNumber;
+    /** Declared parameters, for function symbols; empty for everything else. */
+    private final java.util.List<String> parameters;
 
     // ── Constructors ────────────────────────────────────────────────────────────
 
@@ -20,10 +22,16 @@ public class Symbol {
 
     /** Full constructor. */
     public Symbol(String name, String type, int scopeLevel, int lineNumber) {
+        this(name, type, scopeLevel, lineNumber, java.util.List.of());
+    }
+
+    /** Function constructor: also records the declared parameter list. */
+    public Symbol(String name, String type, int scopeLevel, int lineNumber, java.util.List<String> parameters) {
         this.name       = name;
         this.type       = type;
         this.scopeLevel = scopeLevel;
         this.lineNumber = lineNumber;
+        this.parameters = parameters == null ? java.util.List.of() : java.util.List.copyOf(parameters);
     }
 
     // ── Getters ─────────────────────────────────────────────────────────────────
@@ -32,6 +40,8 @@ public class Symbol {
     public String getType()     { return type; }
     public int getScopeLevel()  { return scopeLevel; }
     public int getLineNumber()  { return lineNumber; }
+    public java.util.List<String> getParameters() { return parameters; }
+    public int getParameterCount() { return parameters.size(); }
 
     // ── Object overrides ────────────────────────────────────────────────────────
 
