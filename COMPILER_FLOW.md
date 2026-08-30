@@ -170,6 +170,22 @@ filename:line:column message
 - رفض معاملات route المجهولة.
 - اعتبار Python built-ins المستخدمة حالياً، ومنها `open` و`__file__`.
 
+`src/semantic/EnhancedSemanticAnalyzer.java` يجتاز Python AST أيضاً ويضيف إلى
+التقرير النهائي:
+
+- استدعاء دالة غير معرفة أو غير مستوردة.
+- عدد arguments غير مطابق لتعريف الدالة.
+- import من module غير مدعوم أو Flask export غير مدعوم.
+- إعادة تعريف built-in.
+- attribute غير متوافق مع نوع `str` أو `list` أو `dict` عندما يكون النوع معروفاً.
+- index غير متوافق مع نوع الحاوية.
+- تعريف الدالة نفسها أكثر من مرة.
+- تحذير عند إسناد المتغير أكثر من مرة في النطاق نفسه.
+- تحذير عند وجود دالة لا تحتوي `return` ويُتوقع أن تعيد قيمة.
+
+الأخطاء الإضافية تدخل في قرار منع التوليد. الرسائل التي تبدأ بـ `Warning:`
+تظهر في console و`semantic_report.txt` لكنها لا تمنع التوليد.
+
 مثال:
 
 ```jinja2
@@ -411,6 +427,7 @@ Werkzeug==2.3.0
 - `JinjaValidationIntegrationTest`: parsing وJinja semantic/type و`url_for`.
 - `CodeGeneratorIntegrationTest`: يحافظ على اختبار المولد القديم.
 - `PersistentProductsIntegrationTest`: التخزين الدائم وإعادة التوليد.
+- `EnhancedSemanticReportIntegrationTest`: أخطاء وتحذيرات المحلل الإضافي وربطها بالتقرير.
 
 اختبار التخزين الدائم يتحقق من:
 
@@ -428,6 +445,7 @@ Werkzeug==2.3.0
 
 ```powershell
 java -cp ".build\classes;dependencies\antlr-4.13.2-complete.jar" PersistentProductsIntegrationTest
+java -cp ".build\classes;dependencies\antlr-4.13.2-complete.jar" EnhancedSemanticReportIntegrationTest
 java -cp ".build\classes;dependencies\antlr-4.13.2-complete.jar" JinjaValidationIntegrationTest
 java -cp ".build\classes;dependencies\antlr-4.13.2-complete.jar" CodeGeneratorIntegrationTest
 py -3.12 -m py_compile app.py output\app.py
@@ -439,6 +457,7 @@ py -3.12 -m py_compile app.py output\app.py
 Java compilation: PASS
 Python 3.12 syntax: PASS
 Persistent products test: PASS
+Enhanced semantic report test: PASS
 Jinja validation test: PASS
 Legacy CodeGenerator test: PASS
 Semantic/type report: No errors

@@ -26,5 +26,12 @@
     "price": 155.0,
     "image": "https://picsum.photos/seed/laptop1/400/300.jpg",
     "details": "android"
+  },
+  {
+    "id": 5,
+    "name": "test",
+    "price": 190.0,
+    "image": "https://picsum.photos/seed/laptop1/400/300.jpg",
+    "details": "test"
   }
 ]

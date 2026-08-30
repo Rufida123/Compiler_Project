@@ -1,219 +1,356 @@
 package semantic;
 
-/**
- * ENHANCED SEMANTIC ANALYZER
- * Adds 5+ additional semantic checks:
- * 1. Undefined function call
- * 2. Wrong number of function parameters
- * 3.Variable redefinition (duplicate definition)
- * 4. Missing return statement in function
- * 5.Invalid import
- */
-
 import PyClasses.*;
+
 import java.util.*;
 
+/**
+ * Additional Python AST checks that complement SemanticAnalyzer and TypeChecker.
+ * Errors are returned to Main and participate in the final report. Findings whose
+ * message starts with "Warning:" are reported but do not block generation.
+ */
 public class EnhancedSemanticAnalyzer extends SemanticAnalyzer {
+    private final List<SemanticError> findings = new ArrayList<>();
+    private final Set<String> reported = new LinkedHashSet<>();
+    private final Map<String, FunctionDefinition> functions = new LinkedHashMap<>();
+    private final Set<String> importedNames = new LinkedHashSet<>();
+    private final Deque<Set<String>> assignedScopes = new ArrayDeque<>();
+    private final Deque<Map<String,String>> typeScopes = new ArrayDeque<>();
 
-    // Track function definitions
-    private Map<String, FunctionDefinition> functionDefs = new LinkedHashMap<>();
-    private Set<String> importedModules = new LinkedHashSet<>();
-    private Set<String> definedVariables = new LinkedHashSet<>();
-    private String currentFunction = null;
+    private static final Set<String> VALID_MODULES = Set.of(
+            "flask", "os", "sys", "json", "datetime", "random", "math"
+    );
+    private static final Set<String> FLASK_EXPORTS = Set.of(
+            "Flask", "render_template", "request", "redirect", "url_for"
+    );
+    private static final Set<String> BUILTINS = Set.of(
+            "print", "len", "range", "int", "str", "float", "list", "dict",
+            "sum", "max", "min", "sorted", "reversed", "enumerate", "zip",
+            "next", "open"
+    );
 
-    public static class FunctionDefinition {
-        public String name;
-        public int paramCount;
-        public int lineNumber;
-        public boolean hasReturn;
+    private record FunctionDefinition(String name, int parameterCount, int line) {}
 
-        public FunctionDefinition(String name, int paramCount, int lineNumber) {
-            this.name = name;
-            this.paramCount = paramCount;
-            this.lineNumber = lineNumber;
-            this.hasReturn = false;
+    @Override
+    public void analyzePython(PyProgram program, String filePath) {
+        findings.clear();
+        reported.clear();
+        functions.clear();
+        importedNames.clear();
+        assignedScopes.clear();
+        typeScopes.clear();
+        openScope();
+
+        if (program != null) {
+            collectFunctions(program.getStatements(), filePath);
+            for (Statement statement : safe(program.getStatements())) {
+                analyzeStatement(statement, filePath);
+            }
         }
+        closeScope();
     }
 
-    /**
-     * ERROR 1: Undefined function call
-     * متلاً: len_custom() لما ما تكون معرّفة
-     */
-    public void checkUndefinedFunction(String functionName, int lineNumber, String filePath) {
-        if (!isBuiltinFunction(functionName) && !functionDefs.containsKey(functionName)) {
-            report(filePath, lineNumber, functionName,
-                    "Undefined function '" + functionName + "'. "
-                            + "Did you forget to define it?");
-        }
+    @Override
+    public List<SemanticError> getErrors() {
+        return Collections.unmodifiableList(findings);
     }
 
-    /**
-     * ERROR 2: Wrong number of function parameters
-     * متلاً: def greet(name, age): ... 
-     *        greet("Ali")  ← Missing parameter!
-     */
-    public void checkFunctionArguments(String functionName, int argCount,
-                                      int lineNumber, String filePath) {
-        if (!functionDefs.containsKey(functionName)) return;
-
-        FunctionDefinition def = functionDefs.get(functionName);
-        if (def.paramCount != argCount) {
-            report(filePath, lineNumber, functionName,
-                    "Function '" + functionName + "' expects "
-                            + def.paramCount + " argument(s) but got " + argCount + ". "
-                            + "Check the function definition at line " + def.lineNumber);
-        }
-    }
-
-    /**
-     * ERROR 3: Variable redefinition
-     * متلاً: name = "Ali"
-     *        name = "Omar"  ← second definition (warning)
-     */
-    public void checkVariableRedefinition(String variableName, int lineNumber, String filePath) {
-        if (definedVariables.contains(variableName)) {
-            report(filePath, lineNumber, variableName,
-                    "Warning: Variable '" + variableName + "' is being redefined. "
-                            + "Did you mean to use a different name or update an existing variable?");
-        } else {
-            definedVariables.add(variableName);
-        }
-    }
-
-    /**
-     * ERROR 4: Missing return statement
-     * متلاً: def get_user():
-     *            print("no return!")  ← Missing return
-     */
-    public void checkMissingReturn(String functionName, boolean hasReturn, int lineNumber, String filePath) {
-        if (!hasReturn && !isVoidFunction(functionName)) {
-            report(filePath, lineNumber, functionName,
-                    "Function '" + functionName + "' does not have a return statement. "
-                            + "If this is intentional, it will return None");
-        }
-    }
-
-    /**
-     * ERROR 5: Invalid import
-     * متلاً: import nonexistent_module
-     *        from flask import unknownFunction
-     */
-    public void checkInvalidImport(String moduleName, String itemName, int lineNumber, String filePath) {
-        Set<String> validModules = new HashSet<>(Arrays.asList(
-                "flask", "os", "sys", "json", "datetime", "random", "math"
-        ));
-
-        if (!validModules.contains(moduleName)) {
-            report(filePath, lineNumber, moduleName,
-                    "Unknown module '" + moduleName + "'. "
-                            + "Make sure the module name is correct. "
-                            + "Valid modules: " + validModules);
-        }
-
-        if (itemName != null) {
-            Map<String, Set<String>> flaskExports = new HashMap<>();
-            flaskExports.put("flask", new HashSet<>(Arrays.asList(
-                    "Flask", "render_template", "request", "redirect", "url_for"
-            )));
-
-            Set<String> exports = flaskExports.get(moduleName);
-            if (exports != null && !exports.contains(itemName)) {
-                report(filePath, lineNumber, itemName,
-                        "Module '" + moduleName + "' has no attribute '" + itemName + "'. "
-                                + "Available: " + exports);
+    private void collectFunctions(List<Statement> statements, String filePath) {
+        for (Statement statement : safe(statements)) {
+            FuncDefStatement function = functionOf(statement);
+            if (function != null) {
+                if (functions.containsKey(function.getName())) {
+                    add(filePath, line(statement), function.getName(),
+                            "Function '" + function.getName() + "' is defined more than once.");
+                } else {
+                    functions.put(function.getName(), new FunctionDefinition(
+                            function.getName(), function.getParams().size(), line(statement)));
+                }
             }
         }
     }
 
-    /**
-     * ✅ ERROR 6: Attribute doesn't exist on type
-     * متلاً: name = "Ali"
-     *        name.uppercase()  ← should be upper()
-     */
-    public void checkInvalidAttribute(String variableName, String attribute,
-                                     String type, int lineNumber, String filePath) {
-        Map<String, Set<String>> typeAttributes = new HashMap<>();
-        typeAttributes.put("str", new HashSet<>(Arrays.asList(
-                "upper", "lower", "strip", "split", "replace", "startswith", "endswith"
-        )));
-        typeAttributes.put("list", new HashSet<>(Arrays.asList(
-                "append", "extend", "insert", "remove", "pop", "clear", "sort", "reverse"
-        )));
-        typeAttributes.put("dict", new HashSet<>(Arrays.asList(
-                "keys", "values", "items", "get", "pop", "update", "clear"
-        )));
+    private void analyzeStatement(Statement statement, String filePath) {
+        if (statement == null) return;
+        int line = line(statement);
 
-        Set<String> validAttrs = typeAttributes.get(type);
-        if (validAttrs != null && !validAttrs.contains(attribute)) {
-            report(filePath, lineNumber, attribute,
-                    "Type '" + type + "' has no method '" + attribute + "'. "
-                            + "Did you mean one of: " + validAttrs);
+        if (statement instanceof ImportStmt value) {
+            analyzeImport(value, line, filePath);
+        } else if (statement instanceof AssignStmt value) {
+            checkBuiltinRedefinition(value.getName(), line, filePath);
+            checkVariableRedefinition(value.getName(), line, filePath);
+            analyzeExpression(value.getValue(), line, filePath);
+            typeScopes.peek().put(value.getName(), inferSimpleType(value.getValue()));
+        } else if (statement instanceof RouteStatement route) {
+            analyzeFunction(route.getFuncDef(), line, filePath);
+        } else if (statement instanceof FuncDefStatement function) {
+            analyzeFunction(function, line, filePath);
+        } else if (statement instanceof ExprStmt expression) {
+            analyzeExpression(expression.getExpr(), line, filePath);
+        } else if (statement instanceof ReturnStmt value) {
+            for (Expression expression : safe(value.getReturnArgs())) {
+                analyzeExpression(expression, line, filePath);
+            }
+        } else if (statement instanceof IfStatement value) {
+            analyzeExpression(value.getCondition(), line, filePath);
+            analyzeSuite(value.getThenSuite(), filePath);
+            analyzeSuite(value.getElseSuite(), filePath);
+        } else if (statement instanceof ForStatement value) {
+            analyzeExpression(value.getExpression(), line, filePath);
+            analyzeSuite(value.getForBlock(), filePath);
         }
     }
 
-    /**
-     * ERROR 7: List/Dict index type error
-     * متلاً: my_list = [1, 2, 3]
-     *        my_list["zero"]  ← should be integer!
-     */
-    public void checkIndexType(String containerType, String indexType,
-                              int lineNumber, String filePath) {
-        if ("list".equals(containerType) && !"int".equals(indexType)) {
-            report(filePath, lineNumber, null,
-                    "Type Error: List indices must be integers, not '" + indexType + "'");
-        }
-        if ("dict".equals(containerType) && "none".equals(indexType)) {
-            report(filePath, lineNumber, null,
-                    "Type Error: Dict keys cannot be None");
+    private void analyzeFunction(FuncDefStatement function, int line, String filePath) {
+        if (function == null) return;
+        openScope();
+        assignedScopes.peek().addAll(function.getParams());
+        for (String parameter : function.getParams()) typeScopes.peek().put(parameter, "unknown");
+        analyzeSuite(function.getBody(), filePath);
+        checkMissingReturn(function.getName(), containsReturn(function.getBody()), line, filePath);
+        closeScope();
+    }
+
+    private void analyzeSuite(Suite suite, String filePath) {
+        if (suite instanceof IndentedSuite indented) {
+            for (Statement statement : safe(indented.getStatements())) analyzeStatement(statement, filePath);
+        } else if (suite instanceof SimpleSuite simple) {
+            analyzeStatement(simple.getStatement(), filePath);
         }
     }
 
-    /**
-     * ERROR 8: Function used as variable
-     * متلاً: print = "hello"  ← redefining a built-in function!
-     */
-    public void checkBuiltinRedefinition(String name, int lineNumber, String filePath) {
-        if (isBuiltinFunction(name)) {
-            report(filePath, lineNumber, name,
-                    "Error: Cannot redefine built-in function '" + name + "'. "
-                            + "This will break all calls to " + name + "()");
+    private boolean containsReturn(Suite suite) {
+        if (suite instanceof SimpleSuite simple) return containsReturn(simple.getStatement());
+        if (suite instanceof IndentedSuite indented) {
+            for (Statement statement : safe(indented.getStatements())) {
+                if (containsReturn(statement)) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containsReturn(Statement statement) {
+        if (statement instanceof ReturnStmt) return true;
+        if (statement instanceof IfStatement value) {
+            return containsReturn(value.getThenSuite()) || containsReturn(value.getElseSuite());
+        }
+        if (statement instanceof ForStatement value) return containsReturn(value.getForBlock());
+        return false;
+    }
+
+    private void analyzeImport(ImportStmt statement, int line, String filePath) {
+        String fromModule = statement.getDottedName() == null
+                ? null : String.join(".", statement.getDottedName().getParts());
+        for (ImportItem item : safe(statement.getImportList() == null
+                ? List.<ImportItem>of() : statement.getImportList().getItems())) {
+            String importedName = item.getAlias() == null ? item.getName() : item.getAlias();
+            importedNames.add(importedName);
+            if (fromModule == null) checkInvalidImport(item.getName(), null, line, filePath);
+            else checkInvalidImport(fromModule, item.getName(), line, filePath);
         }
     }
 
-    // ─────────────────────────────────────────────────────────
-    // Helper methods
-    // ─────────────────────────────────────────────────────────
+    private void analyzeExpression(Expression expression, int line, String filePath) {
+        if (expression == null) return;
+        if (expression instanceof CondExpr value) {
+            analyzeExpression(value.getThenExpr(), line, filePath);
+            analyzeExpression(value.getCondition(), line, filePath);
+            analyzeExpression(value.getElseExpr(), line, filePath);
+        } else if (expression instanceof OrPassExpr value) {
+            analyzeExpression(value.getInner(), line, filePath);
+        } else if (expression instanceof BinaryExpr value) {
+            analyzeExpression(value.getLeft(), line, filePath);
+            analyzeExpression(value.getRight(), line, filePath);
+        } else if (expression instanceof UnaryPostfixExpr value) {
+            analyzePostfix(value.getExpr(), line, filePath);
+        } else if (expression instanceof UnaryMinusExpr value) {
+            analyzeExpression(value.getExpr(), line, filePath);
+        } else if (expression instanceof PostfixExpr value) {
+            analyzePostfix(value, line, filePath);
+        } else if (expression instanceof ParenExpr value) {
+            analyzeExpression(value.getInner(), line, filePath);
+        } else if (expression instanceof ListLiteralExpr value && value.getListLiteral() != null) {
+            for (Expression item : safe(value.getListLiteral().getElements())) analyzeExpression(item, line, filePath);
+        } else if (expression instanceof DictLiteralExpr value && value.getDictLiteral() != null) {
+            for (DictEntry entry : safe(value.getDictLiteral().getEntries())) {
+                analyzeExpression(entry.getKey(), line, filePath);
+                analyzeExpression(entry.getValue(), line, filePath);
+            }
+        } else if (expression instanceof GeneratorPrimaryExpr value && value.getGeneratorExpr() != null) {
+            analyzeExpression(value.getGeneratorExpr().getIterable(), line, filePath);
+            analyzeExpression(value.getGeneratorExpr().getFilter(), line, filePath);
+        }
+    }
 
-    private boolean isBuiltinFunction(String name) {
-        Set<String> builtins = new HashSet<>(Arrays.asList(
-                "print", "len", "range", "int", "str", "float", "list", "dict",
-                "sum", "max", "min", "sorted", "reversed", "enumerate", "zip"
-        ));
-        return builtins.contains(name);
+    private void analyzePostfix(PostfixExpr expression, int line, String filePath) {
+        if (expression == null) return;
+        String baseName = expression.getPrimary() instanceof IdentifierExpr identifier
+                ? identifier.getName() : null;
+        String baseType = lookupType(baseName);
+        boolean attributeSeen = false;
+
+        for (PostfixOp operation : safe(expression.getOps())) {
+            if (operation instanceof AttrPostfix attribute) {
+                if (!attributeSeen && !"unknown".equals(baseType)) {
+                    checkInvalidAttribute(baseName, attribute.getName(), baseType, line, filePath);
+                }
+                attributeSeen = true;
+            } else if (operation instanceof SubscriptPostfix subscript) {
+                checkIndexType(baseType, inferSimpleType(subscript.getIndex()), line, filePath);
+                analyzeExpression(subscript.getIndex(), line, filePath);
+            } else if (operation instanceof CallPostfix call) {
+                int argumentCount = call.getArgList() == null ? 0 : call.getArgList().getArgs().size();
+                if (!attributeSeen && baseName != null) {
+                    checkUndefinedFunction(baseName, line, filePath);
+                    checkFunctionArguments(baseName, argumentCount, line, filePath);
+                }
+                if (call.getArgList() != null) {
+                    for (Arg argument : safe(call.getArgList().getArgs())) {
+                        analyzeExpression(argument.getValue(), line, filePath);
+                    }
+                }
+            }
+        }
+        analyzeExpression(expression.getPrimary(), line, filePath);
+    }
+
+    private void checkUndefinedFunction(String name, int line, String filePath) {
+        if (!BUILTINS.contains(name) && !functions.containsKey(name) && !importedNames.contains(name)) {
+            add(filePath, line, name,
+                    "Undefined function '" + name + "'. Did you forget to define or import it?");
+        }
+    }
+
+    private void checkFunctionArguments(String name, int count, int line, String filePath) {
+        FunctionDefinition definition = functions.get(name);
+        if (definition != null && definition.parameterCount() != count) {
+            add(filePath, line, name,
+                    "Function '" + name + "' expects " + definition.parameterCount()
+                            + " argument(s) but got " + count
+                            + ". Definition is at line " + definition.line() + ".");
+        }
+    }
+
+    private void checkVariableRedefinition(String name, int line, String filePath) {
+        Set<String> current = assignedScopes.peek();
+        if (!current.add(name)) {
+            add(filePath, line, name,
+                    "Warning: Variable '" + name + "' is assigned more than once in the same scope.");
+        }
+    }
+
+    private void checkMissingReturn(String name, boolean hasReturn, int line, String filePath) {
+        if (!hasReturn && !isVoidFunction(name)) {
+            add(filePath, line, name,
+                    "Warning: Function '" + name + "' has no return statement and will return None.");
+        }
+    }
+
+    private void checkInvalidImport(String module, String item, int line, String filePath) {
+        String rootModule = module.contains(".") ? module.substring(0, module.indexOf('.')) : module;
+        if (!VALID_MODULES.contains(rootModule)) {
+            add(filePath, line, module,
+                    "Unknown module '" + module + "'. Supported modules: " + VALID_MODULES + ".");
+        }
+        if ("flask".equals(module) && item != null && !FLASK_EXPORTS.contains(item)) {
+            add(filePath, line, item,
+                    "Module 'flask' has no supported export '" + item + "'. Available: "
+                            + FLASK_EXPORTS + ".");
+        }
+    }
+
+    private void checkInvalidAttribute(String variable, String attribute, String type,
+                                       int line, String filePath) {
+        Map<String,Set<String>> allowed = Map.of(
+                "str", Set.of("upper", "lower", "strip", "split", "replace", "startswith", "endswith"),
+                "list", Set.of("append", "extend", "insert", "remove", "pop", "clear", "sort", "reverse"),
+                "dict", Set.of("keys", "values", "items", "get", "pop", "update", "clear")
+        );
+        Set<String> attributes = allowed.get(type);
+        if (attributes != null && !attributes.contains(attribute)) {
+            add(filePath, line, attribute,
+                    "Type '" + type + "' has no supported attribute '" + attribute
+                            + "'. Available: " + attributes + ".");
+        }
+    }
+
+    private void checkIndexType(String containerType, String indexType, int line, String filePath) {
+        if ("list".equals(containerType) && !"int".equals(indexType) && !"unknown".equals(indexType)) {
+            add(filePath, line, null,
+                    "Type Error: List indices must be integers, not '" + indexType + "'.");
+        } else if ("dict".equals(containerType) && "none".equals(indexType)) {
+            add(filePath, line, null, "Type Error: Dict keys cannot be None.");
+        }
+    }
+
+    private void checkBuiltinRedefinition(String name, int line, String filePath) {
+        if (BUILTINS.contains(name)) {
+            add(filePath, line, name,
+                    "Cannot redefine built-in function '" + name + "'.");
+        }
+    }
+
+    private String inferSimpleType(Expression expression) {
+        Expression current = expression;
+        while (true) {
+            if (current instanceof CondExpr value && value.getCondition() == null) current = value.getThenExpr();
+            else if (current instanceof OrPassExpr value) current = value.getInner();
+            else if (current instanceof UnaryPostfixExpr value) current = value.getExpr();
+            else break;
+        }
+        if (current instanceof StringExpr) return "str";
+        if (current instanceof IntExpr) return "int";
+        if (current instanceof FloatExpr) return "float";
+        if (current instanceof TrueExpr || current instanceof FalseExpr) return "bool";
+        if (current instanceof NoneExpr) return "none";
+        if (current instanceof ListLiteralExpr) return "list";
+        if (current instanceof DictLiteralExpr) return "dict";
+        if (current instanceof IdentifierExpr value) return lookupType(value.getName());
+        if (current instanceof PostfixExpr value && value.getPrimary() instanceof IdentifierExpr id) {
+            return lookupType(id.getName());
+        }
+        return "unknown";
+    }
+
+    private String lookupType(String name) {
+        if (name == null) return "unknown";
+        for (Map<String,String> scope : typeScopes) {
+            if (scope.containsKey(name)) return scope.get(name);
+        }
+        return "unknown";
     }
 
     private boolean isVoidFunction(String name) {
-        // Functions that typically don't return a value
-        Set<String> voidFuncs = new HashSet<>(Arrays.asList(
-                "print", "setup", "init", "configure"
-        ));
-        return voidFuncs.contains(name);
+        return Set.of("print", "setup", "init", "configure").contains(name)
+                || name.startsWith("save_");
     }
 
-    public void registerFunction(String name, int paramCount, int lineNumber) {
-        functionDefs.put(name, new FunctionDefinition(name, paramCount, lineNumber));
+    private void openScope() {
+        assignedScopes.push(new LinkedHashSet<>());
+        typeScopes.push(new LinkedHashMap<>());
     }
 
-    public void setCurrentFunction(String name) {
-        currentFunction = name;
+    private void closeScope() {
+        assignedScopes.pop();
+        typeScopes.pop();
     }
 
-    public String getCurrentFunction() {
-        return currentFunction;
+    private int line(PyProgram node) {
+        return node == null ? -1 : node.getLineNumber();
     }
 
-    private void report(String filePath, int lineNumber, String variable, String message) {
-        // Inherit from SemanticAnalyzer's reporting
-        System.err.println("Semantic Error in " + filePath + " at line " + lineNumber + ": " + message);
+    private FuncDefStatement functionOf(Statement statement) {
+        if (statement instanceof FuncDefStatement function) return function;
+        if (statement instanceof RouteStatement route) return route.getFuncDef();
+        return null;
+    }
+
+    private void add(String filePath, int line, String variable, String message) {
+        String key = filePath + "|" + line + "|" + message;
+        if (reported.add(key)) findings.add(new SemanticError(filePath, line, variable, message));
+    }
+
+    private static <T> List<T> safe(List<T> values) {
+        return values == null ? List.of() : values;
     }
 }

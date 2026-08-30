@@ -99,7 +99,14 @@ public class Main {
         List<SemanticAnalyzer.SemanticError> allErrors = new ArrayList<>();
         allErrors.addAll(semanticAnalyzer.getErrors());
         allErrors.addAll(typeChecker.getErrors());
-        // Note: EnhancedSemanticAnalyzer errors can be added here if needed
+        allErrors.addAll(enhanced.getErrors());
+
+        // Enhanced warnings belong in the final report, but only real errors
+        // block generation. Python permits patterns such as reassignment and
+        // functions that intentionally return None.
+        List<SemanticAnalyzer.SemanticError> blockingErrors = allErrors.stream()
+                .filter(error -> !error.getMessage().startsWith("Warning:"))
+                .toList();
 
         // ── Print all errors ───────────────────────────────────────────
         printAllErrors(allErrors);
@@ -108,7 +115,7 @@ public class Main {
                         "Static output: " + outputDir, "Templates parsed: " + jinjaTemplates.size()));
 
         // ── PHASE 4: Code Generation (if no errors) ──────────────────────
-        if (!allErrors.isEmpty()) {
+        if (!blockingErrors.isEmpty()) {
             System.out.println("\n SEMANTIC ERRORS FOUND - CODE GENERATION SKIPPED");
             System.out.println("Fix the errors above and try again.\n");
             return;  // Don't generate code if errors exist
@@ -140,19 +147,22 @@ public class Main {
             return;
         }
 
-        int undefinedCount = 0;
+        int semanticErrorCount = 0;
         int typeErrorCount = 0;
+        int warningCount = 0;
 
         for (SemanticAnalyzer.SemanticError error : all) {
             System.out.println(error.format());
-            if (error.getMessage().startsWith("Type Error")) typeErrorCount++;
-            else undefinedCount++;
+            if (error.getMessage().startsWith("Warning:")) warningCount++;
+            else if (error.getMessage().startsWith("Type Error")) typeErrorCount++;
+            else semanticErrorCount++;
         }
 
         System.out.println("\n--- Summary ---");
         System.out.println("Total errors      : " + all.size());
-        System.out.println("Undefined variable: " + undefinedCount);
+        System.out.println("Semantic errors   : " + semanticErrorCount);
         System.out.println("Type errors       : " + typeErrorCount);
+        System.out.println("Warnings          : " + warningCount);
     }
 
     // ── Python ────────────────────────────────────────────────────────────────
